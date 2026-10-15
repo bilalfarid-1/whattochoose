@@ -68,7 +68,7 @@ def test_system_prompts_guardrails():
         ("socratic_mentor.prompt.md", ["GRADUATED ASSISTANCE", "SUBGOAL", "Tier 1"]),
         ("adversarial_tester.prompt.md", ["DO NOT FIX", "Vulnerability", "PyTest"]),
         ("architecture_challenger.prompt.md", ["COUNTER-ARGUMENT", "SCALE", "Trade-off"]),
-        ("dsa_coach.prompt.md", ["NEVER WRITE", "PATTERN", "COMPLEXITY"]),
+        ("dsa_coach.prompt.md", ["OPERATING MODES", "INTERVIEW MODE", "LEARNING MODE", "PATTERN", "COMPLEXITY"]),
     ]
 
     for filename, required_phrases in expected_prompts:

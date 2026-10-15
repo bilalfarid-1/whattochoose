@@ -12,7 +12,7 @@ To transform clean-looking happy-path code into resilient, production-grade soft
 
 ## 2. Theoretical Grounding
 
-* **The Verification Bottleneck (Mozannar et al., 2024):** Developers spend over half their time verifying code. Learning how to break and verify systems is the definitive skill separating senior engineers from prompt-dependent juniors.
+* **The Verification Bottleneck (Mozannar et al., 2024):** Developers using AI coding assistants must evaluate suggestions, inspect generated code, and manage the costs of interacting with these systems. Our verification protocol translates this observation into a practical learning exercise: design tests that reveal whether the implementation satisfies its requirements.
 * **Desirable Difficulties (Bjork & Bjork, 2011):** Forcing learners to anticipate and patch non-obvious failure modes encodes deep systems schemas that happy-path coding completely misses.
 
 ---

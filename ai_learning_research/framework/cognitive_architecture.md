@@ -26,7 +26,7 @@ In software engineering, Generative AI has dramatically accelerated code authori
 
 ### The Empirical Evidence: Maier et al. (2026) & Prather et al. (2024)
 * **The Productivity vs. Learning Divergence (Maier et al., 2026):**  
-  A systematic meta-analysis across 23 productivity studies and 10 learning outcome studies found that Generative AI delivers a moderate positive effect on programming completion speed ($g=0.33$). However, across studies evaluating learning outcomes, the pooled effect was small and statistically nonsignificant ($g=0.14$, 95% CI $[-0.18, 0.47]$). Faster task completion does not equate to durable learning.
+  A meta-analysis of 23 studies, comprising 14 studies contributing productivity outcomes and 10 contributing learning outcomes, found that Generative AI delivers a moderate positive effect on programming completion speed ($g=0.33$). However, across studies evaluating learning outcomes, the pooled effect was small and statistically nonsignificant ($g=0.14$, 95% CI $[-0.18, 0.47]$). Faster task completion does not equate to durable learning.
 * **Observational Differences in AI Use (Prather et al., ICER 2024):**  
   Observing 21 novice programming sessions, researchers noted that while 20 of 21 students completed the assigned problem, their cognitive interactions diverged sharply:
   - Some used AI as an accelerator for tasks whose logic they already understood.

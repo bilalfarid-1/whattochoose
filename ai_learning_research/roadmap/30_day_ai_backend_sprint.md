@@ -6,7 +6,7 @@ A structured, deliberate-practice execution blueprint for computer science and s
 
 ## 1. The Daily Operating Routine (Recommended 4-Hour Block)
 
-Consistency outweighs marathon fatigue. If four hours is not sustainable on certain days, scale down the block proportionally rather than skipping days. Allow short breaks between blocks.
+Consistency outweighs marathon fatigue. If four hours is not sustainable on certain days, scale down the block proportionally rather than skipping days. The planned active study time is 220 minutes (3 hours and 40 minutes), with the remaining 20 minutes reserved for breaks, environment setup, and transition between blocks to complete a full 4-hour study session.
 
 | Activity | Recommended Time | Focus & Cognitive Activity |
 | :--- | :---: | :--- |

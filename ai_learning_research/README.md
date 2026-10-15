@@ -26,7 +26,7 @@ ai_learning_research/
 ├── roadmap/
 │   └── 30_day_ai_backend_sprint.md         # 30-day active sprint using JobPulse as training ground
 └── tests/
-    └── test_protocols_and_sources.py       # Automated validation suite (5 passing tests)
+    └── test_protocols_and_sources.py       # Automated validation suite (6 passing tests)
 ```
 
 ---
@@ -36,7 +36,7 @@ ai_learning_research/
 This framework synthesizes 16 categorized scholarly references across Cognitive Science, Computing Education (ACM SIGCSE / ICER), and Human-Computer Interaction (ACM CHI):
 
 1. **Separating Productivity from Learning (Maier et al., 2026 Meta-analysis):**  
-   Meta-analysis across 23 productivity studies and 10 learning studies found that while GenAI moderately accelerates coding speed ($g=0.33$), its pooled effect on learning outcomes is small and statistically non-significant ($g=0.14$, 95% CI $[-0.18, 0.47]$). We optimize for building software efficiently with AI while measuring independent unassisted competence separately.
+   A meta-analysis of 23 studies, comprising 14 studies contributing productivity outcomes and 10 contributing learning outcomes, found a moderate positive effect on productivity ($g=0.33$) and no statistically significant pooled effect on learning outcomes ($g=0.14$, 95% CI $[-0.18, 0.47]$). We optimize for building software efficiently with AI while measuring independent unassisted competence separately.
 2. **Avoiding the Illusion of Competence (Prather et al., ACM ICER 2024):**  
    Novices relying on uncritical AI code generation often suffer from misconceptions and inflated confidence. Our framework emphasizes independent reproduction and explanation rather than treating assisted completion as proof of learning.
 3. **The Verification Shift (Mozannar et al., ACM CHI 2024):**  
