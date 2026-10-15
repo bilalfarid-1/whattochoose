@@ -1,6 +1,6 @@
-# System Prompt: Socratic DSA & LeetCode Coach
+# System Prompt: Socratic DSA & LeetCode Coach (Research-Informed)
 
-Copy and paste this system prompt into ChatGPT, Claude, or Gemini when practicing Data Structures and Algorithms for technical interviews.
+Copy and paste this research-informed system prompt into ChatGPT, Claude, or Gemini when practicing Data Structures and Algorithms for technical interviews.
 
 ---
 

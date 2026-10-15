@@ -1,19 +1,19 @@
 # Protocol 01: Socratic Subgoal Decomposition
 
-This protocol operationalizes **Subgoal Learning** (Margulieux & Catrambone, 2016) and the **Socratic Tutoring Method** (Mollick & Mollick, 2023) to eliminate cognitive overload and build mental schemas when implementing new backend features.
+This protocol operationalizes **Subgoal Learning** (Margulieux & Catrambone, 2016) and **Graduated Assistance** (Kazemitabaar et al., 2024; Mollick & Mollick, 2023) to manage cognitive load and build durable mental models when implementing backend features.
 
 ---
 
 ## 1. Objective
 
-To take a complex software requirement (e.g., *"Implement JWT authentication with refresh tokens and role-based access control"* or *"Implement optimistic concurrency locking on inventory updates"*) and break it down into clean, mentally digestible architectural subgoals **without receiving or copying a single line of raw code from an AI**.
+To take a backend requirement (such as implementing authentication, pagination, or database relationships in JobPulse) and decompose it into distinct functional subgoals, using graduated AI assistance to support independent problem solving.
 
 ---
 
 ## 2. Theoretical Grounding
 
-* **Cognitive Load Theory:** Prevents working-memory exhaustion by chunking 100+ lines of procedural syntax into 3–4 logical milestones.
-* **The Generation Effect:** Ensuring that the student, not the AI, generates the actual implementation logic. This leads to durable long-term retention.
+* **Subgoal Learning (Margulieux & Catrambone, 2016):** Chunking multi-step procedures into labeled functional subgoals reduces cognitive overload and improves transfer to novel programming tasks.
+* **Graduated Assistance (Kazemitabaar et al., 2024):** Beginning with conceptual hints and pseudocode before offering code snippets helps learners engage their own reasoning rather than defaulting to passive copying.
 
 ---
 
@@ -23,46 +23,42 @@ To take a complex software requirement (e.g., *"Implement JWT authentication wit
 +-----------------------------------------------------------------------------------------+
 |                         PROTOCOL 1: SUBGOAL DECOMPOSITION WORKFLOW                      |
 +-----------------------------+-----------------------------+-----------------------------+
-| Step 1: Intent Declaration  | Step 2: Socratic Querying   | Step 3: Subgoal Execution   |
+| Step 1: Independent Attempt | Step 2: Socratic Subgoals   | Step 3: Graduated Support   |
 +-----------------------------+-----------------------------+-----------------------------+
-| • Provide system prompt     | • AI asks clarifying queries| • Implement Subgoal 1       |
-| • State feature goal        | • Student defines constraints| • Verify Subgoal 1 with test|
-| • BARS raw code output      | • Agree on 3-4 Subgoals     | • Proceed to Subgoal 2      |
+| • State feature requirement | • Identify 3-4 functional   | • Request conceptual hint   |
+| • Sketch data model & flow  |   subgoals with AI          | • If stuck, request subgoal |
+| • Attempt initial design    | • Agree on invariants       | • Use minimal snippet only  |
+|   before consulting AI      |   before implementation     |   when facing novel syntax  |
 +-----------------------------+-----------------------------+-----------------------------+
 ```
 
-### Step 1: Initiate Session with Socratic Constraint
-Feed your AI assistant the **Socratic Mentor System Prompt** (located at `ai_learning_research/prompts/socratic_mentor.prompt.md`).
+### Step 1: Independent Attempt & Intent Declaration
+Before querying an AI assistant, write down:
+1. The goal of the feature (e.g., *"Add filtering and pagination to the JobPulse application endpoint"*).
+2. The expected inputs (query parameters: `status`, `page`, `page_size`) and outputs (list of applications, total count).
+3. Your proposed database query and validation logic.
 
-Submit your problem statement:
-> *"I need to build an asynchronous endpoint in FastAPI that accepts user registration, hashes passwords using bcrypt, stores the user in PostgreSQL via SQLAlchemy 2.0 async, and returns a JWT access token. Do not write the code for me. Act as a Staff Backend Engineer. Help me decompose this into functional subgoals and guide me through the architectural decisions."*
+### Step 2: Establish the Functional Subgoals
+Consult your AI assistant using the **Socratic Mentor Prompt** (`prompts/socratic_mentor.prompt.md`):
+> *"I am adding pagination and status filtering to my JobPulse applications endpoint in FastAPI and SQLAlchemy. Here is my initial plan: [paste your notes]. Help me review the functional subgoals and identify any constraints I overlooked."*
 
-### Step 2: The Socratic Dialogue
-The AI will respond with probing architectural questions rather than code:
-* *Question 1:* What unique constraints should be applied at the database level versus the application level for email uniqueness?
-* *Question 2:* What fields should belong in the Pydantic schema validation versus the SQLAlchemy database model?
-* *Question 3:* What HTTP status code should be returned if the user already exists?
-* *Question 4:* How will you manage the async database session lifecycle if password hashing fails?
+Agree on the canonical subgoals:
+* **Subgoal 1 (Data Layer):** Efficient database query using `limit` and `offset` with an indexed `status` filter.
+* **Subgoal 2 (Schema Layer):** Pydantic response envelope containing `items`, `total_count`, `page`, and `page_size`.
+* **Subgoal 3 (Route Implementation):** Dependency injection of the async database session and parameter parsing.
+* **Subgoal 4 (Defensive Testing):** PyTest cases verifying pagination boundaries (`page=1`, empty pages, invalid negative parameters).
 
-**Action:** You must answer these questions in your own words before moving to Step 3.
-
-### Step 3: Establish the Canonical 4 Subgoals
-Together with the AI, formalize the task into 4 explicit subgoals:
-* **Subgoal 1 (Data Layer):** Define the relational schema, column types, unique constraints, and indexes in `models/user.py`.
-* **Subgoal 2 (Validation Layer):** Define Pydantic request models (`UserCreate`) and response models (`UserRead`, `Token`) in `schemas/user.py`.
-* **Subgoal 3 (Business Logic Layer):** Implement the password hashing utility, database insert query, and token generator in `crud/user.py` and `core/security.py`.
-* **Subgoal 4 (Interface & Verification Layer):** Implement the FastAPI router endpoint and write 3 PyTest cases covering success and duplicate email collisions.
-
-### Step 4: Step-by-Step Implementation with Graduated Hints
-Implement each subgoal in your IDE **one by one**:
-* If you encounter a bug or error, do NOT ask the AI to fix it.
-* Instead, provide the traceback and ask: *"What invariant did I violate here?"*
-* If you are completely stuck, request a **Level 1 Hint** (conceptual clue), then a **Level 2 Hint** (pseudocode structure). Never ask for executable code.
+### Step 3: Implement with Graduated Assistance
+Implement each subgoal independently:
+1. **Tier 1 (Conceptual Hint):** If stuck, ask: *"What SQL clause or SQLAlchemy method manages query limits without loading all rows into memory?"*
+2. **Tier 2 (Subgoal / Pseudocode):** Ask for structural pseudocode showing how the query and count should be structured.
+3. **Tier 3 (Partial Snippet):** If unfamiliar with specific SQLAlchemy 2.0 syntax, request a 2-line snippet for the unfamiliar construct.
+4. **Tier 4 (Worked Example, when needed):** If facing a completely novel concept (e.g., configuring an async session fixture in PyTest), study a worked example, close the reference, and reconstruct the logic independently in your codebase.
 
 ---
 
 ## 4. Verification Checkpoint
 
-Before marking the feature complete:
-1. Explain the execution path from HTTP request to PostgreSQL row commit in under 60 seconds without looking at your screen.
-2. Run `pytest` and verify that both happy path and failure path tests pass.
+Before marking the task complete:
+1. Trace the data flow from the FastAPI route through SQLAlchemy to the PostgreSQL query without looking at notes.
+2. Run your automated test suite to verify that both happy-path and boundary queries pass.

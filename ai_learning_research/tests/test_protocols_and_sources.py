@@ -2,11 +2,11 @@
 Automated Verification Suite for the AI-Augmented Engineering Mastery Framework.
 
 Verifies:
-1. Academic bibliographic audit integrity (DOIs, authors, venues, empirical rigor).
-2. System prompt guardrails (negative constraints, anti-leakage rules, role definitions).
+1. Academic bibliographic audit integrity (Corrected DOIs, authors, venues, empirical rigor).
+2. Research-informed system prompt guardrails (graduated assistance, role definitions).
 3. Protocol structural completeness (Objective, Grounding, Workflow, Checkpoint).
-4. 30-Day Sprint continuity (all 30 days scheduled with hands-on tasks and DSA targets).
-5. File paths and documentation cross-references.
+4. 30-Day Sprint continuity (4-metric scorecard, daily routine, JobPulse focus).
+5. Clean repository references (zero absolute local disk paths in README).
 """
 
 import os
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def test_sources_metadata():
-    """Verify that SOURCES.md exists and contains all 12 required academic citations with DOIs/URLs."""
+    """Verify that SOURCES.md exists and contains all required scholarly citations with verified DOIs/URLs."""
     sources_path = os.path.join(BASE_DIR, "SOURCES.md")
     assert os.path.isfile(sources_path), "SOURCES.md not found"
 
@@ -37,23 +37,35 @@ def test_sources_metadata():
         "Roediger",
         "Chi",
         "Peng",
+        "Cowan",
+        "Maier",
     ]
 
     for author in required_authors:
         assert author in content, f"Missing citation or reference for {author}"
 
-    # Verify DOI or URL links exist in the bibliography
-    doi_or_urls = re.findall(r"https?://[^\s\)]+", content)
-    assert len(doi_or_urls) >= 10, f"Expected at least 10 DOIs/URLs in SOURCES.md, found {len(doi_or_urls)}"
+    # Verify specific verified DOIs and URLs
+    verified_identifiers = [
+        "10.1145/3632620.3671116",  # Prather et al. ICER 2024
+        "10.1145/3613904.3641936",  # Mozannar et al. CHI 2024
+        "10.1145/3613904.3642773",  # Kazemitabaar et al. (CodeAid) CHI 2024
+        "10.1017/S0140525X01003922", # Cowan 2001
+        "10.1037/edu0000108",        # Margulieux & Catrambone 2016
+        "10.1111/j.1745-6916.2006.00012.x", # Roediger & Karpicke 2006
+        "2605.04779",               # Maier et al. May 2026 meta-analysis
+    ]
+
+    for identifier in verified_identifiers:
+        assert identifier in content, f"Verified identifier {identifier} missing in SOURCES.md"
 
 
 def test_system_prompts_guardrails():
-    """Verify system prompts enforce anti-leakage and structured pedagogical constraints."""
+    """Verify system prompts enforce graduated assistance and structured pedagogical constraints."""
     prompts_dir = os.path.join(BASE_DIR, "prompts")
     assert os.path.isdir(prompts_dir), "prompts directory not found"
 
     expected_prompts = [
-        ("socratic_mentor.prompt.md", ["ZERO CODE LEAKAGE", "SUBGOAL", "HINT"]),
+        ("socratic_mentor.prompt.md", ["GRADUATED ASSISTANCE", "SUBGOAL", "Tier 1"]),
         ("adversarial_tester.prompt.md", ["DO NOT FIX", "Vulnerability", "PyTest"]),
         ("architecture_challenger.prompt.md", ["COUNTER-ARGUMENT", "SCALE", "Trade-off"]),
         ("dsa_coach.prompt.md", ["NEVER WRITE", "PATTERN", "COMPLEXITY"]),
@@ -100,8 +112,8 @@ def test_protocols_completeness():
             assert section in text, f"Protocol {filename} missing structural section '{section}'"
 
 
-def test_roadmap_continuity():
-    """Verify that the 30-Day Sprint covers all 30 days and 4 weekly modules."""
+def test_roadmap_continuity_and_scorecard():
+    """Verify that the 30-Day Sprint covers the 4-metric scorecard, daily routine, and JobPulse training ground."""
     roadmap_path = os.path.join(BASE_DIR, "roadmap", "30_day_ai_backend_sprint.md")
     assert os.path.isfile(roadmap_path), "Roadmap file not found"
 
@@ -114,14 +126,20 @@ def test_roadmap_continuity():
     assert "WEEK 3" in text
     assert "WEEK 4" in text
 
-    # Verify Day 1 through Day 30 are explicitly covered
-    for day_num in range(1, 31):
-        assert f"Day {day_num}" in text, f"Roadmap missing schedule for Day {day_num}"
+    # Verify 4-metric learning scorecard
+    assert "Independent Completion" in text
+    assert "Debugging Ability" in text
+    assert "Technical Explanation" in text
+    assert "Conceptual Transfer" in text
 
-    # Verify LeetCode / DSA integration
-    assert "LeetCode" in text
-    assert "Two Pointers" in text
-    assert "Binary Search" in text
+    # Verify daily operating routine
+    assert "120 minutes" in text
+    assert "45 minutes" in text
+    assert "35 minutes" in text
+    assert "20 minutes" in text
+
+    # Verify JobPulse focus
+    assert "JobPulse" in text
 
 
 def test_anti_patterns_and_cognitive_architecture():
@@ -135,10 +153,10 @@ def test_anti_patterns_and_cognitive_architecture():
 
     with open(cog_path, "r", encoding="utf-8") as f:
         cog_text = f.read()
-    assert "Cognitive Load Theory" in cog_text
-    assert "Deliberate Practice" in cog_text
-    assert "Desirable Difficulties" in cog_text
-    assert "Subgoal Learning" in cog_text
+    assert "Cowan" in cog_text
+    assert "Sweller" in cog_text
+    assert "Maier" in cog_text
+    assert "Graduated Assistance" in cog_text
 
     with open(anti_path, "r", encoding="utf-8") as f:
         anti_text = f.read()
@@ -148,6 +166,18 @@ def test_anti_patterns_and_cognitive_architecture():
     assert "Anti-Pattern 4" in anti_text
     assert "Anti-Pattern 5" in anti_text
     assert "Anti-Pattern 6" in anti_text
+
+
+def test_no_local_disk_paths_in_readme():
+    """Verify that ai_learning_research/README.md does not contain local absolute file:/// or C: paths."""
+    readme_path = os.path.join(BASE_DIR, "README.md")
+    assert os.path.isfile(readme_path), "README.md not found"
+
+    with open(readme_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    assert "file:///" not in content, "README.md contains local file:/// URLs"
+    assert "C:\\Users\\" not in content, "README.md contains local Windows disk paths"
 
 
 if __name__ == "__main__":

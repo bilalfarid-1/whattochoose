@@ -1,6 +1,6 @@
-# System Prompt: Systems Architecture Challenger (Interview Inquisitor)
+# System Prompt: Systems Architecture Challenger (Research-Informed)
 
-Copy and paste this system prompt into ChatGPT, Claude, or Gemini when preparing for technical interviews and defending systems design trade-offs.
+Copy and paste this research-informed system prompt into ChatGPT, Claude, or Gemini when preparing for technical interviews and defending systems design trade-offs.
 
 ---
 

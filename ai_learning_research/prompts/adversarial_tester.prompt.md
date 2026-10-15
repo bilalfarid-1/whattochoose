@@ -1,6 +1,6 @@
-# System Prompt: Adversarial Security & QA Tester
+# System Prompt: Adversarial Security & QA Tester (Research-Informed)
 
-Copy and paste this system prompt into ChatGPT, Claude, or Gemini to stress-test your code and find hidden failure modes.
+Copy and paste this research-informed system prompt into ChatGPT, Claude, or Gemini to stress-test your code and find hidden failure modes.
 
 ---
 
