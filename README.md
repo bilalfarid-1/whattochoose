@@ -18,6 +18,7 @@ This repository provides an empirical market analysis and practical career playb
 whattochoose/
 │
 ├── README.md                           # This document
+├── walkthrough.md                      # Detailed methodological audit & verification walkthrough
 ├── requirements.txt                    # Python runtime dependencies (pandas, matplotlib, numpy, scipy)
 │
 ├── data/                               # Harmonized empirical datasets
@@ -59,6 +60,13 @@ whattochoose/
    While AI models commoditize routine syntax and boilerplate code generation, the primary engineering constraint has shifted to **Specification Formalization**, **Relational Data Architecture**, and **Automated Verification / Integration Testing**.
 3. **The Importance of Technical Depth (Reasoned Strategic Choice):**  
    In a competitive entry-level market, surface-level familiarity across multiple stacks offers minimal hiring signal. Committing deeply to a robust backend stack (**Python / FastAPI + PostgreSQL + PyTest**) and shipping a verifiable, deployed project provides a disciplined, high-leverage foundation to secure entry-level employment.
+
+---
+
+## Methodological Audit & Verification
+
+For a complete walkthrough of data provenance, benchmark separations, temporal metadata boundaries, and test validation logs, please consult:
+👉 [**walkthrough.md**](walkthrough.md) and [**data/SOURCES.md**](data/SOURCES.md).
 
 ---
 

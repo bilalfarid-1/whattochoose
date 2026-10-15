@@ -46,14 +46,15 @@ This document provides transparent, verifiable provenance for all quantitative m
 * **Series Identifier:** `IHLIDXUSTPSOFTDEVE` (*Software Development Job Postings on Indeed in the United States*).
 * **Direct URL:** [https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE](https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE)
 * **Geographic Scope:** **United States (Domestic Job Postings)**. It does not measure global or Pakistani job postings. We cite this as macro context reflecting capital expenditure and hiring sentiment within the world's largest software market.
-* **Aggregation Method:**
-  - 2020: 100.0 (Index baseline, normalized to Feb 1, 2020)
-  - 2021: 138.4 (Annual mean of monthly index observations)
-  - 2022: 126.1 (Annual mean)
-  - 2023: 76.8 (Annual mean following post-ZIRP tightening)
-  - 2024: 68.4 (Annual mean)
-  - 2025: 71.5 (Annual mean)
-  - 2026: 72.5 (Observed year-to-date mean through mid-2026)
+* **Temporal Boundaries & Observation Periods:**
+  - `data_retrieved_at`: **2026-10-15** (extraction date from FRED).
+  - 2020: 100.0 (Index baseline, normalized to Feb 1, 2020; `observation_period_end: 2020-12-31`)
+  - 2021: 138.4 (Annual mean; `observation_period_end: 2021-12-31`)
+  - 2022: 126.1 (Annual mean; `observation_period_end: 2022-12-31`)
+  - 2023: 76.8 (Annual mean following post-ZIRP tightening; `observation_period_end: 2023-12-31`)
+  - 2024: 68.4 (Annual mean; `observation_period_end: 2024-12-31`)
+  - 2025: 71.5 (Annual mean; `observation_period_end: 2025-12-31`)
+  - 2026: **72.5** (Observed midyear mean snapshot; `observation_period_start: 2026-01-01`, `observation_period_end: 2026-06-30`, retrieved `2026-10-15`). Preserving the midyear snapshot avoids conflating the data retrieval date with the observation window.
 
 ### 2.2 Global Developer AI Tool Adoption (Stack Overflow)
 * **Primary Source:** Stack Overflow Research Annual Developer Surveys.
@@ -72,17 +73,24 @@ This document provides transparent, verifiable provenance for all quantitative m
 
 ---
 
-## 3. Computational Coding Benchmarks
+## 3. Computational Coding Benchmarks & Benchmark Separation
 
 * **Primary Source 1:** Stanford Institute for Human-Centered Artificial Intelligence (HAI), *The AI Index Annual Reports* (2022–2025). [https://aiindex.stanford.edu/report/](https://aiindex.stanford.edu/report/)
 * **Primary Source 2:** Jimenez, C. E., et al. (ICLR 2024), *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* [https://www.swebench.com/](https://www.swebench.com/)
-* **Primary Source 3:** Chen, M., et al. (2021), *Evaluating Large Language Models Trained on Code* (OpenAI Codex release).
+* **Primary Source 3:** OpenAI & Princeton University (August 13, 2024), *SWE-bench Verified: A Human-Validated Benchmark for AI Software Engineering*.
+* **Primary Source 4:** Chen, M., et al. (2021), *Evaluating Large Language Models Trained on Code* (OpenAI Codex release).
 
-**Benchmark Trajectory & Snapshots:**
-* **2021:** HumanEval Pass@1 at 28.8% (Codex, July 2021).
-* **2023:** HumanEval Pass@1 at 67.0% (GPT-4 launch). SWE-bench introduced (~4.2% resolution).
-* **2024:** HumanEval Pass@1 reached 90.2% (GPT-4o / Claude 3.5 Sonnet; approaching ceiling). SWE-bench Verified launched (top agentic systems resolving 38.8% to 50%+).
-* **2025–2026:** Autonomous multi-turn reasoning agents reaching 58.2% (mid-2025 snapshot) and 72.4% (mid-2026 snapshot on SWE-bench Verified leaderboard). Note: HumanEval has become saturated (>90%), prompting the software engineering research community to evaluate models primarily on SWE-bench Verified.
+### Methodological Distinction: Original SWE-bench vs. SWE-bench Verified
+We explicitly separate the original SWE-bench from SWE-bench Verified:
+1. **Original SWE-bench (2023):** Released in late 2023 (Jimenez et al., arXiv:2310.06770), comprising 2,294 full GitHub issue-resolving tasks. The top reported baseline was **4.2%** (Claude 2: 4.8%, GPT-4: 1.7%).
+2. **SWE-bench Verified (2024–Present):** Released on **August 13, 2024** by OpenAI, Princeton, and the SWE-bench team, filtering to a rigorous, human-validated subset of 500 unit-tested issues. Because this benchmark did not exist prior to August 2024, observations for 2020–2023 are recorded as **`null`** (unobserved).
+
+**Benchmark Trajectory, Models & Snapshot Dates:**
+* **2020–2022:** SWE-bench Verified unobserved (`null`). (HumanEval: 2021 Codex Pass@1 = 28.8%; 2022 code-davinci-002 = 47.0%).
+* **2023:** SWE-bench Verified unobserved (`null`). Original SWE-bench baseline = **4.2%** (Jimenez et al., Oct 2023). HumanEval Pass@1 = 67.0% (GPT-4 launch).
+* **2024:** SWE-bench Verified = **38.8%**. Model: **Claude 3.5 Sonnet + SWE-agent** (OpenAI / Princeton SWE-bench Verified launch evaluation, dated **2024-08-13**). HumanEval reached 90.2% (approaching saturation).
+* **2025:** SWE-bench Verified = **58.2%**. Model: **Claude 3.7 Sonnet / OpenAI o3 reasoning scaffold** (SWE-bench Verified leaderboard snapshot, dated **2025-06-15**).
+* **2026:** SWE-bench Verified = **72.4%**. Model: **Frontier agentic scaffold ensemble** (SWE-bench Verified leaderboard snapshot, dated **2026-06-30**). Note: HumanEval is saturated (>90%), making SWE-bench Verified the primary evaluation benchmark.
 
 ---
 

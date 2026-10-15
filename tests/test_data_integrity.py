@@ -1,6 +1,9 @@
 import json
 import os
+import re
 import math
+
+DATE_REGEX = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 
 def test_data_integrity():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -8,7 +11,7 @@ def test_data_integrity():
     
     assert os.path.exists(json_path), f"Missing data file: {json_path}"
     
-    with open(json_path, 'r') as f:
+    with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
         
     ts = data['time_series_data']
@@ -35,13 +38,60 @@ def test_data_integrity():
     assert abs(expected_fresh_pct - recorded_fresh_pct) < 0.1, "P@SHA fresher share mismatch"
     assert "Skills-Survey-2025.pdf" in pasha['direct_report_pdf_url']
     
-    # 3. Verify as_of_date and measurement_type metadata presence
+    # 3. Verify Date Formats and Temporal/Provenance Metadata
+    required_temporal_fields = [
+        'as_of_date', 
+        'observation_period_start', 
+        'observation_period_end', 
+        'data_retrieved_at',
+        'export_measurement_type',
+        'ai_metric_measurement_type',
+        'us_postings_measurement_type',
+        'entry_share_data_type'
+    ]
+    
     for row in ts:
-        assert 'as_of_date' in row, f"Missing as_of_date for year {row['year']}"
-        assert 'export_measurement_type' in row, f"Missing export_measurement_type for year {row['year']}"
-        assert 'ai_metric_measurement_type' in row, f"Missing ai_metric_measurement_type for year {row['year']}"
+        year = row['year']
+        for field in required_temporal_fields:
+            assert field in row, f"Missing '{field}' in time series record for year {year}"
+            
+        # Verify ISO date regex (YYYY-MM-DD)
+        for date_key in ['as_of_date', 'observation_period_start', 'observation_period_end', 'data_retrieved_at']:
+            val = row[date_key]
+            assert DATE_REGEX.match(val), f"Field '{date_key}' value '{val}' does not match YYYY-MM-DD in year {year}"
+            
+        # Ensure observation period start <= end
+        assert row['observation_period_start'] <= row['observation_period_end'], f"Invalid period range for year {year}"
         
-    # 4. Verify Mathematical Reproducibility of the Qualitative Skills Rubric
+    # Verify specific 2026 temporal distinction: midyear snapshot ending 2026-06-30 vs data retrieved in October
+    row_2026 = [r for r in ts if r['year'] == 2026][0]
+    assert row_2026['observation_period_end'] == "2026-06-30", "2026 midyear snapshot should have observation_period_end: 2026-06-30"
+    assert row_2026['data_retrieved_at'] == "2026-10-15", "2026 data_retrieved_at should be 2026-10-15"
+    
+    # 4. Verify SWE-bench Benchmark Provenance and Null Handling
+    # SWE-bench Verified was launched August 13, 2024. Observations for 2020-2023 MUST be null (None in Python).
+    for row in ts:
+        year = row['year']
+        if year < 2024:
+            assert row['swe_bench_verified_top_score_pct'] is None, (
+                f"SWE-bench Verified must be null prior to launch year 2024, found: {row['swe_bench_verified_top_score_pct']} in {year}"
+            )
+            assert row['benchmark_swe_verified_model'] is None, f"benchmark_swe_verified_model must be null in {year}"
+            assert row['benchmark_swe_verified_snapshot_date'] is None, f"benchmark_swe_verified_snapshot_date must be null in {year}"
+        else:
+            assert isinstance(row['swe_bench_verified_top_score_pct'], (int, float)), f"Expected numeric Verified score in {year}"
+            assert row['swe_bench_verified_top_score_pct'] > 0.0, f"Expected non-zero Verified score in {year}"
+            assert row['benchmark_swe_verified_model'] is not None, f"Missing benchmark_swe_verified_model in {year}"
+            assert DATE_REGEX.match(row['benchmark_swe_verified_snapshot_date']), f"Invalid snapshot date in {year}"
+            
+        # Original SWE-bench was introduced in late 2023
+        if year == 2023:
+            assert abs(row['swe_bench_original_top_score_pct'] - 4.2) < 0.01, "Expected 4.2% original SWE-bench baseline in 2023"
+            assert 'Jimenez et al.' in row['benchmark_swe_original_source']
+        else:
+            assert row['swe_bench_original_top_score_pct'] is None, f"swe_bench_original_top_score_pct should be null in {year}"
+            
+    # 5. Verify Mathematical Reproducibility of the Qualitative Skills Rubric
     rubric = data['author_qualitative_skills_rubric']
     weights = rubric['scoring_weights']
     w_auto = weights['automation_resistance_weight']
@@ -58,7 +108,7 @@ def test_data_integrity():
         assert calculated_val == recorded_val, f"Rubric formula mismatch for {skill['skill_domain']}: calc {calculated_val} vs rec {recorded_val}"
         assert calculated_val == skill['contemporary_2026_weight'], f"Weight mismatch for {skill['skill_domain']}"
     
-    print("[PASS] All data integrity, arithmetic, P@SHA link, and rubric reproduction tests passed successfully!")
+    print("[PASS] All data integrity, arithmetic, P@SHA link, ISO date formats, benchmark nulls, and rubric reproduction tests passed successfully!")
 
 if __name__ == '__main__':
     test_data_integrity()

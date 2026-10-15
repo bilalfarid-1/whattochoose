@@ -74,6 +74,7 @@ def plot_figure_1_macro_trends(df):
     
     color_postings = '#2b5c8f'
     color_swe = '#8e44ad'
+    color_orig_swe = '#e67e22'
     color_ai = '#27ae60'
     
     # Left axis: Indeed U.S. Software Postings Index (FRED: IHLIDXUSTPSOFTDEVE)
@@ -86,8 +87,18 @@ def plot_figure_1_macro_trends(df):
     
     # Right axis: SWE-bench Verified & AI Tool Engagement
     ax2 = ax1.twinx()
-    ax2.plot(df['year'], df['swe_bench_verified_top_score_pct'], marker='^', color=color_swe, 
-             linewidth=2.2, label='SWE-bench Verified Top Score (%)')
+    swe_verified_mask = df['swe_bench_verified_top_score_pct'].notna()
+    ax2.plot(df.loc[swe_verified_mask, 'year'], df.loc[swe_verified_mask, 'swe_bench_verified_top_score_pct'], 
+             marker='^', color=color_swe, linewidth=2.2, label='SWE-bench Verified Top Score (%, 2024–2026)')
+    
+    # Plot original SWE-bench 2023 baseline point distinctly
+    if 'swe_bench_original_top_score_pct' in df.columns:
+        orig_swe_mask = df['swe_bench_original_top_score_pct'].notna()
+        if orig_swe_mask.any():
+            ax2.scatter(df.loc[orig_swe_mask, 'year'], df.loc[orig_swe_mask, 'swe_bench_original_top_score_pct'],
+                        color=color_orig_swe, marker='s', s=65, zorder=5,
+                        label='SWE-bench Original Baseline (4.2%, Oct 2023)')
+
     ax2.plot(df['year'], df['global_ai_tool_engagement_pct'], marker='d', linestyle='--', color=color_ai,
              linewidth=2.0, label='Developer AI Tool Engagement (Stack Overflow, %)')
     ax2.set_ylabel('Benchmark Score & Adoption (%)', color=color_swe, fontweight='bold')
@@ -100,7 +111,7 @@ def plot_figure_1_macro_trends(df):
     
     lines_1, labels_1 = ax1.get_legend_handles_labels()
     lines_2, labels_2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='center left', frameon=True, fontsize=8.8)
+    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='center left', frameon=True, fontsize=8.6)
     
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig1_junior_squeeze.png'))

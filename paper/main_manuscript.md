@@ -60,10 +60,10 @@ Where:
 * $C_{\text{verif}}$ is the cost of automated testing, edge-case validation, and security auditing.
 * $C_{\text{maint}}$ is the long-term cost of technical debt and regression prevention.
 
-In earlier development workflows, source code implementation ($C_{\text{gen}}$) was the primary labor bottleneck. In the modern agentic workflow:
-$$C_{\text{gen}} \to 0 \quad \text{while} \quad C_{\text{verif}} \uparrow$$
+In conventional development workflows, source code implementation ($C_{\text{gen}}$) was the primary labor bottleneck. In modern agent-assisted workflows, routine code synthesis is increasingly commoditized:
+$$C_{\text{gen}} \downarrow \quad \text{while} \quad C_{\text{verif}} \uparrow$$
 
-Because autonomous models can produce syntactically valid but logically subtle hallucinations, the engineering bottleneck shifts entirely to verification. A graduate whose primary competence is writing boilerplate CRUD endpoints offers little economic leverage compared to one who can construct rigorous automated test suites and validate production edge cases.
+As AI models reduce the marginal cost of producing routine syntax, they elevate the importance of verification, integration testing, and architectural judgment. Because models can produce syntactically plausible but logically subtle hallucinations, human engineering effort shifts toward verifying business correctness, handling non-trivial edge cases, and auditing security. A graduate whose primary competence is writing boilerplate CRUD endpoints offers less hiring differentiation compared to one who can construct rigorous automated test suites, design robust relational schemas, and validate production reliability.
 
 ---
 
@@ -75,7 +75,7 @@ This analysis integrates verified data across five primary domains (documented i
 2. **Pakistan IT Workforce Data:** P@SHA's *Skills Survey 2025* ([direct report PDF](https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf)), reporting on 47,393 company hires and national graduate supply across surveyed member enterprises.
 3. **U.S. Software Labor Market Index:** Federal Reserve Bank of St. Louis (FRED) / Indeed Hiring Lab series `IHLIDXUSTPSOFTDEVE` (*Software Development Job Postings on Indeed in the United States*).
 4. **Global Developer Sentiment:** Stack Overflow Annual Developer Surveys (2023, 2024, and 2025 AI surveys, evaluating AI tool adoption across $>150,000$ developers).
-5. **Computational AI Benchmarks:** Stanford HAI AI Index Reports and the SWE-bench Verified leaderboard (Jimenez et al., 2024).
+5. **Computational AI Benchmarks:** Stanford HAI AI Index Reports, SWE-bench Original (Jimenez et al., 2023), and SWE-bench Verified (OpenAI & Princeton, 2024).
 
 ---
 
@@ -89,18 +89,19 @@ Figure 1 plots the co-evolution of U.S. software job postings (Indeed Hiring Lab
 ```
 Table 1: Longitudinal Software Engineering & Technology Trajectories (2020–2026)
 +------+-----------------------+----------------------+---------------------------+------------------------+
-| Year | AI Tool Adoption (%)* | SWE-bench Verif. (%) | U.S. Openings Index**     | Tech Layoffs (Global)  |
+| Year | AI Tool Adoption (%)* | SWE-bench Verif. (%)^| U.S. Openings Index**     | Tech Layoffs (Global)  |
 +------+-----------------------+----------------------+---------------------------+------------------------+
-| 2020 |        2.0%           |         0.0%         |          100.0            |         80,000         |
-| 2021 |        5.0%           |         0.0%         |          138.4            |         15,000         |
-| 2022 |        8.5%           |         0.0%         |          126.1            |        165,000         |
-| 2023 |       70.0%           |         4.2%         |           76.8            |        263,000         |
+| 2020 |        2.0%           |          —           |          100.0            |         80,000         |
+| 2021 |        5.0%           |          —           |          138.4            |         15,000         |
+| 2022 |        8.5%           |          —           |          126.1            |        165,000         |
+| 2023 |       70.0%           |          —           |           76.8            |        263,000         |
 | 2024 |       76.0%           |        38.8%         |           68.4            |        152,000         |
 | 2025 |       84.0%           |        58.2%         |           71.5            |         98,000         |
 | 2026 |       88.0%           |        72.4%         |           72.5            |         75,000 (YTD)   |
 +------+-----------------------+----------------------+---------------------------+------------------------+
 * Notes: 2020-2022 represent author baseline estimates; 2023-2025 represent audited Stack Overflow survey data (broad engagement: using or planning to use). In 2025, 51% of professional developers reported daily AI tool use.
-** Normalized U.S. Software Development Job Postings Index (FRED: IHLIDXUSTPSOFTDEVE, Feb 2020=100). 2026 value represents observed YTD mean through mid-2026.
+^ Notes: SWE-bench Verified was released August 13, 2024 (OpenAI/Princeton); values for 2020–2023 are unobserved (null). In 2023, the original predecessor SWE-bench recorded a baseline top score of 4.2% (Claude 2 / GPT-4; Jimenez et al., 2023). 2024 evaluates Claude 3.5 Sonnet + SWE-agent; 2025 evaluates Claude 3.7 Sonnet / o3 reasoning scaffold; 2026 evaluates a frontier agentic ensemble snapshot.
+** Normalized U.S. Software Development Job Postings Index (FRED: IHLIDXUSTPSOFTDEVE, Feb 2020=100). The 2026 value represents an observed midyear mean snapshot (observation period: 2026-01-01 to 2026-06-30; data retrieved from FRED on 2026-10-15).
 ```
 
 While U.S. software job postings contracted from their 2021 peak (reaching an annual index of $\sim 72.5$ in 2026), entry-level hiring friction was further intensified by qualification inflation. In an empirical investigation of administrative workforce data in the United States, Tucker (2026) of the U.S. Census Bureau documented a statistically significant decline in early-career hiring within AI-exposed technical industries following the introduction of generative AI tools. While Tucker's findings specifically reflect U.S. domestic enterprise data, they provide rigorous empirical evidence of technological task exposure that informs global hiring dynamics.
