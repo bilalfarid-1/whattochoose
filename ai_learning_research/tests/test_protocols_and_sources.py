@@ -1,12 +1,15 @@
 """
-Automated Verification Suite for the AI-Augmented Engineering Mastery Framework.
+Automated Consistency Test Suite for the AI-Augmented Engineering Mastery Framework.
 
-Verifies:
-1. Academic bibliographic audit integrity (Corrected DOIs, authors, venues, empirical rigor).
-2. Research-informed system prompt guardrails (graduated assistance, role definitions).
+Verifies internal document and structural consistency:
+1. Citation identifier presence (verified DOI strings and publication URLs).
+2. Research-informed system prompt guardrails (graduated assistance, operating modes).
 3. Protocol structural completeness (Objective, Grounding, Workflow, Checkpoint).
 4. 30-Day Sprint continuity (4-metric scorecard, daily routine, JobPulse focus).
 5. Clean repository references (zero absolute local disk paths in README).
+
+Note: These automated tests check structural consistency and the presence of verified source identifiers;
+they do not automatically resolve live external DOIs or substitute for critical manual source analysis.
 """
 
 import os

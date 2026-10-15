@@ -24,9 +24,9 @@ ai_learning_research/
 │   ├── architecture_challenger.prompt.md   # Research-informed prompt: systems design interviewer
 │   └── dsa_coach.prompt.md                 # Research-informed prompt: Socratic LeetCode coaching
 ├── roadmap/
-│   └── 30_day_ai_backend_sprint.md         # 30-day active sprint using JobPulse as training ground
+│   └── 30_day_ai_backend_sprint.md         # 30-day active-learning sprint using JobPulse as training ground
 └── tests/
-    └── test_protocols_and_sources.py       # Automated validation suite (6 passing tests)
+    └── test_protocols_and_sources.py       # Automated consistency test suite (6 passing tests)
 ```
 
 ---
@@ -63,8 +63,9 @@ Evaluate your progress across:
 * **Technical Explanation:** Can you explain your schema and API trade-offs clearly?
 * **Conceptual Transfer:** Can you apply the pattern to a novel problem?
 
-### Step 4: Run Automated Verification Tests
-Validate source citations, prompt constraints, and protocol structure:
+### Step 4: Run Automated Consistency Tests
+Check citation identifiers, prompt guardrails, and protocol structure:
 ```bash
 python -m pytest -v ai_learning_research/tests/test_protocols_and_sources.py
 ```
+*(Note: The test suite verifies citation identifiers, system prompt rules, and document consistency; it does not automatically resolve live external DOIs or replace critical manual source analysis).*

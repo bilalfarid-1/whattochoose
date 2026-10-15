@@ -22,7 +22,7 @@ This repository unites three complementary engineering deliverables:
    An in-depth empirical investigation titled *"The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates"*. It analyzes macroeconomic normalization (post-ZIRP), SWE-bench Verified coding agent progression, and Pakistan IT industry dynamics ($4.60B reported FY26 ICT exports, 21.4% CAGR vs. 71.8% senior hiring preference per P@SHA 2025).
 
 2. **AI-Augmented Engineering Mastery Framework (`/ai_learning_research`):**  
-   A research-informed learning framework grounded in empirical studies, designed to master Python Backend Systems Engineering using AI as a deliberate cognitive amplifier. Synthesizing 16 categorized scholarly references across Cognitive Science, Computing Education (ACM SIGCSE / ICER), and HCI (ACM CHI), it eliminates passive video tutorials and the "illusion of competence" through 4 operational learning protocols, research-informed system prompts, and a 30-Day Zero-Tutorial Sprint.
+   A research-informed learning framework grounded in empirical studies, designed to master Python Backend Systems Engineering using AI as a deliberate cognitive amplifier. Synthesizing 16 categorized scholarly references across Cognitive Science, Computing Education (ACM SIGCSE / ICER), and HCI (ACM CHI), it helps graduates avoid passive tutorial bingeing through 4 operational learning protocols, research-informed system prompts, and a 30-Day Active-Learning Sprint.
 
 3. **JobPulse Platform (`/backend` & `/frontend`):**  
    A production-grade, full-stack application built to operationalize the research recommendations. It provides a job application tracker, interview stage manager, debrief journal, funnel conversion analytics, and an interactive market research visualizer built with **FastAPI**, **PostgreSQL**, **Pydantic v2**, **PyTest**, and a modern **Tailwind/Vanilla JS Single-Page Application (SPA)**.
@@ -56,9 +56,9 @@ whattochoose/
 │   ├── SOURCES.md                      # Academic bibliographic audit (ACM SIGCSE, ICER, CHI, Wharton)
 │   ├── framework/                      # Cognitive architecture & the 6 deadly anti-patterns
 │   ├── protocols/                      # Socratic decomposition, adversarial review, mutation drills, Feynman
-│   ├── prompts/                        # Calibrated system prompts with anti-code-leakage guardrails
-│   ├── roadmap/                        # 30-Day Zero-Tutorial AI Backend Sprint
-│   └── tests/                          # 5 passing automated tests for citations, schemas, and links
+│   ├── prompts/                        # Research-informed prompts with graduated assistance guardrails
+│   ├── roadmap/                        # 30-Day Active-Learning Backend Sprint (JobPulse focus)
+│   └── tests/                          # 6 passing tests checking citation identifiers and document consistency
 │
 └── research/                           # Empirical Labor Market Research & Datasets
     ├── paper/
@@ -128,10 +128,10 @@ python research/src/analyze_market_dynamics.py
 
 ---
 
-### Option 4: Run the AI Learning Framework Test Suite
+### Option 4: Run the AI Learning Framework Consistency Tests
 
 ```bash
-# Run automated verification across citations, system prompts, and protocols
+# Run automated consistency checks verifying citation identifiers, system prompt rules, and document structure
 python -m pytest -v ai_learning_research/tests/test_protocols_and_sources.py
 ```
 
