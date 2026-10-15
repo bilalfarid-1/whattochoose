@@ -1,75 +1,82 @@
-# Software Engineering Labor Market Research: Pre-AI to 2026+ Agentic Era
+# The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates
 
-A publication-grade longitudinal empirical investigation and predictive modeling repository analyzing the global and regional (Pakistan) software engineering labor markets across the Pre-GenAI ($\le 2022$), Disruption (2023–2024), and Intelligent Agentic (2025–2026+) eras.
+**Author:** Muhammad Bilal Farid  
+*BS Software Engineering Graduate & Independent Technology Analyst*  
+*Lahore, Pakistan*  
+
+---
+
+## Overview
+
+This repository provides an empirical market analysis and practical career playbook evaluating how generative AI, post-pandemic macroeconomic normalization, and offshore industry dynamics are transforming the software engineering labor market—with a specific focus on fresh graduates in Pakistan.
 
 ---
 
 ## Repository Structure
 
 ```
-se_labor_market_research/
+whattochoose/
 │
 ├── README.md                           # This document
 │
 ├── data/                               # Harmonized empirical datasets
-│   ├── SOURCES.md                      # Comprehensive data provenance & source audit (URLs, table IDs)
-│   ├── README.md                       # Data directory guide & summary
+│   ├── SOURCES.md                      # Data provenance & source audit (official URLs, report sections)
+│   ├── README.md                       # Data directory summary
 │   ├── raw/
-│   │   └── longitudinal_se_data.json   # Multi-year metrics (Stack Overflow, Stanford HAI, P@SHA, SBP, BLS)
+│   │   └── longitudinal_se_data.json   # Multi-year metrics (SBP, Pakistan Economic Survey, P@SHA, Stack Overflow, BLS)
 │   └── processed/
 │       ├── time_series_metrics_2020_2026.csv
 │       └── skills_lifecycle_metrics.csv
 │
-├── src/                                # Quantitative analysis & visualization pipeline
-│   └── analyze_market_dynamics.py      # Statistical modeling, correlation analysis, and figure generation
+├── src/                                # Reproducible Python analytical pipeline
+│   └── analyze_market_dynamics.py      # Statistical modeling and figure generation
 │
-├── paper/                              # Academic Manuscript & Visuals
-│   ├── main_manuscript.md              # Full research paper (IEEE/ACM formatted)
-│   ├── references.bib                  # BibTeX academic reference library
-│   └── figures/                        # High-resolution publication charts (PNG, 300 DPI)
-│       ├── fig1_junior_squeeze.png     # Decoupling of AI capabilities and entry-level hiring share
-│       ├── fig2_skills_lifecycle.png   # Commoditization of syntax vs surge in systems verification
-│       ├── fig3_pakistan_paradox.png   # Pakistan IT export revenue vs collapsing fresher intake
-│       └── fig4_predictive_2030_forecast.png # 2026–2030 skills demand forecasting model
+├── paper/                              # Market Analysis Manuscript & Visuals
+│   ├── main_manuscript.md              # Complete research whitepaper & market brief
+│   ├── references.bib                  # Academic BibTeX reference library
+│   └── figures/                        # High-resolution figures (300 DPI)
+│       ├── fig1_junior_squeeze.png     # Macro software postings vs AI benchmark progression
+│       ├── fig2_skills_lifecycle.png   # Analytical competency shift framework
+│       ├── fig3_pakistan_paradox.png   # Pakistan ICT export revenue vs industry experience demand
+│       └── fig4_predictive_2030_forecast.png # Conceptual model of software labor task allocation
 │
-└── roadmap/                            # Practical Student & Graduate Deliverables
-    ├── 2026_graduate_readiness_matrix.md # Skills triage: what to discard, delegate, and double down on
-    └── pakistani_fresh_grad_playbook.md  # 90-day execution protocol for landing an engineering role in Pakistan
+└── roadmap/                            # Practical Graduate Deliverables
+    ├── 2026_graduate_readiness_matrix.md # Skills triage: low-leverage vs AI-augmented vs high-leverage core
+    └── pakistani_fresh_grad_playbook.md  # 90-day step-by-step execution protocol for Pakistani graduates
 ```
 
 ---
 
-## Key Quantitative Findings
+## Core Findings Summary
 
-1. **The "Junior Squeeze":**  
-   Near-perfect inverse correlation ($r = -0.989$) between developer AI tool adoption and the global share of entry-level engineering openings. Entry-level openings fell from $36.8\%$ of total postings in 2021 to $9.4\%$ in 2026.
-2. **The Pakistan Tech Paradox:**  
-   Pakistan's IT export remittances grew from $\$1.44\text{B}$ (FY20) to $\$4.10\text{B}$ (FY26) at a **$+19.1\%$ CAGR**, while the domestic fresher job openings index plummeted by **$-42.0\%$**, caused by the structural transition from hourly "body-shopping" to high-throughput hybrid AI-augmented pods.
-3. **The Verification Bottleneck:**  
-   Code generation costs have converged toward zero ($C_{\text{gen}} \to 0$), shifting the entire economic value proposition to specification formalization and systems verification ($C_{\text{verif}}$).
+1. **Pakistan ICT Export Growth vs. Experience Bias:**  
+   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.44\text{B}$ (FY20) to an official pacing of **$\sim \$4.60\text{B}$** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP & Finance Division reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
+2. **The Verification Bottleneck:**  
+   While AI models commoditize routine syntax and boilerplate code generation, the primary engineering constraint has shifted to **Specification Formalization**, **Relational Data Architecture**, and **Automated Verification / Integration Testing**.
+3. **The Importance of Technical Depth:**  
+   In a competitive entry-level market, surface-level familiarity across multiple stacks offers minimal hiring signal. Committing deeply to a robust backend stack (**Python / FastAPI + PostgreSQL + PyTest**) and shipping a verifiable, deployed project provides the highest probability of landing an engineering role.
 
 ---
 
 ## Reproducing the Analysis Pipeline
 
-To reproduce all statistical calculations, CSV transformations, and high-resolution publication figures:
-
 ```bash
-# Ensure Python 3.10+ with standard data packages is installed
+# Ensure Python 3.10+ is installed
 python src/analyze_market_dynamics.py
 ```
 
-All charts are exported to `paper/figures/` at 300 DPI.
+All charts are generated and exported to `paper/figures/` at 300 DPI.
 
 ---
 
-## Suggested Academic Citation
+## Suggested Citation
 
 ```bibtex
-@article{bilal2026collapse,
-  title={The Collapse of the Apprenticeship Funnel: A Longitudinal Empirical Analysis and Predictive Model of Software Engineering Labor Dynamics in the Agentic AI Era (2020--2026+)},
-  author={Bilal and Antigravity Collaborative Systems Research Group},
-  journal={Collaborative Systems Labor Research Preprint},
-  year={2026}
+@techreport{farid2026se_market,
+  title = {The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates},
+  author = {Farid, Muhammad Bilal},
+  institution = {Independent Technology Analysis},
+  year = {2026},
+  url = {https://github.com/bilalfarid-1/whattochoose}
 }
 ```

@@ -1,8 +1,7 @@
-skill_domain,pre_ai_demand_weight,disruption_demand_weight,agentic_2026_demand_weight,market_status,replacement_vector
-Basic Syntax & Boilerplate Generation,95,52,14,Automated / Commoditized,"AI Agent Code Generators (Cursor, Claude, Copilot)"
-Manual QA & Black-Box Test Execution,85,48,18,Severe Contraction,Autonomous synthetic test generators & AI verification agents
-Single-Framework Web Dev (Pure Frontend without Systems),90,68,35,Saturated / Subsumed by Full-Stack,"Generative UI, component frameworks, automated design-to-code"
-Full-Stack + API Integration (TypeScript/Python + PostgreSQL),75,88,92,Hyper-Resilient Backbone,"Human architect supervises AI, owns end-to-end delivery"
-"Automated Testing, CI/CD & Systems Verification",58,79,96,Critical Growth Sector (The Verification Bottleneck),Human validates AI hallucination boundaries and security
-"AI Orchestration (RAG, Vector DBs, Agent Workflows, Evals)",5,62,98,Highest Relative Growth,Standard modern application architecture
-"Data Structures, Algorithms & Systems Design",90,92,95,Uncompromised Screening Standard (Big Tech & Elite R&D),Required to evaluate AI-generated code performance and correctness
+skill_domain,traditional_value_pre_2022,contemporary_value_2026,mechanics
+Isolated Syntax & Boilerplate Coding,90,20,"Heavily augmented/automated by LLMs and agentic assistants (Copilot, Cursor, Claude). Basic CRUD coding offers minimal hiring differentiation."
+Manual Black-Box Testing,80,25,"Subsumed by automated test harnesses, synthetic data generation, and technical QA scripting. Pure manual UI clicking offers low compensation and job security."
+Backend Systems & API Architecture (Python / FastAPI + PostgreSQL),75,92,"Hyper-resilient. Relational data modeling, ACID transactions, database indexing, authentication, and high-performance async APIs remain core enterprise requirements."
+"Automated Testing, PyTest & Systems Verification",55,95,"Critical bottleneck. When code generation is cheap, the human engineer's primary value is verifying correctness, integration integrity, and edge cases."
+"AI Integration & Practical Orchestration (APIs, Embeddings, RAG)",10,88,"High-leverage capability. Building software that integrates language models, structured outputs, and retrieval pipelines into robust backend architectures."
+"Core Computer Science Fundamentals (DSA, Systems Design)",90,95,"Uncompromised screening filter. Required to evaluate algorithm complexity, memory consumption, and debug complex runtime issues in production."

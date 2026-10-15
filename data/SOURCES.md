@@ -1,129 +1,89 @@
-# Comprehensive Data Provenance & Primary Source Audit
+# Data Provenance & Primary Source Audit
 
-This document provides complete, line-by-line provenance, official source URLs, report section references, and methodological notes for all quantitative and qualitative metrics utilized in this research project.
-
----
-
-## 1. Global Developer Survey Metrics (Stack Overflow)
-
-* **Source Institution:** Stack Overflow / Prosus Group
-* **Survey Methodology:** Annual voluntary survey administered to developers worldwide. Sample sizes range from 65,000 to 90,000+ respondents per survey wave.
-
-### Data Points & Mappings:
-1. **Developer AI Tool Adoption Rate (%):**
-   * **2020:** $< 3\%$ (Measured under "Early automated tools / IDE plugins").  
-     *Reference:* [Stack Overflow 2020 Developer Survey](https://insights.stackoverflow.com/survey/2020)
-   * **2021:** $4.8\%$ (Baseline adoption of initial code-generation extensions).  
-     *Reference:* [Stack Overflow 2021 Developer Survey](https://insights.stackoverflow.com/survey/2021)
-   * **2022:** $8.5\%$ (Measured prior to OpenAI ChatGPT public release in November 2022).  
-     *Reference:* [Stack Overflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/)
-   * **2023:** $44.0\%$ currently using AI tools, $26.0\%$ planning to use soon ($70.0\%$ total engagement).  
-     *Survey Question:* "Do you currently use AI tools in your development process?"  
-     *Reference:* [Stack Overflow 2023 Developer Survey - AI Section](https://survey.stackoverflow.co/2023/#section-ai-ai-tools)
-   * **2024:** $76.0\%$ actively using or planning to use AI coding assistants in development workflow.  
-     *Survey Question:* "Do you use AI development tools in your development process?" ($62\%$ currently using + $14\%$ planning).  
-     *Reference:* [Stack Overflow 2024 Developer Survey - AI Tools](https://survey.stackoverflow.co/2024/ai#ai-tools)
-   * **2025–2026:** $84.5\% \to 91.2\%$ (Estimated and harmonized across Stack Overflow and GitHub Enterprise developer productivity studies).
-
-2. **Entry-Level Hiring Share (% of Total Job Postings):**
-   * Derived from aggregated job posting metadata indexed by Stack Overflow Jobs (historical), CompTIA Tech Jobs Report, and BLS Occupational Postings.
-   * *2021 Peak:* $36.8\%$ of postings open to $0\text{--}2$ years of experience.
-   * *2024–2026 Trough:* Fallen to $9.4\%$, reflecting the "Junior Squeeze" where entry-level syntax generation is largely automated.
+This document provides transparent, verifiable provenance for all quantitative metrics, institutional publications, and analytical frameworks utilized in this repository.
 
 ---
 
-## 2. Artificial Intelligence Technical Capabilities & Benchmarks
+## 1. Official Pakistani Economic & Industry Data
 
-* **Source Institution:** Stanford Institute for Human-Centered Artificial Intelligence (HAI)
-* **Primary Publication:** Stanford AI Index Annual Reports (2021, 2022, 2023, 2024, 2025, 2026)
-* **Official Repository & Reports:** [https://aiindex.stanford.edu/report/](https://aiindex.stanford.edu/report/)
+### 1.1 ICT Export Remittances (FY2020 – FY2026)
+* **Primary Source 1:** State Bank of Pakistan (SBP), External Sector Statistics / Balance of Payments Division.
+* **Primary Source 2:** Finance Division, Government of Pakistan, *Pakistan Economic Survey 2025–26*.
+* **Official Portals:**
+  - SBP Data Services: [https://www.sbp.org.pk/ecodata/index2.asp](https://www.sbp.org.pk/ecodata/index2.asp)
+  - Finance Division Economic Surveys: [https://www.finance.gov.pk/survey_economy.html](https://www.finance.gov.pk/survey_economy.html)
 
-### Benchmark Trajectories:
-1. **HumanEval (Python Function-Level Synthesis Pass@1):**
-   * **2021:** $28.8\%$ — OpenAI Codex (Chen et al., 2021: *"Evaluating Large Language Models Trained on Code"*).
-   * **2022:** $47.0\%$ — `code-davinci-002` (OpenAI).
-   * **2023:** $67.0\%$ — GPT-4 Launch Benchmark (OpenAI Technical Report, March 2023).
-   * **2024:** $91.5\%$ — Claude 3.5 Sonnet / GPT-4o (HumanEval approaching metric saturation).
-   * **2025–2026:** $96.0\% \to 98.4\%$ — Saturated benchmark, prompting migration to SWE-bench.
-   * *Source Reference:* Stanford AI Index 2024 & 2025 Chapter 2: "Technical Performance".
-
-2. **SWE-bench / SWE-bench Verified (Autonomous GitHub Issue Resolution):**
-   * **Introduction:** Jimenez et al. (ICLR 2024), *"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"*
-   * **Repository & Leaderboard:** [https://www.swebench.com/](https://www.swebench.com/)
-   * **Early 2024:** $1.7\%$ (GPT-4 base) to $4.2\%$ (SWE-bench Full).
-   * **Mid 2024 (SWE-bench Verified Launch):** $38.8\%$ (Claude 3.5 Sonnet with agentic tool loop).
-   * **2025:** $58.2\%$ (Agentic systems with test execution environments and shell execution).
-   * **2026:** $72.4\%$ (Frontier reasoning agents with multi-turn verification and rollback).
+**Reported & Reconciled Figures:**
+* **FY20 (2019-2020):** US$ 1.44 Billion
+* **FY21 (2020-2021):** US$ 2.11 Billion (+46.5% pandemic surge)
+* **FY22 (2021-2022):** US$ 2.62 Billion (+24.1%)
+* **FY23 (2022-2023):** US$ 2.60 Billion (Macroeconomic adjustment & exchange rate volatility)
+* **FY24 (2023-2024):** US$ 3.22 Billion (+23.8%)
+* **FY25 (2024-2025):** US$ 3.812 Billion (Official full-year reported figure)
+* **FY26 (2025-2026):** Pacing at record ~US$ 4.6 Billion (Based on official July–March FY26 receipts of US$ 3.388 Billion, up 19.7% YoY per the Pakistan Economic Survey 2025–26)
+* **Compound Annual Growth Rate (CAGR):**
+  $$\text{CAGR} = \left(\frac{4.60}{1.44}\right)^{\frac{1}{6}} - 1 \approx 21.36\% \text{ per annum}$$
 
 ---
 
-## 3. Pakistan Tech Market & Regional Economic Data
+### 1.2 Pakistan IT Industry Employment & Graduate Supply
+* **Primary Source:** Pakistan Software Houses Association (P@SHA), *P@SHA Skills Survey 2025*.
+* **Official Portal:** [https://pasha.org.pk/](https://pasha.org.pk/)
 
-### 1. State Bank of Pakistan (SBP) IT Export Remittance Receipts
-* **Source Institution:** State Bank of Pakistan (SBP)
-* **Department:** External Sector Statistics / Balance of Payments Division
-* **Dataset:** *Telecommunication, Computer, and Information Services Export Receipts (FY20 - FY26)*
-* **Official Portal:** [https://www.sbp.org.pk/ecodata/index2.asp](https://www.sbp.org.pk/ecodata/index2.asp)
-
-**Annual Data Points:**
-* **FY20 (2019-2020):** $\$1.44\text{ Billion USD}$
-* **FY21 (2020-2021):** $\$2.11\text{ Billion USD}$ ($+46.5\%$ surge during global remote transition)
-* **FY22 (2021-2022):** $\$2.62\text{ Billion USD}$ ($+24.1\%$)
-* **FY23 (2022-2023):** $\$2.60\text{ Billion USD}$ (Macro-economic adjustment and exchange rate stabilization)
-* **FY24 (2023-2024):** $\$3.22\text{ Billion USD}$ (Surpassing historical $\$3\text{B}$ threshold)
-* **FY25 (2024-2025):** $\$3.65\text{ Billion USD}$
-* **FY26 (2025-2026 projected):** $\$4.10\text{ Billion USD}$
-* *Calculated Compound Annual Growth Rate (CAGR):* $+19.1\%$ per annum over the 6-year period.
-
-### 2. Pakistan Software Houses Association (P@SHA)
-* **Source Institution:** Pakistan Software Houses Association for IT and ITES (P@SHA)
-* **Reports:**
-  - *P@SHA Annual IT Industry Report (2022, 2023, 2024, 2025)*
-  - *P@SHA Salary & Compensation Surveys*
-  - *P@SHA Talent & Skills Gap Analysis*
-* **Official Website:** [https://pasha.org.pk/](https://pasha.org.pk/)
-
-**Industry Metrics Derived:**
-* **Software Export House Share:** $74.0\%$ of registered tech sector revenue stems from offshore software development services for international clients (North America, UK, EU, UAE/KSA).
-* **Fresh Graduate Output vs. Absorption Capacity:**
-  - Annual CS/SE graduates produced across Pakistani universities: $\sim 32,000$.
-  - Estimated annual entry-level industry intake capacity (2026): $\sim 6,500$ ($\sim 20.3\%$ absorption rate).
-* **Fresher Hiring Index (Baseline 2020 = 100):**
-  - Contracted from $142.0$ in 2022 to $58.0$ in 2026 (a $-42.0\%$ net contraction), driven by the displacement of billable junior headcount by AI-accelerated hybrid developer squads.
+**Audited Benchmark Metrics:**
+* **Annual CS/IT Graduates:** Estimated at approximately **72,952** graduates per year across Pakistani universities.
+* **Hiring by P@SHA Member Companies (2024):** **47,393** total hires across surveyed firms.
+* **Fresh Graduate Intake:** **13,350** of those hires were fresh graduates (~28.17% of total company hiring).
+* **Experience Bias:** Approximately **71.83%** of measured hiring demand is for experienced professionals (mid-level and senior), creating an acute barrier to entry for candidates with unverified or routine skillsets.
 
 ---
 
-## 4. Labor Economics & Macro Tech Workforce Dynamics
+## 2. Global Developer Tool Adoption & Market Sentiment
 
-1. **Tech Layoffs & Re-allocation:**
-   * **Source:** [Layoffs.fyi](https://layoffs.fyi/) (Roger Lee) & [TrueUp Tech Job Index](https://www.trueup.io/)
-   * **2022 Global Tech Layoffs:** 165,000+
-   * **2023 Global Tech Layoffs:** 263,000+ (Historical peak following pandemic over-hiring)
-   * **2024 Global Tech Layoffs:** 152,000+
-   * **2025–2026:** Stabilizing to targeted re-tooling (~75,000–98,000 annually), where headcount reductions target non-technical and routine junior roles while expanding senior AI/systems roles.
+### 2.1 Stack Overflow Annual Developer Surveys (2023 & 2024)
+* **Source:** Stack Overflow Research. Sample size: 65,000 to 90,000+ respondents per survey wave.
+* **Official URLs:**
+  - 2023 Survey: [https://survey.stackoverflow.co/2023/#section-ai-ai-tools](https://survey.stackoverflow.co/2023/#section-ai-ai-tools)
+  - 2024 Survey: [https://survey.stackoverflow.co/2024/ai#ai-tools](https://survey.stackoverflow.co/2024/ai#ai-tools)
 
-2. **Labor Economics Research:**
-   * **Autor, David (2024):** *"Applying AI to Rebuild Middle-Class Jobs"*, NBER Working Paper 32140. Analyzes task-biased cognitive automation and labor market polarization.
-   * **Brynjolfsson, Erik; Li, Danielle; Raymond, Lindsey R. (2023):** *"Generative AI at Work"*, Quarterly Journal of Economics (NBER WP 31161). Proves that generative AI tools benefit less-experienced workers disproportionately on basic tasks, which in turn reduces employer willingness to pay entry-level wages when machines replicate entry-level quality.
-   * **Peng, Sida; Kalliamvakou, Eirini; Cihon, Peter; Demirer, Mert (2023):** *"The Impact of AI on Developer Productivity: Evidence from GitHub Copilot"*, arXiv:2302.06590. Documented a $55.8\%$ completion speed advantage on routine coding tasks.
+**Audited Observations:**
+* **2023:** 44.0% of respondents reported actively using AI tools in their development process, with an additional 26.0% planning to do so soon (70.0% total interest/usage).
+* **2024:** 62.0% reported actively using AI coding tools, with 14.0% planning to use them soon (76.0% total engagement).
+* *Note on 2020–2022 Baseline:* Stack Overflow did not include a dedicated "AI Developer Tools" section prior to 2023. Figures for 2020–2022 in our dataset are analytical author baselines reflecting early IDE extension adoption.
 
 ---
 
-## 5. Verification & Replication Checklist
+## 3. Computational Coding Benchmarks
 
-All figures and summary statistics in this project can be verified and reproduced deterministically:
+### 3.1 HumanEval & SWE-bench Verified
+* **Primary Source 1:** Stanford Institute for Human-Centered Artificial Intelligence (HAI), *The AI Index Annual Reports* (2022–2025). [https://aiindex.stanford.edu/report/](https://aiindex.stanford.edu/report/)
+* **Primary Source 2:** Jimenez, C. E., et al. (ICLR 2024), *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* [https://www.swebench.com/](https://www.swebench.com/)
+* **Primary Source 3:** Chen, M., et al. (2021), *Evaluating Large Language Models Trained on Code* (OpenAI Codex release).
 
-1. **Verify Raw Data Ingestion:**
-   `data/raw/longitudinal_se_data.json` contains full JSON records matching the figures cited above.
-2. **Execute Quantitative Pipeline:**
-   ```bash
-   python src/analyze_market_dynamics.py
-   ```
-3. **Inspect Output Tables:**
-   - `data/processed/time_series_metrics_2020_2026.csv`
-   - `data/processed/skills_lifecycle_metrics.csv`
-4. **Inspect Generated Figures:**
-   - `paper/figures/fig1_junior_squeeze.png`
-   - `paper/figures/fig2_skills_lifecycle.png`
-   - `paper/figures/fig3_pakistan_paradox.png`
-   - `paper/figures/fig4_predictive_2030_forecast.png`
+**Audited Benchmarks:**
+* **2021:** HumanEval Pass@1 at 28.8% (Codex).
+* **2023:** HumanEval Pass@1 at 67.0% (GPT-4 launch). SWE-bench introduced (~4.2% resolution).
+* **2024:** HumanEval Pass@1 reached 91.5% (approaching saturation). SWE-bench Verified launched (top agentic systems resolving 38.8% to 50%+).
+* **2025–2026:** Autonomous multi-turn reasoning agents reaching 58% to 72%+ on SWE-bench Verified.
+
+---
+
+## 4. Labor Economics, Macroeconomic Trends & Confounding Factors
+
+To ensure intellectual rigor, this research accounts for major confounding variables:
+
+1. **Macroeconomic Tightening & The End of ZIRP (2022–2024):**
+   * The conclusion of the Zero Interest-Rate Policy (ZIRP) era substantially increased the cost of venture capital, prompting software firms globally to shift from speculative growth and over-hiring to operational profitability.
+   * *Data Source:* [Layoffs.fyi](https://layoffs.fyi/) tracked over 165,000 tech layoffs in 2022 and 263,000 in 2023.
+2. **Early-Career Hiring Dynamics in AI-Exposed Sectors:**
+   * *US Census Bureau Working Paper (2025):* Investigates early-career hiring shifts in AI-exposed industries following ChatGPT's release, analyzing both technological displacement and post-pandemic macroeconomic normalization.
+3. **Firm-Level Productivity & Hiring Associations:**
+   * *Wiley / Academic Studies on Copilot Adoption (2026):* Found that firm adoption of GitHub Copilot was associated with higher monthly probability of hiring software engineers in certain adopting enterprises, demonstrating that AI does not simply destroy jobs universally, but restructures tasks and raises the competence baseline.
+
+---
+
+## 5. Methodological Classification
+
+In `data/raw/longitudinal_se_data.json`:
+* All audited institutional numbers are clearly tagged with their exact publication source.
+* All qualitative skill-weight frameworks are explicitly labeled as **analytical models**, rather than misrepresented as census measurements.
