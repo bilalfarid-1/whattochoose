@@ -36,7 +36,7 @@ To eliminate decision fatigue and build real depth, **commit completely to this 
 * **Testing Suite:** PyTest + `httpx` (asynchronous integration testing of API endpoints and database rollbacks)
 * **Containerization & CI:** Docker + Docker Compose + GitHub Actions CI workflow
 * **Deployment:** Render / Railway / Fly.io + Supabase PostgreSQL
-* **Why This Stack:** Python backend roles in Pakistan and remote markets are growing rapidly, particularly as enterprises integrate data pipelines, machine learning APIs, and LLM orchestration into standard web systems.
+* **Strategic Rationale (Not Statistical Proof):** This stack is selected as a **reasoned strategic choice** because it provides a disciplined foundation to master backend architecture, relational schema modeling, and automated testing. It is not presented as an empirically proven winner over other stacks (such as React/Node or PHP/Laravel), but as a focused commitment that puts an immediate end to the destructive habit of framework-hopping.
 
 ---
 

@@ -18,6 +18,7 @@ This repository provides an empirical market analysis and practical career playb
 whattochoose/
 │
 ├── README.md                           # This document
+├── requirements.txt                    # Python runtime dependencies (pandas, matplotlib, numpy, scipy)
 │
 ├── data/                               # Harmonized empirical datasets
 │   ├── SOURCES.md                      # Data provenance & source audit (official URLs, report sections)
@@ -38,7 +39,7 @@ whattochoose/
 │       ├── fig1_junior_squeeze.png     # Macro software postings vs AI benchmark progression
 │       ├── fig2_skills_lifecycle.png   # Analytical competency shift framework
 │       ├── fig3_pakistan_paradox.png   # Pakistan ICT export revenue vs industry experience demand
-│       └── fig4_predictive_2030_forecast.png # Conceptual model of software labor task allocation
+│       └── fig4_predictive_2030_forecast.png # Author-defined scenario of developer task allocation
 │
 └── roadmap/                            # Practical Graduate Deliverables
     ├── 2026_graduate_readiness_matrix.md # Skills triage: low-leverage vs AI-augmented vs high-leverage core
@@ -50,18 +51,21 @@ whattochoose/
 ## Core Findings Summary
 
 1. **Pakistan ICT Export Growth vs. Experience Bias:**  
-   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.44\text{B}$ (FY20) to an official pacing of **$\sim \$4.60\text{B}$** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP & Finance Division reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
+   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.44\text{B}$ (FY20) to an official pacing of **$\sim \$4.60\text{B}$** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP & Finance Division reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
 2. **The Verification Bottleneck:**  
    While AI models commoditize routine syntax and boilerplate code generation, the primary engineering constraint has shifted to **Specification Formalization**, **Relational Data Architecture**, and **Automated Verification / Integration Testing**.
-3. **The Importance of Technical Depth:**  
-   In a competitive entry-level market, surface-level familiarity across multiple stacks offers minimal hiring signal. Committing deeply to a robust backend stack (**Python / FastAPI + PostgreSQL + PyTest**) and shipping a verifiable, deployed project provides the highest probability of landing an engineering role.
+3. **The Importance of Technical Depth (Reasoned Strategic Choice):**  
+   In a competitive entry-level market, surface-level familiarity across multiple stacks offers minimal hiring signal. Committing deeply to a robust backend stack (**Python / FastAPI + PostgreSQL + PyTest**) and shipping a verifiable, deployed project provides a disciplined, high-leverage foundation to secure entry-level employment.
 
 ---
 
 ## Reproducing the Analysis Pipeline
 
 ```bash
-# Ensure Python 3.10+ is installed
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Execute analysis pipeline
 python src/analyze_market_dynamics.py
 ```
 

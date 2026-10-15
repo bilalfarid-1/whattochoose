@@ -5,18 +5,18 @@
     "last_updated": "2026-10",
     "sources_audit_document": "data/SOURCES.md",
     "data_classification": {
-      "measured_audited": "Directly extracted from institutional publications (SBP, Pakistan Economic Survey, P@SHA, Stack Overflow, Stanford HAI, Layoffs.fyi)",
+      "measured_audited": "Directly extracted from institutional publications (State Bank of Pakistan, Pakistan Economic Survey 2025-26, P@SHA Skills Survey 2025, Stack Overflow 2023-2025 Surveys, Stanford HAI AI Index, SWE-bench)",
       "author_analytical_estimates": "Derived approximations, normalized index baselines, and qualitative skill-weight models"
     }
   },
   "time_series_data": [
     {
       "year": 2020,
-      "global_ai_tool_adoption_pct": 2.0,
-      "ai_adoption_data_type": "author_analytical_estimate (pre-survey baseline)",
+      "global_ai_tool_engagement_pct": 2.0,
+      "ai_metric_definition": "Author historical baseline estimate (early IDE assistant plugins)",
       "indeed_software_postings_index": 100.0,
       "entry_level_postings_share_pct": 32.5,
-      "entry_share_data_type": "industry_estimate_normalized",
+      "entry_share_data_type": "author_illustrative_index (normalized industry benchmark)",
       "humaneval_pass_at_1_pct": 0.0,
       "swe_bench_verified_top_score_pct": 0.0,
       "pakistan_it_exports_billion_usd": 1.44,
@@ -26,11 +26,11 @@
     },
     {
       "year": 2021,
-      "global_ai_tool_adoption_pct": 5.0,
-      "ai_adoption_data_type": "author_analytical_estimate",
+      "global_ai_tool_engagement_pct": 5.0,
+      "ai_metric_definition": "Author historical baseline estimate",
       "indeed_software_postings_index": 138.4,
       "entry_level_postings_share_pct": 36.8,
-      "entry_share_data_type": "industry_estimate_normalized",
+      "entry_share_data_type": "author_illustrative_index",
       "humaneval_pass_at_1_pct": 28.8,
       "benchmark_source": "Chen et al. (Codex / HumanEval benchmark release)",
       "swe_bench_verified_top_score_pct": 0.0,
@@ -41,11 +41,11 @@
     },
     {
       "year": 2022,
-      "global_ai_tool_adoption_pct": 8.5,
-      "ai_adoption_data_type": "author_analytical_estimate (pre-ChatGPT)",
+      "global_ai_tool_engagement_pct": 8.5,
+      "ai_metric_definition": "Author historical baseline estimate (pre-ChatGPT)",
       "indeed_software_postings_index": 126.1,
       "entry_level_postings_share_pct": 34.2,
-      "entry_share_data_type": "industry_estimate_normalized",
+      "entry_share_data_type": "author_illustrative_index",
       "humaneval_pass_at_1_pct": 47.0,
       "benchmark_source": "OpenAI code-davinci-002 / Stanford HAI AI Index 2022",
       "swe_bench_verified_top_score_pct": 0.0,
@@ -56,11 +56,11 @@
     },
     {
       "year": 2023,
-      "global_ai_tool_adoption_pct": 44.0,
-      "ai_adoption_data_type": "measured_audited (Stack Overflow 2023: 44% currently using, 26% planning)",
+      "global_ai_tool_engagement_pct": 70.0,
+      "ai_metric_definition": "Audited: Stack Overflow 2023 Survey (44.0% actively using + 26.0% planning to use)",
       "indeed_software_postings_index": 76.8,
       "entry_level_postings_share_pct": 21.3,
-      "entry_share_data_type": "industry_estimate_normalized",
+      "entry_share_data_type": "author_illustrative_index",
       "humaneval_pass_at_1_pct": 67.0,
       "benchmark_source": "OpenAI GPT-4 Technical Report",
       "swe_bench_verified_top_score_pct": 4.2,
@@ -68,15 +68,15 @@
       "pakistan_it_exports_billion_usd": 2.60,
       "pakistan_export_source": "State Bank of Pakistan (SBP) FY23",
       "global_tech_layoffs_count": 263000,
-      "layoffs_source": "Layoffs.fyi (peak tech post-pandemic downsizing)"
+      "layoffs_source": "Layoffs.fyi (peak post-pandemic tech workforce contraction)"
     },
     {
       "year": 2024,
-      "global_ai_tool_adoption_pct": 62.0,
-      "ai_adoption_data_type": "measured_audited (Stack Overflow 2024: 62% currently using, 14% planning -> 76% total)",
+      "global_ai_tool_engagement_pct": 76.0,
+      "ai_metric_definition": "Audited: Stack Overflow 2024 Survey (62.0% actively using + 14.0% planning to use)",
       "indeed_software_postings_index": 68.4,
       "entry_level_postings_share_pct": 14.6,
-      "entry_share_data_type": "industry_estimate_normalized",
+      "entry_share_data_type": "author_illustrative_index",
       "humaneval_pass_at_1_pct": 91.5,
       "benchmark_source": "Stanford HAI AI Index 2024 (Benchmark approaching saturation)",
       "swe_bench_verified_top_score_pct": 38.8,
@@ -88,79 +88,79 @@
     },
     {
       "year": 2025,
-      "global_ai_tool_adoption_pct": 74.0,
-      "ai_adoption_data_type": "measured_audited_trend",
+      "global_ai_tool_engagement_pct": 84.0,
+      "ai_metric_definition": "Audited: Stack Overflow 2025 AI Survey (84% using or planning to use; 51% daily use among professional developers)",
       "indeed_software_postings_index": 71.5,
       "entry_level_postings_share_pct": 11.2,
-      "entry_share_data_type": "industry_estimate_normalized",
+      "entry_share_data_type": "author_illustrative_index",
       "humaneval_pass_at_1_pct": 96.0,
       "swe_bench_verified_top_score_pct": 58.2,
       "pakistan_it_exports_billion_usd": 3.81,
-      "pakistan_export_source": "Finance Division, Pakistan Economic Survey 2025-26 (Full year FY25)",
+      "pakistan_export_source": "Finance Division, Pakistan Economic Survey 2025-26 (Full year FY25 official figure)",
       "global_tech_layoffs_count": 98000,
       "layoffs_source": "Layoffs.fyi"
     },
     {
       "year": 2026,
-      "global_ai_tool_adoption_pct": 82.0,
-      "ai_adoption_data_type": "measured_audited_trend",
+      "global_ai_tool_engagement_pct": 88.0,
+      "ai_metric_definition": "Author analytical projection based on enterprise adoption trends",
       "indeed_software_postings_index": 72.5,
       "entry_level_postings_share_pct": 9.4,
-      "entry_share_data_type": "industry_estimate_normalized",
+      "entry_share_data_type": "author_illustrative_index",
       "humaneval_pass_at_1_pct": 98.4,
       "swe_bench_verified_top_score_pct": 72.4,
       "pakistan_it_exports_billion_usd": 4.60,
-      "pakistan_export_source": "Finance Division, Pakistan Economic Survey 2025-26 ($3.388B July-Mar FY26, projected $4.6B full year)",
+      "pakistan_export_source": "Finance Division, Pakistan Economic Survey 2025-26 (Annualized projection from July-March FY26 $3.388B, up 19.7% YoY)",
       "global_tech_layoffs_count": 75000,
       "layoffs_source": "Layoffs.fyi"
     }
   ],
   "pakistan_industry_benchmarks_2025_2026": {
-    "source": "P@SHA Skills Survey 2025 & State Bank of Pakistan Export Bulletins",
-    "total_annual_cs_it_graduates": 72952,
+    "source": "P@SHA Skills Survey 2025 (Sample: Surveyed Member Companies) & State Bank of Pakistan Bulletins",
+    "total_annual_cs_it_graduates_national_estimate": 72952,
     "pasha_member_company_total_hires_2024": 47393,
     "pasha_member_fresh_graduate_hires_2024": 13350,
-    "fresher_intake_share_pct": 28.17,
+    "fresher_intake_share_pasha_member_firms_pct": 28.17,
     "experienced_professional_demand_share_pct": 71.83,
     "export_revenue_cagr_fy20_to_fy26_pct": 21.36,
-    "core_finding": "Pakistan's IT export revenue has grown rapidly (+21.4% CAGR), but hiring demand is strongly skewed toward experienced talent (72%), creating a competitive threshold that fresh graduates cannot cross with basic syntax alone."
+    "scope_clarification": "The 47,393 hires and 13,350 fresh graduate hires represent hiring by surveyed P@SHA member companies, not a complete national census. However, they establish a clear 72% industry preference for experienced personnel across major Pakistani tech employers."
   },
   "analytical_skills_framework": [
     {
-      "skill_domain": "Isolated Syntax & Boilerplate Coding",
+      "skill_domain": "Isolated Syntax & Routine CRUD Coding",
       "traditional_value_pre_2022": 90,
       "contemporary_value_2026": 20,
-      "mechanics": "Heavily augmented/automated by LLMs and agentic assistants (Copilot, Cursor, Claude). Basic CRUD coding offers minimal hiring differentiation."
+      "mechanics": "Substantially automated by LLMs and agentic assistants (Copilot, Cursor, Claude). Routine syntax generation provides minimal hiring differentiation."
     },
     {
       "skill_domain": "Manual Black-Box Testing",
       "traditional_value_pre_2022": 80,
       "contemporary_value_2026": 25,
-      "mechanics": "Subsumed by automated test harnesses, synthetic data generation, and technical QA scripting. Pure manual UI clicking offers low compensation and job security."
+      "mechanics": "Contracting relative to automated test frameworks and synthetic test harnesses. Manual UI clicking offers lower entry leverage."
     },
     {
       "skill_domain": "Backend Systems & API Architecture (Python / FastAPI + PostgreSQL)",
       "traditional_value_pre_2022": 75,
       "contemporary_value_2026": 92,
-      "mechanics": "Hyper-resilient. Relational data modeling, ACID transactions, database indexing, authentication, and high-performance async APIs remain core enterprise requirements."
+      "mechanics": "High-leverage core. Relational data modeling, indexing, transactions, asynchronous APIs, and business logic remain indispensable."
     },
     {
       "skill_domain": "Automated Testing, PyTest & Systems Verification",
       "traditional_value_pre_2022": 55,
       "contemporary_value_2026": 95,
-      "mechanics": "Critical bottleneck. When code generation is cheap, the human engineer's primary value is verifying correctness, integration integrity, and edge cases."
+      "mechanics": "The Verification Bottleneck. When code synthesis is accelerated by AI, human value shifts decisively to verifying integration correctness and reliability."
     },
     {
       "skill_domain": "AI Integration & Practical Orchestration (APIs, Embeddings, RAG)",
       "traditional_value_pre_2022": 10,
       "contemporary_value_2026": 88,
-      "mechanics": "High-leverage capability. Building software that integrates language models, structured outputs, and retrieval pipelines into robust backend architectures."
+      "mechanics": "High-value capability. Integrating language models with structured outputs, vector stores, and error fallbacks into production backends."
     },
     {
       "skill_domain": "Core Computer Science Fundamentals (DSA, Systems Design)",
       "traditional_value_pre_2022": 90,
       "contemporary_value_2026": 95,
-      "mechanics": "Uncompromised screening filter. Required to evaluate algorithm complexity, memory consumption, and debug complex runtime issues in production."
+      "mechanics": "Core technical screening standard. Critical for evaluating algorithmic complexity, resource management, and distributed systems behavior."
     }
   ]
 }

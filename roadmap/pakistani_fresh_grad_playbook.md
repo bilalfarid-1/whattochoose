@@ -8,9 +8,9 @@ A realistic, step-by-step career manual designed specifically for computer scien
 
 In Pakistan's primary tech hubs (Lahore, Karachi, Islamabad, and Rawalpindi), the tech economy is heavily driven by software export houses and digital engineering agencies (such as Systems Limited, 10Pearls, Arbisoft, Devsinc, Contour Software, VentureDive, NetSol, Tkxel, and hundreds of mid-sized firms):
 
-* **The Recruiter Reality:** When an entry-level software engineer job or internship is posted on LinkedIn or Rozee.pk, it frequently attracts 300 to 800+ applications within days. The vast majority of these CVs list identical university course projects, empty GitHub profiles, and generic buzzwords without verifiable code.
-* **What Engineering Leads Actually Seek:** In a market where P@SHA reports that ~72% of hiring demand is for experienced talent, software houses hire juniors when they see evidence of **day-one autonomy**. A candidate who can demonstrate a live deployed API, explain database schema choices, and show a clean PyTest suite immediately differentiates themselves from candidates with only classroom theory.
-* **The "One Live URL" Rule:** An engineering manager or team lead reviewing your profile is far more likely to respond if your CV and LinkedIn headline feature a clickable, live deployment URL backed by a clean GitHub repository.
+* **The Recruiter Reality:** Entry-level software engineering openings on public job portals receive substantial volumes of inbound applications, the vast majority of which submit identical university coursework, empty GitHub profiles, and generic buzzwords without verifiable code.
+* **What Engineering Leads Actually Seek:** In an export-oriented industry where P@SHA reports that roughly ~72% of hiring demand across member companies is targeted at experienced personnel, software houses hire juniors when they see evidence of **day-one autonomy**. A candidate who can demonstrate a live deployed API, explain database schema choices, and show a clean PyTest suite immediately differentiates themselves from candidates with only classroom theory.
+* **The "One Live URL" Rule:** An engineering manager or team lead reviewing your profile is far more likely to engage if your CV and LinkedIn headline feature a clickable, live deployment URL backed by a clean GitHub repository.
 
 ---
 

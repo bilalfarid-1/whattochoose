@@ -1,7 +1,7 @@
 skill_domain,traditional_value_pre_2022,contemporary_value_2026,mechanics
-Isolated Syntax & Boilerplate Coding,90,20,"Heavily augmented/automated by LLMs and agentic assistants (Copilot, Cursor, Claude). Basic CRUD coding offers minimal hiring differentiation."
-Manual Black-Box Testing,80,25,"Subsumed by automated test harnesses, synthetic data generation, and technical QA scripting. Pure manual UI clicking offers low compensation and job security."
-Backend Systems & API Architecture (Python / FastAPI + PostgreSQL),75,92,"Hyper-resilient. Relational data modeling, ACID transactions, database indexing, authentication, and high-performance async APIs remain core enterprise requirements."
-"Automated Testing, PyTest & Systems Verification",55,95,"Critical bottleneck. When code generation is cheap, the human engineer's primary value is verifying correctness, integration integrity, and edge cases."
-"AI Integration & Practical Orchestration (APIs, Embeddings, RAG)",10,88,"High-leverage capability. Building software that integrates language models, structured outputs, and retrieval pipelines into robust backend architectures."
-"Core Computer Science Fundamentals (DSA, Systems Design)",90,95,"Uncompromised screening filter. Required to evaluate algorithm complexity, memory consumption, and debug complex runtime issues in production."
+Isolated Syntax & Routine CRUD Coding,90,20,"Substantially automated by LLMs and agentic assistants (Copilot, Cursor, Claude). Routine syntax generation provides minimal hiring differentiation."
+Manual Black-Box Testing,80,25,Contracting relative to automated test frameworks and synthetic test harnesses. Manual UI clicking offers lower entry leverage.
+Backend Systems & API Architecture (Python / FastAPI + PostgreSQL),75,92,"High-leverage core. Relational data modeling, indexing, transactions, asynchronous APIs, and business logic remain indispensable."
+"Automated Testing, PyTest & Systems Verification",55,95,"The Verification Bottleneck. When code synthesis is accelerated by AI, human value shifts decisively to verifying integration correctness and reliability."
+"AI Integration & Practical Orchestration (APIs, Embeddings, RAG)",10,88,"High-value capability. Integrating language models with structured outputs, vector stores, and error fallbacks into production backends."
+"Core Computer Science Fundamentals (DSA, Systems Design)",90,95,"Core technical screening standard. Critical for evaluating algorithmic complexity, resource management, and distributed systems behavior."
