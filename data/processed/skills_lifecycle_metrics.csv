@@ -1,0 +1,8 @@
+skill_domain,pre_ai_demand_weight,disruption_demand_weight,agentic_2026_demand_weight,market_status,replacement_vector
+Basic Syntax & Boilerplate Generation,95,52,14,Automated / Commoditized,"AI Agent Code Generators (Cursor, Claude, Copilot)"
+Manual QA & Black-Box Test Execution,85,48,18,Severe Contraction,Autonomous synthetic test generators & AI verification agents
+Single-Framework Web Dev (Pure Frontend without Systems),90,68,35,Saturated / Subsumed by Full-Stack,"Generative UI, component frameworks, automated design-to-code"
+Full-Stack + API Integration (TypeScript/Python + PostgreSQL),75,88,92,Hyper-Resilient Backbone,"Human architect supervises AI, owns end-to-end delivery"
+"Automated Testing, CI/CD & Systems Verification",58,79,96,Critical Growth Sector (The Verification Bottleneck),Human validates AI hallucination boundaries and security
+"AI Orchestration (RAG, Vector DBs, Agent Workflows, Evals)",5,62,98,Highest Relative Growth,Standard modern application architecture
+"Data Structures, Algorithms & Systems Design",90,92,95,Uncompromised Screening Standard (Big Tech & Elite R&D),Required to evaluate AI-generated code performance and correctness

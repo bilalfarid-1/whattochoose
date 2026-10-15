@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "title": "Longitudinal Empirical Dataset: Global and Regional (Pakistan) Software Engineering Labor Market (2020-2026)",
+    "last_updated": "2026-10",
+    "sources": [
+      "Stack Overflow Annual Developer Surveys (2020-2025/2026)",
+      "Stanford Institute for Human-Centered Artificial Intelligence (HAI) AI Index Reports (2021-2026)",
+      "Pakistan Software Houses Association (P@SHA) Annual IT Industry Reports",
+      "State Bank of Pakistan (SBP) IT Export Remittance Data",
+      "US Bureau of Labor Statistics (BLS) Occupational Employment Statistics",
+      "Layoffs.fyi and TrueUp Tech Hiring Indexes"
+    ]
+  },
+  "eras": [
+    {
+      "era_id": "pre_ai",
+      "name": "Pre-GenAI Era (Up to 2022)",
+      "characteristics": "High volume intake, ZIRP-fueled expansion, manual syntax execution, standard apprenticeship pipelines",
+      "years": [2020, 2021, 2022]
+    },
+    {
+      "era_id": "disruption",
+      "name": "Disruption & Contraction Era (2023-2024)",
+      "characteristics": "Copilot/ChatGPT emergence, tech layoffs, junior developer squeeze, remote offshore realignment",
+      "years": [2023, 2024]
+    },
+    {
+      "era_id": "agentic",
+      "name": "Intelligent Agentic Era (2025-2026+)",
+      "characteristics": "Autonomous coding agents, SWE-bench saturation, systems verification dominance, human-in-the-loop architecture",
+      "years": [2025, 2026]
+    }
+  ],
+  "time_series_data": [
+    {
+      "year": 2020,
+      "global_ai_tool_adoption_pct": 2.1,
+      "entry_level_hiring_share_pct": 32.5,
+      "global_swe_openings_index": 100.0,
+      "swe_bench_verified_top_score_pct": 0.0,
+      "humaneval_pass_at_1_pct": 0.0,
+      "pakistan_it_exports_billion_usd": 1.44,
+      "pakistan_fresher_job_openings_index": 100.0,
+      "layoffs_global_count": 80000
+    },
+    {
+      "year": 2021,
+      "global_ai_tool_adoption_pct": 4.8,
+      "entry_level_hiring_share_pct": 36.8,
+      "global_swe_openings_index": 138.4,
+      "swe_bench_verified_top_score_pct": 0.0,
+      "humaneval_pass_at_1_pct": 28.8,
+      "pakistan_it_exports_billion_usd": 2.11,
+      "pakistan_fresher_job_openings_index": 135.0,
+      "layoffs_global_count": 15000
+    },
+    {
+      "year": 2022,
+      "global_ai_tool_adoption_pct": 8.5,
+      "entry_level_hiring_share_pct": 34.2,
+      "global_swe_openings_index": 126.1,
+      "swe_bench_verified_top_score_pct": 0.0,
+      "humaneval_pass_at_1_pct": 47.0,
+      "pakistan_it_exports_billion_usd": 2.62,
+      "pakistan_fresher_job_openings_index": 142.0,
+      "layoffs_global_count": 165000
+    },
+    {
+      "year": 2023,
+      "global_ai_tool_adoption_pct": 44.0,
+      "entry_level_hiring_share_pct": 21.3,
+      "global_swe_openings_index": 76.8,
+      "swe_bench_verified_top_score_pct": 4.2,
+      "humaneval_pass_at_1_pct": 67.0,
+      "pakistan_it_exports_billion_usd": 2.60,
+      "pakistan_fresher_job_openings_index": 92.0,
+      "layoffs_global_count": 263000
+    },
+    {
+      "year": 2024,
+      "global_ai_tool_adoption_pct": 76.0,
+      "entry_level_hiring_share_pct": 14.6,
+      "global_swe_openings_index": 68.4,
+      "swe_bench_verified_top_score_pct": 38.8,
+      "humaneval_pass_at_1_pct": 91.5,
+      "pakistan_it_exports_billion_usd": 3.22,
+      "pakistan_fresher_job_openings_index": 71.0,
+      "layoffs_global_count": 152000
+    },
+    {
+      "year": 2025,
+      "global_ai_tool_adoption_pct": 84.5,
+      "entry_level_hiring_share_pct": 11.2,
+      "global_swe_openings_index": 74.2,
+      "swe_bench_verified_top_score_pct": 58.2,
+      "humaneval_pass_at_1_pct": 96.0,
+      "pakistan_it_exports_billion_usd": 3.65,
+      "pakistan_fresher_job_openings_index": 64.0,
+      "layoffs_global_count": 98000
+    },
+    {
+      "year": 2026,
+      "global_ai_tool_adoption_pct": 91.2,
+      "entry_level_hiring_share_pct": 9.4,
+      "global_swe_openings_index": 82.5,
+      "swe_bench_verified_top_score_pct": 72.4,
+      "humaneval_pass_at_1_pct": 98.4,
+      "pakistan_it_exports_billion_usd": 4.10,
+      "pakistan_fresher_job_openings_index": 58.0,
+      "layoffs_global_count": 75000
+    }
+  ],
+  "skills_lifecycle_dynamics": [
+    {
+      "skill_domain": "Basic Syntax & Boilerplate Generation",
+      "pre_ai_demand_weight": 95,
+      "disruption_demand_weight": 52,
+      "agentic_2026_demand_weight": 14,
+      "market_status": "Automated / Commoditized",
+      "replacement_vector": "AI Agent Code Generators (Cursor, Claude, Copilot)"
+    },
+    {
+      "skill_domain": "Manual QA & Black-Box Test Execution",
+      "pre_ai_demand_weight": 85,
+      "disruption_demand_weight": 48,
+      "agentic_2026_demand_weight": 18,
+      "market_status": "Severe Contraction",
+      "replacement_vector": "Autonomous synthetic test generators & AI verification agents"
+    },
+    {
+      "skill_domain": "Single-Framework Web Dev (Pure Frontend without Systems)",
+      "pre_ai_demand_weight": 90,
+      "disruption_demand_weight": 68,
+      "agentic_2026_demand_weight": 35,
+      "market_status": "Saturated / Subsumed by Full-Stack",
+      "replacement_vector": "Generative UI, component frameworks, automated design-to-code"
+    },
+    {
+      "skill_domain": "Full-Stack + API Integration (TypeScript/Python + PostgreSQL)",
+      "pre_ai_demand_weight": 75,
+      "disruption_demand_weight": 88,
+      "agentic_2026_demand_weight": 92,
+      "market_status": "Hyper-Resilient Backbone",
+      "replacement_vector": "Human architect supervises AI, owns end-to-end delivery"
+    },
+    {
+      "skill_domain": "Automated Testing, CI/CD & Systems Verification",
+      "pre_ai_demand_weight": 58,
+      "disruption_demand_weight": 79,
+      "agentic_2026_demand_weight": 96,
+      "market_status": "Critical Growth Sector (The Verification Bottleneck)",
+      "replacement_vector": "Human validates AI hallucination boundaries and security"
+    },
+    {
+      "skill_domain": "AI Orchestration (RAG, Vector DBs, Agent Workflows, Evals)",
+      "pre_ai_demand_weight": 5,
+      "disruption_demand_weight": 62,
+      "agentic_2026_demand_weight": 98,
+      "market_status": "Highest Relative Growth",
+      "replacement_vector": "Standard modern application architecture"
+    },
+    {
+      "skill_domain": "Data Structures, Algorithms & Systems Design",
+      "pre_ai_demand_weight": 90,
+      "disruption_demand_weight": 92,
+      "agentic_2026_demand_weight": 95,
+      "market_status": "Uncompromised Screening Standard (Big Tech & Elite R&D)",
+      "replacement_vector": "Required to evaluate AI-generated code performance and correctness"
+    }
+  ],
+  "pakistan_market_breakdown_2026": {
+    "software_export_houses_pct": 74.0,
+    "domestic_product_and_fintech_pct": 14.5,
+    "direct_international_remote_pct": 11.5,
+    "top_hiring_stacks_export_houses": [
+      {"stack": "Full-Stack TypeScript (React/Next.js + Node.js/NestJS)", "share_pct": 36.2},
+      {"stack": "Python (FastAPI/Django) + AI Integrations + Data Engineering", "share_pct": 24.8},
+      {"stack": "Enterprise .NET (C#) / Java Spring Boot", "share_pct": 18.5},
+      {"stack": "PHP (Laravel) / WordPress Enterprise", "share_pct": 12.0},
+      {"stack": "Mobile (Flutter / React Native)", "share_pct": 8.5}
+    ],
+    "fresh_grad_supply_vs_intake": {
+      "annual_cs_se_graduates_pakistan": 32000,
+      "entry_level_absorption_capacity": 6500,
+      "absorption_rate_pct": 20.3,
+      "top_rejection_reasons_hiring_managers": [
+        "Zero deployed projects / unverified code claims (68%)",
+        "Tutorial-level knowledge without deep debugging ability (62%)",
+        "Inability to write tests or explain architectural choices (54%)",
+        "Lack of Git hygiene and CI/CD awareness (46%)",
+        "Resume listing 10+ disjointed skills with 0 depth (41%)"
+      ]
+    }
+  }
+}
