@@ -4,7 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg)](https://www.sqlalchemy.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791.svg)](https://www.postgresql.org/)
-[![Tests](https://img.shields.io/badge/PyTest-14%20Passing-success.svg)](https://pytest.org)
+[![Tests](https://img.shields.io/badge/PyTest-19%20Passing-success.svg)](https://pytest.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Author:** Muhammad Bilal Farid  
@@ -16,12 +16,15 @@
 
 ## Overview
 
-This repository unites two complementary engineering deliverables:
+This repository unites three complementary engineering deliverables:
 
 1. **Empirical Market Research Brief (`/research`):**  
    An in-depth empirical investigation titled *"The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates"*. It analyzes macroeconomic normalization (post-ZIRP), SWE-bench Verified coding agent progression, and Pakistan IT industry dynamics ($4.60B reported FY26 ICT exports, 21.4% CAGR vs. 71.8% senior hiring preference per P@SHA 2025).
 
-2. **JobPulse Platform (`/backend` & `/frontend`):**  
+2. **AI-Augmented Engineering Mastery Framework (`/ai_learning_research`):**  
+   An empirical, research-backed learning framework designed to master Python Backend Systems Engineering using AI as a deliberate cognitive amplifier. Grounded in 12 peer-reviewed papers (ACM SIGCSE, ICER, CHI, Wharton), it eliminates passive video tutorials and the "illusion of competence" through 4 operational learning protocols, battle-tested system prompts, and a 30-Day Zero-Tutorial Sprint.
+
+3. **JobPulse Platform (`/backend` & `/frontend`):**  
    A production-grade, full-stack application built to operationalize the research recommendations. It provides a job application tracker, interview stage manager, debrief journal, funnel conversion analytics, and an interactive market research visualizer built with **FastAPI**, **PostgreSQL**, **Pydantic v2**, **PyTest**, and a modern **Tailwind/Vanilla JS Single-Page Application (SPA)**.
 
 ---
@@ -47,6 +50,15 @@ whattochoose/
 │   ├── Dockerfile                      # Production Python 3.12 slim container
 │   ├── docker-compose.yml              # Multi-container setup with PostgreSQL 16
 │   └── requirements.txt                # Backend dependencies
+│
+├── ai_learning_research/               # AI-Augmented Learning Science & Execution Protocols
+│   ├── README.md                       # Navigation guide & overview
+│   ├── SOURCES.md                      # Academic bibliographic audit (ACM SIGCSE, ICER, CHI, Wharton)
+│   ├── framework/                      # Cognitive architecture & the 6 deadly anti-patterns
+│   ├── protocols/                      # Socratic decomposition, adversarial review, mutation drills, Feynman
+│   ├── prompts/                        # Calibrated system prompts with anti-code-leakage guardrails
+│   ├── roadmap/                        # 30-Day Zero-Tutorial AI Backend Sprint
+│   └── tests/                          # 5 passing automated tests for citations, schemas, and links
 │
 └── research/                           # Empirical Labor Market Research & Datasets
     ├── paper/
@@ -112,6 +124,15 @@ python research/tests/test_data_integrity.py
 
 # 2. Run market dynamics modeling and regenerate all figures
 python research/src/analyze_market_dynamics.py
+```
+
+---
+
+### Option 4: Run the AI Learning Framework Test Suite
+
+```bash
+# Run automated verification across citations, system prompts, and protocols
+python -m pytest -v ai_learning_research/tests/test_protocols_and_sources.py
 ```
 
 ---
