@@ -119,19 +119,19 @@ Land Junior Backend Role ──> Build Production Depth ──> Daily LeetCode (
          ┌────────────────────────┴────────────────────────┐
          ▼                                                 ▼
 [Pathway A: Fulbright Scholarship (USEFP)]    [Pathway B: Direct US University Admissions]
-• Fully funded US Master's                    • Direct MS in Computer Science
-• J-1 Visa with mandatory 2-Year Home         • Funded via Graduate Assistantships (RA/TA)
-  Country Return Requirement (Section 212(e))  • F-1 Visa with 3-Year STEM OPT
-• Must return to Pakistan for 2 years         • Eligible to work directly in US Big Tech
-  (Can work for Big Tech in regional hubs)      (Google, OpenAI, Meta) post-graduation
+• Highly competitive, fully funded US Master's• Direct MS in Computer Science
+• J-1 Visa with mandatory 2-Year Home         • Highly competitive Graduate Assistantships (RA/TA)
+  Country Return Requirement (Section 212(e))  • F-1 Visa with up to 3-Year STEM OPT eligibility
+• Must return to Pakistan for 2 years         • Potential eligibility for US tech employment
+  (Can work for Big Tech in regional hubs)      (Subject to hiring, E-Verify, and visa rules)
 ```
 
 ### Essential Scholarship Clarifications:
 1. **The Fulbright Home Country Return Requirement:**  
    The US Fulbright scholarship operates under the **J-1 Exchange Visitor visa**, which legally mandates that scholars **return to their home country (Pakistan) for a minimum of two years** following degree completion before becoming eligible for US immigrant or dual-intent employment visas (H-1B, L-1).
-   * *How this fits your Big Tech goal:* You can work for multinational tech firms in international regional offices (e.g., Google Dubai, Singapore, Dublin, or London) or lead engineering initiatives in Pakistan for 2 years before relocating to the US.
+   * *How this fits your career path:* You can work for multinational tech firms in international regional offices (e.g., Google Dubai, Singapore, Dublin, or London) or lead engineering initiatives in Pakistan for 2 years before relocating to the US.
 2. **The Direct US University Route (F-1 STEM OPT):**  
-   If your priority is working in the US immediately after your Master's degree, apply directly to US universities offering **Teaching Assistantships (TA)** or **Research Assistantships (RA)**. These typically waive tuition and provide a monthly living stipend. On an **F-1 student visa**, graduates in STEM fields receive up to **3 years of Optional Practical Training (OPT)**, allowing direct employment at US Big Tech companies (Google, OpenAI, Meta, Microsoft).
+   If your priority is seeking employment in the US after your Master's degree, applying directly to US universities offering **Teaching Assistantships (TA)** or **Research Assistantships (RA)** is an alternative. These assistantships typically waive tuition and provide a monthly living stipend, though funding is highly competitive and never guaranteed. On an **F-1 student visa**, graduates with qualifying STEM degrees may apply for up to **3 years of Optional Practical Training (OPT)** with an E-Verify employer. Note that neither work authorization, employer sponsorship, nor a tech offer is automatic—they depend on employer demand and prevailing immigration regulations.
 3. **Work Experience Requirements:**  
    * For the Fulbright program in Pakistan, 2 years of work experience is only strictly required for **MBA** applicants. However, for MS in Computer Science applicants, having 1 to 2 years of real software engineering experience substantially strengthens your Statement of Purpose (SOP) and interview competitiveness.
 4. **European Alternatives (Erasmus Mundus):**  

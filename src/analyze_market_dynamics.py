@@ -26,24 +26,24 @@ def load_data():
 def run_analysis():
     raw = load_data()
     ts_df = pd.DataFrame(raw['time_series_data'])
-    skills_df = pd.DataFrame(raw['analytical_skills_framework'])
+    skills_df = pd.DataFrame(raw['author_qualitative_skills_rubric']['skills_evaluations'])
     pasha_metrics = raw['pakistan_industry_benchmarks_2025_2026']
     
     # Export cleaned processed CSVs
     ts_df.to_csv(os.path.join(PROCESSED_DIR, 'time_series_metrics_2020_2026.csv'), index=False)
     skills_df.to_csv(os.path.join(PROCESSED_DIR, 'skills_lifecycle_metrics.csv'), index=False)
     
-    print("=" * 65)
+    print("=" * 68)
     print("AUDITED MACROECONOMIC & INDUSTRY BENCHMARKS")
-    print("=" * 65)
+    print("=" * 68)
     
     # 1. Pakistan Export Growth Analysis
     exp_2020 = ts_df.loc[ts_df['year'] == 2020, 'pakistan_it_exports_billion_usd'].values[0]
     exp_2026 = ts_df.loc[ts_df['year'] == 2026, 'pakistan_it_exports_billion_usd'].values[0]
     exp_cagr = ((exp_2026 / exp_2020) ** (1/6) - 1) * 100
-    print(f"Pakistan ICT Export Remittances: ${exp_2020:.2f}B (FY20) -> ${exp_2026:.2f}B (FY26 annualized pace)")
-    print(f"Official ICT Exports 6-Year CAGR: +{exp_cagr:.2f}% per annum")
-    print("Sources: State Bank of Pakistan & Pakistan Economic Survey 2025-26 (Chap 15)")
+    print(f"Pakistan ICT Export Remittances: ${exp_2020:.2f}B (FY20) -> ${exp_2026:.3f}B (FY26 straight-line pace)")
+    print(f"Official ICT Exports 6-Year CAGR: +{exp_cagr:.2f}% per annum (~21.0%)")
+    print("Sources: SBP & Pakistan Economic Survey 2025-26 (9-month receipt: $3.388B -> 3.388 * 12/9 = $4.517B)")
     
     # 2. P@SHA Skills Survey 2025 Benchmarks
     print("\nP@SHA Skills Survey 2025 Industry Dynamics (Member Companies Scope):")
@@ -68,18 +68,18 @@ def run_analysis():
     print("\n[SUCCESS] All figures successfully generated and saved to paper/figures/.")
 
 def plot_figure_1_macro_trends(df):
-    """Figure 1: Co-evolution of Software Postings and AI Benchmark Progression"""
+    """Figure 1: Co-evolution of U.S. Software Postings and AI Benchmark Progression"""
     fig, ax1 = plt.subplots(figsize=(10, 5.8))
     
     color_postings = '#2b5c8f'
     color_swe = '#8e44ad'
     color_ai = '#27ae60'
     
-    # Left axis: Indeed Software Postings Index
-    ax1.plot(df['year'], df['indeed_software_postings_index'], marker='o', color=color_postings, 
-             linewidth=2.4, label='Software Job Openings Index (Indeed, 2020=100)')
+    # Left axis: Indeed U.S. Software Postings Index (FRED: IHLIDXUSTPSOFTDEVE)
+    ax1.plot(df['year'], df['us_indeed_software_postings_index'], marker='o', color=color_postings, 
+             linewidth=2.4, label='U.S. Software Job Openings Index (FRED / Indeed, Feb 2020=100)')
     ax1.set_xlabel('Calendar Year', fontweight='bold')
-    ax1.set_ylabel('Software Job Openings Index (2020=100)', color=color_postings, fontweight='bold')
+    ax1.set_ylabel('U.S. Software Job Openings Index (2020=100)', color=color_postings, fontweight='bold')
     ax1.tick_params(axis='y', labelcolor=color_postings)
     ax1.set_ylim(40, 160)
     
@@ -93,38 +93,38 @@ def plot_figure_1_macro_trends(df):
     ax2.tick_params(axis='y', labelcolor=color_swe)
     ax2.set_ylim(0, 105)
     
-    plt.title('Figure 1: Macro Software Hiring Trajectories vs AI Benchmark Progression (2020–2026)\n'
-              '[Descriptive Co-Evolution | Sources: Indeed Hiring Lab, Stack Overflow, Stanford HAI, SWE-bench]', 
-              fontsize=11, pad=12, fontweight='bold')
+    plt.title('Figure 1: U.S. Software Job Postings vs AI Benchmark Progression (2020–2026)\n'
+              '[Descriptive Co-Evolution | Sources: FRED (IHLIDXUSTPSOFTDEVE), Stack Overflow, Stanford HAI, SWE-bench]', 
+              fontsize=10.5, pad=12, fontweight='bold')
     
     lines_1, labels_1 = ax1.get_legend_handles_labels()
     lines_2, labels_2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='center left', frameon=True, fontsize=9)
+    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='center left', frameon=True, fontsize=8.8)
     
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig1_junior_squeeze.png'))
     plt.close()
 
 def plot_figure_2_skills_framework(skills_df):
-    """Figure 2: Analytical Competency Shift Framework"""
+    """Figure 2: Author-Assigned Qualitative Competency Valuation"""
     fig, ax = plt.subplots(figsize=(11, 6))
     
     domains = skills_df['skill_domain']
-    trad = skills_df['traditional_value_pre_2022']
-    contemp = skills_df['contemporary_value_2026']
+    trad = skills_df['pre_2022_weight']
+    contemp = skills_df['contemporary_2026_weight']
     
     y = np.arange(len(domains))
     height = 0.35
     
-    rects1 = ax.barh(y - height/2, trad, height, label='Traditional Market Weight (Pre-2022 Baseline)', color='#95a5a6', alpha=0.85)
-    rects2 = ax.barh(y + height/2, contemp, height, label='Contemporary Market Weight (2026 Horizon)', color='#2980b9')
+    rects1 = ax.barh(y - height/2, trad, height, label='Author Pre-2022 Baseline Score', color='#95a5a6', alpha=0.85)
+    rects2 = ax.barh(y + height/2, contemp, height, label='Author 2026 Horizon Score', color='#2980b9')
     
-    ax.set_xlabel('Analytical Hiring & Competency Weight (0–100 Scale)', fontweight='bold')
-    ax.set_title('Figure 2: Analytical Competency Shift Framework (Pre-2022 vs 2026)\n'
-                 '[Qualitative Analysis: Devaluation of Routine Syntax vs Surge in Systems Verification]', 
-                 fontsize=11, pad=12, fontweight='bold')
+    ax.set_xlabel('Author-Assigned Qualitative Competency Weight (0–100 Scale)', fontweight='bold')
+    ax.set_title('Figure 2: Author-Assigned Qualitative Competency Valuation (Pre-2022 vs 2026)\n'
+                 '[Evaluated on Automation Exposure, Verification Necessity, and Interview Screening Frequency]', 
+                 fontsize=10.5, pad=12, fontweight='bold')
     ax.set_yticks(y)
-    ax.set_yticklabels(domains, fontsize=9.5)
+    ax.set_yticklabels(domains, fontsize=9.2)
     ax.legend(loc='lower right', frameon=True)
     ax.set_xlim(0, 110)
     
@@ -133,7 +133,7 @@ def plot_figure_2_skills_framework(skills_df):
     plt.close()
 
 def plot_figure_3_pakistan_dynamics(df, pasha):
-    """Figure 3: Pakistan ICT Exports Growth vs Industry Experience Demand"""
+    """Figure 3: Pakistan ICT Exports Growth vs Member Company Demand"""
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5.2), gridspec_kw={'width_ratios': [1.4, 1]})
     
     # Left subplot: SBP & Pakistan Economic Survey Export Receipts
@@ -153,12 +153,12 @@ def plot_figure_3_pakistan_dynamics(df, pasha):
                      textcoords="offset points",
                      ha='center', va='bottom', fontsize=8.5, fontweight='bold')
                      
-    ax1.annotate('FY26: ~$4.60B pace\n(+21.4% 6-Yr CAGR)',
-                 xy=(2026, 4.6), xytext=(2022.3, 4.85),
+    ax1.annotate('FY26: ~$4.52B straight-line pace\n(+21.0% 6-Yr CAGR)',
+                 xy=(2026, 4.517), xytext=(2021.8, 4.85),
                  arrowprops=dict(facecolor='black', arrowstyle='->', lw=1.2),
                  fontsize=8.5, backgroundcolor='#ffffff')
                  
-    # Right subplot: P@SHA 2025 Hiring Demand Distribution (Member Companies)
+    # Right subplot: P@SHA 2025 Hiring Demand Distribution (Member Companies Scope)
     labels = ['Experienced Professionals\n(71.8%)', 'Fresh Graduate Intake\n(28.2%)']
     sizes = [pasha['experienced_professional_demand_share_pct'], pasha['fresher_intake_share_pasha_member_firms_pct']]
     colors = ['#e67e22', '#3498db']
@@ -166,8 +166,8 @@ def plot_figure_3_pakistan_dynamics(df, pasha):
     wedges, texts, autotexts = ax2.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140, 
                                        colors=colors, textprops=dict(fontsize=9))
     plt.setp(autotexts, size=9.5, weight="bold", color="white")
-    ax2.set_title('Member Company Hiring Demand by Seniority\n[Source: P@SHA Skills Survey 2025]', 
-                  fontsize=10.5, pad=10, fontweight='bold')
+    ax2.set_title('Member Company Hiring Demand (2024)\n[Sample: Surveyed P@SHA Member Firms, N=47,393]', 
+                  fontsize=10.2, pad=10, fontweight='bold')
     
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig3_pakistan_paradox.png'))
@@ -194,7 +194,7 @@ def plot_figure_4_developer_time_allocation():
     ax.set_ylabel('Author-Defined Estimated Effort Allocation (%)', fontweight='bold')
     ax.set_title('Figure 4: Author-Defined Scenario of Software Labor Task Allocation (2020–2030)\n'
                  '[Illustrative Model: Transition from Syntax Transcription to Systems Verification]', 
-                 fontsize=11, pad=12, fontweight='bold')
+                 fontsize=10.5, pad=12, fontweight='bold')
     ax.set_ylim(0, 105)
     ax.legend(loc='upper right', frameon=True, fontsize=8.8)
     

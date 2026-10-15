@@ -32,13 +32,16 @@ whattochoose/
 ├── src/                                # Reproducible Python analytical pipeline
 │   └── analyze_market_dynamics.py      # Statistical modeling and figure generation
 │
+├── tests/                              # Automated data integrity & arithmetic tests
+│   └── test_data_integrity.py          # Verifies schema, CAGR arithmetic, and source metadata
+│
 ├── paper/                              # Market Analysis Manuscript & Visuals
 │   ├── main_manuscript.md              # Complete research whitepaper & market brief
 │   ├── references.bib                  # Academic BibTeX reference library
 │   └── figures/                        # High-resolution figures (300 DPI)
-│       ├── fig1_junior_squeeze.png     # Macro software postings vs AI benchmark progression
-│       ├── fig2_skills_lifecycle.png   # Analytical competency shift framework
-│       ├── fig3_pakistan_paradox.png   # Pakistan ICT export revenue vs industry experience demand
+│       ├── fig1_junior_squeeze.png     # U.S. software postings vs AI benchmark progression
+│       ├── fig2_skills_lifecycle.png   # Author-assigned qualitative competency valuation
+│       ├── fig3_pakistan_paradox.png   # Pakistan ICT export revenue vs member company demand
 │       └── fig4_predictive_2030_forecast.png # Author-defined scenario of developer task allocation
 │
 └── roadmap/                            # Practical Graduate Deliverables
@@ -51,7 +54,7 @@ whattochoose/
 ## Core Findings Summary
 
 1. **Pakistan ICT Export Growth vs. Experience Bias:**  
-   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.44\text{B}$ (FY20) to an official pacing of **$\sim \$4.60\text{B}$** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP & Finance Division reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
+   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.440\text{B}$ (FY20) to an official straight-line annualized pace of **$\sim \$4.52\text{B}$** in FY26 (**$+21.0\%$ 6-year CAGR** per SBP & Finance Division reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
 2. **The Verification Bottleneck:**  
    While AI models commoditize routine syntax and boilerplate code generation, the primary engineering constraint has shifted to **Specification Formalization**, **Relational Data Architecture**, and **Automated Verification / Integration Testing**.
 3. **The Importance of Technical Depth (Reasoned Strategic Choice):**  

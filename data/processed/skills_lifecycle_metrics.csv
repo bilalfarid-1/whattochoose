@@ -1,7 +1,7 @@
-skill_domain,traditional_value_pre_2022,contemporary_value_2026,mechanics
-Isolated Syntax & Routine CRUD Coding,90,20,"Substantially automated by LLMs and agentic assistants (Copilot, Cursor, Claude). Routine syntax generation provides minimal hiring differentiation."
-Manual Black-Box Testing,80,25,Contracting relative to automated test frameworks and synthetic test harnesses. Manual UI clicking offers lower entry leverage.
-Backend Systems & API Architecture (Python / FastAPI + PostgreSQL),75,92,"High-leverage core. Relational data modeling, indexing, transactions, asynchronous APIs, and business logic remain indispensable."
-"Automated Testing, PyTest & Systems Verification",55,95,"The Verification Bottleneck. When code synthesis is accelerated by AI, human value shifts decisively to verifying integration correctness and reliability."
-"AI Integration & Practical Orchestration (APIs, Embeddings, RAG)",10,88,"High-value capability. Integrating language models with structured outputs, vector stores, and error fallbacks into production backends."
-"Core Computer Science Fundamentals (DSA, Systems Design)",90,95,"Core technical screening standard. Critical for evaluating algorithmic complexity, resource management, and distributed systems behavior."
+skill_domain,pre_2022_weight,contemporary_2026_weight,justification
+Isolated Syntax & Routine CRUD Coding,90,20,Heavily commoditized by LLMs. Autocompletion and agentic code synthesis generate standard boilerplate in seconds; minimal hiring differentiation for candidates possessing only syntax ability.
+Manual Black-Box Testing,80,25,Contracting relative to automated test frameworks and synthetic test harnesses. Manual UI clicking provides lower leverage and compensation compared to automated QA engineering.
+Backend Systems & API Architecture (Python / FastAPI + PostgreSQL),75,92,"High-leverage core competency. Relational schema normalization, database indexing, ACID transactions, connection pooling, and async API design remain fundamental enterprise requirements."
+"Automated Testing, PyTest & Systems Verification",55,95,"The Verification Bottleneck. In an environment where code generation is accelerated, the primary human engineering constraint is verifying business correctness and integration integrity."
+"AI Integration & Practical Orchestration (APIs, Embeddings, RAG)",10,88,"Rapidly growing enterprise capability. Building applications that connect frontier models, structured Pydantic outputs, vector embeddings, and fallback mechanisms into reliable services."
+"Core Computer Science Fundamentals (DSA, Systems Design)",90,95,"Uncompromised screening standard across tier-1 software companies. Essential for evaluating algorithmic complexity, resource constraints, and performance tuning."
