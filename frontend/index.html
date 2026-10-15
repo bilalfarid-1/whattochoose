@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobPulse — Career Pipeline & Market Intelligence Platform</title>
+  
+  <!-- Modern Typography: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN for Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['Fira Code', 'monospace']
+          },
+          colors: {
+            brand: {
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+              500: '#0EA5E9',
+              600: '#0284C7',
+              700: '#0369A1',
+              800: '#075985',
+              900: '#0C4A6E',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    .tab-active {
+      border-bottom: 2px solid #0369A1;
+      color: #0369A1;
+      font-weight: 600;
+    }
+    .badge-applied { background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+    .badge-screening { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .badge-interview { background-color: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .badge-offer { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-rejected { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- Top Navigation Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        
+        <!-- Logo & Brand -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('tracker')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xl font-bold tracking-tight text-slate-900">JobPulse</span>
+              <span class="text-xs uppercase font-mono px-2 py-0.5 rounded bg-brand-50 text-brand-700 font-semibold border border-brand-200">v1.0 MVP</span>
+            </div>
+            <p class="text-xs text-slate-500 hidden sm:block">Pipeline Tracker & Research Intelligence</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex space-x-1 sm:space-x-6 text-sm font-medium">
+          <button id="tab-btn-tracker" onclick="switchTab('tracker')" class="px-3 py-5 text-brand-700 tab-active transition-colors flex items-center space-x-1.5 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+            <span>Applications Tracker</span>
+          </button>
+          
+          <button id="tab-btn-analytics" onclick="switchTab('analytics')" class="px-3 py-5 text-slate-600 hover:text-slate-900 transition-colors flex items-center space-x-1.5 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+            <span>Funnel Analytics</span>
+          </button>
+
+          <button id="tab-btn-research" onclick="switchTab('research')" class="px-3 py-5 text-slate-600 hover:text-slate-900 transition-colors flex items-center space-x-1.5 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+            <span>Market Research (2026)</span>
+          </button>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center space-x-3">
+          <button onclick="openNewAppModal()" class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg bg-brand-700 hover:bg-brand-800 text-white text-sm font-medium shadow-sm transition-colors cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+            <span class="hidden sm:inline">Add Application</span>
+          </button>
+          
+          <button onclick="seedDemoData()" title="Load Sample Applications" class="px-2.5 py-2 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-mono transition-colors cursor-pointer">
+            Seed Demo Data
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: APPLICATIONS TRACKER (KANBAN & LIST) -->
+    <!-- ========================================================================= -->
+    <div id="tab-tracker" class="space-y-6">
+
+      <!-- Metrics KPI Ribbon -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Total</span>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span id="kpi-total" class="text-2xl font-bold font-mono text-slate-900">0</span>
+            <span class="text-xs text-slate-400">Tracked</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <span class="text-xs font-medium text-blue-600 uppercase tracking-wider">Active</span>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span id="kpi-active" class="text-2xl font-bold font-mono text-blue-600">0</span>
+            <span class="text-xs text-blue-400">In Play</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <span class="text-xs font-medium text-amber-600 uppercase tracking-wider">Interviews</span>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span id="kpi-interviews" class="text-2xl font-bold font-mono text-amber-600">0</span>
+            <span class="text-xs text-amber-400">Rounds</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <span class="text-xs font-medium text-emerald-600 uppercase tracking-wider">Offers</span>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span id="kpi-offers" class="text-2xl font-bold font-mono text-emerald-600">0</span>
+            <span class="text-xs text-emerald-400">Received</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <span class="text-xs font-medium text-rose-600 uppercase tracking-wider">Rejected</span>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span id="kpi-rejected" class="text-2xl font-bold font-mono text-rose-600">0</span>
+            <span class="text-xs text-rose-400">Closed</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <span class="text-xs font-medium text-brand-700 uppercase tracking-wider">Response Rate</span>
+          <div class="mt-1 flex items-baseline justify-between">
+            <span id="kpi-rate" class="text-2xl font-bold font-mono text-brand-700">0.0%</span>
+            <span class="text-xs text-slate-400">Funnel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Filter Toolbar -->
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-3">
+        <!-- Search bar -->
+        <div class="relative w-full sm:w-80">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </div>
+          <input type="text" id="filter-search" oninput="renderTracker()" placeholder="Search by role or company..." class="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none">
+        </div>
+
+        <!-- Filter Dropdown & View Mode -->
+        <div class="flex items-center space-x-3 w-full sm:w-auto justify-end">
+          <select id="filter-status" onchange="renderTracker()" class="text-sm bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-brand-600 focus:outline-none cursor-pointer">
+            <option value="all">All Statuses</option>
+            <option value="applied">Applied</option>
+            <option value="screening">HR Screening</option>
+            <option value="technical_interview">Technical / Live Coding</option>
+            <option value="behavioral_interview">Behavioral / Culture</option>
+            <option value="offer_received">Offer Received</option>
+            <option value="rejected">Rejected</option>
+          </select>
+
+          <!-- Toggle View: Board vs Table -->
+          <div class="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+            <button id="view-btn-board" onclick="setViewMode('board')" class="p-1.5 rounded-md bg-white text-slate-800 shadow-sm cursor-pointer" title="Kanban Board View">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v12a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z" /></svg>
+            </button>
+            <button id="view-btn-table" onclick="setViewMode('table')" class="p-1.5 rounded-md text-slate-500 hover:text-slate-900 cursor-pointer" title="List Table View">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KANBAN BOARD CONTAINER -->
+      <div id="board-view-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto pb-4">
+        <!-- Columns will be populated dynamically -->
+      </div>
+
+      <!-- TABLE LIST CONTAINER -->
+      <div id="table-view-container" class="hidden bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+            <thead class="bg-slate-50 text-slate-600 font-medium">
+              <tr>
+                <th class="px-4 py-3">Company & Role</th>
+                <th class="px-4 py-3">Status</th>
+                <th class="px-4 py-3">Location</th>
+                <th class="px-4 py-3">Salary Range</th>
+                <th class="px-4 py-3">Applied Date</th>
+                <th class="px-4 py-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="table-body" class="divide-y divide-slate-100">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: FUNNEL ANALYTICS DASHBOARD -->
+    <!-- ========================================================================= -->
+    <div id="tab-analytics" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900">Pipeline Conversion & Health Analytics</h2>
+        <p class="text-sm text-slate-500 mt-1">Quantitative insights into your job hunt conversion rates, interview drop-offs, and pacing.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+          <!-- Chart 1: Pipeline Stage Distribution -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <h3 class="text-sm font-semibold text-slate-700 mb-3 flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-600"></span>
+              <span>Applications by Stage</span>
+            </h3>
+            <div class="h-64 flex items-center justify-center">
+              <canvas id="chart-status-distribution"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Funnel Conversion Flow -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <h3 class="text-sm font-semibold text-slate-700 mb-3 flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              <span>Funnel Conversion Drop-off</span>
+            </h3>
+            <div class="h-64 flex items-center justify-center">
+              <canvas id="chart-funnel-conversion"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conversion Rates Table -->
+        <div class="mt-8 border-t border-slate-200 pt-6">
+          <h3 class="text-sm font-semibold text-slate-900 mb-4">Pipeline Benchmarks</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 rounded-lg border border-slate-200 bg-white">
+              <span class="text-xs text-slate-500 font-medium">Screening Conversion</span>
+              <div id="metric-screen-conv" class="text-2xl font-bold font-mono text-slate-900 mt-1">0.0%</div>
+              <p class="text-xs text-slate-400 mt-1">Target benchmark: > 25%</p>
+            </div>
+            <div class="p-4 rounded-lg border border-slate-200 bg-white">
+              <span class="text-xs text-slate-500 font-medium">Interview $\to$ Offer Rate</span>
+              <div id="metric-offer-conv" class="text-2xl font-bold font-mono text-slate-900 mt-1">0.0%</div>
+              <p class="text-xs text-slate-400 mt-1">Target benchmark: > 20%</p>
+            </div>
+            <div class="p-4 rounded-lg border border-slate-200 bg-white">
+              <span class="text-xs text-slate-500 font-medium">Avg. Days in Pipeline</span>
+              <div class="text-2xl font-bold font-mono text-slate-900 mt-1">14.2</div>
+              <p class="text-xs text-slate-400 mt-1">Industry standard: 14–28 days</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: MARKET RESEARCH & SKILLS VALUATION (2026 EDITION) -->
+    <!-- ========================================================================= -->
+    <div id="tab-research" class="hidden space-y-6">
+      
+      <!-- Research Overview Hero -->
+      <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-lg">
+        <div class="max-w-3xl">
+          <span class="px-2.5 py-1 rounded bg-brand-500/20 text-brand-200 text-xs font-mono font-medium border border-brand-400/30">Independent Market Brief</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-3">The Shifting Landscape of Entry-Level Software Engineering</h1>
+          <p class="text-slate-300 text-sm sm:text-base mt-2">
+            An empirical analysis of Pakistan IT export growth, qualification inflation, SWE-bench Verified progression, and the Verification Bottleneck Framework by <strong>Muhammad Bilal Farid</strong>.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-brand-300">
+            <span>SBP Reported FY26: $4.60B (+21.4% CAGR)</span> • 
+            <span>P@SHA Survey: 71.8% Experienced Demand</span> • 
+            <span>SWE-bench Verified: 75.0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Research Findings Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Card 1: Pakistan Paradox -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
+            $
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Pakistan IT Growth Paradox</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Pakistan's ICT export remittances reached <strong>US$ 4.600B</strong> in FY2025–26 (21.4% CAGR from FY20). However, <strong>71.8%</strong> of hiring demand in surveyed P@SHA member firms is concentrated in experienced roles, creating high qualification friction for fresh graduates.
+          </p>
+          <div class="pt-2 border-t border-slate-100 flex justify-between items-center text-xs font-mono">
+            <span class="text-slate-500">Fresh Intake:</span>
+            <span class="font-bold text-slate-800">13,350 hires / ~73k grads</span>
+          </div>
+        </div>
+
+        <!-- Card 2: AI Cognitive Leap -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center font-bold">
+            AI
+          </div>
+          <h3 class="text-base font-bold text-slate-900">SWE-bench Verified Curve</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Autonomous multi-turn coding agents advanced from unobserved baseline (2020–2023) to <strong>38.8%</strong> in Aug 2024 (Claude 3.5 Sonnet + SWE-agent) and <strong>75.0%</strong> on frontier leaderboards in 2026. Routine syntax translation is commoditized.
+          </p>
+          <div class="pt-2 border-t border-slate-100 flex justify-between items-center text-xs font-mono">
+            <span class="text-slate-500">Benchmark Variant:</span>
+            <span class="font-bold text-purple-700">Verified (500 unit-tested)</span>
+          </div>
+        </div>
+
+        <!-- Card 3: The Verification Bottleneck -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-700 flex items-center justify-center font-bold">
+            ✓
+          </div>
+          <h3 class="text-base font-bold text-slate-900">The Verification Bottleneck</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            As code synthesis costs fall (\(C_{\text{gen}} \downarrow\)), the primary human bottleneck shifts to automated verification (\(C_{\text{verif}} \uparrow\)), relational schema integrity, and defensive architecture.
+          </p>
+          <div class="pt-2 border-t border-slate-100 flex justify-between items-center text-xs font-mono">
+            <span class="text-slate-500">Optimal Strategy:</span>
+            <span class="font-bold text-brand-700">FastAPI + PostgreSQL + PyTest</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Skills Valuation Rubric Explorer -->
+      <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+        <h3 class="text-base font-bold text-slate-900">Interactive Skills Valuation Rubric (Figure 2)</h3>
+        <p class="text-xs text-slate-500 mt-1">
+          $$\text{Composite Score} = \text{round}\Big((100 - S_{\text{auto}}) \times 0.35 + S_{\text{verif}} \times 0.40 + S_{\text{screen}} \times 0.25\Big)$$
+        </p>
+
+        <div class="mt-4 overflow-x-auto">
+          <table class="min-w-full text-xs text-left">
+            <thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
+              <tr>
+                <th class="py-2.5 px-3">Competency Domain</th>
+                <th class="py-2.5 px-3">Pre-2022</th>
+                <th class="py-2.5 px-3">Auto Vulnerability (35%)</th>
+                <th class="py-2.5 px-3">Verif Necessity (40%)</th>
+                <th class="py-2.5 px-3">Interview Rigor (25%)</th>
+                <th class="py-2.5 px-3">2026 Score</th>
+                <th class="py-2.5 px-3">Market Signal</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr class="bg-red-50/40">
+                <td class="py-2.5 px-3 font-sans font-medium text-slate-800">Routine CRUD Syntax</td>
+                <td class="py-2.5 px-3">90</td>
+                <td class="py-2.5 px-3 text-red-600 font-bold">95</td>
+                <td class="py-2.5 px-3">25</td>
+                <td class="py-2.5 px-3">33</td>
+                <td class="py-2.5 px-3 text-red-700 font-bold">20</td>
+                <td class="py-2.5 px-3 font-sans text-xs text-red-600">Commoditized</td>
+              </tr>
+              <tr class="bg-red-50/20">
+                <td class="py-2.5 px-3 font-sans font-medium text-slate-800">Manual Black-Box QA</td>
+                <td class="py-2.5 px-3">80</td>
+                <td class="py-2.5 px-3 text-red-600 font-bold">90</td>
+                <td class="py-2.5 px-3">35</td>
+                <td class="py-2.5 px-3">30</td>
+                <td class="py-2.5 px-3 text-red-700 font-bold">25</td>
+                <td class="py-2.5 px-3 font-sans text-xs text-red-600">Contracting</td>
+              </tr>
+              <tr class="bg-emerald-50/40">
+                <td class="py-2.5 px-3 font-sans font-medium text-brand-900 font-semibold">Python Backend Systems (FastAPI)</td>
+                <td class="py-2.5 px-3">75</td>
+                <td class="py-2.5 px-3 text-emerald-600">20</td>
+                <td class="py-2.5 px-3 font-bold text-emerald-700">97</td>
+                <td class="py-2.5 px-3 font-bold text-emerald-700">100</td>
+                <td class="py-2.5 px-3 text-emerald-700 font-bold">92</td>
+                <td class="py-2.5 px-3 font-sans text-xs text-emerald-700 font-bold">High Leverage</td>
+              </tr>
+              <tr class="bg-emerald-50/60">
+                <td class="py-2.5 px-3 font-sans font-medium text-brand-900 font-semibold">Automated Testing & PyTest</td>
+                <td class="py-2.5 px-3">55</td>
+                <td class="py-2.5 px-3 text-emerald-600">15</td>
+                <td class="py-2.5 px-3 font-bold text-emerald-700">100</td>
+                <td class="py-2.5 px-3 font-bold text-emerald-700">100</td>
+                <td class="py-2.5 px-3 text-emerald-700 font-bold">95</td>
+                <td class="py-2.5 px-3 font-sans text-xs text-emerald-700 font-bold">Core Bottleneck</td>
+              </tr>
+              <tr class="bg-blue-50/30">
+                <td class="py-2.5 px-3 font-sans font-medium text-slate-800">AI Integration & RAG</td>
+                <td class="py-2.5 px-3">10</td>
+                <td class="py-2.5 px-3 text-blue-600">25</td>
+                <td class="py-2.5 px-3">92</td>
+                <td class="py-2.5 px-3">100</td>
+                <td class="py-2.5 px-3 text-blue-700 font-bold">88</td>
+                <td class="py-2.5 px-3 font-sans text-xs text-blue-700">High Growth</td>
+              </tr>
+              <tr class="bg-emerald-50/40">
+                <td class="py-2.5 px-3 font-sans font-medium text-slate-800">Core CS (DSA & System Design)</td>
+                <td class="py-2.5 px-3">90</td>
+                <td class="py-2.5 px-3 text-emerald-600">15</td>
+                <td class="py-2.5 px-3 font-bold text-emerald-700">100</td>
+                <td class="py-2.5 px-3 font-bold text-emerald-700">100</td>
+                <td class="py-2.5 px-3 text-emerald-700 font-bold">95</td>
+                <td class="py-2.5 px-3 font-sans text-xs text-emerald-700 font-bold">Non-Negotiable</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: CREATE / EDIT APPLICATION -->
+  <!-- ========================================================================= -->
+  <div id="modal-app" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl border border-slate-200">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+        <h3 id="modal-app-title" class="text-lg font-bold text-slate-900">Add Job Application</h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <form id="form-application" onsubmit="handleAppSubmit(event)" class="space-y-4 mt-4">
+        <input type="hidden" id="form-app-id">
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Company Name *</label>
+          <input type="text" id="form-company-name" required placeholder="e.g. Systems Limited, Netsol, Arbisoft" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Job Title *</label>
+          <input type="text" id="form-job-title" required placeholder="e.g. Associate Backend Engineer (Python / FastAPI)" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Pipeline Status</label>
+            <select id="form-status" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none cursor-pointer">
+              <option value="applied">Applied</option>
+              <option value="screening">HR Screening</option>
+              <option value="technical_interview">Technical / Live Coding</option>
+              <option value="behavioral_interview">Behavioral / Culture</option>
+              <option value="offer_received">Offer Received</option>
+              <option value="rejected">Rejected</option>
+              <option value="withdrawn">Withdrawn</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Work Location</label>
+            <select id="form-location" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none cursor-pointer">
+              <option value="remote">Remote</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="on-site">On-Site</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Salary Range</label>
+            <input type="text" id="form-salary" placeholder="e.g. PKR 120k - 160k" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Applied Date</label>
+            <input type="date" id="form-date" class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Job Post URL</label>
+          <input type="url" id="form-url" placeholder="https://linkedin.com/jobs/view/..." class="w-full text-sm px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none">
+        </div>
+
+        <div class="flex justify-end space-x-2 pt-4 border-t border-slate-100">
+          <button type="button" onclick="closeModal()" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer">Cancel</button>
+          <button type="submit" class="px-5 py-2 text-sm font-medium bg-brand-700 hover:bg-brand-800 text-white rounded-lg shadow-sm cursor-pointer">Save Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- DRAWER: APPLICATION DETAIL & INTERVIEW JOURNAL -->
+  <!-- ========================================================================= -->
+  <div id="drawer-detail" class="hidden fixed inset-0 z-50 overflow-hidden bg-slate-900/40 backdrop-blur-sm flex justify-end">
+    <div class="bg-white w-full max-w-xl h-full shadow-2xl flex flex-col overflow-y-auto">
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-slate-200 flex justify-between items-start bg-slate-50">
+        <div>
+          <span id="detail-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-medium uppercase font-mono">Applied</span>
+          <h2 id="detail-job-title" class="text-xl font-bold text-slate-900 mt-2">Associate Backend Engineer</h2>
+          <p id="detail-company" class="text-sm text-slate-600">Systems Limited • Lahore, Pakistan</p>
+        </div>
+        <button onclick="closeDrawer()" class="text-slate-400 hover:text-slate-600 p-1 cursor-pointer">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <!-- Drawer Body -->
+      <div class="p-6 space-y-6 flex-1">
+        
+        <!-- Metadata Grid -->
+        <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
+          <div>
+            <span class="text-slate-400 uppercase">Work Location</span>
+            <p id="detail-location" class="font-medium text-slate-800 mt-0.5">Hybrid</p>
+          </div>
+          <div>
+            <span class="text-slate-400 uppercase">Compensation</span>
+            <p id="detail-salary" class="font-medium text-slate-800 mt-0.5">PKR 140,000</p>
+          </div>
+          <div>
+            <span class="text-slate-400 uppercase">Applied Date</span>
+            <p id="detail-date" class="font-medium text-slate-800 mt-0.5">2026-10-15</p>
+          </div>
+          <div>
+            <span class="text-slate-400 uppercase">Job Link</span>
+            <p id="detail-url" class="font-medium text-brand-700 mt-0.5 truncate"><a href="#" target="_blank" class="hover:underline">Open Link</a></p>
+          </div>
+        </div>
+
+        <!-- Quick Status Transition Buttons -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase mb-2">Advance Stage</label>
+          <div class="flex flex-wrap gap-1.5 text-xs">
+            <button onclick="advanceStage('screening')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 cursor-pointer">→ Screening</button>
+            <button onclick="advanceStage('technical_interview')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-700 cursor-pointer">→ Technical</button>
+            <button onclick="advanceStage('behavioral_interview')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-purple-50 text-slate-700 hover:text-purple-700 cursor-pointer">→ Culture</button>
+            <button onclick="advanceStage('offer_received')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 cursor-pointer font-bold">★ Offer</button>
+            <button onclick="advanceStage('rejected')" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-red-50 text-slate-700 hover:text-red-700 cursor-pointer">✕ Rejected</button>
+          </div>
+        </div>
+
+        <!-- Section: Interview Rounds -->
+        <div class="border-t border-slate-200 pt-5">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-sm font-bold text-slate-900 flex items-center space-x-1.5">
+              <span>Interview Rounds</span>
+              <span id="detail-interview-count" class="px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 text-xs">0</span>
+            </h3>
+            <button onclick="showAddInterviewForm()" class="text-xs text-brand-700 hover:text-brand-800 font-semibold cursor-pointer">+ Add Round</button>
+          </div>
+
+          <!-- Add interview round inline form -->
+          <div id="form-interview-box" class="hidden bg-slate-50 p-3 rounded-lg border border-slate-200 mb-4 space-y-2 text-xs">
+            <input type="text" id="new-interview-name" placeholder="Round Name (e.g. Live Coding / DSA, System Design)" class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded">
+            <input type="datetime-local" id="new-interview-time" class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded">
+            <textarea id="new-interview-notes" placeholder="Interview focus or debrief notes..." class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded"></textarea>
+            <div class="flex justify-end space-x-2">
+              <button onclick="hideAddInterviewForm()" class="px-2.5 py-1 text-slate-500 cursor-pointer">Cancel</button>
+              <button onclick="saveInterviewRound()" class="px-3 py-1 bg-brand-700 text-white rounded font-medium cursor-pointer">Save Round</button>
+            </div>
+          </div>
+
+          <div id="detail-interviews-list" class="space-y-2">
+            <!-- List of interview stages -->
+          </div>
+        </div>
+
+        <!-- Section: Notes & Debrief Journal -->
+        <div class="border-t border-slate-200 pt-5">
+          <h3 class="text-sm font-bold text-slate-900 mb-3">Debrief & Contact Journal</h3>
+          
+          <div class="flex space-x-2 mb-3">
+            <input type="text" id="new-note-input" placeholder="Add contact note, referral name, or debrief point..." class="flex-1 text-xs px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:outline-none">
+            <button onclick="saveNote()" class="px-3 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-medium rounded-lg cursor-pointer">Post</button>
+          </div>
+
+          <div id="detail-notes-list" class="space-y-2">
+            <!-- List of notes -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-between items-center">
+        <button onclick="deleteCurrentApplication()" class="text-xs text-rose-600 hover:text-rose-800 font-semibold cursor-pointer">Delete Application</button>
+        <button onclick="closeDrawer()" class="px-4 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-semibold rounded-lg cursor-pointer">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // In-memory application store (synced with LocalStorage / live FastAPI API)
+    let applications = [];
+    let currentDetailAppId = null;
+    let currentViewMode = 'board'; // 'board' or 'table'
+    let statusChartInstance = null;
+    let funnelChartInstance = null;
+
+    // Default Seed Data
+    const DEFAULT_SEED_DATA = [
+      {
+        id: 1,
+        company_name: "Systems Limited",
+        job_title: "Associate Python Backend Engineer",
+        work_location: "hybrid",
+        salary_range: "PKR 140,000 - 180,000",
+        status: "technical_interview",
+        applied_date: "2026-10-02",
+        job_url: "https://systemsltd.com/careers",
+        interviews: [
+          { stage_name: "HR Talent Screening", scheduled_at: "2026-10-06T11:00", interviewer_notes: "Passed recruiter conversation. Discussed FAST-NUCES graduation and Python focus.", outcome: "passed" },
+          { stage_name: "Live Coding & DSA Round", scheduled_at: "2026-10-18T14:30", interviewer_notes: "Preparing FastAPI dependency injection and PostgreSQL indexing questions.", outcome: "pending" }
+        ],
+        notes: [
+          { content: "Reached out to Team Lead on LinkedIn with FastAPI portfolio link.", created_at: "2026-10-02T10:15:00" },
+          { content: "Internal referral submitted by senior university alumnus.", created_at: "2026-10-03T16:00:00" }
+        ]
+      },
+      {
+        id: 2,
+        company_name: "Arbisoft",
+        job_title: "Junior Software Engineer (Python / Django / FastAPI)",
+        work_location: "hybrid",
+        salary_range: "PKR 150,000 - 190,000",
+        status: "screening",
+        applied_date: "2026-10-08",
+        job_url: "https://arbisoft.com/careers",
+        interviews: [
+          { stage_name: "Initial Coding Assessment", scheduled_at: "2026-10-14T10:00", interviewer_notes: "Online HackerRank test submitted: 100% score on algorithms.", outcome: "passed" }
+        ],
+        notes: [
+          { content: "Applied via fresh graduate career fair portal.", created_at: "2026-10-08T09:00:00" }
+        ]
+      },
+      {
+        id: 3,
+        company_name: "Remotebase",
+        job_title: "Junior Backend Developer (Global Remote)",
+        work_location: "remote",
+        salary_range: "US$ 1,200 / month",
+        status: "applied",
+        applied_date: "2026-10-11",
+        job_url: "https://remotebase.com",
+        interviews: [],
+        notes: [
+          { content: "Completed automated English and Git proficiency screening.", created_at: "2026-10-11T12:00:00" }
+        ]
+      },
+      {
+        id: 4,
+        company_name: "Netsol Technologies",
+        job_title: "Associate Software Engineer",
+        work_location: "on-site",
+        salary_range: "PKR 110,000 - 130,000",
+        status: "offer_received",
+        applied_date: "2026-09-22",
+        job_url: "https://netsoltech.com",
+        interviews: [
+          { stage_name: "Technical Assessment", scheduled_at: "2026-09-28T10:00", interviewer_notes: "Strong answers on SQL normalization and PyTest suites.", outcome: "passed" },
+          { stage_name: "Final Management Interview", scheduled_at: "2026-10-05T15:00", interviewer_notes: "Cultural fit and salary expectations alignment.", outcome: "passed" }
+        ],
+        notes: [
+          { content: "Official offer letter received! Offer PKR 130,000 with annual bonus.", created_at: "2026-10-10T11:00:00" }
+        ]
+      },
+      {
+        id: 5,
+        company_name: "Afiniti",
+        job_title: "Junior AI & Data Systems Engineer",
+        work_location: "hybrid",
+        salary_range: "PKR 130,000",
+        status: "rejected",
+        applied_date: "2026-09-15",
+        job_url: "https://afiniti.com",
+        interviews: [
+          { stage_name: "Resume Screening", scheduled_at: "2026-09-20T10:00", interviewer_notes: "Required 2+ years production C++ experience.", outcome: "failed" }
+        ],
+        notes: [
+          { content: "Automated rejection received. Confirms the research finding: prioritize Python backend depth over broad senior-only listings.", created_at: "2026-09-21T08:30:00" }
+        ]
+      }
+    ];
+
+    // Initialize application
+    function init() {
+      const stored = localStorage.getItem("jobpulse_apps");
+      if (stored) {
+        try { applications = JSON.parse(stored); } catch(e) { applications = DEFAULT_SEED_DATA; }
+      } else {
+        applications = DEFAULT_SEED_DATA;
+        saveToLocalStorage();
+      }
+      renderTracker();
+      updateKpis();
+    }
+
+    function saveToLocalStorage() {
+      localStorage.setItem("jobpulse_apps", JSON.stringify(applications));
+    }
+
+    function seedDemoData() {
+      applications = JSON.parse(JSON.stringify(DEFAULT_SEED_DATA));
+      saveToLocalStorage();
+      renderTracker();
+      updateKpis();
+      alert("Sample applications reloaded successfully!");
+    }
+
+    // Tab Navigation
+    function switchTab(tabId) {
+      document.getElementById('tab-tracker').classList.add('hidden');
+      document.getElementById('tab-analytics').classList.add('hidden');
+      document.getElementById('tab-research').classList.add('hidden');
+
+      document.getElementById('tab-btn-tracker').className = 'px-3 py-5 text-slate-600 hover:text-slate-900 transition-colors flex items-center space-x-1.5 cursor-pointer';
+      document.getElementById('tab-btn-analytics').className = 'px-3 py-5 text-slate-600 hover:text-slate-900 transition-colors flex items-center space-x-1.5 cursor-pointer';
+      document.getElementById('tab-btn-research').className = 'px-3 py-5 text-slate-600 hover:text-slate-900 transition-colors flex items-center space-x-1.5 cursor-pointer';
+
+      if (tabId === 'tracker') {
+        document.getElementById('tab-tracker').classList.remove('hidden');
+        document.getElementById('tab-btn-tracker').className = 'px-3 py-5 text-brand-700 tab-active transition-colors flex items-center space-x-1.5 cursor-pointer';
+        renderTracker();
+      } else if (tabId === 'analytics') {
+        document.getElementById('tab-analytics').classList.remove('hidden');
+        document.getElementById('tab-btn-analytics').className = 'px-3 py-5 text-brand-700 tab-active transition-colors flex items-center space-x-1.5 cursor-pointer';
+        renderAnalytics();
+      } else if (tabId === 'research') {
+        document.getElementById('tab-research').classList.remove('hidden');
+        document.getElementById('tab-btn-research').className = 'px-3 py-5 text-brand-700 tab-active transition-colors flex items-center space-x-1.5 cursor-pointer';
+      }
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      if (mode === 'board') {
+        document.getElementById('board-view-container').classList.remove('hidden');
+        document.getElementById('table-view-container').classList.add('hidden');
+        document.getElementById('view-btn-board').className = 'p-1.5 rounded-md bg-white text-slate-800 shadow-sm cursor-pointer';
+        document.getElementById('view-btn-table').className = 'p-1.5 rounded-md text-slate-500 hover:text-slate-900 cursor-pointer';
+      } else {
+        document.getElementById('board-view-container').classList.add('hidden');
+        document.getElementById('table-view-container').classList.remove('hidden');
+        document.getElementById('view-btn-table').className = 'p-1.5 rounded-md bg-white text-slate-800 shadow-sm cursor-pointer';
+        document.getElementById('view-btn-board').className = 'p-1.5 rounded-md text-slate-500 hover:text-slate-900 cursor-pointer';
+      }
+      renderTracker();
+    }
+
+    // Filter Logic
+    function getFilteredApps() {
+      const search = (document.getElementById('filter-search').value || '').toLowerCase().trim();
+      const status = document.getElementById('filter-status').value;
+
+      return applications.filter(app => {
+        const matchesSearch = !search || 
+          app.company_name.toLowerCase().includes(search) || 
+          app.job_title.toLowerCase().includes(search);
+        const matchesStatus = (status === 'all') || (app.status === status);
+        return matchesSearch && matchesStatus;
+      });
+    }
+
+    // Render Tracker
+    function renderTracker() {
+      const filtered = getFilteredApps();
+
+      if (currentViewMode === 'board') {
+        renderBoard(filtered);
+      } else {
+        renderTable(filtered);
+      }
+      updateKpis();
+    }
+
+    const COLUMNS = [
+      { key: 'applied', label: 'Applied', color: 'border-slate-300', countBg: 'bg-slate-200' },
+      { key: 'screening', label: 'Screening', color: 'border-blue-400', countBg: 'bg-blue-100 text-blue-800' },
+      { key: 'technical_interview', label: 'Technical / Live', color: 'border-amber-400', countBg: 'bg-amber-100 text-amber-800' },
+      { key: 'offer_received', label: 'Offers', color: 'border-emerald-500', countBg: 'bg-emerald-100 text-emerald-800' },
+      { key: 'rejected', label: 'Archived / Rejected', color: 'border-rose-400', countBg: 'bg-rose-100 text-rose-800' }
+    ];
+
+    function renderBoard(apps) {
+      const container = document.getElementById('board-view-container');
+      container.innerHTML = '';
+
+      COLUMNS.forEach(col => {
+        const colApps = apps.filter(a => {
+          if (col.key === 'technical_interview') {
+            return a.status === 'technical_interview' || a.status === 'behavioral_interview';
+          }
+          return a.status === col.key;
+        });
+
+        const colEl = document.createElement('div');
+        colEl.className = 'bg-slate-100/70 p-3 rounded-xl flex flex-col min-h-[480px] border border-slate-200';
+        
+        let cardsHtml = '';
+        if (colApps.length === 0) {
+          cardsHtml = `<div class="flex-1 flex items-center justify-center text-xs text-slate-400 italic">No applications</div>`;
+        } else {
+          cardsHtml = colApps.map(app => `
+            <div onclick="openDrawer(${app.id})" class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-sm hover:border-brand-500 hover:shadow-md transition-all cursor-pointer space-y-2 mb-2.5">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold text-slate-900 truncate">${escapeHtml(app.company_name)}</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded ${getLocationBadge(app.work_location)}">${app.work_location}</span>
+              </div>
+              <h4 class="text-xs font-semibold text-brand-900 leading-snug line-clamp-2">${escapeHtml(app.job_title)}</h4>
+              <div class="flex justify-between items-center text-[11px] text-slate-500 font-mono pt-1 border-t border-slate-100">
+                <span>${app.salary_range || 'Comp unlisted'}</span>
+                <span>${app.applied_date}</span>
+              </div>
+              ${app.interviews && app.interviews.length > 0 ? `
+                <div class="text-[10px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 flex items-center space-x-1">
+                  <span>⚡ ${app.interviews.length} round(s) scheduled</span>
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+        }
+
+        colEl.innerHTML = `
+          <div class="flex justify-between items-center pb-2.5 mb-2.5 border-b border-slate-200">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">${col.label}</h3>
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full ${col.countBg}">${colApps.length}</span>
+          </div>
+          <div class="flex-1 overflow-y-auto">${cardsHtml}</div>
+        `;
+        container.appendChild(colEl);
+      });
+    }
+
+    function renderTable(apps) {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      if (apps.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-400 italic">No applications found matching query.</td></tr>`;
+        return;
+      }
+
+      apps.forEach(app => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 cursor-pointer';
+        tr.onclick = () => openDrawer(app.id);
+        tr.innerHTML = `
+          <td class="px-4 py-3">
+            <div class="font-bold text-slate-900">${escapeHtml(app.company_name)}</div>
+            <div class="text-xs text-slate-500">${escapeHtml(app.job_title)}</div>
+          </td>
+          <td class="px-4 py-3">
+            <span class="text-xs font-mono px-2 py-0.5 rounded-full ${getStatusBadgeClass(app.status)}">${app.status.replace('_', ' ')}</span>
+          </td>
+          <td class="px-4 py-3 text-xs capitalize">${app.work_location}</td>
+          <td class="px-4 py-3 text-xs font-mono">${app.salary_range || '—'}</td>
+          <td class="px-4 py-3 text-xs font-mono">${app.applied_date}</td>
+          <td class="px-4 py-3 text-right text-xs">
+            <button onclick="event.stopPropagation(); openDrawer(${app.id})" class="text-brand-700 hover:text-brand-900 font-semibold cursor-pointer">View</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Helper Badge Styles
+    function getStatusBadgeClass(status) {
+      if (status === 'applied') return 'badge-applied';
+      if (status === 'screening') return 'badge-screening';
+      if (status.includes('interview')) return 'badge-interview';
+      if (status === 'offer_received') return 'badge-offer';
+      return 'badge-rejected';
+    }
+
+    function getLocationBadge(loc) {
+      if (loc === 'remote') return 'bg-purple-100 text-purple-800';
+      if (loc === 'hybrid') return 'bg-blue-100 text-blue-800';
+      return 'bg-slate-100 text-slate-800';
+    }
+
+    // Update KPI Header Ribbon
+    function updateKpis() {
+      const total = applications.length;
+      const active = applications.filter(a => a.status !== 'rejected' && a.status !== 'withdrawn').length;
+      const interviews = applications.filter(a => a.status.includes('interview') || (a.interviews && a.interviews.length > 0)).length;
+      const offers = applications.filter(a => a.status === 'offer_received').length;
+      const rejected = applications.filter(a => a.status === 'rejected').length;
+      
+      const progressed = total - applications.filter(a => a.status === 'applied').length;
+      const rate = total > 0 ? ((progressed / total) * 100).toFixed(1) : '0.0';
+
+      document.getElementById('kpi-total').innerText = total;
+      document.getElementById('kpi-active').innerText = active;
+      document.getElementById('kpi-interviews').innerText = interviews;
+      document.getElementById('kpi-offers').innerText = offers;
+      document.getElementById('kpi-rejected').innerText = rejected;
+      document.getElementById('kpi-rate').innerText = `${rate}%`;
+    }
+
+    // Modal Control
+    function openNewAppModal() {
+      document.getElementById('modal-app-title').innerText = 'Add Job Application';
+      document.getElementById('form-app-id').value = '';
+      document.getElementById('form-company-name').value = '';
+      document.getElementById('form-job-title').value = '';
+      document.getElementById('form-status').value = 'applied';
+      document.getElementById('form-location').value = 'remote';
+      document.getElementById('form-salary').value = '';
+      document.getElementById('form-date').value = new Date().toISOString().split('T')[0];
+      document.getElementById('form-url').value = '';
+      document.getElementById('modal-app').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-app').classList.add('hidden');
+    }
+
+    function handleAppSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('form-app-id').value;
+      const company = document.getElementById('form-company-name').value.trim();
+      const title = document.getElementById('form-job-title').value.trim();
+      const status = document.getElementById('form-status').value;
+      const location = document.getElementById('form-location').value;
+      const salary = document.getElementById('form-salary').value.trim();
+      const date = document.getElementById('form-date').value;
+      const url = document.getElementById('form-url').value.trim();
+
+      if (id) {
+        // Edit existing
+        const item = applications.find(a => a.id === parseInt(id));
+        if (item) {
+          item.company_name = company;
+          item.job_title = title;
+          item.status = status;
+          item.work_location = location;
+          item.salary_range = salary;
+          item.applied_date = date;
+          item.job_url = url;
+        }
+      } else {
+        // New item
+        const newApp = {
+          id: Date.now(),
+          company_name: company,
+          job_title: title,
+          status: status,
+          work_location: location,
+          salary_range: salary,
+          applied_date: date,
+          job_url: url,
+          interviews: [],
+          notes: []
+        };
+        applications.unshift(newApp);
+      }
+
+      saveToLocalStorage();
+      closeModal();
+      renderTracker();
+    }
+
+    // Drawer Control
+    function openDrawer(id) {
+      currentDetailAppId = id;
+      const app = applications.find(a => a.id === id);
+      if (!app) return;
+
+      document.getElementById('detail-job-title').innerText = app.job_title;
+      document.getElementById('detail-company').innerText = `${app.company_name} • Lahore, Pakistan`;
+      document.getElementById('detail-status-badge').innerText = app.status.replace('_', ' ');
+      document.getElementById('detail-status-badge').className = `px-2.5 py-0.5 rounded-full text-xs font-medium uppercase font-mono ${getStatusBadgeClass(app.status)}`;
+      document.getElementById('detail-location').innerText = app.work_location.toUpperCase();
+      document.getElementById('detail-salary').innerText = app.salary_range || 'Not Specified';
+      document.getElementById('detail-date').innerText = app.applied_date;
+      
+      const urlEl = document.getElementById('detail-url');
+      if (app.job_url) {
+        urlEl.innerHTML = `<a href="${escapeHtml(app.job_url)}" target="_blank" class="hover:underline text-brand-700">Open Listing ↗</a>`;
+      } else {
+        urlEl.innerText = 'No Link Added';
+      }
+
+      renderDrawerInterviews(app);
+      renderDrawerNotes(app);
+
+      document.getElementById('drawer-detail').classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer-detail').classList.add('hidden');
+      currentDetailAppId = null;
+    }
+
+    function advanceStage(newStatus) {
+      if (!currentDetailAppId) return;
+      const app = applications.find(a => a.id === currentDetailAppId);
+      if (!app) return;
+
+      app.status = newStatus;
+      saveToLocalStorage();
+      openDrawer(currentDetailAppId);
+      renderTracker();
+    }
+
+    function deleteCurrentApplication() {
+      if (!currentDetailAppId) return;
+      if (!confirm("Are you sure you want to delete this job application?")) return;
+      applications = applications.filter(a => a.id !== currentDetailAppId);
+      saveToLocalStorage();
+      closeDrawer();
+      renderTracker();
+    }
+
+    // Interviews in Drawer
+    function renderDrawerInterviews(app) {
+      const container = document.getElementById('detail-interviews-list');
+      const countEl = document.getElementById('detail-interview-count');
+      const interviews = app.interviews || [];
+      countEl.innerText = interviews.length;
+
+      if (interviews.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">No interview rounds scheduled yet.</p>`;
+        return;
+      }
+
+      container.innerHTML = interviews.map((iv, idx) => `
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs space-y-1">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-slate-900">${escapeHtml(iv.stage_name)}</span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded font-bold ${iv.outcome === 'passed' ? 'bg-emerald-100 text-emerald-800' : (iv.outcome === 'failed' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800')}">${iv.outcome.toUpperCase()}</span>
+          </div>
+          ${iv.scheduled_at ? `<div class="text-slate-500 font-mono text-[11px]">🕒 ${iv.scheduled_at.replace('T', ' ')}</div>` : ''}
+          ${iv.interviewer_notes ? `<p class="text-slate-600 italic mt-1">"${escapeHtml(iv.interviewer_notes)}"</p>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function showAddInterviewForm() {
+      document.getElementById('form-interview-box').classList.remove('hidden');
+    }
+
+    function hideAddInterviewForm() {
+      document.getElementById('form-interview-box').classList.add('hidden');
+    }
+
+    function saveInterviewRound() {
+      if (!currentDetailAppId) return;
+      const app = applications.find(a => a.id === currentDetailAppId);
+      if (!app) return;
+
+      const name = document.getElementById('new-interview-name').value.trim();
+      const time = document.getElementById('new-interview-time').value;
+      const notes = document.getElementById('new-interview-notes').value.trim();
+
+      if (!name) return alert("Please specify the round name");
+
+      if (!app.interviews) app.interviews = [];
+      app.interviews.push({
+        stage_name: name,
+        scheduled_at: time,
+        interviewer_notes: notes,
+        outcome: 'pending'
+      });
+
+      saveToLocalStorage();
+      hideAddInterviewForm();
+      document.getElementById('new-interview-name').value = '';
+      document.getElementById('new-interview-notes').value = '';
+      renderDrawerInterviews(app);
+      renderTracker();
+    }
+
+    // Notes in Drawer
+    function renderDrawerNotes(app) {
+      const container = document.getElementById('detail-notes-list');
+      const notes = app.notes || [];
+
+      if (notes.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">No notes recorded yet.</p>`;
+        return;
+      }
+
+      container.innerHTML = notes.map(n => `
+        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs space-y-1">
+          <p class="text-slate-800">${escapeHtml(n.content)}</p>
+          <span class="text-[10px] text-slate-400 font-mono block">${n.created_at ? n.created_at.replace('T', ' ').substring(0, 16) : ''}</span>
+        </div>
+      `).join('');
+    }
+
+    function saveNote() {
+      if (!currentDetailAppId) return;
+      const app = applications.find(a => a.id === currentDetailAppId);
+      if (!app) return;
+
+      const input = document.getElementById('new-note-input');
+      const content = input.value.trim();
+      if (!content) return;
+
+      if (!app.notes) app.notes = [];
+      app.notes.unshift({
+        content: content,
+        created_at: new Date().toISOString()
+      });
+
+      saveToLocalStorage();
+      input.value = '';
+      renderDrawerNotes(app);
+    }
+
+    // Render Analytics Tab
+    function renderAnalytics() {
+      const total = applications.length;
+      const counts = {
+        applied: applications.filter(a => a.status === 'applied').length,
+        screening: applications.filter(a => a.status === 'screening').length,
+        technical: applications.filter(a => a.status === 'technical_interview').length,
+        culture: applications.filter(a => a.status === 'behavioral_interview').length,
+        offer: applications.filter(a => a.status === 'offer_received').length,
+        rejected: applications.filter(a => a.status === 'rejected').length
+      };
+
+      const screeningTotal = counts.screening + counts.technical + counts.culture + counts.offer;
+      const screenConv = total > 0 ? ((screeningTotal / total) * 100).toFixed(1) : '0.0';
+      const interviewTotal = counts.technical + counts.culture + counts.offer;
+      const offerConv = interviewTotal > 0 ? ((counts.offer / interviewTotal) * 100).toFixed(1) : '0.0';
+
+      document.getElementById('metric-screen-conv').innerText = `${screenConv}%`;
+      document.getElementById('metric-offer-conv').innerText = `${offerConv}%`;
+
+      // Chart 1: Status Distribution
+      const ctx1 = document.getElementById('chart-status-distribution').getContext('2d');
+      if (statusChartInstance) statusChartInstance.destroy();
+      statusChartInstance = new Chart(ctx1, {
+        type: 'doughnut',
+        data: {
+          labels: ['Applied', 'Screening', 'Technical', 'Culture', 'Offer', 'Rejected'],
+          datasets: [{
+            data: [counts.applied, counts.screening, counts.technical, counts.culture, counts.offer, counts.rejected],
+            backgroundColor: ['#94a3b8', '#3b82f6', '#f59e0b', '#8b5cf6', '#10b981', '#ef4444']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { family: 'Inter', size: 11 } } } }
+        }
+      });
+
+      // Chart 2: Funnel Bar
+      const ctx2 = document.getElementById('chart-funnel-conversion').getContext('2d');
+      if (funnelChartInstance) funnelChartInstance.destroy();
+      funnelChartInstance = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: ['Total Sent', 'Screening', 'Interviews', 'Offer Received'],
+          datasets: [{
+            label: 'Candidate Count',
+            data: [total, screeningTotal, interviewTotal, counts.offer],
+            backgroundColor: '#0284c7',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
+          plugins: { legend: { display: false } }
+        }
+      });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // Run on startup
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

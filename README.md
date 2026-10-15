@@ -1,14 +1,28 @@
-# The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates
+# What To Choose — 2026 Software Engineering Labor Market Research & JobPulse Platform
+
+[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg)](https://www.sqlalchemy.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791.svg)](https://www.postgresql.org/)
+[![Tests](https://img.shields.io/badge/PyTest-14%20Passing-success.svg)](https://pytest.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Author:** Muhammad Bilal Farid  
 *BS Software Engineering Graduate & Independent Technology Analyst*  
 *Lahore, Pakistan*  
+*Repository:* [github.com/bilalfarid-1/whattochoose](https://github.com/bilalfarid-1/whattochoose)
 
 ---
 
 ## Overview
 
-This repository provides an empirical market analysis and practical career playbook evaluating how generative AI, post-pandemic macroeconomic normalization, and offshore industry dynamics are transforming the software engineering labor market—with a specific focus on fresh graduates in Pakistan.
+This repository unites two complementary engineering deliverables:
+
+1. **Empirical Market Research Brief (`/research`):**  
+   An in-depth empirical investigation titled *"The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates"*. It analyzes macroeconomic normalization (post-ZIRP), SWE-bench Verified coding agent progression, and Pakistan IT industry dynamics ($4.60B reported FY26 ICT exports, 21.4% CAGR vs. 71.8% senior hiring preference per P@SHA 2025).
+
+2. **JobPulse Platform (`/backend` & `/frontend`):**  
+   A production-grade, full-stack application built to operationalize the research recommendations. It provides a job application tracker, interview stage manager, debrief journal, funnel conversion analytics, and an interactive market research visualizer built with **FastAPI**, **PostgreSQL**, **Pydantic v2**, **PyTest**, and a modern **Tailwind/Vanilla JS Single-Page Application (SPA)**.
 
 ---
 
@@ -17,70 +31,101 @@ This repository provides an empirical market analysis and practical career playb
 ```
 whattochoose/
 │
-├── README.md                           # This document
-├── walkthrough.md                      # Detailed methodological audit & verification walkthrough
-├── requirements.txt                    # Python runtime dependencies (pandas, matplotlib, numpy, scipy)
+├── frontend/                           # Interactive Modern Single-Page Application (SPA)
+│   └── index.html                      # Pipeline Kanban, Conversion Analytics & Research Explorer
 │
-├── data/                               # Harmonized empirical datasets
-│   ├── SOURCES.md                      # Data provenance & source audit (official URLs, report sections)
-│   ├── README.md                       # Data directory summary
-│   ├── raw/
-│   │   └── longitudinal_se_data.json   # Multi-year metrics (SBP, Pakistan Economic Survey, P@SHA, Stack Overflow, BLS)
-│   └── processed/
-│       ├── time_series_metrics_2020_2026.csv
-│       └── skills_lifecycle_metrics.csv
+├── backend/                            # Production FastAPI REST API
+│   ├── app/
+│   │   ├── main.py                     # App entrypoint (serves API & Dashboard UI)
+│   │   ├── core/                       # Config (Pydantic Settings), DB engine, JWT/Bcrypt security
+│   │   ├── models/                     # SQLAlchemy 2.0 ORM models (User, Company, Application, Interview, Note)
+│   │   ├── schemas/                    # Pydantic v2 request/response schemas
+│   │   ├── crud/                       # Database repository operations & funnel analytics
+│   │   ├── api/                        # Versioned API v1 routers & JWT auth dependency
+│   │   └── static/                     # Embedded production static build
+│   ├── tests/                          # 14 passing automated PyTest unit & integration tests
+│   ├── Dockerfile                      # Production Python 3.12 slim container
+│   ├── docker-compose.yml              # Multi-container setup with PostgreSQL 16
+│   └── requirements.txt                # Backend dependencies
 │
-├── src/                                # Reproducible Python analytical pipeline
-│   └── analyze_market_dynamics.py      # Statistical modeling and figure generation
-│
-├── tests/                              # Automated data integrity & arithmetic tests
-│   └── test_data_integrity.py          # Verifies schema, CAGR arithmetic, and source metadata
-│
-├── paper/                              # Market Analysis Manuscript & Visuals
-│   ├── main_manuscript.md              # Complete research whitepaper & market brief
-│   ├── references.bib                  # Academic BibTeX reference library
-│   └── figures/                        # High-resolution figures (300 DPI)
-│       ├── fig1_junior_squeeze.png     # U.S. software postings vs AI benchmark progression
-│       ├── fig2_skills_lifecycle.png   # Author-assigned qualitative competency valuation
-│       ├── fig3_pakistan_paradox.png   # Pakistan ICT export revenue vs member company demand
-│       └── fig4_predictive_2030_forecast.png # Author-defined scenario of developer task allocation
-│
-└── roadmap/                            # Practical Graduate Deliverables
-    ├── 2026_graduate_readiness_matrix.md # Skills triage: low-leverage vs AI-augmented vs high-leverage core
-    └── pakistani_fresh_grad_playbook.md  # 90-day step-by-step execution protocol for Pakistani graduates
+└── research/                           # Empirical Labor Market Research & Datasets
+    ├── paper/
+    │   ├── main_manuscript.md          # Complete whitepaper & analysis brief
+    │   ├── references.bib              # BibTeX citation library
+    │   └── figures/                    # 300 DPI publication figures (Fig 1 - Fig 4)
+    ├── data/
+    │   ├── raw/longitudinal_se_data.json # Multi-year harmonized empirical dataset
+    │   └── SOURCES.md                  # Comprehensive source audit & provenance documentation
+    ├── src/
+    │   └── analyze_market_dynamics.py  # Python statistical modeling & figure generation
+    ├── tests/
+    │   └── test_data_integrity.py      # Automated data integrity, CAGR math & rubric tests
+    ├── roadmap/
+    │   ├── 2026_graduate_readiness_matrix.md # Skills triage matrix
+    │   └── pakistani_fresh_grad_playbook.md  # 90-day actionable execution guide
+    └── walkthrough.md                  # Methodological audit & verification walkthrough
 ```
 
 ---
 
-## Core Findings Summary
+## Quickstart Guide
 
-1. **Pakistan ICT Export Growth vs. Experience Bias:**  
-   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.440\text{B}$ (FY20) to a reported full-year outturn of **$\sim \$4.60\text{B}$** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP, Finance Division, and APP reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
-2. **The Verification Bottleneck:**  
-   While AI models commoditize routine syntax and boilerplate code generation, the primary engineering constraint has shifted to **Specification Formalization**, **Relational Data Architecture**, and **Automated Verification / Integration Testing**.
-3. **The Importance of Technical Depth (Reasoned Strategic Choice):**  
-   In a competitive entry-level market, surface-level familiarity across multiple stacks offers minimal hiring signal. Committing deeply to a robust backend stack (**Python / FastAPI + PostgreSQL + PyTest**) and shipping a verifiable, deployed project provides a disciplined, high-leverage foundation to secure entry-level employment.
-
----
-
-## Methodological Audit & Verification
-
-For a complete walkthrough of data provenance, benchmark separations, temporal metadata boundaries, and test validation logs, please consult:
-👉 [**walkthrough.md**](walkthrough.md) and [**data/SOURCES.md**](data/SOURCES.md).
-
----
-
-## Reproducing the Analysis Pipeline
+### Option 1: Run the Full-Stack JobPulse Application
 
 ```bash
-# 1. Install dependencies
+# 1. Enter the backend directory
+cd backend
+
+# 2. Install dependencies
 pip install -r requirements.txt
 
-# 2. Execute analysis pipeline
-python src/analyze_market_dynamics.py
+# 3. Run the automated test suite (14 passing tests)
+python -m pytest -v
+
+# 4. Launch the application (serves both API & Frontend Dashboard)
+uvicorn app.main:app --reload --port 8000
 ```
 
-All charts are generated and exported to `paper/figures/` at 300 DPI.
+Open your browser to:
+* **Interactive JobPulse Web App:** [http://127.0.0.1:8000/](http://127.0.0.1:8000/) or [http://127.0.0.1:8000/dashboard](http://127.0.0.1:8000/dashboard)
+* **Interactive OpenAPI Swagger Docs:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+* **ReDoc Documentation:** [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+
+*(Alternatively, you can open `frontend/index.html` directly in any web browser to run in zero-dependency client mode!)*
+
+---
+
+### Option 2: Docker Compose (PostgreSQL 16 Multi-Container)
+
+```bash
+cd backend
+docker compose up --build -d
+```
+
+---
+
+### Option 3: Run the Empirical Research Pipeline
+
+```bash
+# 1. Run automated data integrity tests
+python research/tests/test_data_integrity.py
+
+# 2. Run market dynamics modeling and regenerate all figures
+python research/src/analyze_market_dynamics.py
+```
+
+---
+
+## Core Findings of the Research Brief
+
+1. **Pakistan ICT Export Growth vs. Experience Bias:**  
+   Pakistan's ICT export remittances expanded from $\$1.440\text{B}$ (FY20) to a reported full-year outturn of **US$ 4.60 Billion** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP, Ministry of Finance, and APP reports). However, according to the P@SHA Skills Survey 2025, **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating high qualification friction for fresh graduates.
+
+2. **The Verification Bottleneck:**  
+   As autonomous coding models reduce the marginal cost of producing routine syntax ($C_{\text{gen}} \downarrow$), human engineering effort shifts toward verifying business correctness, handling non-trivial edge cases, and auditing security ($C_{\text{verif}} \uparrow$).
+
+3. **Reasoned Specialization Track:**  
+   The empirical evidence argues against superficial multi-stack switching. Committing deeply to a high-leverage backend stack (**Python / FastAPI + PostgreSQL + PyTest**) and shipping a verifiable, deployed project provides a disciplined, defensible foundation to secure entry-level employment.
 
 ---
 
