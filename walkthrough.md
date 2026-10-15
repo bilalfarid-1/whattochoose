@@ -30,9 +30,9 @@ Table: SWE-bench Progression & Historical Availability
 | 2021 |        null           |        null          | Unobserved (HumanEval Codex release: 28.8%)                  |
 | 2022 |        null           |        null          | Unobserved (code-davinci-002: 47.0%)                         |
 | 2023 |        4.2%           |        null          | Jimenez et al. (Oct 2023; Claude 2 / GPT-4 baseline)         |
-| 2024 |        null           |       38.8%          | Claude 3.5 Sonnet + SWE-agent (Verified Launch: 2024-08-13)  |
-| 2025 |        null           |       58.2%          | Claude 3.7 Sonnet / o3 reasoning scaffold (2025-06-15)       |
-| 2026 |        null           |       72.4%          | Frontier agentic scaffold ensemble (Snapshot: 2026-06-30)    |
+| 2024 |        null           |       38.8%          | Claude 3.5 Sonnet + SWE-agent (OpenAI Launch: 2024-08-13)    |
+| 2025 |        null           |       70.3%          | Claude 3.7 Sonnet high-compute scaffold (Anthropic: 2025-02) |
+| 2026 |        null           |       75.0%          | SWE-bench Verified Leaderboard Top Entry (Snapshot: 2026-06) |
 +------+-----------------------+----------------------+--------------------------------------------------------------+
 ```
 

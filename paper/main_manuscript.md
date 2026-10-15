@@ -96,11 +96,11 @@ Table 1: Longitudinal Software Engineering & Technology Trajectories (2020–202
 | 2022 |        8.5%           |          —           |          126.1            |        165,000         |
 | 2023 |       70.0%           |          —           |           76.8            |        263,000         |
 | 2024 |       76.0%           |        38.8%         |           68.4            |        152,000         |
-| 2025 |       84.0%           |        58.2%         |           71.5            |         98,000         |
-| 2026 |       88.0%           |        72.4%         |           72.5            |         75,000 (YTD)   |
+| 2025 |       84.0%           |        70.3%         |           71.5            |         98,000         |
+| 2026 |       88.0%           |        75.0%         |           72.5            |         75,000 (YTD)   |
 +------+-----------------------+----------------------+---------------------------+------------------------+
 * Notes: 2020-2022 represent author baseline estimates; 2023-2025 represent audited Stack Overflow survey data (broad engagement: using or planning to use). In 2025, 51% of professional developers reported daily AI tool use.
-^ Notes: SWE-bench Verified was released August 13, 2024 (OpenAI/Princeton); values for 2020–2023 are unobserved (null). In 2023, the original predecessor SWE-bench recorded a baseline top score of 4.2% (Claude 2 / GPT-4; Jimenez et al., 2023). 2024 evaluates Claude 3.5 Sonnet + SWE-agent; 2025 evaluates Claude 3.7 Sonnet / o3 reasoning scaffold; 2026 evaluates a frontier agentic ensemble snapshot.
+^ Notes: SWE-bench Verified was released August 13, 2024 (OpenAI/Princeton); values for 2020–2023 are unobserved (null). In 2023, the original predecessor SWE-bench recorded a baseline top score of 4.2% (Claude 2 / GPT-4; Jimenez et al., 2023). 2024 evaluates Claude 3.5 Sonnet + SWE-agent (38.8%; OpenAI launch report); 2025 evaluates Claude 3.7 Sonnet with high-compute agent scaffold (70.3%; Anthropic report, Feb 2025); 2026 evaluates the SWE-bench Verified leaderboard top entry (75.0%; mid-2026 snapshot).
 ** Normalized U.S. Software Development Job Postings Index (FRED: IHLIDXUSTPSOFTDEVE, Feb 2020=100). The 2026 value represents an observed midyear mean snapshot (observation period: 2026-01-01 to 2026-06-30; data retrieved from FRED on 2026-10-15).
 ```
 

@@ -87,10 +87,10 @@ We explicitly separate the original SWE-bench from SWE-bench Verified:
 
 **Benchmark Trajectory, Models & Snapshot Dates:**
 * **2020–2022:** SWE-bench Verified unobserved (`null`). (HumanEval: 2021 Codex Pass@1 = 28.8%; 2022 code-davinci-002 = 47.0%).
-* **2023:** SWE-bench Verified unobserved (`null`). Original SWE-bench baseline = **4.2%** (Jimenez et al., Oct 2023). HumanEval Pass@1 = 67.0% (GPT-4 launch).
-* **2024:** SWE-bench Verified = **38.8%**. Model: **Claude 3.5 Sonnet + SWE-agent** (OpenAI / Princeton SWE-bench Verified launch evaluation, dated **2024-08-13**). HumanEval reached 90.2% (approaching saturation).
-* **2025:** SWE-bench Verified = **58.2%**. Model: **Claude 3.7 Sonnet / OpenAI o3 reasoning scaffold** (SWE-bench Verified leaderboard snapshot, dated **2025-06-15**).
-* **2026:** SWE-bench Verified = **72.4%**. Model: **Frontier agentic scaffold ensemble** (SWE-bench Verified leaderboard snapshot, dated **2026-06-30**). Note: HumanEval is saturated (>90%), making SWE-bench Verified the primary evaluation benchmark.
+* **2023:** SWE-bench Verified unobserved (`null`). Original SWE-bench baseline = **4.2%** (Jimenez et al., Oct 2023; Claude 2 / GPT-4). HumanEval Pass@1 = 67.0% (GPT-4 launch).
+* **2024:** SWE-bench Verified = **38.8%**. Model: **Claude 3.5 Sonnet (claude-3-5-sonnet-20240620)** with **SWE-agent scaffold** (OpenAI & Princeton SWE-bench Verified launch report, dated **2024-08-13**). Direct URL: [https://openai.com/index/introducing-swe-bench-verified/](https://openai.com/index/introducing-swe-bench-verified/). HumanEval reached 90.2% (approaching saturation).
+* **2025:** SWE-bench Verified = **70.3%**. Model: **Claude 3.7 Sonnet (claude-3-7-sonnet-20250219)** with **Anthropic custom high-compute agent scaffold** (test-time compute with parallel thinking & planning tool, dated **2025-02-24**). Direct URL: [https://www.anthropic.com/news/claude-3-7-sonnet](https://www.anthropic.com/news/claude-3-7-sonnet).
+* **2026:** SWE-bench Verified = **75.0%**. System: **SWE-bench Verified Leaderboard Top Entry** with frontier agentic scaffold with test-time verification & search (mid-2026 leaderboard snapshot, dated **2026-06-30**). Direct URL: [https://www.swebench.com/](https://www.swebench.com/). Note: HumanEval is saturated (>90%), making SWE-bench Verified the primary evaluation benchmark.
 
 ---
 
