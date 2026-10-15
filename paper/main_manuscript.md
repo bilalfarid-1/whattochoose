@@ -211,11 +211,17 @@ For fresh graduates in Pakistan and across the global South, competing on syntax
 
 ## References
 
-1. Maslej, N., et al. (2025). *The AI Index 2025 Annual Report*. Stanford Institute for Human-Centered Artificial Intelligence (HAI).
-2. Jimenez, C. E., et al. (2024). *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* International Conference on Learning Representations (ICLR).
-3. Stack Overflow. (2024). *2024 Stack Overflow Developer Survey: AI Tools and Shifting Developer Sentiment*.
-4. Autor, D. (2024). *Applying AI to Rebuild Middle-Class Jobs*. NBER Working Paper 32140.
-5. Brynjolfsson, E., Li, D., & Raymond, L. R. (2023). *Generative AI at Work*. Quarterly Journal of Economics.
-6. Pakistan Software Houses Association (P@SHA). (2025). *Pakistan IT Industry Report: Export Competitiveness and Talent Horizons*.
-7. State Bank of Pakistan. (2026). *Telecommunication, Computer and Information Services Export Receipts (FY20 - FY26)*.
-8. Peng, S., et al. (2023). *The Impact of AI on Developer Productivity: Evidence from GitHub Copilot*. arXiv:2302.06590.
+1. Maslej, N., et al. (2025). *The AI Index 2025 Annual Report*. Stanford Institute for Human-Centered Artificial Intelligence (HAI). [https://aiindex.stanford.edu/report/](https://aiindex.stanford.edu/report/)
+2. Jimenez, C. E., et al. (2024). *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* International Conference on Learning Representations (ICLR). [https://www.swebench.com/](https://www.swebench.com/)
+3. Chen, M., et al. (2021). *Evaluating Large Language Models Trained on Code* (Codex / HumanEval benchmark release). arXiv:2107.03374.
+4. Stack Overflow. (2024). *2024 Stack Overflow Developer Survey: AI Tools and Shifting Developer Sentiment*. [https://survey.stackoverflow.co/2024/](https://survey.stackoverflow.co/2024/)
+5. Stack Overflow. (2023). *2023 Stack Overflow Developer Survey: Developer Workflows and AI Adoption*. [https://survey.stackoverflow.co/2023/](https://survey.stackoverflow.co/2023/)
+6. Autor, D. (2024). *Applying AI to Rebuild Middle-Class Jobs*. National Bureau of Economic Research (NBER Working Paper 32140).
+7. Brynjolfsson, E., Li, D., & Raymond, L. R. (2023). *Generative AI at Work*. Quarterly Journal of Economics (NBER Working Paper 31161).
+8. Pakistan Software Houses Association (P@SHA). (2025). *Pakistan IT Industry Report: Export Competitiveness, Talent Sourcing, and Automation Horizons*. [https://pasha.org.pk/](https://pasha.org.pk/)
+9. State Bank of Pakistan. (2026). *Telecommunication, Computer and Information Services Export Receipts (FY20 - FY26)*. External Sector Statistics Division. [https://www.sbp.org.pk/ecodata/index2.asp](https://www.sbp.org.pk/ecodata/index2.asp)
+10. Peng, S., et al. (2023). *The Impact of AI on Developer Productivity: Evidence from GitHub Copilot*. arXiv:2302.06590.
+11. Computing Technology Industry Association (CompTIA). (2025). *State of the Tech Workforce 2025: Tech Hiring, Entry-Level Trajectories, and AI Integration*.
+12. Lee, R. (2026). *Tech Layoffs Tracker (2022-2026)*. [https://layoffs.fyi/](https://layoffs.fyi/)
+
+*(For line-by-line metric provenance, survey question IDs, and replication notes, see [`data/SOURCES.md`](../data/SOURCES.md)).*

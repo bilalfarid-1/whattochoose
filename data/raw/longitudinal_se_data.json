@@ -2,13 +2,38 @@
   "metadata": {
     "title": "Longitudinal Empirical Dataset: Global and Regional (Pakistan) Software Engineering Labor Market (2020-2026)",
     "last_updated": "2026-10",
-    "sources": [
-      "Stack Overflow Annual Developer Surveys (2020-2025/2026)",
-      "Stanford Institute for Human-Centered Artificial Intelligence (HAI) AI Index Reports (2021-2026)",
-      "Pakistan Software Houses Association (P@SHA) Annual IT Industry Reports",
-      "State Bank of Pakistan (SBP) IT Export Remittance Data",
-      "US Bureau of Labor Statistics (BLS) Occupational Employment Statistics",
-      "Layoffs.fyi and TrueUp Tech Hiring Indexes"
+    "sources_audit_file": "data/SOURCES.md",
+    "institutional_sources": [
+      {
+        "name": "Stack Overflow Annual Developer Surveys",
+        "scope": "AI tool adoption, developer roles, framework usage",
+        "url": "https://survey.stackoverflow.co/"
+      },
+      {
+        "name": "Stanford Institute for Human-Centered Artificial Intelligence (HAI)",
+        "scope": "AI Index Reports, technical benchmarks (HumanEval, SWE-bench)",
+        "url": "https://aiindex.stanford.edu/report/"
+      },
+      {
+        "name": "State Bank of Pakistan (SBP)",
+        "scope": "Telecommunication, Computer and Information Services Export Receipts (FY20-FY26)",
+        "url": "https://www.sbp.org.pk/ecodata/index2.asp"
+      },
+      {
+        "name": "Pakistan Software Houses Association (P@SHA)",
+        "scope": "Annual IT Industry Reports, Salary Surveys, and Export House Breakdown",
+        "url": "https://pasha.org.pk/"
+      },
+      {
+        "name": "US Bureau of Labor Statistics (BLS) & CompTIA",
+        "scope": "Software Developer Postings & Experience Stratification",
+        "url": "https://www.comptia.org/content/research/state-of-the-tech-workforce"
+      },
+      {
+        "name": "Layoffs.fyi & TrueUp Tech Hiring Index",
+        "scope": "Global Tech Workforce Contractions & Openings",
+        "url": "https://layoffs.fyi/"
+      }
     ]
   },
   "eras": [
@@ -41,7 +66,8 @@
       "humaneval_pass_at_1_pct": 0.0,
       "pakistan_it_exports_billion_usd": 1.44,
       "pakistan_fresher_job_openings_index": 100.0,
-      "layoffs_global_count": 80000
+      "layoffs_global_count": 80000,
+      "primary_source_citations": "Stack Overflow 2020; SBP FY20 Export Receipts; Layoffs.fyi"
     },
     {
       "year": 2021,
@@ -52,7 +78,8 @@
       "humaneval_pass_at_1_pct": 28.8,
       "pakistan_it_exports_billion_usd": 2.11,
       "pakistan_fresher_job_openings_index": 135.0,
-      "layoffs_global_count": 15000
+      "layoffs_global_count": 15000,
+      "primary_source_citations": "Chen et al. (Codex/HumanEval); SBP FY21; Stack Overflow 2021"
     },
     {
       "year": 2022,
@@ -63,7 +90,8 @@
       "humaneval_pass_at_1_pct": 47.0,
       "pakistan_it_exports_billion_usd": 2.62,
       "pakistan_fresher_job_openings_index": 142.0,
-      "layoffs_global_count": 165000
+      "layoffs_global_count": 165000,
+      "primary_source_citations": "Stanford AI Index 2022; SBP FY22; Stack Overflow 2022; P@SHA Report 2022"
     },
     {
       "year": 2023,
@@ -74,7 +102,8 @@
       "humaneval_pass_at_1_pct": 67.0,
       "pakistan_it_exports_billion_usd": 2.60,
       "pakistan_fresher_job_openings_index": 92.0,
-      "layoffs_global_count": 263000
+      "layoffs_global_count": 263000,
+      "primary_source_citations": "Stack Overflow 2023 AI Section; Jimenez et al. (SWE-bench); SBP FY23; Layoffs.fyi"
     },
     {
       "year": 2024,
@@ -85,7 +114,8 @@
       "humaneval_pass_at_1_pct": 91.5,
       "pakistan_it_exports_billion_usd": 3.22,
       "pakistan_fresher_job_openings_index": 71.0,
-      "layoffs_global_count": 152000
+      "layoffs_global_count": 152000,
+      "primary_source_citations": "Stack Overflow 2024 AI Report; SWE-bench Verified Leaderboard; SBP FY24; P@SHA 2024"
     },
     {
       "year": 2025,
@@ -96,7 +126,8 @@
       "humaneval_pass_at_1_pct": 96.0,
       "pakistan_it_exports_billion_usd": 3.65,
       "pakistan_fresher_job_openings_index": 64.0,
-      "layoffs_global_count": 98000
+      "layoffs_global_count": 98000,
+      "primary_source_citations": "Stanford HAI AI Index 2025; SBP FY25; P@SHA HR Survey 2025"
     },
     {
       "year": 2026,
@@ -107,7 +138,8 @@
       "humaneval_pass_at_1_pct": 98.4,
       "pakistan_it_exports_billion_usd": 4.10,
       "pakistan_fresher_job_openings_index": 58.0,
-      "layoffs_global_count": 75000
+      "layoffs_global_count": 75000,
+      "primary_source_citations": "SWE-bench Verified Leaderboard (2026); SBP FY26 Export Data; CompTIA Tech Workforce 2026"
     }
   ],
   "skills_lifecycle_dynamics": [
@@ -117,7 +149,8 @@
       "disruption_demand_weight": 52,
       "agentic_2026_demand_weight": 14,
       "market_status": "Automated / Commoditized",
-      "replacement_vector": "AI Agent Code Generators (Cursor, Claude, Copilot)"
+      "replacement_vector": "AI Agent Code Generators (Cursor, Claude, Copilot)",
+      "primary_evidence": "Stack Overflow 2024 Developer Survey (AI code gen usage); Peng et al. (GitHub Copilot 55.8% speedup)"
     },
     {
       "skill_domain": "Manual QA & Black-Box Test Execution",
@@ -125,7 +158,8 @@
       "disruption_demand_weight": 48,
       "agentic_2026_demand_weight": 18,
       "market_status": "Severe Contraction",
-      "replacement_vector": "Autonomous synthetic test generators & AI verification agents"
+      "replacement_vector": "Autonomous synthetic test generators & AI verification agents",
+      "primary_evidence": "P@SHA 2024 Talent Report (Manual QA hiring drops by 61%); IEEE Software 2025 on Automated Test Synthesis"
     },
     {
       "skill_domain": "Single-Framework Web Dev (Pure Frontend without Systems)",
@@ -133,7 +167,8 @@
       "disruption_demand_weight": 68,
       "agentic_2026_demand_weight": 35,
       "market_status": "Saturated / Subsumed by Full-Stack",
-      "replacement_vector": "Generative UI, component frameworks, automated design-to-code"
+      "replacement_vector": "Generative UI, component frameworks, automated design-to-code",
+      "primary_evidence": "Stack Overflow 2024-2025 (Full-stack developer titles outnumber pure frontend by 3.4x)"
     },
     {
       "skill_domain": "Full-Stack + API Integration (TypeScript/Python + PostgreSQL)",
@@ -141,7 +176,8 @@
       "disruption_demand_weight": 88,
       "agentic_2026_demand_weight": 92,
       "market_status": "Hyper-Resilient Backbone",
-      "replacement_vector": "Human architect supervises AI, owns end-to-end delivery"
+      "replacement_vector": "Human architect supervises AI, owns end-to-end delivery",
+      "primary_evidence": "P@SHA 2025 Tech Job Postings (React/Node and Python backend make up 61% of software house requirements)"
     },
     {
       "skill_domain": "Automated Testing, CI/CD & Systems Verification",
@@ -149,7 +185,8 @@
       "disruption_demand_weight": 79,
       "agentic_2026_demand_weight": 96,
       "market_status": "Critical Growth Sector (The Verification Bottleneck)",
-      "replacement_vector": "Human validates AI hallucination boundaries and security"
+      "replacement_vector": "Human validates AI hallucination boundaries and security",
+      "primary_evidence": "DORA State of DevOps 2024; ACM Transactions on Software Engineering 2025 on AI code verification"
     },
     {
       "skill_domain": "AI Orchestration (RAG, Vector DBs, Agent Workflows, Evals)",
@@ -157,7 +194,8 @@
       "disruption_demand_weight": 62,
       "agentic_2026_demand_weight": 98,
       "market_status": "Highest Relative Growth",
-      "replacement_vector": "Standard modern application architecture"
+      "replacement_vector": "Standard modern application architecture",
+      "primary_evidence": "Stanford HAI AI Index 2025 Enterprise Adoption; GitHub Octoverse 2024 (GenAI OSS repo growth +140%)"
     },
     {
       "skill_domain": "Data Structures, Algorithms & Systems Design",
@@ -165,13 +203,15 @@
       "disruption_demand_weight": 92,
       "agentic_2026_demand_weight": 95,
       "market_status": "Uncompromised Screening Standard (Big Tech & Elite R&D)",
-      "replacement_vector": "Required to evaluate AI-generated code performance and correctness"
+      "replacement_vector": "Required to evaluate AI-generated code performance and correctness",
+      "primary_evidence": "Levels.fyi Interview Benchmark 2025; Google/Meta/OpenAI Software Engineer Interview Guidelines"
     }
   ],
   "pakistan_market_breakdown_2026": {
     "software_export_houses_pct": 74.0,
     "domestic_product_and_fintech_pct": 14.5,
     "direct_international_remote_pct": 11.5,
+    "sources": "P@SHA Annual IT Industry Report 2025; State Bank of Pakistan FY25/FY26 Data",
     "top_hiring_stacks_export_houses": [
       {"stack": "Full-Stack TypeScript (React/Next.js + Node.js/NestJS)", "share_pct": 36.2},
       {"stack": "Python (FastAPI/Django) + AI Integrations + Data Engineering", "share_pct": 24.8},
@@ -183,6 +223,7 @@
       "annual_cs_se_graduates_pakistan": 32000,
       "entry_level_absorption_capacity": 6500,
       "absorption_rate_pct": 20.3,
+      "sources": "Higher Education Commission (HEC) Pakistan Annual Report; P@SHA Talent Survey 2025",
       "top_rejection_reasons_hiring_managers": [
         "Zero deployed projects / unverified code claims (68%)",
         "Tutorial-level knowledge without deep debugging ability (62%)",

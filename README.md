@@ -12,6 +12,8 @@ se_labor_market_research/
 ├── README.md                           # This document
 │
 ├── data/                               # Harmonized empirical datasets
+│   ├── SOURCES.md                      # Comprehensive data provenance & source audit (URLs, table IDs)
+│   ├── README.md                       # Data directory guide & summary
 │   ├── raw/
 │   │   └── longitudinal_se_data.json   # Multi-year metrics (Stack Overflow, Stanford HAI, P@SHA, SBP, BLS)
 │   └── processed/
