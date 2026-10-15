@@ -54,7 +54,7 @@ whattochoose/
 ## Core Findings Summary
 
 1. **Pakistan ICT Export Growth vs. Experience Bias:**  
-   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.440\text{B}$ (FY20) to an official straight-line annualized pace of **$\sim \$4.52\text{B}$** in FY26 (**$+21.0\%$ 6-year CAGR** per SBP & Finance Division reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
+   Pakistan's ICT export remittances have sustained rapid expansion, growing from $\$1.440\text{B}$ (FY20) to a reported full-year outturn of **$\sim \$4.60\text{B}$** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP, Finance Division, and APP reports). However, according to the P@SHA Skills Survey 2025, approximately **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating an intense qualification filter for fresh graduates.
 2. **The Verification Bottleneck:**  
    While AI models commoditize routine syntax and boilerplate code generation, the primary engineering constraint has shifted to **Specification Formalization**, **Relational Data Architecture**, and **Automated Verification / Integration Testing**.
 3. **The Importance of Technical Depth (Reasoned Strategic Choice):**  

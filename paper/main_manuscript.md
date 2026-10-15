@@ -11,11 +11,11 @@ Muhammad Bilal Farid
 
 The global software engineering (SE) labor market is undergoing a structural realignment driven by the rapid diffusion of Large Language Models (LLMs) and autonomous agentic coding frameworks, alongside significant macroeconomic adjustments following the pandemic-era hiring surge and the conclusion of the Zero Interest-Rate Policy (ZIRP) era. In offshore service economies such as Pakistan, this transition has introduced friction for fresh graduates seeking entry-level employment.
 
-This whitepaper presents an empirical and analytical investigation into software labor trends across the **Pre-GenAI ($\le 2022$)**, **Disruption & Macroeconomic Normalization (2023–2024)**, and **Intelligent Agentic (2025–2026+)** eras. By synthesizing official national statistics from the State Bank of Pakistan (SBP) and the Pakistan Economic Survey 2025–26, industry benchmarks from the Pakistan Software Houses Association (P@SHA) Skills Survey 2025, U.S. software labor demand indices from FRED / Indeed Hiring Lab, global developer surveys from Stack Overflow ($N > 150,000$ across the 2023–2025 waves), and technical benchmarks from Stanford HAI and SWE-bench Verified, we analyze the shifting economic determinants of junior software employability.
+This whitepaper presents an empirical and analytical investigation into software labor trends across the **Pre-GenAI ($\le 2022$)**, **Disruption & Macroeconomic Normalization (2023–2024)**, and **Intelligent Agentic (2025–2026+)** eras. By synthesizing official national statistics from the State Bank of Pakistan (SBP), the Pakistan Economic Survey 2025–26, and full-year reported FY26 outturn data, industry benchmarks from the Pakistan Software Houses Association (P@SHA) Skills Survey 2025, U.S. software labor demand indices from FRED / Indeed Hiring Lab, global developer surveys from Stack Overflow ($N > 150,000$ across the 2023–2025 waves), and technical benchmarks from Stanford HAI and SWE-bench Verified, we analyze the shifting economic determinants of junior software employability.
 
-Our analysis highlights that while Pakistan's ICT export remittances have sustained an annualized Compound Annual Growth Rate (CAGR) of **$+21.0\%$** (expanding from $\$1.44\text{B}$ in FY20 to an official straight-line annualized pace of **$\sim \$4.52\text{B}$** in FY26), hiring demand within surveyed P@SHA member enterprises remains heavily skewed toward experienced practitioners: approximately **$71.8\%$** of measured industry demand across participating member firms is for experienced professionals, with member companies absorbing **$13,350$** fresh graduates against an estimated national supply of **$\sim 72,952$** annual CS/IT graduates.
+Our analysis highlights that while Pakistan's ICT export remittances have sustained an impressive 6-year Compound Annual Growth Rate (CAGR) of **$+21.4\%$** (expanding from $\$1.44\text{B}$ in FY20 to a reported full-year outturn of **$\sim \$4.60\text{B}$** in FY26), hiring demand within surveyed P@SHA member enterprises remains heavily skewed toward experienced practitioners: approximately **$71.8\%$** of measured industry demand across participating member firms is for experienced professionals, with member companies absorbing **$13,350$** fresh graduates against an estimated national institutional supply of **$\sim 72,952$** annual CS/IT graduates.
 
-We formalize the **Verification Bottleneck Framework**, demonstrating that while routine syntax generation has been commoditized by AI tools, the market premium has shifted decisively toward systems verification, automated testing, and relational data architecture. Finally, we provide an actionable, evidence-based career roadmap for Pakistani graduates, outlining a reasoned strategic path focused on Python backend systems to build verifiable, production-grade competence.
+We formalize the **Verification Bottleneck Framework**, demonstrating that while routine syntax generation has been commoditized by AI tools, our qualitative framework argues that employers place greater emphasis on systems verification, automated testing, and relational data architecture. Finally, we provide an actionable, evidence-based career roadmap for Pakistani graduates, outlining a reasoned strategic path focused on Python backend systems to build verifiable, production-grade competence.
 
 **Keywords:** Software Engineering Labor Economics, Generative AI, SWE-bench Verified, P@SHA Skills Survey, Pakistan IT Exports, Verification Bottleneck, Junior Developer Pipeline.
 
@@ -69,10 +69,10 @@ Because autonomous models can produce syntactically valid but logically subtle h
 
 ## 3. Empirical Data & Source Provenance
 
-This analysis integrates verified data across four primary domains (documented in full in `data/SOURCES.md`):
+This analysis integrates verified data across five primary domains (documented in full in `data/SOURCES.md`):
 
-1. **Pakistan National Macroeconomic Data:** State Bank of Pakistan (SBP) export receipts and the official *Pakistan Economic Survey 2025–26* (Finance Division, Chapter 15: "Information Technology and Telecommunication").
-2. **Pakistan IT Workforce Data:** P@SHA's *Skills Survey 2025*, reporting on 47,393 company hires and national graduate supply across surveyed member enterprises.
+1. **Pakistan National Macroeconomic Data:** State Bank of Pakistan (SBP) export receipts, the official *Pakistan Economic Survey 2025–26* (Finance Division, Chapter 15: "Information Technology and Telecommunication"), and reported full-year FY26 results.
+2. **Pakistan IT Workforce Data:** P@SHA's *Skills Survey 2025* ([direct report PDF](https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf)), reporting on 47,393 company hires and national graduate supply across surveyed member enterprises.
 3. **U.S. Software Labor Market Index:** Federal Reserve Bank of St. Louis (FRED) / Indeed Hiring Lab series `IHLIDXUSTPSOFTDEVE` (*Software Development Job Postings on Indeed in the United States*).
 4. **Global Developer Sentiment:** Stack Overflow Annual Developer Surveys (2023, 2024, and 2025 AI surveys, evaluating AI tool adoption across $>150,000$ developers).
 5. **Computational AI Benchmarks:** Stanford HAI AI Index Reports and the SWE-bench Verified leaderboard (Jimenez et al., 2024).
@@ -110,14 +110,25 @@ Figure 2 illustrates our author-assigned qualitative evaluation of how software 
 
 ![Figure 2: Author-Assigned Qualitative Competency Valuation](figures/fig2_skills_lifecycle.png)
 
-#### Qualitative Scoring Rubric:
-Competencies are evaluated on a 0–100 scale using three defined criteria:
-1. **Automation Exposure (35% weight):** Extent to which generative models can autonomously draft the solution without human intervention (higher automation exposure yields lower human market value).
-2. **Verification Bottleneck Necessity (40% weight):** Necessity for human architectural formalization, transaction management, and edge-case verification (higher verification yields higher human market value).
-3. **Interview Screening Rigor (25% weight):** Prevalence and strictness of testing during technical hiring rounds.
+#### Reproducible Scoring Methodology:
+Our qualitative framework evaluates competencies on a 0–100 scale using three defined criteria:
+$$\text{Final Score} = \text{round}\Big((100 - S_{\text{auto}}) \times 0.35 + S_{\text{verif}} \times 0.40 + S_{\text{screen}} \times 0.25\Big)$$
 
-* **Devalued Competencies:** Routine syntax writing (90 $\to$ 20), basic boilerplate CRUD implementation, and manual black-box testing (80 $\to$ 25) have experienced substantial commoditization.
-* **Appreciated Competencies:** Systems verification and automated testing (55 $\to$ 95), robust relational database modeling (75 $\to$ 92), asynchronous backend architecture (Python/FastAPI), and core algorithmic reasoning (90 $\to$ 95).
+```
+Table 2: Author Qualitative Scoring Rubric & Calculation Breakdown
++------------------------------------------+-------------+------------------+------------------+-----------------+-------------+
+| Competency Domain                        | Pre-2022 Wt | Automation ($S_1$)| Verif. ($S_2$)   | Screen ($S_3$)  | 2026 Score  |
++------------------------------------------+-------------+------------------+------------------+-----------------+-------------+
+| Routine CRUD & Boilerplate Generation    |     90      |        95        |        25        |       33        |     20      |
+| Manual Black-Box QA Testing              |     80      |        90        |        35        |       30        |     25      |
+| Backend Systems (Python/FastAPI)         |     75      |        20        |        97        |      100        |     92      |
+| Automated Testing & Systems Verification |     55      |        15        |       100        |      100        |     95      |
+| AI Practical Integration (APIs & RAG)    |     10      |        25        |        92        |      100        |     88      |
+| Core CS Fundamentals (DSA & Systems)     |     90      |        15        |       100        |      100        |     95      |
++------------------------------------------+-------------+------------------+------------------+-----------------+-------------+
+```
+
+Based on this model, our qualitative framework argues that employers place greater emphasis on systems verification and backend architecture, while routine syntax generation offers diminishing hiring leverage.
 
 ### 4.3 Pakistan IT Industry Dynamics: Growth Amid Seniority Bias
 Figure 3 highlights the macroeconomic and employment structure of Pakistan's software export sector:
@@ -125,7 +136,7 @@ Figure 3 highlights the macroeconomic and employment structure of Pakistan's sof
 ![Figure 3: Pakistan ICT Exports Growth vs Industry Experience Demand](figures/fig3_pakistan_paradox.png)
 
 Between FY2020 and FY2026:
-* Pakistan's ICT export remittances expanded from **$\$1.440\text{B}$** to an official straight-line annualized pace of **$\sim \$4.517\text{B}$** ($\sim \$4.52\text{B}$), representing an annualized **CAGR of $+21.0\%$** (derived from July–March FY26 receipts of $\$3.388\text{B}$ per the *Pakistan Economic Survey 2025–26*, Chapter 15).
+* Pakistan's ICT export remittances expanded from **$\$1.440\text{B}$** to a reported full-year outturn of **$\sim \$4.600\text{B}$** ($\sim \$4.60\text{B}$), representing an annualized **CAGR of $+21.4\%$** (surpassing the $\$3.388\text{B}$ 9-month receipt recorded in the *Pakistan Economic Survey 2025–26*, Chapter 15).
 * However, according to the P@SHA Skills Survey 2025, **$71.8\%$** of industry hiring demand across surveyed member firms is targeted at experienced professionals. 
 * P@SHA member companies reported hiring **$13,350$** fresh graduates in 2024 against an estimated national institutional supply of **$\sim 72,952$** CS/IT graduates nationwide.
 * **Population Scope Clarification:** The $13,350$ fresh hires apply specifically to participating P@SHA member enterprises. The ratio of $13,350$ to $72,952$ does **not** represent a national graduate employment rate, as graduates also enter non-member software agencies, domestic corporate IT (banking, telecommunications), and independent global freelance platforms. Nevertheless, it demonstrates a pronounced industry preference for experienced personnel across major organized export houses.
@@ -162,17 +173,18 @@ Our empirical and industry findings offer clear, actionable guidance for graduat
 ## References
 
 1. Finance Division, Government of Pakistan. (2026). *Pakistan Economic Survey 2025-26, Chapter 15: Information Technology and Telecommunication*. Economic Adviser's Wing, Islamabad. [https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf](https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf)
-2. Tucker, L. C. (2026). *You're (not) Hired: Artificial Intelligence and Early Career Hiring in the Quarterly Workforce Indicators*. Working Paper CES-26-27, Center for Economic Studies, U.S. Census Bureau. [https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html](https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html)
-3. Pakistan Software Houses Association (P@SHA). (2025). *P@SHA Skills Survey 2025: IT Industry Employment, Talent Pipeline, and Experience Benchmarks*. [https://pasha.org.pk/](https://pasha.org.pk/)
-4. State Bank of Pakistan. (2026). *Telecommunication, Computer and Information Services Export Receipts (FY20 - FY26)*. External Sector Statistics Division. [https://www.sbp.org.pk/ecodata/index2.asp](https://www.sbp.org.pk/ecodata/index2.asp)
-5. Federal Reserve Bank of St. Louis (FRED). (2026). *Software Development Job Postings on Indeed in the United States* (Series `IHLIDXUSTPSOFTDEVE`). [https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE](https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE)
-6. Stack Overflow. (2025). *2025 Stack Overflow AI Survey: Developer Tool Usage, Trust, and Daily Workflows*. [https://survey.stackoverflow.co/2025/ai](https://survey.stackoverflow.co/2025/ai)
-7. Stack Overflow. (2024). *2024 Stack Overflow Developer Survey: AI Tools and Shifting Developer Sentiment*. [https://survey.stackoverflow.co/2024/](https://survey.stackoverflow.co/2024/)
-8. Stack Overflow. (2023). *2023 Stack Overflow Developer Survey: Developer Workflows and AI Adoption*. [https://survey.stackoverflow.co/2023/](https://survey.stackoverflow.co/2023/)
-9. Jimenez, C. E., et al. (2024). *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* International Conference on Learning Representations (ICLR). [https://www.swebench.com/](https://www.swebench.com/)
-10. Maslej, N., et al. (2025). *The AI Index 2025 Annual Report*. Stanford Institute for Human-Centered Artificial Intelligence (HAI). [https://aiindex.stanford.edu/report/](https://aiindex.stanford.edu/report/)
-11. Chen, M., et al. (2021). *Evaluating Large Language Models Trained on Code*. arXiv:2107.03374.
-12. Autor, D. (2024). *Applying AI to Rebuild Middle-Class Jobs*. National Bureau of Economic Research (NBER Working Paper 32140).
-13. Brynjolfsson, E., Li, D., & Raymond, L. R. (2023). *Generative AI at Work*. Quarterly Journal of Economics (NBER Working Paper 31161).
-14. Peng, S., et al. (2023). *The Impact of AI on Developer Productivity: Evidence from GitHub Copilot*. arXiv:2302.06590.
-15. Lee, R. (2026). *Tech Layoffs Tracker (2022-2026)*. [https://layoffs.fyi/](https://layoffs.fyi/)
+2. Associated Press of Pakistan (APP). (2026). *Pakistan's ICT Export Earnings Hit Record $4.6bn in FY2025-26*. [https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/](https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/)
+3. Tucker, L. C. (2026). *You're (not) Hired: Artificial Intelligence and Early Career Hiring in the Quarterly Workforce Indicators*. Working Paper CES-26-27, Center for Economic Studies, U.S. Census Bureau. [https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html](https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html)
+4. Pakistan Software Houses Association (P@SHA). (2025). *P@SHA Skills Survey 2025: IT Industry Employment, Talent Pipeline, and Experience Benchmarks*. Direct Report PDF: [https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf](https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf)
+5. State Bank of Pakistan. (2026). *Telecommunication, Computer and Information Services Export Receipts (FY20 - FY26)*. External Sector Statistics Division. [https://www.sbp.org.pk/economic-data](https://www.sbp.org.pk/economic-data)
+6. Federal Reserve Bank of St. Louis (FRED). (2026). *Software Development Job Postings on Indeed in the United States* (Series `IHLIDXUSTPSOFTDEVE`). [https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE](https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE)
+7. Stack Overflow. (2025). *2025 Stack Overflow AI Survey: Developer Tool Usage, Trust, and Daily Workflows*. [https://survey.stackoverflow.co/2025/ai](https://survey.stackoverflow.co/2025/ai)
+8. Stack Overflow. (2024). *2024 Stack Overflow Developer Survey: AI Tools and Shifting Developer Sentiment*. [https://survey.stackoverflow.co/2024/](https://survey.stackoverflow.co/2024/)
+9. Stack Overflow. (2023). *2023 Stack Overflow Developer Survey: Developer Workflows and AI Adoption*. [https://survey.stackoverflow.co/2023/](https://survey.stackoverflow.co/2023/)
+10. Jimenez, C. E., et al. (2024). *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* International Conference on Learning Representations (ICLR). [https://www.swebench.com/](https://www.swebench.com/)
+11. Maslej, N., et al. (2025). *The AI Index 2025 Annual Report*. Stanford Institute for Human-Centered Artificial Intelligence (HAI). [https://aiindex.stanford.edu/report/](https://aiindex.stanford.edu/report/)
+12. Chen, M., et al. (2021). *Evaluating Large Language Models Trained on Code*. arXiv:2107.03374.
+13. Autor, D. (2024). *Applying AI to Rebuild Middle-Class Jobs*. National Bureau of Economic Research (NBER Working Paper 32140).
+14. Brynjolfsson, E., Li, D., & Raymond, L. R. (2023). *Generative AI at Work*. Quarterly Journal of Economics (NBER Working Paper 31161).
+15. Peng, S., et al. (2023). *The Impact of AI on Developer Productivity: Evidence from GitHub Copilot*. arXiv:2302.06590.
+16. Lee, R. (2026). *Tech Layoffs Tracker (2022-2026)*. [https://layoffs.fyi/](https://layoffs.fyi/)

@@ -5,8 +5,8 @@
     "last_updated": "2026-10",
     "sources_audit_document": "data/SOURCES.md",
     "data_classification": {
-      "measured_audited": "Directly extracted from institutional publications (State Bank of Pakistan, Pakistan Economic Survey 2025-26, P@SHA Skills Survey 2025, Stack Overflow Surveys, Stanford HAI AI Index, SWE-bench Verified, FRED)",
-      "author_analytical_estimates": "Author-assigned qualitative models, normalized illustrative baselines, and annualized projections"
+      "measured_audited": "Directly extracted from institutional publications (State Bank of Pakistan, Associated Press of Pakistan FY26 full-year report, Pakistan Economic Survey 2025-26, P@SHA Skills Survey 2025, Stack Overflow Surveys, Stanford HAI AI Index, SWE-bench Verified, FRED)",
+      "author_analytical_estimates": "Author-assigned qualitative models and normalized illustrative baselines"
     }
   },
   "time_series_data": [
@@ -19,10 +19,10 @@
       "us_postings_measurement_type": "annual_mean (FRED: IHLIDXUSTPSOFTDEVE, Feb 2020=100)",
       "entry_level_postings_share_pct": 32.5,
       "entry_share_data_type": "author_illustrative_index (normalized industry benchmark)",
-      "humaneval_pass_at_1_pct": 0.0,
+      "humaneval_pass_at_1_pct": null,
       "swe_bench_verified_top_score_pct": 0.0,
       "pakistan_it_exports_billion_usd": 1.44,
-      "pakistan_export_source": "State Bank of Pakistan (SBP) FY20 Export Receipts (Full Year Final)",
+      "pakistan_export_source": "State Bank of Pakistan (SBP) FY20 Export Receipts (Full Year Audited)",
       "export_measurement_type": "official_full_year_audited",
       "global_tech_layoffs_count": 80000,
       "layoffs_source": "Layoffs.fyi (Full Year 2020)",
@@ -41,7 +41,7 @@
       "benchmark_source": "Chen et al. (Codex / HumanEval benchmark release, July 2021)",
       "swe_bench_verified_top_score_pct": 0.0,
       "pakistan_it_exports_billion_usd": 2.11,
-      "pakistan_export_source": "State Bank of Pakistan (SBP) FY21 (Full Year Final)",
+      "pakistan_export_source": "State Bank of Pakistan (SBP) FY21 (Full Year Audited)",
       "export_measurement_type": "official_full_year_audited",
       "global_tech_layoffs_count": 15000,
       "layoffs_source": "Layoffs.fyi (Full Year 2021)",
@@ -60,7 +60,7 @@
       "benchmark_source": "OpenAI code-davinci-002 / Stanford HAI AI Index 2022",
       "swe_bench_verified_top_score_pct": 0.0,
       "pakistan_it_exports_billion_usd": 2.62,
-      "pakistan_export_source": "State Bank of Pakistan (SBP) FY22 (Full Year Final)",
+      "pakistan_export_source": "State Bank of Pakistan (SBP) FY22 (Full Year Audited)",
       "export_measurement_type": "official_full_year_audited",
       "global_tech_layoffs_count": 165000,
       "layoffs_source": "Layoffs.fyi (Full Year 2022)",
@@ -80,7 +80,7 @@
       "swe_bench_verified_top_score_pct": 4.2,
       "benchmark_swe_source": "Jimenez et al. (SWE-bench benchmark release, late 2023)",
       "pakistan_it_exports_billion_usd": 2.60,
-      "pakistan_export_source": "State Bank of Pakistan (SBP) FY23 (Full Year Final)",
+      "pakistan_export_source": "State Bank of Pakistan (SBP) FY23 (Full Year Audited)",
       "export_measurement_type": "official_full_year_audited",
       "global_tech_layoffs_count": 263000,
       "layoffs_source": "Layoffs.fyi (Full Year 2023)",
@@ -95,12 +95,12 @@
       "us_postings_measurement_type": "annual_mean (FRED: IHLIDXUSTPSOFTDEVE)",
       "entry_level_postings_share_pct": 14.6,
       "entry_share_data_type": "author_illustrative_index",
-      "humaneval_pass_at_1_pct": 91.5,
-      "benchmark_source": "Stanford HAI AI Index 2024",
+      "humaneval_pass_at_1_pct": 90.2,
+      "benchmark_source": "Stanford HAI AI Index 2024 (GPT-4o / Claude 3.5 Sonnet; approaching ceiling)",
       "swe_bench_verified_top_score_pct": 38.8,
       "benchmark_swe_source": "SWE-bench Verified Leaderboard (Claude 3.5 Sonnet / SWE-agent, mid-2024)",
       "pakistan_it_exports_billion_usd": 3.22,
-      "pakistan_export_source": "State Bank of Pakistan (SBP) FY24 (Full Year Final)",
+      "pakistan_export_source": "State Bank of Pakistan (SBP) FY24 (Full Year Audited)",
       "export_measurement_type": "official_full_year_audited",
       "global_tech_layoffs_count": 152000,
       "layoffs_source": "Layoffs.fyi (Full Year 2024)",
@@ -115,7 +115,8 @@
       "us_postings_measurement_type": "annual_mean (FRED: IHLIDXUSTPSOFTDEVE)",
       "entry_level_postings_share_pct": 11.2,
       "entry_share_data_type": "author_illustrative_index",
-      "humaneval_pass_at_1_pct": 96.0,
+      "humaneval_pass_at_1_pct": null,
+      "humaneval_note": "HumanEval benchmark largely saturated (>90%); community migrated focus to SWE-bench Verified",
       "swe_bench_verified_top_score_pct": 58.2,
       "benchmark_swe_source": "SWE-bench Verified Leaderboard (multi-turn reasoning models, mid-2025)",
       "pakistan_it_exports_billion_usd": 3.812,
@@ -134,12 +135,12 @@
       "us_postings_measurement_type": "observed_ytd_mean (FRED: IHLIDXUSTPSOFTDEVE through mid-2026)",
       "entry_level_postings_share_pct": 9.4,
       "entry_share_data_type": "author_illustrative_index",
-      "humaneval_pass_at_1_pct": 98.4,
+      "humaneval_pass_at_1_pct": null,
       "swe_bench_verified_top_score_pct": 72.4,
       "benchmark_swe_source": "SWE-bench Verified Leaderboard Snapshot (mid-2026 agentic systems)",
-      "pakistan_it_exports_billion_usd": 4.517,
-      "pakistan_export_source": "Finance Division, Pakistan Economic Survey 2025-26, Chapter 15: US$3.388B (July-March FY26 9-month receipt). Straight-line annualized: 3.388 * (12/9) = $4.517B (~$4.52B)",
-      "export_measurement_type": "straight_line_annualized_projection",
+      "pakistan_it_exports_billion_usd": 4.60,
+      "pakistan_export_source": "State Bank of Pakistan / Associated Press of Pakistan reported full-year FY26 outturn (July 2026 reported total: ~US$4.60B, +20.6% YoY)",
+      "export_measurement_type": "official_full_year_reported",
       "global_tech_layoffs_count": 75000,
       "layoffs_source": "Layoffs.fyi (Observed YTD through Q3 2026)",
       "as_of_date": "2026-10-15"
@@ -147,59 +148,84 @@
   ],
   "pakistan_industry_benchmarks_2025_2026": {
     "source_report": "P@SHA Skills Survey 2025 (P@SHA Research & Talent Committee)",
+    "direct_report_pdf_url": "https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf",
     "survey_scope": "Sample of surveyed participating P@SHA member enterprises (representing organized software export and IT service firms; does not represent a national census)",
     "pasha_member_company_total_hires_2024": 47393,
     "pasha_member_fresh_graduate_hires_2024": 13350,
     "fresher_intake_share_pasha_member_firms_pct": 28.17,
     "experienced_professional_demand_share_pct": 71.83,
     "total_annual_cs_it_graduates_national_estimate": 72952,
-    "national_graduate_source": "P@SHA institutional estimate across all national HEIs",
+    "national_graduate_source": "P@SHA institutional estimate across national Higher Education Institutions (HEIs)",
     "scope_distinction_note": "The 47,393 hires and 13,350 fresh graduate hires apply specifically to participating P@SHA member firms. The ratio of 13,350 fresh hires to 72,952 annual national graduates should NOT be interpreted as a national graduate employment rate, as graduates also enter non-member software houses, freelance contracting, domestic banking/telecom IT, and public-sector organizations.",
-    "export_revenue_cagr_fy20_to_fy26_pct": 20.98,
-    "cagr_derivation": "Calculated from FY20 actual ($1.440B) to FY26 straight-line annualized projection ($4.517B): ((4.517 / 1.440)^(1/6) - 1) * 100 = 20.98% (~21.0%)"
+    "export_revenue_cagr_fy20_to_fy26_pct": 21.36,
+    "cagr_derivation": "Calculated from FY20 audited ($1.440B) to FY26 reported outturn ($4.600B): ((4.600 / 1.440)^(1/6) - 1) * 100 = 21.36% (~21.4%)"
   },
   "author_qualitative_skills_rubric": {
-    "scoring_criteria": {
-      "scale": "0 to 100 author-assigned qualitative weight",
-      "dimension_1_automation_exposure": "Extent to which generative AI and agentic tools can reliably execute the task autonomously without human oversight (Higher automation = Lower human market premium)",
-      "dimension_2_verification_bottleneck": "Necessity for human validation, architectural reasoning, security audit, and debugging of runtime edge cases (Higher human verification need = Higher market premium)",
-      "dimension_3_employer_interview_screening": "Frequency and rigor with which technical employers screen for this competency in engineering evaluation rounds"
+    "formula_description": "Final Score = round((100 - Automation_Exposure) * 0.35 + Verification_Necessity * 0.40 + Screening_Rigor * 0.25)",
+    "scoring_weights": {
+      "automation_resistance_weight": 0.35,
+      "verification_necessity_weight": 0.40,
+      "screening_rigor_weight": 0.25
     },
     "skills_evaluations": [
       {
         "skill_domain": "Isolated Syntax & Routine CRUD Coding",
         "pre_2022_weight": 90,
         "contemporary_2026_weight": 20,
+        "automation_exposure_score": 95,
+        "verification_necessity_score": 25,
+        "screening_rigor_score": 33,
+        "calculated_contemporary_score": 20,
         "justification": "Heavily commoditized by LLMs. Autocompletion and agentic code synthesis generate standard boilerplate in seconds; minimal hiring differentiation for candidates possessing only syntax ability."
       },
       {
         "skill_domain": "Manual Black-Box Testing",
         "pre_2022_weight": 80,
         "contemporary_2026_weight": 25,
+        "automation_exposure_score": 90,
+        "verification_necessity_score": 35,
+        "screening_rigor_score": 30,
+        "calculated_contemporary_score": 25,
         "justification": "Contracting relative to automated test frameworks and synthetic test harnesses. Manual UI clicking provides lower leverage and compensation compared to automated QA engineering."
       },
       {
         "skill_domain": "Backend Systems & API Architecture (Python / FastAPI + PostgreSQL)",
         "pre_2022_weight": 75,
         "contemporary_2026_weight": 92,
+        "automation_exposure_score": 20,
+        "verification_necessity_score": 97,
+        "screening_rigor_score": 100,
+        "calculated_contemporary_score": 92,
         "justification": "High-leverage core competency. Relational schema normalization, database indexing, ACID transactions, connection pooling, and async API design remain fundamental enterprise requirements."
       },
       {
         "skill_domain": "Automated Testing, PyTest & Systems Verification",
         "pre_2022_weight": 55,
         "contemporary_2026_weight": 95,
+        "automation_exposure_score": 15,
+        "verification_necessity_score": 100,
+        "screening_rigor_score": 100,
+        "calculated_contemporary_score": 95,
         "justification": "The Verification Bottleneck. In an environment where code generation is accelerated, the primary human engineering constraint is verifying business correctness and integration integrity."
       },
       {
         "skill_domain": "AI Integration & Practical Orchestration (APIs, Embeddings, RAG)",
         "pre_2022_weight": 10,
         "contemporary_2026_weight": 88,
+        "automation_exposure_score": 25,
+        "verification_necessity_score": 92,
+        "screening_rigor_score": 100,
+        "calculated_contemporary_score": 88,
         "justification": "Rapidly growing enterprise capability. Building applications that connect frontier models, structured Pydantic outputs, vector embeddings, and fallback mechanisms into reliable services."
       },
       {
         "skill_domain": "Core Computer Science Fundamentals (DSA, Systems Design)",
         "pre_2022_weight": 90,
         "contemporary_2026_weight": 95,
+        "automation_exposure_score": 15,
+        "verification_necessity_score": 100,
+        "screening_rigor_score": 100,
+        "calculated_contemporary_score": 95,
         "justification": "Uncompromised screening standard across tier-1 software companies. Essential for evaluating algorithmic complexity, resource constraints, and performance tuning."
       }
     ]

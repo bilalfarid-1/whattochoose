@@ -41,9 +41,9 @@ def run_analysis():
     exp_2020 = ts_df.loc[ts_df['year'] == 2020, 'pakistan_it_exports_billion_usd'].values[0]
     exp_2026 = ts_df.loc[ts_df['year'] == 2026, 'pakistan_it_exports_billion_usd'].values[0]
     exp_cagr = ((exp_2026 / exp_2020) ** (1/6) - 1) * 100
-    print(f"Pakistan ICT Export Remittances: ${exp_2020:.2f}B (FY20) -> ${exp_2026:.3f}B (FY26 straight-line pace)")
-    print(f"Official ICT Exports 6-Year CAGR: +{exp_cagr:.2f}% per annum (~21.0%)")
-    print("Sources: SBP & Pakistan Economic Survey 2025-26 (9-month receipt: $3.388B -> 3.388 * 12/9 = $4.517B)")
+    print(f"Pakistan ICT Export Remittances: ${exp_2020:.2f}B (FY20) -> ${exp_2026:.2f}B (FY26 reported outturn)")
+    print(f"Official ICT Exports 6-Year CAGR: +{exp_cagr:.2f}% per annum (~21.4%)")
+    print("Sources: SBP, Finance Division, & APP July 2026 reported FY26 outturn (~$4.60B)")
     
     # 2. P@SHA Skills Survey 2025 Benchmarks
     print("\nP@SHA Skills Survey 2025 Industry Dynamics (Member Companies Scope):")
@@ -51,6 +51,7 @@ def run_analysis():
     print(f"- Total hires across surveyed member companies (2024): {pasha_metrics['pasha_member_company_total_hires_2024']:,}")
     print(f"- Fresh graduate hires: {pasha_metrics['pasha_member_fresh_graduate_hires_2024']:,} ({pasha_metrics['fresher_intake_share_pasha_member_firms_pct']}%)")
     print(f"- Demand for experienced professionals: {pasha_metrics['experienced_professional_demand_share_pct']}%")
+    print(f"- Direct Report PDF: {pasha_metrics['direct_report_pdf_url']}")
     
     # 3. Stack Overflow AI Adoption Metrics
     so_2023 = ts_df.loc[ts_df['year'] == 2023, 'global_ai_tool_engagement_pct'].values[0]
@@ -141,7 +142,7 @@ def plot_figure_3_pakistan_dynamics(df, pasha):
     bars = ax1.bar(df['year'], df['pakistan_it_exports_billion_usd'], color=color_exp, width=0.55, alpha=0.88)
     ax1.set_xlabel('Fiscal Year', fontweight='bold')
     ax1.set_ylabel('ICT Export Remittances ($B USD)', fontweight='bold')
-    ax1.set_title('Pakistan ICT Export Remittances (FY20–FY26)\n[Source: State Bank of Pakistan & Finance Division]', 
+    ax1.set_title('Pakistan ICT Export Remittances (FY20–FY26)\n[Source: State Bank of Pakistan, Finance Division & APP]', 
                   fontsize=10.5, pad=10, fontweight='bold')
     ax1.set_ylim(0, 5.5)
     
@@ -153,8 +154,8 @@ def plot_figure_3_pakistan_dynamics(df, pasha):
                      textcoords="offset points",
                      ha='center', va='bottom', fontsize=8.5, fontweight='bold')
                      
-    ax1.annotate('FY26: ~$4.52B straight-line pace\n(+21.0% 6-Yr CAGR)',
-                 xy=(2026, 4.517), xytext=(2021.8, 4.85),
+    ax1.annotate('FY26: ~$4.60B reported outturn\n(+21.4% 6-Yr CAGR)',
+                 xy=(2026, 4.60), xytext=(2021.6, 4.85),
                  arrowprops=dict(facecolor='black', arrowstyle='->', lw=1.2),
                  fontsize=8.5, backgroundcolor='#ffffff')
                  
