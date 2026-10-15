@@ -1,6 +1,6 @@
 # AI-Augmented Engineering Mastery Framework
 
-An empirical, research-backed learning framework designed to master **Python Backend Systems Engineering** using Generative AI as a deliberate cognitive amplifier, while avoiding passive tutorial bingeing and superficial AI dependence.
+A research-informed learning framework grounded in empirical studies, designed to master **Python Backend Systems Engineering** using Generative AI as a deliberate cognitive amplifier, while avoiding passive tutorial bingeing and superficial AI dependence.
 
 ---
 
