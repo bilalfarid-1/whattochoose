@@ -15,7 +15,7 @@ This whitepaper presents an empirical and analytical investigation into software
 
 Our analysis highlights that while Pakistan's ICT export remittances have sustained an impressive 6-year Compound Annual Growth Rate (CAGR) of **$+21.4\%$** (expanding from $\$1.44\text{B}$ in FY20 to a reported full-year outturn of **$\sim \$4.60\text{B}$** in FY26), hiring demand within surveyed P@SHA member enterprises remains heavily skewed toward experienced practitioners: approximately **$71.8\%$** of measured industry demand across participating member firms is for experienced professionals, with member companies absorbing **$13,350$** fresh graduates against an estimated national institutional supply of **$\sim 72,952$** annual CS/IT graduates.
 
-We formalize the **Verification Bottleneck Framework**, demonstrating that while routine syntax generation has been commoditized by AI tools, our qualitative framework argues that employers place greater emphasis on systems verification, automated testing, and relational data architecture. Finally, we provide an actionable, evidence-based career roadmap for Pakistani graduates, outlining a reasoned strategic path focused on Python backend systems to build verifiable, production-style competence.
+We formalize the **Verification Bottleneck Framework**, demonstrating that while routine syntax generation has been commoditized by AI tools, our author-assigned qualitative framework prioritizes systems verification, automated testing, and relational data architecture as competencies worth developing. This is a strategic interpretation informed by the literature and industry context, not a direct measurement of employer preferences or compensation. Finally, we provide an actionable career roadmap for Pakistani graduates, outlining a reasoned strategic path focused on Python backend systems to build verifiable, production-style competence.
 
 **Keywords:** Software Engineering Labor Economics, Generative AI, SWE-bench Verified, P@SHA Skills Survey, Pakistan IT Exports, Verification Bottleneck, Junior Developer Pipeline.
 
@@ -88,19 +88,19 @@ Figure 1 plots the co-evolution of U.S. software job postings (Indeed Hiring Lab
 
 ```
 Table 1: Longitudinal Software Engineering & Technology Trajectories (2020–2026)
-+------+-----------------------+----------------------+---------------------------+------------------------+
-| Year | AI Tool Adoption (%)* | SWE-bench Milestones^| U.S. Openings Index**     | Tech Layoffs (Global)  |
-+------+-----------------------+----------------------+---------------------------+------------------------+
-| 2020 |          —            |          —           |          78.9 (Part-yr)   |         80,000         |
-| 2021 |          —            |          —           |         148.4             |         15,000         |
-| 2022 |          —            |          —           |         195.6             |        165,000         |
-| 2023 |       70.0%           |          —           |          90.4             |        263,000         |
-| 2024 |       76.0%           |        38.8%         |          69.5             |        152,000         |
-| 2025 |       84.0%           |        70.3%         |          65.1             |         98,000         |
-| 2026 |       88.0% (Proj.)   |          —           |          73.1 (YTD)       |         75,000 (YTD)   |
-+------+-----------------------+----------------------+---------------------------+------------------------+
++------+-----------------------+-------------------------------+---------------------------+------------------------+
+| Year | AI Tool Adoption (%)* | SWE-bench Verified Milestone^ | U.S. Openings Index**     | Tech Layoffs (Global)  |
++------+-----------------------+-------------------------------+---------------------------+------------------------+
+| 2020 |          —            |              —                |          78.9 (Part-yr)   |         80,000         |
+| 2021 |          —            |              —                |         148.4             |         15,000         |
+| 2022 |          —            |              —                |         195.6             |        165,000         |
+| 2023 |       70.0%           |              —                |          90.4             |        263,000         |
+| 2024 |       76.0%           |            38.8%              |          69.5             |        152,000         |
+| 2025 |       84.0%           |            70.3%              |          65.1             |         98,000         |
+| 2026 |       88.0% (Proj.)   |              —                |          73.1 (YTD)       |         75,000 (YTD)   |
++------+-----------------------+-------------------------------+---------------------------+------------------------+
 * Notes: 2020–2022 unobserved (no dedicated Stack Overflow survey item). 2023–2025 audited from Stack Overflow Developer Surveys: 2023 (44% using + 26% planning = 70%), 2024 (62% using + 14% planning = 76%), and 2025 AI Survey (84% using or planning; 51% daily use among professional developers). 2026 is an author analytical projection based on enterprise adoption trajectory.
-^ Notes: Selected dated benchmark milestones across distinct configurations and evaluation subsets (not exhaustive annual maximums). SWE-bench Verified was launched August 13, 2024 (500 human-validated tasks); values for 2020–2023 and 2026 are unobserved in the Verified series. In 2023, the original full SWE-bench (2,294 tasks) recorded a baseline top score of 1.96% (45/2,294) for Claude 2 (Jimenez et al., 2023); 4.2% was an unverified secondary composite or Lite subset score. 2024 records the OpenAI Verified launch baseline for Claude 3.5 Sonnet with SWE-agent (33.6%, 168/500; August 13, 2024) and Xia et al.'s Agentless evaluation with GPT-4o (38.8%, 194/500; arXiv:2407.01489, revision dated September 2, 2024). 2025 evaluates Claude 3.7 Sonnet with high-compute scaffold (70.3%, 343.8 expected tasks on 489 evaluated tasks excluding 11 environment-incompatible tasks; unassisted baseline was 63.7%, 311.5 expected tasks; Anthropic, Feb 2025). 2026 full-year frontier benchmarks remain unobserved / under ongoing evaluation.
+^ Notes: The SWE-bench Verified subset (500 human-validated tasks) was launched August 13, 2024; values for 2020–2023 and 2026 are unobserved in the Verified series. For separate historical context, the original full SWE-bench benchmark (2,294 tasks) evaluated in late 2023 recorded a baseline score of 1.96% (45/2,294) for Claude 2 (Jimenez et al., 2023); 4.2% was an unverified secondary composite or Lite subset score. 2024 records the Agentless evaluation with GPT-4o (38.8%, 194/500; Xia et al., arXiv:2407.01489; evaluation snapshot September 2, 2024, arXiv v2 October 29, 2024) and the official SWE-bench Verified leaderboard evaluation for Claude 3.5 Sonnet with SWE-agent (33.6%, 168/500; August 13, 2024). 2025 evaluates Claude 3.7 Sonnet with high-compute scaffold (70.3%, 343.8 expected tasks on 489 evaluated tasks excluding 11 environment-incompatible tasks; unassisted baseline was 63.7%, 311.5 expected tasks; Anthropic, Feb 2025). 2026 full-year frontier benchmarks remain unobserved / under ongoing evaluation.
 ** Notes: Daily series IHLIDXUSTPSOFTDEVE from FRED / Indeed Hiring Lab (Feb 1, 2020 = 100.0). Annual aggregates computed from 2,443 valid daily observations: 2020 is partial year (Feb 1–Dec 31, 335 obs, mean 78.91, min 64.70, max 100.78); full-year means for 2021 (148.41, min 90.54, max 217.96), 2022 (195.59, min 130.51, max 233.83), 2023 (90.40, min 72.17, max 130.27), 2024 (69.53, min 66.53, max 72.58), and 2025 (65.05, min 61.10, max 68.02); 2026 is an observed YTD snapshot through Oct 9, 2026 (282 obs, mean 73.13, min 66.92, max 78.34). Retrieved 2026-10-16.
 ```
 
@@ -163,9 +163,9 @@ This scenario illustrates a conceptual operational shift:
 Our empirical and industry findings offer clear, actionable guidance for graduates navigating this competitive landscape:
 
 1. **End the Decision Paralysis (Choose Depth Over Breadth):**  
-   Switching between Python, QA, and frontend every 7 days prevents competence from becoming visible. In an employer-driven market where ~72% of demand is for experienced talent, surface-level familiarity with multiple tools provides zero hiring signal. Committing deeply to a single backend stack (**Python / FastAPI + PostgreSQL + PyTest**) provides a reasoned strategic path to build demonstrable depth.
+   Switching between Python, QA, and frontend every 7 days prevents competence from becoming visible. In an employer-driven market where ~72% of demand is for experienced talent, surface-level familiarity with multiple tools often provides weak hiring signal compared to demonstrable specialization. Committing deeply to a single backend stack (**Python / FastAPI + PostgreSQL + PyTest**) offers a reasoned, focused career strategy to develop depth.
 2. **Build Verifiable Proof of Work:**  
-   Because unverified resumes are heavily discounted, a deployed, production-style portfolio application featuring automated integration tests, clean schema design, and live hosting provides the strongest possible differentiator.
+   In an applicant pool crowded with boilerplate projects, a deployed, production-style portfolio application featuring automated integration tests, clean schema design, and live hosting serves as a practical vehicle to demonstrate verifiable engineering competence.
 3. **Maintain Realistic Career Expectations:**  
    Landing a first role in Pakistan is a deliberate 60-to-90 day campaign requiring focused portfolio construction, targeted networking with engineering leads, and daily problem-solving practice (DSA). Real industry experience in Pakistan is the most effective foundation for long-term goals, including US graduate scholarships (Fulbright) and international engineering roles.
 
@@ -190,3 +190,4 @@ Our empirical and industry findings offer clear, actionable guidance for graduat
 15. Brynjolfsson, E., Li, D., & Raymond, L. R. (2023). *Generative AI at Work*. Quarterly Journal of Economics (NBER Working Paper 31161).
 16. Peng, S., et al. (2023). *The Impact of AI on Developer Productivity: Evidence from GitHub Copilot*. arXiv:2302.06590.
 17. Lee, R. (2026). *Tech Layoffs Tracker (2022-2026)*. [https://layoffs.fyi/](https://layoffs.fyi/)
+18. Xia, C. S., Deng, Y., Ding, S., Yang, J., & Zhang, L. (2024). *Agentless: Demystifying LLM-based Software Engineering Agents*. arXiv:2407.01489 (evaluation snapshot September 2, 2024; arXiv v2 October 29, 2024). [https://arxiv.org/abs/2407.01489](https://arxiv.org/abs/2407.01489)

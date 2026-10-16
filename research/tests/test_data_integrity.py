@@ -111,11 +111,19 @@ def test_data_integrity():
         assert 'model_release_date' in m and len(m['model_release_date']) == 10
         assert 'date_clarification' in m and len(m['date_clarification']) > 10
 
-    # Explicitly verify Agentless date distinction: arXiv revision 2024-09-02 vs model release 2024-05-13
+    # Explicitly verify Agentless date distinction: evaluation snapshot (2024-09-02), arXiv v1 (2024-07-01), arXiv v2 (2024-10-29), model release (2024-05-13)
     agentless_m = next(m for m in data['swe_bench_milestones'] if m['milestone_id'] == 'swe_verified_2024_gpt4o')
     assert agentless_m['benchmark_report_date'] == '2024-09-02'
-    assert agentless_m['source_revision_date'] == '2024-09-02'
+    assert agentless_m['evaluation_snapshot_date'] == '2024-09-02'
+    assert agentless_m['source_revision_date'] == '2024-10-29'
+    assert agentless_m['arxiv_v1_date'] == '2024-07-01'
+    assert agentless_m['arxiv_v2_date'] == '2024-10-29'
     assert agentless_m['model_release_date'] == '2024-05-13'
+
+    # Verify Claude 3.5 Sonnet Verified leaderboard attribution
+    sonnet_m = next(m for m in data['swe_bench_milestones'] if m['milestone_id'] == 'swe_verified_2024_sonnet35')
+    assert 'swebench.com' in sonnet_m['primary_source_url']
+    assert 'SWE-bench Official Leaderboard' in sonnet_m['citation']
         
     # Verify Stanford Digital Economy Lab early career research section exists with verified authors and title
     assert 'stanford_adp_early_career_employment_research' in data
