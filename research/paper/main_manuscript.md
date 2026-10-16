@@ -3,7 +3,7 @@
 **Author:**  
 Muhammad Bilal Farid  
 *BS Software Engineering Graduate & Independent Technology Analyst*  
-*Lahore, Pakistan*  
+*Islamabad/Rawalpindi, Pakistan*  
 
 ---
 

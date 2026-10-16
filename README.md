@@ -9,7 +9,7 @@
 
 **Author:** Muhammad Bilal Farid  
 *BS Software Engineering Graduate & Independent Technology Analyst*  
-*Lahore, Pakistan*  
+*Islamabad/Rawalpindi, Pakistan*  
 *Repository:* [github.com/bilalfarid-1/whattochoose](https://github.com/bilalfarid-1/whattochoose)
 
 ---
