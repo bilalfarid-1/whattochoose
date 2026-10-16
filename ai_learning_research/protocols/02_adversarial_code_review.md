@@ -6,7 +6,7 @@ This protocol operationalizes the **Verification Shift** (Mozannar et al., CHI 2
 
 ## 1. Objective
 
-To transform clean-looking happy-path code into resilient, production-grade software by having an AI generate **hostile test payloads, concurrency edge cases, and architectural failure vectors** that you must defend against using automated tests.
+To transform clean-looking happy-path code into resilient, production-style software by having an AI generate **hostile test payloads, concurrency edge cases, and architectural failure vectors** that you must defend against using automated tests.
 
 ---
 
@@ -41,7 +41,7 @@ Paste your completed code (e.g., your CRUD router, authentication dependency, or
 The AI will return 5 specific vulnerability or failure vectors, such as:
 1. **Concurrency Race Condition:** What happens if two simultaneous requests update the same record at the exact same millisecond? (Lost update problem).
 2. **Malformed Payload Injection:** What happens if a client passes a JSON body with an unexpected type (e.g., an array where a dictionary is expected)? Does it leak a 500 stack trace or return a clean 422?
-3. **Database Connection Leak:** If an unhandled exception occurs inside the route before the database commit, is the async session explicitly rolled back and closed, or does it hang in the pool?
+3. **Database Connection Leak:** If an unhandled exception occurs inside the route before the database commit, is the database session explicitly rolled back and closed, or does it hang in the pool?
 4. **Authorization Bypass:** Can User A access or update an application record belonging to User B by simply guessing the integer ID? (Broken Object-Level Authorization - BOLA).
 5. **Memory Exhaustion via Pagination:** What happens if the client requests `limit=1000000`? Does the database attempt to serialize one million rows into memory?
 

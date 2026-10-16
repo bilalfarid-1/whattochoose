@@ -28,10 +28,13 @@ def run_analysis():
     ts_df = pd.DataFrame(raw['time_series_data'])
     skills_df = pd.DataFrame(raw['author_qualitative_skills_rubric']['skills_evaluations'])
     pasha_metrics = raw['pakistan_industry_benchmarks_2025_2026']
+    milestones_df = pd.DataFrame(raw.get('swe_bench_milestones', []))
     
     # Export cleaned processed CSVs
     ts_df.to_csv(os.path.join(PROCESSED_DIR, 'time_series_metrics_2020_2026.csv'), index=False)
     skills_df.to_csv(os.path.join(PROCESSED_DIR, 'skills_lifecycle_metrics.csv'), index=False)
+    if not milestones_df.empty:
+        milestones_df.to_csv(os.path.join(PROCESSED_DIR, 'swe_bench_milestones.csv'), index=False)
     
     print("=" * 68)
     print("AUDITED MACROECONOMIC & INDUSTRY BENCHMARKS")
@@ -57,9 +60,21 @@ def run_analysis():
     so_2023 = ts_df.loc[ts_df['year'] == 2023, 'global_ai_tool_engagement_pct'].values[0]
     so_2024 = ts_df.loc[ts_df['year'] == 2024, 'global_ai_tool_engagement_pct'].values[0]
     so_2025 = ts_df.loc[ts_df['year'] == 2025, 'global_ai_tool_engagement_pct'].values[0]
-    print(f"\nDeveloper AI Tool Engagement (Using or Planning):")
-    print(f"- 2023: {so_2023}% | 2024: {so_2024}% | 2025: {so_2025}% (51% daily use in 2025)")
+    print(f"\nDeveloper AI Tool Engagement (Stack Overflow Surveys):")
+    print(f"- 2023: {so_2023}% (44% actively using, 26% planning to use)")
+    print(f"- 2024: {so_2024}% (62% actively using, 14% planning to use)")
+    print(f"- 2025: {so_2025}% (~84% using/planning, 51% daily use among professional devs)")
     
+    # 4. FRED Indeed Software Postings Aggregates
+    print("\nFRED Indeed U.S. Software Job Openings Index (IHLIDXUSTPSOFTDEVE):")
+    for _, row in ts_df.iterrows():
+        y = int(row['year'])
+        mean_val = row['us_indeed_software_postings_index']
+        min_val = row.get('us_postings_min')
+        max_val = row.get('us_postings_max')
+        count = row.get('us_postings_obs_count')
+        print(f"- {y}: Mean {mean_val:.2f} (Min {min_val:.2f}, Max {max_val:.2f}, N={count})")
+
     # Generate transparent, professionally credible charts
     plot_figure_1_macro_trends(ts_df)
     plot_figure_2_skills_framework(skills_df)
@@ -70,7 +85,7 @@ def run_analysis():
 
 def plot_figure_1_macro_trends(df):
     """Figure 1: Co-evolution of U.S. Software Postings and AI Benchmark Progression"""
-    fig, ax1 = plt.subplots(figsize=(10, 5.8))
+    fig, ax1 = plt.subplots(figsize=(10.5, 6.0))
     
     color_postings = '#2b5c8f'
     color_swe = '#8e44ad'
@@ -79,39 +94,58 @@ def plot_figure_1_macro_trends(df):
     
     # Left axis: Indeed U.S. Software Postings Index (FRED: IHLIDXUSTPSOFTDEVE)
     ax1.plot(df['year'], df['us_indeed_software_postings_index'], marker='o', color=color_postings, 
-             linewidth=2.4, label='U.S. Software Job Openings Index (FRED / Indeed, Feb 2020=100)')
+             linewidth=2.4, label='U.S. Software Postings Index (FRED IHLIDXUSTPSOFTDEVE, Feb 2020=100)')
     ax1.set_xlabel('Calendar Year', fontweight='bold')
-    ax1.set_ylabel('U.S. Software Job Openings Index (2020=100)', color=color_postings, fontweight='bold')
+    ax1.set_ylabel('U.S. Software Job Openings Index (Feb 2020=100)', color=color_postings, fontweight='bold')
     ax1.tick_params(axis='y', labelcolor=color_postings)
-    ax1.set_ylim(40, 160)
+    ax1.set_ylim(40, 240)
+    
+    # Annotate key FRED economic inflection points
+    ax1.annotate('Post-ZIRP Tech Peak\n(2022 Mean: 195.6)', xy=(2022, 195.59), xytext=(2020.8, 215),
+                 arrowprops=dict(facecolor=color_postings, arrowstyle='->', lw=1.2),
+                 fontsize=8.5, backgroundcolor='#ffffff')
+    ax1.annotate('Post-ZIRP Stabilization\n(2024–2026 Mean: ~65–73)', xy=(2025, 65.05), xytext=(2023.2, 45),
+                 arrowprops=dict(facecolor=color_postings, arrowstyle='->', lw=1.2),
+                 fontsize=8.5, backgroundcolor='#ffffff')
     
     # Right axis: SWE-bench Verified & AI Tool Engagement
     ax2 = ax1.twinx()
+    
+    # Plot SWE-bench Verified milestones
     swe_verified_mask = df['swe_bench_verified_top_score_pct'].notna()
     ax2.plot(df.loc[swe_verified_mask, 'year'], df.loc[swe_verified_mask, 'swe_bench_verified_top_score_pct'], 
              marker='^', color=color_swe, linewidth=2.2, label='SWE-bench Verified Top Score (%, 2024–2026)')
     
-    # Plot original SWE-bench 2023 baseline point distinctly
-    if 'swe_bench_original_top_score_pct' in df.columns:
-        orig_swe_mask = df['swe_bench_original_top_score_pct'].notna()
-        if orig_swe_mask.any():
-            ax2.scatter(df.loc[orig_swe_mask, 'year'], df.loc[orig_swe_mask, 'swe_bench_original_top_score_pct'],
-                        color=color_orig_swe, marker='s', s=65, zorder=5,
-                        label='SWE-bench Original Baseline (4.2%, Oct 2023)')
+    # Plot original SWE-bench 2023 baseline point distinctly (full benchmark denominator = 2,294)
+    orig_swe_mask = df['swe_bench_original_top_score_pct'].notna()
+    if orig_swe_mask.any():
+        ax2.scatter(df.loc[orig_swe_mask, 'year'], df.loc[orig_swe_mask, 'swe_bench_original_top_score_pct'],
+                    color=color_orig_swe, marker='s', s=70, zorder=5,
+                    label='SWE-bench Full Baseline (Claude 2: 1.96%, Oct 2023)')
 
-    ax2.plot(df['year'], df['global_ai_tool_engagement_pct'], marker='d', linestyle='--', color=color_ai,
-             linewidth=2.0, label='Developer AI Tool Engagement (Stack Overflow, %)')
-    ax2.set_ylabel('Benchmark Score & Adoption (%)', color=color_swe, fontweight='bold')
+    # Developer AI Tool Engagement: Plot measured survey observations (2023-2025)
+    so_mask = df['global_ai_tool_engagement_pct'].notna() & (df['ai_metric_measurement_type'] == 'survey_audited')
+    ax2.plot(df.loc[so_mask, 'year'], df.loc[so_mask, 'global_ai_tool_engagement_pct'], marker='d', color=color_ai,
+             linewidth=2.0, label='Developer AI Tool Use/Plan (Stack Overflow 2023–2025, %)')
+             
+    # Plot 2026 analytical projection as a distinct open point (not connected to survey measurements)
+    proj_mask = df['ai_metric_measurement_type'] == 'author_projection'
+    if proj_mask.any():
+        ax2.scatter(df.loc[proj_mask, 'year'], df.loc[proj_mask, 'global_ai_tool_engagement_pct'],
+                    marker='d', facecolors='none', edgecolors=color_ai, s=75, linewidth=1.8, zorder=5,
+                    label='2026 Analytical Projection (88%, Author Scenario)')
+                    
+    ax2.set_ylabel('Benchmark Score & Developer Adoption (%)', color=color_swe, fontweight='bold')
     ax2.tick_params(axis='y', labelcolor=color_swe)
     ax2.set_ylim(0, 105)
     
-    plt.title('Figure 1: U.S. Software Job Postings vs AI Benchmark Progression (2020–2026)\n'
-              '[Descriptive Co-Evolution | Sources: FRED (IHLIDXUSTPSOFTDEVE), Stack Overflow, Stanford HAI, SWE-bench]', 
-              fontsize=10.5, pad=12, fontweight='bold')
+    plt.title('Figure 1: U.S. Software Job Openings Index vs AI Benchmark Milestones & Adoption (2020–2026)\n'
+              '[Descriptive Macroeconomic Co-Evolution | Sources: FRED (IHLIDXUSTPSOFTDEVE), Stack Overflow, SWE-bench]', 
+              fontsize=10.2, pad=12, fontweight='bold')
     
     lines_1, labels_1 = ax1.get_legend_handles_labels()
     lines_2, labels_2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='center left', frameon=True, fontsize=8.6)
+    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='upper left', frameon=True, fontsize=8.2)
     
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig1_junior_squeeze.png'))

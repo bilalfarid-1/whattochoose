@@ -1,7 +1,6 @@
 import json
 import os
 import re
-import math
 
 DATE_REGEX = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 
@@ -47,7 +46,9 @@ def test_data_integrity():
         'export_measurement_type',
         'ai_metric_measurement_type',
         'us_postings_measurement_type',
-        'entry_share_data_type'
+        'us_postings_min',
+        'us_postings_max',
+        'us_postings_obs_count'
     ]
     
     for row in ts:
@@ -63,13 +64,17 @@ def test_data_integrity():
         # Ensure observation period start <= end
         assert row['observation_period_start'] <= row['observation_period_end'], f"Invalid period range for year {year}"
         
-    # Verify specific 2026 temporal distinction: midyear snapshot ending 2026-06-30 vs data retrieved in October
+        # Verify min <= mean <= max bounding for FRED postings
+        postings_val = row['us_indeed_software_postings_index']
+        assert row['us_postings_min'] <= postings_val <= row['us_postings_max'], f"Bounding invariant failed for year {year}"
+        
+    # Verify specific 2026 temporal distinction: snapshot ending 2026-10-09 vs data retrieved in October
     row_2026 = [r for r in ts if r['year'] == 2026][0]
-    assert row_2026['observation_period_end'] == "2026-06-30", "2026 midyear snapshot should have observation_period_end: 2026-06-30"
-    assert row_2026['data_retrieved_at'] == "2026-10-15", "2026 data_retrieved_at should be 2026-10-15"
+    assert row_2026['observation_period_end'] == "2026-10-09", "2026 snapshot should have observation_period_end: 2026-10-09"
+    assert row_2026['data_retrieved_at'] == "2026-10-16", "2026 data_retrieved_at should be 2026-10-16"
     
     # 4. Verify SWE-bench Benchmark Provenance and Null Handling
-    # SWE-bench Verified was launched August 13, 2024. Observations for 2020-2023 MUST be null (None in Python).
+    # SWE-bench Verified was launched August 13, 2024. Observations for 2020-2023 MUST be null.
     for row in ts:
         year = row['year']
         if year < 2024:
@@ -86,11 +91,23 @@ def test_data_integrity():
             
         # Original SWE-bench was introduced in late 2023
         if year == 2023:
-            assert abs(row['swe_bench_original_top_score_pct'] - 4.2) < 0.01, "Expected 4.2% original SWE-bench baseline in 2023"
+            assert abs(row['swe_bench_original_top_score_pct'] - 1.96) < 0.01, "Expected 1.96% verified Claude 2 baseline in 2023"
             assert 'Jimenez et al.' in row['benchmark_swe_original_source']
         else:
             assert row['swe_bench_original_top_score_pct'] is None, f"swe_bench_original_top_score_pct should be null in {year}"
             
+    # Verify discrete SWE-bench milestones table exists
+    assert 'swe_bench_milestones' in data, "Missing swe_bench_milestones table"
+    assert len(data['swe_bench_milestones']) >= 4, "Expected at least 4 discrete SWE-bench milestones"
+    for m in data['swe_bench_milestones']:
+        assert 'denominator' in m and m['denominator'] > 0
+        assert 'score_pct' in m and m['score_pct'] > 0
+        assert 'primary_source_url' in m and m['primary_source_url'].startswith('http')
+        
+    # Verify Stanford / ADP early career research section exists
+    assert 'stanford_adp_early_career_employment_research' in data
+    assert 'Brynjolfsson' in data['stanford_adp_early_career_employment_research']['citation']
+
     # 5. Verify Mathematical Reproducibility of the Qualitative Skills Rubric
     rubric = data['author_qualitative_skills_rubric']
     weights = rubric['scoring_weights']
@@ -108,7 +125,7 @@ def test_data_integrity():
         assert calculated_val == recorded_val, f"Rubric formula mismatch for {skill['skill_domain']}: calc {calculated_val} vs rec {recorded_val}"
         assert calculated_val == skill['contemporary_2026_weight'], f"Weight mismatch for {skill['skill_domain']}"
     
-    print("[PASS] All data integrity, arithmetic, P@SHA link, ISO date formats, benchmark nulls, and rubric reproduction tests passed successfully!")
+    print("[PASS] All data integrity, arithmetic, P@SHA link, ISO date formats, benchmark nulls, FRED bounds, and rubric reproduction tests passed successfully!")
 
 if __name__ == '__main__':
     test_data_integrity()

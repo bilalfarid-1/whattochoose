@@ -33,7 +33,7 @@ To prepare for high-stakes technical job interviews by verbally articulating the
 
 ### Step 1: Formulate Your Technical Defense
 Pick an architectural decision you made in your codebase. For example:
-* *"Why did you use FastAPI with asynchronous SQLAlchemy instead of Django or Flask?"*
+* *"Why did you use FastAPI with synchronous SQLAlchemy and worker threadpools instead of Django or Flask?"*
 * *"Why did you use PostgreSQL relational modeling with foreign keys instead of MongoDB?"*
 * *"Why did you implement JWT tokens rather than stateful server-side sessions stored in Redis?"*
 * *"What is the indexing strategy on your `job_applications` table, and why did you choose a B-Tree index over a Hash index?"*
@@ -46,13 +46,13 @@ Submit your explanation:
 ### Step 2: The Inquisitor's Cross-Examination
 The AI will cross-examine your logic, pressing you with real-world industry counter-scenarios:
 * *"You claimed PostgreSQL is better because of ACID transactions. But doesn't MongoDB support multi-document ACID transactions since version 4.0? Why couldn't you use MongoDB's flexible schema to store interview notes as embedded sub-documents instead of creating a separate relational table with a foreign key join?"*
-* *"You mentioned asynchronous FastAPI handles higher concurrency. But what happens if your endpoint performs a CPU-bound bcrypt password hash on the main event loop? Won't that block all incoming requests despite using async/await?"*
+* *"Why did you use synchronous SQLAlchemy in FastAPI instead of async SQLAlchemy with asyncpg? Doesn't async provide higher theoretical concurrency?"*
 
 ### Step 3: The Refined Synthesis (The Interview Answer)
 You must formulate an evidence-based rebuttal that acknowledges trade-offs:
 1. **Acknowledge the Counter-Scenario:** *"Yes, MongoDB supports multi-document transactions, and embedding notes eliminates joins for single-record reads."*
 2. **Defend with Invariants:** *"However, in our domain model, notes and interview stages require relational integrity, cascade deletions on application deletion, and independent filtering across companies. PostgreSQL relational foreign keys enforce this at the database level rather than relying on application code."*
-3. **Address the CPU-bound Bottleneck:** *"Regarding bcrypt on the async loop, that is a real hazard. In production, password hashing must be offloaded to an asynchronous threadpool via `asyncio.to_thread` or Celery workers so it does not block the async event loop."*
+3. **Address the Execution Model Trade-off:** *"FastAPI automatically offloads synchronous endpoints to an AnyIO worker threadpool, ensuring that CPU-bound operations (such as bcrypt password hashing) or blocking relational queries do not stall an event loop. For typical transactional CRUD applications, synchronous SQLAlchemy offers simpler transaction management, predictable debugging, and clean rollback semantics without the complexity and leaky abstractions of async ORM sessions."*
 
 ---
 

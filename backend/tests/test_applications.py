@@ -8,14 +8,15 @@ def test_create_and_list_companies(client, auth_headers):
         json={
             "name": "Netsol Technologies",
             "website": "https://netsoltech.com",
-            "location": "Lahore, Pakistan",
-            "notes": "Global asset finance software provider."
+            "industry": "Asset Finance & Leasing Software",
+            "location": "Lahore, Pakistan"
         },
         headers=auth_headers
     )
     assert response.status_code == status.HTTP_201_CREATED
     data = response.json()
     assert data["name"] == "Netsol Technologies"
+    assert data["industry"] == "Asset Finance & Leasing Software"
     company_id = data["id"]
 
     # List companies

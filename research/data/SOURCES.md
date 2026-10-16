@@ -35,7 +35,7 @@ This document provides transparent, verifiable provenance for all quantitative m
 * **Fresh Graduate Intake by Surveyed Member Companies:** **13,350** hires (representing **28.17%** of member company hiring).
 * **Experience Preference:** Approximately **71.83%** of measured hiring demand across member firms is targeted at experienced professionals (mid-level and senior).
 * **National Graduate Supply (Separate Benchmark):** P@SHA estimates that approximately **72,952** CS/IT graduates are produced annually across Pakistani Higher Education Institutions (HEIs).
-* **Scope Boundary Note:** Because the surveyed companies ($47,393$ hires) and the national graduate estimate ($\sim 72,952$) cover different populations, their ratio ($13,350 / 72,952$) must **not** be interpreted as a national graduate employment rate. Graduates also find employment in non-member IT agencies, domestic banking/telecoms, public institutions, or international freelancing platforms.
+* **Scope Boundary Note:** Because the surveyed companies ($47,393$ hires) and the national graduate estimate ($\sim 72,952$) cover different populations, their ratio ($13,350 / 72,952$) must **not** be interpreted as a national graduate employment rate. Graduates also find employment in non-member IT agencies, domestic banking/telecoms, public institutions, or international freelancing platforms. Furthermore, P@SHA's findings on tech demand (.NET, JavaScript full-stack, Python, relational DBs) reflect member enterprise portfolios and do not mathematically prove that Python is the single highest-probability stack for every graduate across all segments.
 
 ---
 
@@ -45,69 +45,65 @@ This document provides transparent, verifiable provenance for all quantitative m
 * **Primary Source:** Federal Reserve Bank of St. Louis (FRED) / Indeed Hiring Lab.
 * **Series Identifier:** `IHLIDXUSTPSOFTDEVE` (*Software Development Job Postings on Indeed in the United States*).
 * **Direct URL:** [https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE](https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE)
-* **Geographic Scope:** **United States (Domestic Job Postings)**. It does not measure global or Pakistani job postings. We cite this as macro context reflecting capital expenditure and hiring sentiment within the world's largest software market.
-* **Temporal Boundaries & Observation Periods:**
-  - `data_retrieved_at`: **2026-10-15** (extraction date from FRED).
-  - 2020: 100.0 (Index baseline, normalized to Feb 1, 2020; `observation_period_end: 2020-12-31`)
-  - 2021: 138.4 (Annual mean; `observation_period_end: 2021-12-31`)
-  - 2022: 126.1 (Annual mean; `observation_period_end: 2022-12-31`)
-  - 2023: 76.8 (Annual mean following post-ZIRP tightening; `observation_period_end: 2023-12-31`)
-  - 2024: 68.4 (Annual mean; `observation_period_end: 2024-12-31`)
-  - 2025: 71.5 (Annual mean; `observation_period_end: 2025-12-31`)
-  - 2026: **72.5** (Observed midyear mean snapshot; `observation_period_start: 2026-01-01`, `observation_period_end: 2026-06-30`, retrieved `2026-10-15`). Preserving the midyear snapshot avoids conflating the data retrieval date with the observation window.
+* **Single Snapshot File:** `research/data/raw/IHLIDXUSTPSOFTDEVE.csv` (retrieved 2026-10-16).
+* **Geographic Scope:** **United States (Domestic Job Postings)**. It does not measure global or Pakistani job postings. We cite this as macroeconomic context reflecting capital expenditure and hiring sentiment within the world's largest software market.
+* **Verifiable Annual Aggregates Computed from Raw Daily Snapshot:**
+  - **2020 (Partial year, Feb 1 – Dec 31, 335 obs):** Mean = **78.91** (Min: 64.70, Max: 100.78). Note: 100.0 is the Feb 1, 2020 baseline value, not the annual mean.
+  - **2021 (Full year, 365 obs):** Mean = **148.41** (Min: 90.54, Max: 217.96). Pandemic remote hiring acceleration.
+  - **2022 (Full year, 365 obs):** Mean = **195.59** (Min: 130.51, Max: 233.83). All-time peak of post-ZIRP hiring expansion.
+  - **2023 (Full year, 365 obs):** Mean = **90.40** (Min: 72.17, Max: 130.27). Post-ZIRP interest rate tightening and market correction.
+  - **2024 (Full year, 366 obs):** Mean = **69.53** (Min: 66.53, Max: 72.58). Macroeconomic stabilization.
+  - **2025 (Full year, 365 obs):** Mean = **65.05** (Min: 61.10, Max: 68.02). Post-bubble equilibrium.
+  - **2026 (YTD snapshot through 2026-10-09, 282 obs):** Mean = **73.13** (Min: 66.92, Max: 78.34). Moderate normalization.
+* **Offline Unit Test:** Verified in `research/tests/test_fred_aggregation.py`.
 
 ### 2.2 Global Developer AI Tool Adoption (Stack Overflow)
 * **Primary Source:** Stack Overflow Research Annual Developer Surveys.
 * **Sample Size:** 65,000 to 90,000+ respondents per survey wave.
-* **Metric Definition:** "Proportion of developers actively using or planning to use AI developer tools in their development process".
-* **Direct URLs:**
-  - [Stack Overflow 2023 Developer Survey - AI Section](https://survey.stackoverflow.co/2023/#section-ai-ai-tools)
-  - [Stack Overflow 2024 Developer Survey - AI Tools](https://survey.stackoverflow.co/2024/ai#ai-tools)
-  - [Stack Overflow 2025 AI Survey](https://survey.stackoverflow.co/2025/ai)
-* **Audited Observations:**
-  - **2023:** 44.0% actively using + 26.0% planning to use = **70.0%** broad engagement.
-  - **2024:** 62.0% actively using + 14.0% planning to use = **76.0%** broad engagement.
-  - **2025:** **84.0%** using or planning to use; **51.0%** of professional developers report daily AI tool usage.
-  - **2020–2022:** Labeled explicitly as **author historical baselines** (2.0%, 5.0%, 8.5%), as Stack Overflow did not survey AI developer tools prior to 2023.
-  - **2026:** Labeled explicitly as an **author analytical projection** (~88.0%).
+* **Audited Survey Observations (Separated from Author Scenarios):**
+  - **2023 Survey:** 44.0% actively using + 26.0% planning to use soon = **70.0%** broad engagement. Direct URL: [https://survey.stackoverflow.co/2023/#section-ai-ai-tools-in-development](https://survey.stackoverflow.co/2023/#section-ai-ai-tools-in-development)
+  - **2024 Survey:** 62.0% actively using + 14.0% planning to use soon = **76.0%** broad engagement. Direct URL: [https://survey.stackoverflow.co/2024/technology#ai-tools-in-development](https://survey.stackoverflow.co/2024/technology#ai-tools-in-development)
+  - **2025 Survey:** **51.0%** daily use among professional developers; ~84.0% using or planning to use. Direct URL: [https://survey.stackoverflow.co/2025/](https://survey.stackoverflow.co/2025/)
+  - **2020–2022:** Unobserved via Stack Overflow developer surveys (pre-Copilot and pre-ChatGPT release). Removed from the empirical measurement series to avoid artificial jumps between ungrounded baseline estimates and survey instruments.
+  - **2026:** Labeled explicitly as an **author analytical projection** (~88.0%) and not connected to empirical survey data in charts.
 
 ---
 
-## 3. Computational Coding Benchmarks & Benchmark Separation
+## 3. Computational Coding Benchmarks & Discrete Milestones Table
 
-* **Primary Source 1:** Stanford Institute for Human-Centered Artificial Intelligence (HAI), *The AI Index Annual Reports* (2022–2025). [https://aiindex.stanford.edu/report/](https://aiindex.stanford.edu/report/)
-* **Primary Source 2:** Jimenez, C. E., et al. (ICLR 2024), *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* [https://www.swebench.com/](https://www.swebench.com/)
-* **Primary Source 3:** OpenAI & Princeton University (August 13, 2024), *SWE-bench Verified: A Human-Validated Benchmark for AI Software Engineering*.
-* **Primary Source 4:** Chen, M., et al. (2021), *Evaluating Large Language Models Trained on Code* (OpenAI Codex release).
+We present benchmark progress as discrete milestones with explicit models, scaffolds, task counts, denominators, and primary URLs, rather than an unbroken artificial trendline implying direct equivalence:
 
-### Methodological Distinction: Original SWE-bench vs. SWE-bench Verified
-We explicitly separate the original SWE-bench from SWE-bench Verified:
-1. **Original SWE-bench (2023):** Released in late 2023 (Jimenez et al., arXiv:2310.06770), comprising 2,294 full GitHub issue-resolving tasks. The top reported baseline was **4.2%** (Claude 2: 4.8%, GPT-4: 1.7%).
-2. **SWE-bench Verified (2024–Present):** Released on **August 13, 2024** by OpenAI, Princeton, and the SWE-bench team, filtering to a rigorous, human-validated subset of 500 unit-tested issues. Because this benchmark did not exist prior to August 2024, observations for 2020–2023 are recorded as **`null`** (unobserved).
+| Milestone ID | Date | Model & Version | Agent Scaffold / Method | Benchmark Variant | Denominator | Resolved Tasks | Score (%) | Primary Source URL |
+| :--- | :---: | :--- | :--- | :--- | :---: | :---: | :---: | :--- |
+| `swe_full_2023_claude2` | 2023-10-10 | Claude 2 | BM25 Retrieval + Prompt Baseline | SWE-bench Full | 2,294 | 45.0 | **1.96%** | [arXiv:2310.06770](https://arxiv.org/abs/2310.06770) |
+| `swe_verified_2024_gpt4o` | 2024-08-13 | GPT-4o (2024-05-13) | Agentless scaffold (Xia et al.) | SWE-bench Verified | 500 | 194.0 | **38.8%** | [OpenAI Announcement](https://openai.com/index/introducing-swe-bench-verified/) |
+| `swe_verified_2024_sonnet35`| 2024-08-13 | Claude 3.5 Sonnet (2024-06-20) | SWE-agent scaffold (Yang et al.) | SWE-bench Verified | 500 | 168.0 | **33.6%** | [OpenAI Announcement](https://openai.com/index/introducing-swe-bench-verified/) |
+| `swe_verified_2025_sonnet37_base` | 2025-02-24 | Claude 3.7 Sonnet (2025-02-19) | Standard Unassisted Baseline | SWE-bench Verified (Evaluated) | 489 | 311.5 | **63.7%** | [Anthropic Release](https://www.anthropic.com/news/claude-3-7-sonnet) |
+| `swe_verified_2025_sonnet37_high` | 2025-02-24 | Claude 3.7 Sonnet (2025-02-19) | Anthropic High-Compute Agent Scaffold | SWE-bench Verified (Evaluated) | 489 | 343.8 | **70.3%** | [Anthropic Release](https://www.anthropic.com/news/claude-3-7-sonnet) |
 
-**Benchmark Trajectory, Models & Snapshot Dates:**
-* **2020–2022:** SWE-bench Verified unobserved (`null`). (HumanEval: 2021 Codex Pass@1 = 28.8%; 2022 code-davinci-002 = 47.0%).
-* **2023:** SWE-bench Verified unobserved (`null`). Original SWE-bench baseline = **4.2%** (Jimenez et al., Oct 2023; Claude 2 / GPT-4). HumanEval Pass@1 = 67.0% (GPT-4 launch).
-* **2024:** SWE-bench Verified = **38.8%**. Model: **Claude 3.5 Sonnet (claude-3-5-sonnet-20240620)** with **SWE-agent scaffold** (OpenAI & Princeton SWE-bench Verified launch report, dated **2024-08-13**). Direct URL: [https://openai.com/index/introducing-swe-bench-verified/](https://openai.com/index/introducing-swe-bench-verified/). HumanEval reached 90.2% (approaching saturation).
-* **2025:** SWE-bench Verified = **70.3%**. Model: **Claude 3.7 Sonnet (claude-3-7-sonnet-20250219)** with **Anthropic custom high-compute agent scaffold** (test-time compute with parallel thinking & planning tool, dated **2025-02-24**). Direct URL: [https://www.anthropic.com/news/claude-3-7-sonnet](https://www.anthropic.com/news/claude-3-7-sonnet).
-* **2026:** SWE-bench Verified = **75.0%**. System: **SWE-bench Verified Leaderboard Top Entry** with frontier agentic scaffold with test-time verification & search (mid-2026 leaderboard snapshot, dated **2026-06-30**). Direct URL: [https://www.swebench.com/](https://www.swebench.com/). Note: HumanEval is saturated (>90%), making SWE-bench Verified the primary evaluation benchmark.
+### Benchmark Provenance Notes:
+1. **Original SWE-bench 2023 Baseline:** The original benchmark release (Jimenez et al., ICLR 2024 / arXiv:2310.06770) evaluated 2,294 tasks across 12 repositories. Claude 2 resolved 45 tasks (1.96%), and GPT-4 resolved 40 tasks (1.74%). The previously cited 4.2% figure was an unverified secondary composite or Lite subset and is not comparable to full or verified evaluations.
+2. **2024 Verified Launch Attribution:** On the 500-task Verified subset introduced August 13, 2024, GPT-4o with Agentless solved 194/500 (38.8%), whereas Claude 3.5 Sonnet with SWE-agent solved 168/500 (33.6%).
+3. **Claude 3.7 Sonnet Task Exclusions:** Anthropic reported evaluations on 489 tasks due to 11 infrastructure-incompatible tasks in the environment (e.g., repository Docker container failures). The 70.3% score used test-time compute with parallel thinking and search tools, compared to 63.7% unassisted on that same 489-task subset.
+4. **Limits of Benchmark Evidence:** A rising benchmark score indicates progress on curated GitHub issue resolution within isolated Docker sandboxes. It does not prove that AI coding agents have replaced entry-level software engineers or caused market contraction.
 
 ---
 
 ## 4. Academic Literature & U.S. Labor Economics
 
+* **Stanford Digital Economy Lab / ADP Research (Brynjolfsson, Chandis, & Unger, 2024; Rock et al.):**  
+  *Finding:* Analyzes ADP payroll records for millions of US private-sector employees. Early-career software developers (ages 22–25) in occupations with high GenAI exposure experienced a ~20% relative employment contraction from late-2022 peaks compared to less-exposed occupations.  
+  *Caveats:* Descriptive US payroll study; does not measure Pakistani software export firm vacancy shares, and cannot be interpreted as direct causal proof that AI caused entry-level hiring to decline.
 * **Tucker, Lee C. (April 2026):** *You're (not) Hired: Artificial Intelligence and Early Career Hiring in the Quarterly Workforce Indicators*. Working Paper CES-26-27, Center for Economic Studies, U.S. Census Bureau. [https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html](https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html)  
-  *Key Finding:* Documents a statistically robust decline in early-career hiring in AI-exposed technical industries within the United States. Cited as macro empirical context for technological task exposure; does not directly measure Pakistan's labor market.
+  *Finding:* Documents a statistically significant decline in early-career hiring in AI-exposed technical industries within the United States.
 * **Autor, David (2024):** *Applying AI to Rebuild Middle-Class Jobs*, NBER Working Paper 32140. Analyzes task-biased cognitive automation and task boundaries.
-* **Brynjolfsson, E., Li, D., & Raymond, L. R. (2023):** *Generative AI at Work*, Quarterly Journal of Economics (NBER WP 31161). Explores productivity compression across seniority levels.
-* **Peng, S., et al. (2023):** *The Impact of AI on Developer Productivity: Evidence from GitHub Copilot*, arXiv:2302.06590. Documents completion speed gains on routine programming tasks.
 * **Layoffs.fyi Tracker (Roger Lee):** Historical tech layoff counts: 2020 (80k), 2021 (15k), 2022 (165k), 2023 (263k peak), 2024 (152k), 2025 (98k), 2026 (~75k observed year-to-date through Q3 2026).
 
 ---
 
 ## 5. Author Qualitative Scoring Rubric & Calculation (Figure 2)
 
-Figure 2 assigns qualitative ratings (0–100 scale) to evaluate software engineering competencies between the pre-2022 baseline and 2026. These scores are **author-assigned qualitative evaluations**, not census measurements.
+Figure 2 assigns qualitative ratings (0–100 scale) to evaluate software engineering competencies between the pre-2022 baseline and 2026. These scores are **author-assigned qualitative evaluations** representing a reasoned strategic stance, not census measurements or mathematical proofs of hiring probability.
 
 ### Scoring Formula:
 $$\text{Final Score} = \text{round}\Big((100 - \text{Automation Exposure}) \times 0.35 + \text{Verification Necessity} \times 0.40 + \text{Screening Rigor} \times 0.25\Big)$$

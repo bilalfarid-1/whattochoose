@@ -4,7 +4,9 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg)](https://www.sqlalchemy.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791.svg)](https://www.postgresql.org/)
-[![Tests](https://img.shields.io/badge/PyTest-20%20Passing-success.svg)](https://pytest.org)
+[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-20%20Passing-success.svg)](backend/tests/)
+[![Research Checks](https://img.shields.io/badge/Research%20Checks-Passing-success.svg)](research/tests/)
+[![AI Learning Framework](https://img.shields.io/badge/AI%20Framework-6%20Passing-success.svg)](ai_learning_research/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Author:** Muhammad Bilal Farid  
@@ -25,7 +27,7 @@ This repository unites three complementary engineering deliverables:
    A research-informed learning framework grounded in empirical studies, designed to master Python Backend Systems Engineering using AI as a deliberate cognitive amplifier. Synthesizing 16 categorized scholarly references across Cognitive Science, Computing Education (ACM SIGCSE / ICER), and HCI (ACM CHI), it helps graduates avoid passive tutorial bingeing through 4 operational learning protocols, research-informed system prompts, and a 30-Day Active-Learning Sprint.
 
 3. **JobPulse Platform (`/backend` & `/frontend`):**  
-   A production-grade, full-stack application built to operationalize the research recommendations. It provides a job application tracker, interview stage manager, debrief journal, funnel conversion analytics, and an interactive market research visualizer built with **FastAPI**, **PostgreSQL**, **Pydantic v2**, **PyTest**, and a modern **Tailwind/Vanilla JS Single-Page Application (SPA)**.
+   A production-style portfolio application built to operationalize the research recommendations. It provides a job application tracker, interview stage manager, debrief journal, funnel conversion analytics, and an interactive market research visualizer built with synchronous **FastAPI**, **SQLAlchemy 2.0**, **PostgreSQL**, **Pydantic v2**, **Alembic**, **PyTest**, and a modern **Tailwind/Vanilla JS Single-Page Application (SPA)**, utilizing FastAPI's worker threadpool to handle blocking database operations safely.
 
 ---
 
@@ -37,7 +39,7 @@ whattochoose/
 ├── frontend/                           # Interactive Modern Single-Page Application (SPA)
 │   └── index.html                      # Pipeline Kanban, Conversion Analytics & Research Explorer
 │
-├── backend/                            # Production FastAPI REST API
+├── backend/                            # Production-Style FastAPI REST API
 │   ├── app/
 │   │   ├── main.py                     # App entrypoint (serves API & Dashboard UI)
 │   │   ├── core/                       # Config (Pydantic Settings), DB engine, JWT/Bcrypt security
@@ -45,9 +47,11 @@ whattochoose/
 │   │   ├── schemas/                    # Pydantic v2 request/response schemas
 │   │   ├── crud/                       # Database repository operations & funnel analytics
 │   │   ├── api/                        # Versioned API v1 routers & JWT auth dependency
-│   │   └── static/                     # Embedded production static build
-│   ├── tests/                          # 14 passing automated PyTest unit & integration tests
-│   ├── Dockerfile                      # Production Python 3.12 slim container
+│   │   └── static/                     # Embedded static build
+│   ├── alembic/                        # Versioned database migration scripts
+│   ├── alembic.ini                     # Alembic migration configuration
+│   ├── tests/                          # 20 passing PyTest unit, integration & cross-user security isolation tests
+│   ├── Dockerfile                      # Python 3.12 slim container
 │   ├── docker-compose.yml              # Multi-container setup with PostgreSQL 16
 │   └── requirements.txt                # Backend dependencies
 │
@@ -66,12 +70,16 @@ whattochoose/
     │   ├── references.bib              # BibTeX citation library
     │   └── figures/                    # 300 DPI publication figures (Fig 1 - Fig 4)
     ├── data/
-    │   ├── raw/longitudinal_se_data.json # Multi-year harmonized empirical dataset
+    │   ├── raw/
+    │   │   ├── longitudinal_se_data.json # Multi-year harmonized empirical dataset
+    │   │   └── IHLIDXUSTPSOFTDEVE.csv    # Official daily FRED Indeed postings series (2020-2026)
+    │   ├── processed/                  # Processed time-series & benchmark milestone CSVs
     │   └── SOURCES.md                  # Comprehensive source audit & provenance documentation
     ├── src/
     │   └── analyze_market_dynamics.py  # Python statistical modeling & figure generation
     ├── tests/
-    │   └── test_data_integrity.py      # Automated data integrity, CAGR math & rubric tests
+    │   ├── test_data_integrity.py      # Automated data integrity, CAGR math & rubric tests
+    │   └── test_fred_aggregation.py    # Offline unit test for FRED annual aggregation metrics
     ├── roadmap/
     │   ├── 2026_graduate_readiness_matrix.md # Skills triage matrix
     │   └── pakistani_fresh_grad_playbook.md  # 90-day actionable execution guide
@@ -91,10 +99,13 @@ cd backend
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Run the automated test suite (14 passing tests)
+# 3. Apply database migrations
+alembic upgrade head
+
+# 4. Run the automated test suite (20 passing backend tests)
 python -m pytest -v
 
-# 4. Launch the application (serves both API & Frontend Dashboard)
+# 5. Launch the application (serves both API & Frontend Dashboard)
 uvicorn app.main:app --reload --port 8000
 ```
 
@@ -119,8 +130,9 @@ docker compose up --build -d
 ### Option 3: Run the Empirical Research Pipeline
 
 ```bash
-# 1. Run automated data integrity tests
+# 1. Run automated data integrity and FRED aggregation tests
 python research/tests/test_data_integrity.py
+python -m pytest -v research/tests/test_fred_aggregation.py
 
 # 2. Run market dynamics modeling and regenerate all figures
 python research/src/analyze_market_dynamics.py

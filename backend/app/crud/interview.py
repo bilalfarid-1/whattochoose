@@ -36,3 +36,7 @@ def update(db: Session, db_obj: InterviewStage, obj_in: InterviewStageUpdate) ->
     db.commit()
     db.refresh(db_obj)
     return db_obj
+
+def delete(db: Session, db_obj: InterviewStage) -> None:
+    db.delete(db_obj)
+    db.commit()

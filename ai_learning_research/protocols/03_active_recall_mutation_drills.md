@@ -33,7 +33,7 @@ To demonstrate independent competence by reconstructing core modules from memory
 ```
 
 ### Drill 1: Closed-Book Reconstruction
-1. Select one core component in your JobPulse application (e.g., `app/core/security.py` containing password hashing and JWT token generation, or an async CRUD service).
+1. Select one core component in your JobPulse application (e.g., `app/core/security.py` containing password hashing and JWT token generation, or a database CRUD service).
 2. Create a temporary scratch file (e.g., `scratch_rebuild.py`).
 3. Set a timer for 15–20 minutes.
 4. From memory, write the function signatures, Pydantic schemas, or database queries.

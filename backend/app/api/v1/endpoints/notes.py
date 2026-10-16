@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.api.deps import get_db, get_current_user
 from app.models.user import User
 from app.schemas.note import ApplicationNoteCreate, ApplicationNoteRead
-from app.crud.note import create, get_by_application
+from app.crud.note import create, get_by_application, get_by_id, delete
 from app.crud.application import get_by_id as get_application_by_id
 
 router = APIRouter()
@@ -39,3 +39,25 @@ def create_application_note(
             detail="Application not found."
         )
     return create(db=db, application_id=application_id, obj_in=note_in)
+
+@router.delete("/notes/{note_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_application_note(
+    note_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Delete a note after verifying that its parent application belongs to current_user."""
+    note = get_by_id(db=db, note_id=note_id)
+    if not note:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Note not found."
+        )
+    app_obj = get_application_by_id(db=db, application_id=note.application_id, user_id=current_user.id)
+    if not app_obj:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Note not found."
+        )
+    delete(db=db, db_obj=note)
+    return None

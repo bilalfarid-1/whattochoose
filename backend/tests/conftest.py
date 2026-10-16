@@ -74,13 +74,33 @@ def auth_headers(test_user):
     return {"Authorization": f"Bearer {token}"}
 
 @pytest.fixture
+def test_user_b(db_session):
+    """Fixture providing a second independent active user for multi-tenant isolation tests."""
+    user = User(
+        email="peer.engineer@example.com",
+        full_name="Ayesha Khan",
+        hashed_password=get_password_hash("password456"),
+        is_active=True
+    )
+    db_session.add(user)
+    db_session.commit()
+    db_session.refresh(user)
+    return user
+
+@pytest.fixture
+def auth_headers_b(test_user_b):
+    """Bearer token authorization headers for test_user_b."""
+    token = create_access_token(subject=test_user_b.email)
+    return {"Authorization": f"Bearer {token}"}
+
+@pytest.fixture
 def test_company(db_session):
-    """Fixture providing a persistent test company."""
+    """Fixture providing a persistent test company in the shared directory."""
     company = Company(
         name="Systems Limited",
         website="https://www.systemsltd.com",
-        location="Lahore, Pakistan",
-        notes="Premier enterprise software exporter."
+        industry="Information Technology & Software Services",
+        location="Lahore, Pakistan"
     )
     db_session.add(company)
     db_session.commit()

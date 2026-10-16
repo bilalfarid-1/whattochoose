@@ -16,8 +16,8 @@ def create(db: Session, obj_in: CompanyCreate) -> Company:
     db_obj = Company(
         name=obj_in.name.strip(),
         website=obj_in.website.strip() if obj_in.website else None,
-        location=obj_in.location.strip() if obj_in.location else None,
-        notes=obj_in.notes
+        industry=obj_in.industry.strip() if obj_in.industry else None,
+        location=obj_in.location.strip() if obj_in.location else None
     )
     db.add(db_obj)
     db.commit()

@@ -19,7 +19,7 @@ Consistency outweighs marathon fatigue. If four hours is not sustainable on cert
 At the conclusion of each study session, record:
 1. **Feature Completed or Extended:** (e.g., Application notes endpoint with cascade deletion).
 2. **Bug Found or Prevented:** (e.g., Fixed missing user ownership check allowing cross-user note access).
-3. **What I Can Explain Without Help:** (e.g., Difference between `selectinload` and `joinedload` in async SQLAlchemy).
+3. **What I Can Explain Without Help:** (e.g., Difference between `selectinload` and `joinedload` in SQLAlchemy).
 4. **Items to Revisit (Spaced Intervals):** (Review token expiry handling in 48 hours).
 
 ---
@@ -44,9 +44,9 @@ Evaluate whether AI is making you genuinely better—not merely faster at pastin
 ### WEEK 1: Understand & Rebuild One Vertical Slice
 * **Core Objective:** Select one existing JobPulse feature (e.g., creating and retrieving a job application). Trace the complete lifecycle of a request from the FastAPI route through Pydantic validation, SQLAlchemy queries, and PostgreSQL persistence.
 * **Days 1–2 (Trace & Model):** Map out `app/models/application.py` and `app/schemas/application.py`. Document all foreign keys, unique constraints, and cascade delete rules.
-* **Days 3–4 (Reconstruct):** In a scratch file or isolated branch, independently reconstruct the vertical slice: write the Pydantic schema, write the async SQLAlchemy query, and connect the route.
+* **Days 3–4 (Reconstruct):** In a scratch file or isolated branch, independently reconstruct the vertical slice: write the Pydantic schema, write the SQLAlchemy query, and connect the route.
 * **Day 5 (DSA & Verification):** LeetCode: Hash Maps & Two Pointers (Two Sum, Valid Anagram). Run existing tests: `pytest backend/tests/test_applications.py`.
-* **Days 6–7 (Closed-Book Recall & Spaced Review):** Reconstruct the async database session dependency (`get_db`) from memory in 15 minutes. Explain why an async generator (`yield`) is used.
+* **Days 6–7 (Closed-Book Recall & Spaced Review):** Reconstruct the database session dependency (`get_db`) from memory in 15 minutes. Explain why a generator (`yield`) is used to ensure deterministic session cleanup.
 
 ---
 
@@ -73,7 +73,7 @@ Evaluate whether AI is making you genuinely better—not merely faster at pastin
 * **Days 22–23 (Independent Feature Extension):** Add an interview debrief rating or salary negotiation milestone to JobPulse. Attempt the schema, route, and tests independently before requesting graduated hints.
 * **Days 24–25 (Deliberate Mutation & Bug Fix):** Deliberately introduce a defect (e.g., invert a boolean check or omit a foreign key index). Write a regression test that fails on the defect, then fix it cleanly.
 * **Days 26–27 (Technical Interview Defense):** Use the Architecture Challenger prompt to conduct a 45-minute mock interview defending JobPulse:
-  - Why FastAPI async instead of Flask/Django?
+  - Why FastAPI with synchronous SQLAlchemy instead of Flask/Django or async SQLAlchemy?
   - Why PostgreSQL relational modeling instead of MongoDB?
   - What are the trade-offs of stateless JWTs vs stateful Redis sessions?
 * **Days 28–30 (Deploy & Targeted Outreach):** Deploy your updated backend to Render or Railway connected to Neon/Supabase PostgreSQL. Send 5 targeted outreach messages to Engineering Leads at Pakistani software houses using the proven playbook template.

@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.api.deps import get_db, get_current_user
 from app.models.user import User
 from app.schemas.interview import InterviewStageCreate, InterviewStageRead, InterviewStageUpdate
-from app.crud.interview import create, get_by_application, get_by_id, update
+from app.crud.interview import create, get_by_application, get_by_id, update, delete
 from app.crud.application import get_by_id as get_application_by_id
 
 router = APIRouter()
@@ -54,11 +54,33 @@ def update_interview_stage(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Interview stage not found."
         )
-    # Verify ownership
+    # Verify parent application ownership with non-disclosing 404
     app_obj = get_application_by_id(db=db, application_id=stage.application_id, user_id=current_user.id)
     if not app_obj:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Not authorized to edit this interview stage."
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Interview stage not found."
         )
     return update(db=db, db_obj=stage, obj_in=stage_update)
+
+@router.delete("/interviews/{interview_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_interview_stage(
+    interview_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Delete an interview stage after verifying parent application ownership."""
+    stage = get_by_id(db=db, interview_id=interview_id)
+    if not stage:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Interview stage not found."
+        )
+    app_obj = get_application_by_id(db=db, application_id=stage.application_id, user_id=current_user.id)
+    if not app_obj:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Interview stage not found."
+        )
+    delete(db=db, db_obj=stage)
+    return None

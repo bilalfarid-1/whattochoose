@@ -45,7 +45,7 @@ Consult your AI assistant using the **Socratic Mentor Prompt** (`prompts/socrati
 Agree on the canonical subgoals:
 * **Subgoal 1 (Data Layer):** Efficient database query using `limit` and `offset` with an indexed `status` filter.
 * **Subgoal 2 (Schema Layer):** Pydantic response envelope containing `items`, `total_count`, `page`, and `page_size`.
-* **Subgoal 3 (Route Implementation):** Dependency injection of the async database session and parameter parsing.
+* **Subgoal 3 (Route Implementation):** Dependency injection of the database session and parameter parsing.
 * **Subgoal 4 (Defensive Testing):** PyTest cases verifying pagination boundaries (`page=1`, empty pages, invalid negative parameters).
 
 ### Step 3: Implement with Graduated Assistance
@@ -53,7 +53,7 @@ Implement each subgoal independently:
 1. **Tier 1 (Conceptual Hint):** If stuck, ask: *"What SQL clause or SQLAlchemy method manages query limits without loading all rows into memory?"*
 2. **Tier 2 (Subgoal / Pseudocode):** Ask for structural pseudocode showing how the query and count should be structured.
 3. **Tier 3 (Partial Snippet):** If unfamiliar with specific SQLAlchemy 2.0 syntax, request a 2-line snippet for the unfamiliar construct.
-4. **Tier 4 (Worked Example, when needed):** If facing a completely novel concept (e.g., configuring an async session fixture in PyTest), study a worked example, close the reference, and reconstruct the logic independently in your codebase.
+4. **Tier 4 (Worked Example, when needed):** If facing a completely novel concept (e.g., configuring a transactional session fixture in PyTest), study a worked example, close the reference, and reconstruct the logic independently in your codebase.
 
 ---
 

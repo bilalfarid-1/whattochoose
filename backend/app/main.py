@@ -7,7 +7,8 @@ from app.api.v1.router import api_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Ensure database schema tables exist on application startup
+    # Ensure database schema tables exist for local testing and standalone startup.
+    # In production workflows, schema migrations are managed via Alembic.
     Base.metadata.create_all(bind=engine)
     yield
 
@@ -15,9 +16,10 @@ app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     description=(
-        "JobPulse API is a production-grade backend for engineering job search tracking. "
-        "It provides structured application funnel analytics, company tracking, interview round management, "
-        "and JWT-authenticated relational workflows designed to demonstrate enterprise Python engineering excellence."
+        "JobPulse API is a production-style portfolio application for engineering job search tracking. "
+        "It provides structured application funnel analytics, a shared directory of company metadata, "
+        "interview stage tracking, debrief journals, and JWT-authenticated relational workflows designed to demonstrate "
+        "modern Python backend systems engineering."
     ),
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     docs_url="/docs",

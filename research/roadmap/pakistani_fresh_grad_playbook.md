@@ -36,11 +36,11 @@ In Pakistan's primary tech hubs (Lahore, Karachi, Islamabad, and Rawalpindi), th
 Do not attempt to build a massive, over-engineered enterprise platform with WebSockets and background task queues on day one. Build a **focused, high-quality, and completely finished REST API**.
 
 #### Blueprint: **Document & Application Intelligence API**
-* **Core Technology:** Python 3.12+, FastAPI, PostgreSQL, SQLAlchemy 2.0 (async), Pydantic v2.
+* **Core Technology:** Python 3.12+, FastAPI, PostgreSQL, SQLAlchemy 2.0 (transactional session), Pydantic v2, Alembic migrations.
 * **Core Features:**
   - **Authentication:** JWT-based authentication with bcrypt password hashing and token refresh endpoints.
   - **Data Modeling:** Clean relational schema (Users, Applications/Documents, Status History, Tags) with foreign keys and database indexing.
-  - **REST Endpoints:** Asynchronous endpoints for CRUD operations, pagination, search filtering, and file uploads.
+  - **REST Endpoints:** REST endpoints for CRUD operations, pagination, search filtering, and file uploads.
   - **AI Integration (Optional but Valuable):** A dedicated endpoint integrating an LLM API (OpenAI or Google Gemini) to generate structured summaries or extract key entities from uploaded text using Pydantic validation and error fallback handling.
 * **Verification & Engineering Standards (The Differentiator):**
   - **Automated Testing:** 10+ PyTest integration tests testing authentication, endpoint responses, invalid payload handling, and database rollbacks.
@@ -70,7 +70,7 @@ Identify Engineering Managers, Tech Leads, and CTOs at mid-size Pakistani softwa
 > *• **Live API Docs:** [Your Render / Swagger URL]*  
 > *• **GitHub Repository:** [Your Clean Repo URL]*  
 > 
-> *The system features asynchronous FastAPI endpoints, PostgreSQL data modeling with SQLAlchemy, and an automated CI pipeline with 12 PyTest integration tests.*
+> *The system features FastAPI REST endpoints, relational PostgreSQL data modeling with SQLAlchemy and Alembic, and an automated CI pipeline with PyTest integration tests.*
 > 
 > *I know your engineering team at [Company Name] builds robust software systems. If you have an opening for a junior backend engineer or graduate intern who can write clean, tested code from day one, I would welcome 10 minutes to walk you through the codebase.*
 > 
