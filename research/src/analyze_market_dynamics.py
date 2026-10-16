@@ -124,26 +124,51 @@ def plot_figure_1_macro_trends(df, milestones_df=None):
                     label='2026 Analytical Projection (88%, Author Scenario)')
 
     # Discrete SWE-bench Milestones (Scatter Points, Disconnected to prevent misleading continuity)
-    # 1. 2023 SWE-bench Full Baseline (Claude 2: 1.96%, Oct 2023)
-    ax2.scatter([2023], [1.96], color=color_swe_full, marker='s', s=80, zorder=6,
-                label='SWE-bench Full Baseline (Claude 2: 1.96%, Oct 2023)')
-    ax2.annotate('Claude 2\n(1.96% Full, N=2,294)', xy=(2023, 1.96), xytext=(2022.2, 9),
-                 fontsize=7.8, color=color_swe_full, fontweight='bold',
-                 arrowprops=dict(facecolor=color_swe_full, arrowstyle='->', lw=0.9))
-
-    # 2. 2024 SWE-bench Verified Launch Milestones (Aug 13, 2024)
-    ax2.scatter([2024, 2024], [38.8, 33.6], color=color_swe_verified, marker='^', s=85, zorder=6,
-                label='SWE-bench Verified (Aug 2024: GPT-4o 38.8%, Sonnet 3.5 33.6%)')
-    ax2.annotate('GPT-4o (38.8%)\nSonnet 3.5 (33.6%)', xy=(2024, 38.8), xytext=(2023.3, 44),
-                 fontsize=7.8, color=color_swe_verified, fontweight='bold',
-                 arrowprops=dict(facecolor=color_swe_verified, arrowstyle='->', lw=0.9))
-
-    # 3. 2025 SWE-bench Verified Milestones (Feb 24, 2025)
-    ax2.scatter([2025, 2025], [63.7, 70.3], color=color_swe_verified, marker='*', s=120, zorder=6,
-                label='SWE-bench Verified (Feb 2025: Sonnet 3.7 70.3% High-Compute, 63.7% Base)')
-    ax2.annotate('Sonnet 3.7 High-Compute (70.3%)\nBaseline (63.7%, N=489)', xy=(2025, 70.3), xytext=(2024.1, 75),
-                 fontsize=7.8, color=color_swe_verified, fontweight='bold',
-                 arrowprops=dict(facecolor=color_swe_verified, arrowstyle='->', lw=0.9))
+    # Driven dynamically from milestones_df
+    if milestones_df is not None and not milestones_df.empty:
+        m_df = milestones_df.copy()
+        m_df['year'] = pd.to_datetime(m_df['release_date']).dt.year
+        
+        # Partition into SWE-bench Full and SWE-bench Verified subsets
+        is_full = m_df['benchmark_variant'].str.contains('Full', case=False, na=False)
+        full_df = m_df[is_full]
+        verified_df = m_df[~is_full]
+        
+        if not full_df.empty:
+            sample_full = full_df.iloc[0]
+            ax2.scatter(full_df['year'], full_df['score_pct'], color=color_swe_full, marker='s', s=80, zorder=6,
+                        label=f"SWE-bench Full Baseline ({sample_full['model']}: {sample_full['score_pct']}%, N={int(sample_full['denominator'])})")
+            for _, row in full_df.iterrows():
+                ax2.annotate(f"{row['model']}\n({row['score_pct']}% Full, N={int(row['denominator'])})",
+                             xy=(row['year'], row['score_pct']), xytext=(row['year'] - 0.8, row['score_pct'] + 7),
+                             fontsize=7.8, color=color_swe_full, fontweight='bold',
+                             arrowprops=dict(facecolor=color_swe_full, arrowstyle='->', lw=0.9))
+                             
+        if not verified_df.empty:
+            ax2.scatter(verified_df['year'], verified_df['score_pct'], color=color_swe_verified, marker='^', s=90, zorder=6,
+                        label='SWE-bench Verified Milestones (500 / 489-Task Subsets)')
+            
+            # Group by year for clear, uncluttered multi-milestone annotations
+            for y, group in verified_df.groupby('year'):
+                top_row = group.sort_values('score_pct', ascending=False).iloc[0]
+                lines = []
+                for _, r in group.sort_values('score_pct', ascending=False).iterrows():
+                    # Format model label cleanly: strip version dates in parens
+                    raw_model = r['model'].split(' (')[0]
+                    scaffold = str(r.get('scaffold', ''))
+                    if 'High-Compute' in scaffold:
+                        lines.append(f"{raw_model} High-Compute ({r['score_pct']}%)")
+                    elif 'Standard' in scaffold or 'Baseline' in scaffold:
+                        lines.append(f"Baseline ({r['score_pct']}%, N={int(r['denominator'])})")
+                    else:
+                        lines.append(f"{raw_model} ({r['score_pct']}%)")
+                
+                anno_text = "\n".join(lines)
+                x_offset = -0.7 if y == 2024 else -0.9
+                y_offset = 5.2 if y == 2024 else 4.7
+                ax2.annotate(anno_text, xy=(y, top_row['score_pct']), xytext=(y + x_offset, top_row['score_pct'] + y_offset),
+                             fontsize=7.8, color=color_swe_verified, fontweight='bold',
+                             arrowprops=dict(facecolor=color_swe_verified, arrowstyle='->', lw=0.9))
                     
     ax2.set_ylabel('Benchmark Score & Developer Adoption (%)', color=color_swe_verified, fontweight='bold')
     ax2.tick_params(axis='y', labelcolor=color_swe_verified)

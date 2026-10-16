@@ -4,7 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg)](https://www.sqlalchemy.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791.svg)](https://www.postgresql.org/)
-[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-22%20Passing-success.svg)](backend/tests/)
+[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-25%20Passing-success.svg)](backend/tests/)
 [![Research Checks](https://img.shields.io/badge/Research%20Checks-Passing-success.svg)](research/tests/)
 [![AI Learning Framework](https://img.shields.io/badge/AI%20Framework-6%20Passing-success.svg)](ai_learning_research/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -50,7 +50,7 @@ whattochoose/
 │   │   └── static/                     # Embedded static build
 │   ├── alembic/                        # Versioned database migration scripts
 │   ├── alembic.ini                     # Alembic migration configuration
-│   ├── tests/                          # 22 passing PyTest unit, integration, migration & cross-user security tests
+│   ├── tests/                          # 25 passing PyTest unit, integration, migration & cross-user security tests
 │   ├── docker-entrypoint.sh            # Container migration runner & process supervisor
 │   ├── Dockerfile                      # Python 3.12 slim container
 │   ├── docker-compose.yml              # Local dev multi-container setup with PostgreSQL 16
@@ -159,8 +159,8 @@ python -m pytest -v ai_learning_research/tests/test_protocols_and_sources.py
 2. **The Verification Bottleneck:**  
    As autonomous coding models reduce the marginal cost of producing routine syntax ($C_{\text{gen}} \downarrow$), human engineering effort shifts toward verifying business correctness, handling non-trivial edge cases, and auditing security ($C_{\text{verif}} \uparrow$).
 
-3. **Reasoned Specialization Track:**  
-   The empirical evidence argues against superficial multi-stack switching. Committing deeply to a high-leverage backend stack (**Python / FastAPI + PostgreSQL + PyTest**) and shipping a verifiable, deployed project provides a disciplined, defensible foundation to secure entry-level employment.
+3. **Strategic Specialization Recommendation:**  
+   Given the importance of demonstrable technical competence in a competitive entry-level market, candidates benefit from focusing deeply on a high-leverage backend stack (**Python / FastAPI + PostgreSQL + PyTest**) to build, test, deploy, and defend a substantial portfolio application rather than engaging in superficial multi-stack switching. This is a reasoned career strategy, not a causal finding established by the labor-market dataset.
 
 ---
 

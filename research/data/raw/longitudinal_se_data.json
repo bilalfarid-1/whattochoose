@@ -145,14 +145,14 @@
       "benchmark_source": "Stanford HAI AI Index 2024 (GPT-4o / Claude 3.5 Sonnet; approaching saturation ceiling)",
       "swe_bench_original_top_score_pct": null,
       "swe_bench_verified_top_score_pct": 38.8,
-      "benchmark_swe_verified_model": "GPT-4o with Agentless scaffold (194/500 = 38.8%); Claude 3.5 Sonnet with SWE-agent achieved 168/500 = 33.6%",
+      "benchmark_swe_verified_model": "GPT-4o with Agentless scaffold (194/500 = 38.8%, Xia et al., Sept 2024); Claude 3.5 Sonnet with SWE-agent achieved 168/500 = 33.6% at benchmark launch (OpenAI, Aug 2024)",
       "benchmark_swe_verified_scaffold": "Agentless scaffold (Xia et al., 2024)",
       "benchmark_variant": "SWE-bench Verified (500 human-validated instances)",
       "benchmark_denominator": 500,
       "benchmark_resolved": 194,
-      "benchmark_swe_verified_snapshot_date": "2024-08-13",
-      "benchmark_swe_verified_url": "https://openai.com/index/introducing-swe-bench-verified/",
-      "benchmark_swe_source": "OpenAI / Princeton SWE-bench Verified Launch Evaluation (August 13, 2024)",
+      "benchmark_swe_verified_snapshot_date": "2024-09-02",
+      "benchmark_swe_verified_url": "https://arxiv.org/abs/2407.01489",
+      "benchmark_swe_source": "Xia et al. (Agentless evaluation on SWE-bench Verified, Sept 2024; arXiv:2407.01489) & OpenAI Launch (Aug 2024)",
       "pakistan_it_exports_billion_usd": 3.22,
       "pakistan_export_source": "State Bank of Pakistan (SBP) FY24 (Full Year Audited)",
       "export_measurement_type": "official_full_year_audited",
@@ -240,19 +240,6 @@
       "notes": "Original benchmark launch. Evaluated across 2,294 full GitHub issues. Reported 4.2% was an unverified secondary composite or Lite subset; 1.96% is the verified benchmark baseline."
     },
     {
-      "milestone_id": "swe_verified_2024_gpt4o",
-      "release_date": "2024-08-13",
-      "model": "GPT-4o (2024-05-13)",
-      "scaffold": "Agentless",
-      "benchmark_variant": "SWE-bench Verified",
-      "denominator": 500,
-      "resolved_tasks": 194,
-      "score_pct": 38.8,
-      "primary_source_url": "https://openai.com/index/introducing-swe-bench-verified/",
-      "citation": "OpenAI / Princeton SWE-bench Verified Launch (Aug 2024)",
-      "notes": "500 human-validated task subset to eliminate test-suite unreliability. Under same release, Claude 3.5 Sonnet with SWE-agent achieved 168/500 = 33.6%."
-    },
-    {
       "milestone_id": "swe_verified_2024_sonnet35",
       "release_date": "2024-08-13",
       "model": "Claude 3.5 Sonnet (2024-06-20)",
@@ -263,7 +250,20 @@
       "score_pct": 33.6,
       "primary_source_url": "https://openai.com/index/introducing-swe-bench-verified/",
       "citation": "OpenAI / Princeton SWE-bench Verified Launch (Aug 2024)",
-      "notes": "Evaluation conducted by OpenAI/Princeton researchers at launch of Verified benchmark."
+      "notes": "Top launch baseline reported in OpenAI/Princeton launch announcement (168/500 tasks = 33.6% using SWE-agent scaffold; GPT-4o scored 33.2% with open scaffold in that evaluation)."
+    },
+    {
+      "milestone_id": "swe_verified_2024_gpt4o",
+      "release_date": "2024-09-02",
+      "model": "GPT-4o (2024-05-13)",
+      "scaffold": "Agentless",
+      "benchmark_variant": "SWE-bench Verified",
+      "denominator": 500,
+      "resolved_tasks": 194,
+      "score_pct": 38.8,
+      "primary_source_url": "https://arxiv.org/abs/2407.01489",
+      "citation": "Xia et al. (Agentless, Sept 2024; arXiv:2407.01489)",
+      "notes": "Evaluated on the 500-task SWE-bench Verified benchmark following its August 2024 release. Solved 194/500 tasks (38.8%) using GPT-4o with a two-phase localized edit scaffold without autonomous tool-use loops."
     },
     {
       "milestone_id": "swe_verified_2025_sonnet37_baseline",
