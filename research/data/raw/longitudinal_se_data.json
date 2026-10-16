@@ -209,14 +209,15 @@
       "us_postings_max": 78.34,
       "humaneval_pass_at_1_pct": null,
       "swe_bench_original_top_score_pct": null,
-      "swe_bench_verified_top_score_pct": 75.0,
-      "benchmark_swe_verified_model": "SWE-bench Verified Leaderboard Top Entry Snapshot",
-      "benchmark_swe_verified_scaffold": "Frontier agentic scaffold with test-time verification & search",
-      "benchmark_variant": "SWE-bench Verified (500 human-validated instances)",
-      "benchmark_denominator": 500,
-      "benchmark_swe_verified_snapshot_date": "2026-06-30",
-      "benchmark_swe_verified_url": "https://www.swebench.com/",
-      "benchmark_swe_source": "SWE-bench Verified Leaderboard Snapshot (mid-2026)",
+      "swe_bench_verified_top_score_pct": null,
+      "benchmark_swe_note": "Unobserved: Benchmark ongoing; no single vetted foundation-model frontier milestone officially established as definitive for full calendar year 2026.",
+      "benchmark_swe_verified_model": null,
+      "benchmark_swe_verified_scaffold": null,
+      "benchmark_variant": null,
+      "benchmark_denominator": null,
+      "benchmark_swe_verified_snapshot_date": null,
+      "benchmark_swe_verified_url": null,
+      "benchmark_swe_source": null,
       "pakistan_it_exports_billion_usd": 4.60,
       "pakistan_export_source": "State Bank of Pakistan / Associated Press of Pakistan reported full-year FY26 outturn (July 2026 reported total: ~US$4.60B, +20.6% YoY)",
       "export_measurement_type": "official_full_year_reported",
@@ -271,11 +272,12 @@
       "scaffold": "Standard Unassisted Baseline",
       "benchmark_variant": "SWE-bench Verified (Evaluated Subset)",
       "denominator": 489,
-      "resolved_tasks": 311.5,
+      "evaluation_method": "Pass@1 average across repeated evaluation trials",
+      "expected_resolved_tasks": 311.5,
       "score_pct": 63.7,
       "primary_source_url": "https://www.anthropic.com/news/claude-3-7-sonnet",
       "citation": "Anthropic Claude 3.7 Sonnet Evaluation Report (Feb 2025)",
-      "notes": "Evaluated on 489 tasks due to 11 infrastructure-incompatible tasks excluded from the 500-task set."
+      "notes": "Evaluated on 489 tasks due to 11 infrastructure-incompatible tasks excluded from the 500-task set. Expected resolved tasks (311.5) reflects Pass@1 average across evaluation runs."
     },
     {
       "milestone_id": "swe_verified_2025_sonnet37_high_compute",
@@ -284,11 +286,12 @@
       "scaffold": "Anthropic Custom High-Compute Scaffold (Parallel Thinking & Tool Search)",
       "benchmark_variant": "SWE-bench Verified (Evaluated Subset)",
       "denominator": 489,
-      "resolved_tasks": 343.8,
+      "evaluation_method": "Pass@1 average across repeated evaluation trials with parallel test-time compute",
+      "expected_resolved_tasks": 343.8,
       "score_pct": 70.3,
       "primary_source_url": "https://www.anthropic.com/news/claude-3-7-sonnet",
       "citation": "Anthropic Claude 3.7 Sonnet Evaluation Report (Feb 2025)",
-      "notes": "Employs test-time compute with parallel thinking. Evaluated on 489 tasks (11 tasks excluded due to environment incompatibilities)."
+      "notes": "Employs test-time compute with parallel thinking. Evaluated on 489 tasks (11 tasks excluded due to environment incompatibilities). Expected resolved tasks (343.8) reflects Pass@1 average across evaluation runs."
     }
   ],
   "stanford_adp_early_career_employment_research": {

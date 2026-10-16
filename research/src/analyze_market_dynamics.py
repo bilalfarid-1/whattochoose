@@ -76,20 +76,20 @@ def run_analysis():
         print(f"- {y}: Mean {mean_val:.2f} (Min {min_val:.2f}, Max {max_val:.2f}, N={count})")
 
     # Generate transparent, professionally credible charts
-    plot_figure_1_macro_trends(ts_df)
+    plot_figure_1_macro_trends(ts_df, milestones_df)
     plot_figure_2_skills_framework(skills_df)
     plot_figure_3_pakistan_dynamics(ts_df, pasha_metrics)
     plot_figure_4_developer_time_allocation()
     
     print("\n[SUCCESS] All figures successfully generated and saved to paper/figures/.")
 
-def plot_figure_1_macro_trends(df):
+def plot_figure_1_macro_trends(df, milestones_df=None):
     """Figure 1: Co-evolution of U.S. Software Postings and AI Benchmark Progression"""
     fig, ax1 = plt.subplots(figsize=(10.5, 6.0))
     
     color_postings = '#2b5c8f'
-    color_swe = '#8e44ad'
-    color_orig_swe = '#e67e22'
+    color_swe_full = '#e67e22'
+    color_swe_verified = '#8e44ad'
     color_ai = '#27ae60'
     
     # Left axis: Indeed U.S. Software Postings Index (FRED: IHLIDXUSTPSOFTDEVE)
@@ -108,21 +108,9 @@ def plot_figure_1_macro_trends(df):
                  arrowprops=dict(facecolor=color_postings, arrowstyle='->', lw=1.2),
                  fontsize=8.5, backgroundcolor='#ffffff')
     
-    # Right axis: SWE-bench Verified & AI Tool Engagement
+    # Right axis: SWE-bench Discrete Milestones & AI Tool Engagement
     ax2 = ax1.twinx()
     
-    # Plot SWE-bench Verified milestones
-    swe_verified_mask = df['swe_bench_verified_top_score_pct'].notna()
-    ax2.plot(df.loc[swe_verified_mask, 'year'], df.loc[swe_verified_mask, 'swe_bench_verified_top_score_pct'], 
-             marker='^', color=color_swe, linewidth=2.2, label='SWE-bench Verified Top Score (%, 2024–2026)')
-    
-    # Plot original SWE-bench 2023 baseline point distinctly (full benchmark denominator = 2,294)
-    orig_swe_mask = df['swe_bench_original_top_score_pct'].notna()
-    if orig_swe_mask.any():
-        ax2.scatter(df.loc[orig_swe_mask, 'year'], df.loc[orig_swe_mask, 'swe_bench_original_top_score_pct'],
-                    color=color_orig_swe, marker='s', s=70, zorder=5,
-                    label='SWE-bench Full Baseline (Claude 2: 1.96%, Oct 2023)')
-
     # Developer AI Tool Engagement: Plot measured survey observations (2023-2025)
     so_mask = df['global_ai_tool_engagement_pct'].notna() & (df['ai_metric_measurement_type'] == 'survey_audited')
     ax2.plot(df.loc[so_mask, 'year'], df.loc[so_mask, 'global_ai_tool_engagement_pct'], marker='d', color=color_ai,
@@ -134,21 +122,43 @@ def plot_figure_1_macro_trends(df):
         ax2.scatter(df.loc[proj_mask, 'year'], df.loc[proj_mask, 'global_ai_tool_engagement_pct'],
                     marker='d', facecolors='none', edgecolors=color_ai, s=75, linewidth=1.8, zorder=5,
                     label='2026 Analytical Projection (88%, Author Scenario)')
+
+    # Discrete SWE-bench Milestones (Scatter Points, Disconnected to prevent misleading continuity)
+    # 1. 2023 SWE-bench Full Baseline (Claude 2: 1.96%, Oct 2023)
+    ax2.scatter([2023], [1.96], color=color_swe_full, marker='s', s=80, zorder=6,
+                label='SWE-bench Full Baseline (Claude 2: 1.96%, Oct 2023)')
+    ax2.annotate('Claude 2\n(1.96% Full, N=2,294)', xy=(2023, 1.96), xytext=(2022.2, 9),
+                 fontsize=7.8, color=color_swe_full, fontweight='bold',
+                 arrowprops=dict(facecolor=color_swe_full, arrowstyle='->', lw=0.9))
+
+    # 2. 2024 SWE-bench Verified Launch Milestones (Aug 13, 2024)
+    ax2.scatter([2024, 2024], [38.8, 33.6], color=color_swe_verified, marker='^', s=85, zorder=6,
+                label='SWE-bench Verified (Aug 2024: GPT-4o 38.8%, Sonnet 3.5 33.6%)')
+    ax2.annotate('GPT-4o (38.8%)\nSonnet 3.5 (33.6%)', xy=(2024, 38.8), xytext=(2023.3, 44),
+                 fontsize=7.8, color=color_swe_verified, fontweight='bold',
+                 arrowprops=dict(facecolor=color_swe_verified, arrowstyle='->', lw=0.9))
+
+    # 3. 2025 SWE-bench Verified Milestones (Feb 24, 2025)
+    ax2.scatter([2025, 2025], [63.7, 70.3], color=color_swe_verified, marker='*', s=120, zorder=6,
+                label='SWE-bench Verified (Feb 2025: Sonnet 3.7 70.3% High-Compute, 63.7% Base)')
+    ax2.annotate('Sonnet 3.7 High-Compute (70.3%)\nBaseline (63.7%, N=489)', xy=(2025, 70.3), xytext=(2024.1, 75),
+                 fontsize=7.8, color=color_swe_verified, fontweight='bold',
+                 arrowprops=dict(facecolor=color_swe_verified, arrowstyle='->', lw=0.9))
                     
-    ax2.set_ylabel('Benchmark Score & Developer Adoption (%)', color=color_swe, fontweight='bold')
-    ax2.tick_params(axis='y', labelcolor=color_swe)
+    ax2.set_ylabel('Benchmark Score & Developer Adoption (%)', color=color_swe_verified, fontweight='bold')
+    ax2.tick_params(axis='y', labelcolor=color_swe_verified)
     ax2.set_ylim(0, 105)
     
-    plt.title('Figure 1: U.S. Software Job Openings Index vs AI Benchmark Milestones & Adoption (2020–2026)\n'
-              '[Descriptive Macroeconomic Co-Evolution | Sources: FRED (IHLIDXUSTPSOFTDEVE), Stack Overflow, SWE-bench]', 
-              fontsize=10.2, pad=12, fontweight='bold')
+    plt.title('Figure 1: U.S. Software Job Openings Index vs Discrete AI Benchmarks & Adoption (2020–2026)\n'
+              '[Macroeconomic Co-Evolution | Sources: FRED (IHLIDXUSTPSOFTDEVE), Stack Overflow, SWE-bench Verified]', 
+              fontsize=9.8, pad=12, fontweight='bold')
     
     lines_1, labels_1 = ax1.get_legend_handles_labels()
     lines_2, labels_2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='upper left', frameon=True, fontsize=8.2)
+    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='upper left', frameon=True, fontsize=8.0)
     
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, 'fig1_junior_squeeze.png'))
+    plt.savefig(os.path.join(OUTPUT_DIR, 'fig1_junior_squeeze.png'), dpi=300)
     plt.close()
 
 def plot_figure_2_skills_framework(skills_df):

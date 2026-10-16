@@ -32,7 +32,7 @@ Table: SWE-bench Progression & Historical Availability
 | 2023 |        1.96%          |        null          | Jimenez et al. (Oct 2023; Claude 2: 45/2,294 = 1.96% full)   |
 | 2024 |        null           |       38.8%          | GPT-4o + Agentless: 194/500 (Claude 3.5 Sonnet: 168/500=33.6)|
 | 2025 |        null           |       70.3%          | Claude 3.7 Sonnet high-compute (343.8/489; unassisted: 63.7%)|
-| 2026 |        null           |       75.0%          | SWE-bench Verified Leaderboard Top Entry (Snapshot: 2026-06) |
+| 2026 |        null           |        null          | Unobserved: Benchmark ongoing; no vetted single-model milestone|
 +------+-----------------------+----------------------+--------------------------------------------------------------+
 ```
 

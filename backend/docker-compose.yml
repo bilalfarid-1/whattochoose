@@ -1,18 +1,22 @@
+# JobPulse Local Development Multi-Container Setup
+# WARNING: This configuration is intended for local evaluation and development testing.
+# Production environments must supply secrets and connection strings via environment variables or secret managers.
+
 services:
   db:
     image: postgres:16-alpine
     container_name: jobpulse_postgres
     restart: always
     environment:
-      POSTGRES_USER: jobpulse_user
-      POSTGRES_PASSWORD: jobpulse_password
-      POSTGRES_DB: jobpulse_db
+      POSTGRES_USER: ${POSTGRES_USER:-jobpulse_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jobpulse_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-jobpulse_db}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U jobpulse_user -d jobpulse_db"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-jobpulse_user} -d ${POSTGRES_DB:-jobpulse_db}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -28,8 +32,9 @@ services:
       PROJECT_NAME: "JobPulse API"
       VERSION: "1.0.0"
       API_V1_STR: "/api/v1"
-      SECRET_KEY: "production-secure-random-token-key-replace-in-env"
-      DATABASE_URL: "postgresql://jobpulse_user:jobpulse_password@db:5432/jobpulse_db"
+      ENVIRONMENT: "development"
+      SECRET_KEY: ${SECRET_KEY:-super-secret-development-key-change-in-production-min-32-chars}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://jobpulse_user:jobpulse_dev_password@db:5432/jobpulse_db}
       ACCESS_TOKEN_EXPIRE_MINUTES: 120
     ports:
       - "8000:8000"

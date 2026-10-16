@@ -4,7 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg)](https://www.sqlalchemy.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791.svg)](https://www.postgresql.org/)
-[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-20%20Passing-success.svg)](backend/tests/)
+[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-22%20Passing-success.svg)](backend/tests/)
 [![Research Checks](https://img.shields.io/badge/Research%20Checks-Passing-success.svg)](research/tests/)
 [![AI Learning Framework](https://img.shields.io/badge/AI%20Framework-6%20Passing-success.svg)](ai_learning_research/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -50,9 +50,10 @@ whattochoose/
 │   │   └── static/                     # Embedded static build
 │   ├── alembic/                        # Versioned database migration scripts
 │   ├── alembic.ini                     # Alembic migration configuration
-│   ├── tests/                          # 20 passing PyTest unit, integration & cross-user security isolation tests
+│   ├── tests/                          # 22 passing PyTest unit, integration, migration & cross-user security tests
+│   ├── docker-entrypoint.sh            # Container migration runner & process supervisor
 │   ├── Dockerfile                      # Python 3.12 slim container
-│   ├── docker-compose.yml              # Multi-container setup with PostgreSQL 16
+│   ├── docker-compose.yml              # Local dev multi-container setup with PostgreSQL 16
 │   └── requirements.txt                # Backend dependencies
 │
 ├── ai_learning_research/               # AI-Augmented Learning Science & Execution Protocols
@@ -102,7 +103,7 @@ pip install -r requirements.txt
 # 3. Apply database migrations
 alembic upgrade head
 
-# 4. Run the automated test suite (20 passing backend tests)
+# 4. Run the automated test suite (22 passing backend tests)
 python -m pytest -v
 
 # 5. Launch the application (serves both API & Frontend Dashboard)
@@ -118,10 +119,11 @@ Open your browser to:
 
 ---
 
-### Option 2: Docker Compose (PostgreSQL 16 Multi-Container)
+### Option 2: Docker Compose (PostgreSQL 16 Multi-Container Dev Environment)
 
 ```bash
 cd backend
+# Starts PostgreSQL 16 and JobPulse API (automatically applies migrations via docker-entrypoint.sh)
 docker compose up --build -d
 ```
 
@@ -134,7 +136,7 @@ docker compose up --build -d
 python research/tests/test_data_integrity.py
 python -m pytest -v research/tests/test_fred_aggregation.py
 
-# 2. Run market dynamics modeling and regenerate all figures
+# 2. Run market dynamics modeling and regenerate all publication figures
 python research/src/analyze_market_dynamics.py
 ```
 

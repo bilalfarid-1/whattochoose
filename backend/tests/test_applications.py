@@ -97,3 +97,38 @@ def test_delete_application(client, auth_headers, test_company):
     # Verify not found
     get_resp = client.get(f"/api/v1/applications/{app_id}", headers=auth_headers)
     assert get_resp.status_code == status.HTTP_404_NOT_FOUND
+
+def test_cross_user_isolation_on_applications(client, auth_headers, auth_headers_b, test_company):
+    """Ensure User B cannot retrieve, modify, or delete User A's application, receiving 404."""
+    # User A creates application
+    app_payload = {
+        "company_id": test_company.id,
+        "job_title": "Private User A Application",
+        "salary_range": "PKR 180k - 220k",
+        "status": "applied"
+    }
+    create_resp = client.post("/api/v1/applications/", json=app_payload, headers=auth_headers)
+    assert create_resp.status_code == status.HTTP_201_CREATED
+    app_id = create_resp.json()["id"]
+
+    # User B attempts to read User A's application
+    read_resp = client.get(f"/api/v1/applications/{app_id}", headers=auth_headers_b)
+    assert read_resp.status_code == status.HTTP_404_NOT_FOUND
+
+    # User B attempts to patch User A's application
+    patch_resp = client.patch(
+        f"/api/v1/applications/{app_id}",
+        json={"job_title": "Hacked Title", "status": "offer_received"},
+        headers=auth_headers_b
+    )
+    assert patch_resp.status_code == status.HTTP_404_NOT_FOUND
+
+    # User B attempts to delete User A's application
+    del_resp = client.delete(f"/api/v1/applications/{app_id}", headers=auth_headers_b)
+    assert del_resp.status_code == status.HTTP_404_NOT_FOUND
+
+    # Verify User A's application remains completely untouched
+    verify_resp = client.get(f"/api/v1/applications/{app_id}", headers=auth_headers)
+    assert verify_resp.status_code == status.HTTP_200_OK
+    assert verify_resp.json()["job_title"] == "Private User A Application"
+    assert verify_resp.json()["status"] == "applied"

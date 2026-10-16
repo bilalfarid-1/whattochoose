@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,9 +8,12 @@ from app.api.v1.router import api_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Ensure database schema tables exist for local testing and standalone startup.
-    # In production workflows, schema migrations are managed via Alembic.
-    Base.metadata.create_all(bind=engine)
+    # Schema creation policy: In production and standard deployments, schema migrations
+    # MUST be applied explicitly via Alembic (`alembic upgrade head`).
+    # Automatic table creation is only performed when explicitly opted-in via AUTO_CREATE_TABLES
+    # or during isolated unit testing (TESTING=True).
+    if settings.AUTO_CREATE_TABLES or os.getenv("TESTING") == "True":
+        Base.metadata.create_all(bind=engine)
     yield
 
 app = FastAPI(

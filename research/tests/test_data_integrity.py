@@ -74,20 +74,20 @@ def test_data_integrity():
     assert row_2026['data_retrieved_at'] == "2026-10-16", "2026 data_retrieved_at should be 2026-10-16"
     
     # 4. Verify SWE-bench Benchmark Provenance and Null Handling
-    # SWE-bench Verified was launched August 13, 2024. Observations for 2020-2023 MUST be null.
+    # SWE-bench Verified was launched August 13, 2024. Observations for 2020-2023 and 2026 MUST be null.
     for row in ts:
         year = row['year']
-        if year < 2024:
-            assert row['swe_bench_verified_top_score_pct'] is None, (
-                f"SWE-bench Verified must be null prior to launch year 2024, found: {row['swe_bench_verified_top_score_pct']} in {year}"
-            )
-            assert row['benchmark_swe_verified_model'] is None, f"benchmark_swe_verified_model must be null in {year}"
-            assert row['benchmark_swe_verified_snapshot_date'] is None, f"benchmark_swe_verified_snapshot_date must be null in {year}"
-        else:
+        if year in [2024, 2025]:
             assert isinstance(row['swe_bench_verified_top_score_pct'], (int, float)), f"Expected numeric Verified score in {year}"
             assert row['swe_bench_verified_top_score_pct'] > 0.0, f"Expected non-zero Verified score in {year}"
             assert row['benchmark_swe_verified_model'] is not None, f"Missing benchmark_swe_verified_model in {year}"
             assert DATE_REGEX.match(row['benchmark_swe_verified_snapshot_date']), f"Invalid snapshot date in {year}"
+        else:
+            assert row['swe_bench_verified_top_score_pct'] is None, (
+                f"SWE-bench Verified must be null for unobserved/ongoing year {year}, found: {row['swe_bench_verified_top_score_pct']}"
+            )
+            assert row['benchmark_swe_verified_model'] is None, f"benchmark_swe_verified_model must be null in {year}"
+            assert row['benchmark_swe_verified_snapshot_date'] is None, f"benchmark_swe_verified_snapshot_date must be null in {year}"
             
         # Original SWE-bench was introduced in late 2023
         if year == 2023:
