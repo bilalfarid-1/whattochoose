@@ -4,6 +4,8 @@
 **Primary Goal:** Transition from generalist "tutorial copy-paster" to a verifiable **Junior Backend / Associate Software Engineer** specializing in **Python (FastAPI + PostgreSQL + Pytest)**.  
 **Core Training Ground:** **JobPulse** (`backend/app`) — a production-grade, multi-tenant recruitment tracking and analytics API.
 
+> 📖 **Execution Guide:** For step-by-step instructions on daily routine mechanics, overcoming blockers, avoiding burnout, and technical outreach scripts, read the companion guide: [How to Follow the 30-Day Sprint](how_to_follow_the_30_day_sprint.md).
+
 ---
 
 ## The Daily 4-Hour Execution Blueprint

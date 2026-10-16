@@ -2,7 +2,8 @@
 
 A structured, deliberate-practice execution blueprint for computer science and software engineering graduates. Rather than building throwaway tutorial toys from scratch, this roadmap uses your existing production application—**JobPulse** (`backend/app`)—as your primary training ground to build, verify, and master backend engineering.
 
-> 📅 **Looking for the granular daily schedule?** See the [Detailed Day-by-Day Roadmap (Days 1–30)](detailed_day_by_day_backend_roadmap.md) with exact coding exercises, DSA problems, and technical interview questions for each day.
+> 📅 **Looking for the granular daily schedule?** See the [Detailed Day-by-Day Roadmap (Days 1–30)](detailed_day_by_day_backend_roadmap.md) with exact coding exercises, DSA problems, and technical interview questions for each day.  
+> 📖 **Need a guide on how to study and succeed?** Read the [30-Day Sprint Execution Guide](how_to_follow_the_30_day_sprint.md) for daily protocols, avoiding burnout, and technical outreach scripts.
 
 ---
 
