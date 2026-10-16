@@ -77,24 +77,27 @@ def test_data_integrity():
     # SWE-bench Verified was launched August 13, 2024. Observations for 2020-2023 and 2026 MUST be null.
     for row in ts:
         year = row['year']
+        # Ensure deprecated top_score fields do not exist
+        assert 'swe_bench_verified_top_score_pct' not in row, f"Found deprecated top_score field in year {year}"
+        assert 'swe_bench_original_top_score_pct' not in row, f"Found deprecated top_score field in year {year}"
+        
         if year in [2024, 2025]:
-            assert isinstance(row['swe_bench_verified_top_score_pct'], (int, float)), f"Expected numeric Verified score in {year}"
-            assert row['swe_bench_verified_top_score_pct'] > 0.0, f"Expected non-zero Verified score in {year}"
+            assert isinstance(row['swe_bench_verified_selected_milestone_pct'], (int, float)), f"Expected numeric Verified score in {year}"
+            assert row['swe_bench_verified_selected_milestone_pct'] > 0.0, f"Expected non-zero Verified score in {year}"
             assert row['benchmark_swe_verified_model'] is not None, f"Missing benchmark_swe_verified_model in {year}"
             assert DATE_REGEX.match(row['benchmark_swe_verified_snapshot_date']), f"Invalid snapshot date in {year}"
         else:
-            assert row['swe_bench_verified_top_score_pct'] is None, (
-                f"SWE-bench Verified must be null for unobserved/ongoing year {year}, found: {row['swe_bench_verified_top_score_pct']}"
+            assert row['swe_bench_verified_selected_milestone_pct'] is None, (
+                f"SWE-bench Verified must be null for unobserved/ongoing year {year}, found: {row['swe_bench_verified_selected_milestone_pct']}"
             )
             assert row['benchmark_swe_verified_model'] is None, f"benchmark_swe_verified_model must be null in {year}"
             assert row['benchmark_swe_verified_snapshot_date'] is None, f"benchmark_swe_verified_snapshot_date must be null in {year}"
             
         # Original SWE-bench was introduced in late 2023
         if year == 2023:
-            assert abs(row['swe_bench_original_top_score_pct'] - 1.96) < 0.01, "Expected 1.96% verified Claude 2 baseline in 2023"
-            assert 'Jimenez et al.' in row['benchmark_swe_original_source']
+            assert abs(row['swe_bench_original_selected_milestone_pct'] - 1.96) < 0.01, "Expected 1.96% verified Claude 2 baseline in 2023"
         else:
-            assert row['swe_bench_original_top_score_pct'] is None, f"swe_bench_original_top_score_pct should be null in {year}"
+            assert row['swe_bench_original_selected_milestone_pct'] is None, f"swe_bench_original_selected_milestone_pct should be null in {year}"
             
     # Verify discrete SWE-bench milestones table exists
     assert 'swe_bench_milestones' in data, "Missing swe_bench_milestones table"
@@ -123,11 +126,16 @@ def test_data_integrity():
     assert 'Canaries in the Coal Mine' in s_res['paper_title']
     assert 'digitaleconomy.stanford.edu' in s_res['primary_source_url']
 
-    # Ensure no record in time_series_data retains redundant benchmark_resolved
+    # Ensure no record in time_series_data retains redundant benchmark fields
     for row in ts:
         assert 'benchmark_resolved' not in row, f"Found deprecated 'benchmark_resolved' in year {row['year']}"
-        if row['year'] in [2024, 2025]:
-            assert 'expected_resolved_tasks' in row, f"Missing 'expected_resolved_tasks' in year {row['year']}"
+        assert 'expected_resolved_tasks' not in row, f"Redundant 'expected_resolved_tasks' found in time_series year {row['year']}"
+
+    # Verify that task counts (resolved_tasks or expected_resolved_tasks) are canonically housed in swe_bench_milestones
+    for m in data['swe_bench_milestones']:
+        assert ('resolved_tasks' in m or 'expected_resolved_tasks' in m), f"Canonical milestone {m['milestone_id']} missing task resolution metric"
+        if '2025' in m['milestone_id']:
+            assert 'expected_resolved_tasks' in m, f"2025 milestone {m['milestone_id']} must use expected_resolved_tasks"
 
     # 5. Verify Mathematical Reproducibility of the Qualitative Skills Rubric
     rubric = data['author_qualitative_skills_rubric']

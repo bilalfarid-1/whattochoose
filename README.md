@@ -37,7 +37,7 @@ flowchart LR
         R1["2,443 Daily U.S. Software Postings Index Observations"]
         R2["$4.6B SBP / P@SHA Data"]
         R3["SWE-bench Milestones"]
-        R1 & R2 & R3 --> ROut["Outcome: Stop Guessing.<br>Commit to High-Leverage Backend."]
+        R1 & R2 & R3 --> ROut["Outcome: Ground Market Expectations.<br>Inform a Focused Specialization Decision."]
     end
 
     subgraph Part2 ["2. Active Learning (/ai_learning_research)"]
