@@ -127,7 +127,8 @@ def plot_figure_1_macro_trends(df, milestones_df=None):
     # Driven dynamically from milestones_df
     if milestones_df is not None and not milestones_df.empty:
         m_df = milestones_df.copy()
-        m_df['year'] = pd.to_datetime(m_df['release_date']).dt.year
+        date_col = 'benchmark_report_date' if 'benchmark_report_date' in m_df.columns else 'release_date'
+        m_df['year'] = pd.to_datetime(m_df[date_col]).dt.year
         
         # Partition into SWE-bench Full and SWE-bench Verified subsets
         is_full = m_df['benchmark_variant'].str.contains('Full', case=False, na=False)

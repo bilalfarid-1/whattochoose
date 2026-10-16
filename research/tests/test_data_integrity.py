@@ -103,6 +103,16 @@ def test_data_integrity():
         assert 'denominator' in m and m['denominator'] > 0
         assert 'score_pct' in m and m['score_pct'] > 0
         assert 'primary_source_url' in m and m['primary_source_url'].startswith('http')
+        assert 'benchmark_report_date' in m and len(m['benchmark_report_date']) == 10
+        assert 'source_revision_date' in m and len(m['source_revision_date']) == 10
+        assert 'model_release_date' in m and len(m['model_release_date']) == 10
+        assert 'date_clarification' in m and len(m['date_clarification']) > 10
+
+    # Explicitly verify Agentless date distinction: arXiv revision 2024-09-02 vs model release 2024-05-13
+    agentless_m = next(m for m in data['swe_bench_milestones'] if m['milestone_id'] == 'swe_verified_2024_gpt4o')
+    assert agentless_m['benchmark_report_date'] == '2024-09-02'
+    assert agentless_m['source_revision_date'] == '2024-09-02'
+    assert agentless_m['model_release_date'] == '2024-05-13'
         
     # Verify Stanford / ADP early career research section exists
     assert 'stanford_adp_early_career_employment_research' in data

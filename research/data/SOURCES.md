@@ -47,7 +47,7 @@ This document provides transparent, verifiable provenance for all quantitative m
 * **Direct URL:** [https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE](https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE)
 * **Single Snapshot File:** `research/data/raw/IHLIDXUSTPSOFTDEVE.csv` (retrieved 2026-10-16).
 * **Geographic Scope:** **United States (Domestic Job Postings)**. It does not measure global or Pakistani job postings. We cite this as macroeconomic context reflecting capital expenditure and hiring sentiment within the world's largest software market.
-* **Verifiable Annual Aggregates Computed from Raw Daily Snapshot:**
+* **Verifiable Annual Aggregates Computed from Raw Daily Snapshot (2,443 valid daily observations, 2020-02-01 to 2026-10-09):**
   - **2020 (Partial year, Feb 1 – Dec 31, 335 obs):** Mean = **78.91** (Min: 64.70, Max: 100.78). Note: 100.0 is the Feb 1, 2020 baseline value, not the annual mean.
   - **2021 (Full year, 365 obs):** Mean = **148.41** (Min: 90.54, Max: 217.96). Pandemic remote hiring acceleration.
   - **2022 (Full year, 365 obs):** Mean = **195.59** (Min: 130.51, Max: 233.83). All-time peak of post-ZIRP hiring expansion.
@@ -73,17 +73,19 @@ This document provides transparent, verifiable provenance for all quantitative m
 
 We present benchmark progress as discrete milestones with explicit models, scaffolds, task counts, denominators, and primary URLs, rather than an unbroken artificial trendline implying direct equivalence:
 
-| Milestone ID | Date | Model & Version | Agent Scaffold / Method | Benchmark Variant | Denominator | Resolved Tasks | Score (%) | Primary Source URL |
-| :--- | :---: | :--- | :--- | :--- | :---: | :---: | :---: | :--- |
-| `swe_full_2023_claude2` | 2023-10-10 | Claude 2 | BM25 Retrieval + Prompt Baseline | SWE-bench Full | 2,294 | 45.0 | **1.96%** | [arXiv:2310.06770](https://arxiv.org/abs/2310.06770) |
-| `swe_verified_2024_sonnet35`| 2024-08-13 | Claude 3.5 Sonnet (2024-06-20) | SWE-agent scaffold (Yang et al.) | SWE-bench Verified | 500 | 168.0 | **33.6%** | [OpenAI Launch](https://openai.com/index/introducing-swe-bench-verified/) |
-| `swe_verified_2024_gpt4o` | 2024-09-02 | GPT-4o (2024-05-13) | Agentless scaffold (Xia et al.) | SWE-bench Verified | 500 | 194.0 | **38.8%** | [arXiv:2407.01489](https://arxiv.org/abs/2407.01489) |
-| `swe_verified_2025_sonnet37_base` | 2025-02-24 | Claude 3.7 Sonnet (2025-02-19) | Standard Unassisted Baseline | SWE-bench Verified (Evaluated) | 489 | 311.5 | **63.7%** | [Anthropic Release](https://www.anthropic.com/news/claude-3-7-sonnet) |
-| `swe_verified_2025_sonnet37_high` | 2025-02-24 | Claude 3.7 Sonnet (2025-02-19) | Anthropic High-Compute Agent Scaffold | SWE-bench Verified (Evaluated) | 489 | 343.8 | **70.3%** | [Anthropic Release](https://www.anthropic.com/news/claude-3-7-sonnet) |
+| Milestone ID | Benchmark Report Date | Model & Release Date | Source Revision Date | Agent Scaffold / Method | Benchmark Variant | Denominator | Resolved Tasks | Score (%) | Primary Source URL |
+| :--- | :---: | :--- | :---: | :--- | :--- | :---: | :---: | :---: | :--- |
+| `swe_full_2023_claude2` | 2023-10-10 | Claude 2 (2023-07-11) | 2023-10-10 | BM25 Retrieval + Prompt Baseline | SWE-bench Full | 2,294 | 45.0 | **1.96%** | [arXiv:2310.06770](https://arxiv.org/abs/2310.06770) |
+| `swe_verified_2024_sonnet35`| 2024-08-13 | Claude 3.5 Sonnet (2024-06-20) | 2024-08-13 | SWE-agent scaffold (Yang et al.) | SWE-bench Verified | 500 | 168.0 | **33.6%** | [OpenAI Launch](https://openai.com/index/introducing-swe-bench-verified/) |
+| `swe_verified_2024_gpt4o` | 2024-09-02 | GPT-4o (2024-05-13) | 2024-09-02 | Agentless scaffold (Xia et al.) | SWE-bench Verified | 500 | 194.0 | **38.8%** | [arXiv:2407.01489](https://arxiv.org/abs/2407.01489) |
+| `swe_verified_2025_sonnet37_base` | 2025-02-24 | Claude 3.7 Sonnet (2025-02-24) | 2025-02-24 | Standard Unassisted Baseline | SWE-bench Verified (Evaluated) | 489 | 311.5 | **63.7%** | [Anthropic Release](https://www.anthropic.com/news/claude-3-7-sonnet) |
+| `swe_verified_2025_sonnet37_high` | 2025-02-24 | Claude 3.7 Sonnet (2025-02-24) | 2025-02-24 | Anthropic High-Compute Agent Scaffold | SWE-bench Verified (Evaluated) | 489 | 343.8 | **70.3%** | [Anthropic Release](https://www.anthropic.com/news/claude-3-7-sonnet) |
 
 ### Benchmark Provenance Notes:
 1. **Original SWE-bench 2023 Baseline:** The original benchmark release (Jimenez et al., ICLR 2024 / arXiv:2310.06770) evaluated 2,294 tasks across 12 repositories. Claude 2 resolved 45 tasks (1.96%), and GPT-4 resolved 40 tasks (1.74%). The previously cited 4.2% figure was an unverified secondary composite or Lite subset and is not comparable to full or verified evaluations.
-2. **2024 Verified Launch & Agentless Comparative Evaluation:** In the benchmark launch announcement (August 13, 2024), OpenAI and Princeton evaluated baseline open-source scaffolds: Claude 3.5 Sonnet with SWE-agent achieved 168/500 (33.6%), and GPT-4o scored 33.2% (166/500). Xia et al. (arXiv:2407.01489, revision dated Sept 2, 2024; OpenReview: https://openreview.net/forum?id=oWFo4H7mrj) evaluated Agentless with GPT-4o on the newly released Verified subset, achieving 194/500 (38.8%).
+2. **2024 Verified Launch & Agentless Comparative Evaluation (Date Distinctions):**
+   - **Benchmark Launch & Baseline Evaluation (August 13, 2024):** OpenAI and Princeton introduced SWE-bench Verified and evaluated initial scaffolds (Claude 3.5 Sonnet with SWE-agent achieved 168/500 = 33.6%; GPT-4o with open scaffold scored 33.2%).
+   - **Agentless Paper Revision (September 2, 2024):** Xia et al. (*Agentless*, arXiv:2407.01489v2) evaluated Agentless with GPT-4o on the newly released Verified subset, achieving 194/500 = 38.8%. In our dataset, `benchmark_report_date` and `source_revision_date` record 2024-09-02 for this result, while the underlying model GPT-4o release date is preserved separately as 2024-05-13 to prevent date confusion.
 3. **Claude 3.7 Sonnet Evaluation & Expected Task Equivalents:** Anthropic reported evaluations on 489 tasks due to 11 infrastructure-incompatible tasks in the environment (e.g., repository Docker container failures). The 70.3% score used test-time compute with parallel thinking and search tools, compared to 63.7% unassisted on that same 489-task subset. Fractional task values (343.8 and 311.5) represent expected task equivalents calculated from Pass@1 averages across repeated sampling trials over the 489 evaluated problems.
 4. **2026 Benchmark Status:** Recorded as `null` / unobserved in our empirical time-series. While third-party agentic scaffolds continue to post experimental results to the public leaderboard, no single vetted foundation-model frontier milestone has been officially established as definitive for full calendar year 2026. To preserve empirical integrity, unverified point snapshots are omitted.
 5. **Limits of Benchmark Evidence:** A rising benchmark score indicates progress on curated GitHub issue resolution within isolated Docker sandboxes. It does not prove that AI coding agents have replaced entry-level software engineers or caused market contraction.

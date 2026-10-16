@@ -103,7 +103,7 @@ pip install -r requirements.txt
 # 3. Apply database migrations
 alembic upgrade head
 
-# 4. Run the automated test suite (22 passing backend tests)
+# 4. Run the automated test suite (25 passing backend tests)
 python -m pytest -v
 
 # 5. Launch the application (serves both API & Frontend Dashboard)
