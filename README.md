@@ -20,7 +20,7 @@
 
 In 2026, breaking into software engineering as a fresh graduate has fundamentally changed:
 
-* **Routine Coding is Commoditized:** Frontier AI models write boilerplate endpoints and basic syntax in seconds. The market no longer rewards junior engineers for simple syntax recitation.
+* **Routine Coding is Commoditized:** Frontier AI models write boilerplate endpoints and basic syntax in seconds, diminishing the differentiation gained from basic syntax alone.
 * **The "Seniority Bias" Reality:** While Pakistan's ICT export remittances expanded to **US$ 4.60 Billion** in FY26 (+21.4% CAGR), local industry data (P@SHA Skills Survey 2025) reveals that **71.8% of hiring demand is concentrated in experienced roles**, creating intense qualification friction for fresh graduates.
 * **The Tutorial Trap:** Most candidates respond to market friction by bingeing tutorials or building generic to-do apps with AI, leaving them unprepared when interviewers ask *“Why did you design this schema?”*, *“How do you prevent cross-user data leaks?”*, or *“How do your automated tests verify migration rollbacks?”*
 
@@ -34,7 +34,7 @@ In 2026, breaking into software engineering as a fresh graduate has fundamentall
 flowchart LR
     subgraph Part1 ["1. Empirical Research (/research)"]
         direction TB
-        R1["2,443 FRED Job Postings"]
+        R1["2,443 Daily U.S. Software Postings Index Observations"]
         R2["$4.6B SBP / P@SHA Data"]
         R3["SWE-bench Milestones"]
         R1 & R2 & R3 --> ROut["Outcome: Stop Guessing.<br>Commit to High-Leverage Backend."]
@@ -60,7 +60,9 @@ flowchart LR
 ```
 
 ### 1. Empirical Market Research Brief (`/research`)
-An in-depth empirical whitepaper titled *"The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates"*. It analyzes macroeconomic normalization (post-ZIRP), SWE-bench Verified coding agent progression, and Pakistan IT industry dynamics ($4.60B reported FY26 ICT exports, 21.4% CAGR vs. 71.8% senior hiring preference). It proves that employers pay for **systems verification, database integrity, and security**, not superficial syntax generation.
+An in-depth empirical whitepaper titled *"The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates"*. It analyzes macroeconomic normalization (post-ZIRP), SWE-bench Verified coding agent progression, and Pakistan IT industry dynamics ($4.60B reported FY26 ICT exports, 21.4% CAGR vs. 71.8% senior hiring preference).
+
+**Strategic interpretation:** As AI-assisted code generation becomes more accessible, candidates may benefit from demonstrating stronger skills in automated testing, database integrity, debugging, and security. This is a reasoned career recommendation informed by the literature and industry context, not a direct finding from compensation or hiring-outcome data.
 
 ### 2. AI-Augmented Engineering Learning Framework (`/ai_learning_research`)
 A research-informed learning framework synthesizing 16 categorized academic papers across Cognitive Science and Computing Education (ACM SIGCSE, ICER, CHI). It replaces passive tutorial consumption with **active cognitive protocols** (Socratic decomposition, adversarial code review, mutation testing, Feynman verification) and provides a structured **30-Day Active-Learning Sprint** that trains **Data Structures & Algorithms (DSA)**, database modeling, and live interview defense.
@@ -77,7 +79,7 @@ Select your perspective to find what matters most to you:
 | Persona | Primary Goal | Where to Start |
 | :--- | :--- | :--- |
 | 👔 **Technical Recruiter & Engineering Lead** | Evaluate code quality, architecture, testing, and security practices | Inspect [`backend/app/`](backend/app/), review the [Multi-Tenant Security Tests](backend/tests/test_security_isolation.py), and read the [Production Architecture Deep Dive](#-jobpulse-production-architecture). |
-| 🎓 **Fresh Graduate & Self-Taught Developer** | Transition from tutorial paralysis to a job-ready backend engineer | Follow the [30-Day Active Learning Sprint](ai_learning_research/roadmap/30_day_active_learning_sprint.md), use the [DSA Coach Prompt](ai_learning_research/prompts/dsa_coach.prompt.md), and build features on JobPulse. |
+| 🎓 **Fresh Graduate & Self-Taught Developer** | Transition from tutorial paralysis to a job-ready backend engineer | Follow the [30-Day Active Learning Sprint](ai_learning_research/roadmap/30_day_ai_backend_sprint.md), use the [DSA Coach Prompt](ai_learning_research/prompts/dsa_coach.prompt.md), and build features on JobPulse. |
 | 📈 **Data Analyst & Tech Researcher** | Reproduce labor statistics, benchmark trajectories, and charts | Check [`research/paper/main_manuscript.md`](research/paper/main_manuscript.md), verify the [FRED Aggregation Unit Test](research/tests/test_fred_aggregation.py), and run the [Market Analysis Script](research/src/analyze_market_dynamics.py). |
 
 ---

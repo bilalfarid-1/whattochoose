@@ -114,9 +114,20 @@ def test_data_integrity():
     assert agentless_m['source_revision_date'] == '2024-09-02'
     assert agentless_m['model_release_date'] == '2024-05-13'
         
-    # Verify Stanford / ADP early career research section exists
+    # Verify Stanford Digital Economy Lab early career research section exists with verified authors and title
     assert 'stanford_adp_early_career_employment_research' in data
-    assert 'Brynjolfsson' in data['stanford_adp_early_career_employment_research']['citation']
+    s_res = data['stanford_adp_early_career_employment_research']
+    assert 'Brynjolfsson' in s_res['citation']
+    assert 'Chandar' in s_res['citation']
+    assert 'Chen' in s_res['citation']
+    assert 'Canaries in the Coal Mine' in s_res['paper_title']
+    assert 'digitaleconomy.stanford.edu' in s_res['primary_source_url']
+
+    # Ensure no record in time_series_data retains redundant benchmark_resolved
+    for row in ts:
+        assert 'benchmark_resolved' not in row, f"Found deprecated 'benchmark_resolved' in year {row['year']}"
+        if row['year'] in [2024, 2025]:
+            assert 'expected_resolved_tasks' in row, f"Missing 'expected_resolved_tasks' in year {row['year']}"
 
     # 5. Verify Mathematical Reproducibility of the Qualitative Skills Rubric
     rubric = data['author_qualitative_skills_rubric']

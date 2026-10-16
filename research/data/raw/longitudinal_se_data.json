@@ -149,7 +149,7 @@
       "benchmark_swe_verified_scaffold": "Agentless scaffold (Xia et al., 2024)",
       "benchmark_variant": "SWE-bench Verified (500 human-validated instances)",
       "benchmark_denominator": 500,
-      "benchmark_resolved": 194,
+      "expected_resolved_tasks": 194,
       "benchmark_swe_verified_snapshot_date": "2024-09-02",
       "benchmark_source_revision_date": "2024-09-02",
       "benchmark_model_release_date": "2024-05-13",
@@ -185,7 +185,7 @@
       "benchmark_swe_verified_scaffold": "Anthropic custom high-compute agent scaffold (343.8/489 = 70.3% with parallel test-time compute; 311.5/489 = 63.7% baseline unassisted; 11 infrastructure-incompatible tasks excluded out of 500)",
       "benchmark_variant": "SWE-bench Verified (489 evaluated instances)",
       "benchmark_denominator": 489,
-      "benchmark_resolved": 343.8,
+      "expected_resolved_tasks": 343.8,
       "benchmark_swe_verified_snapshot_date": "2025-02-24",
       "benchmark_swe_verified_url": "https://www.anthropic.com/news/claude-3-7-sonnet",
       "benchmark_swe_source": "Anthropic Claude 3.7 Sonnet Evaluation Report (February 24, 2025)",
@@ -321,11 +321,22 @@
     }
   ],
   "stanford_adp_early_career_employment_research": {
-    "citation": "Brynjolfsson, Chandis, & Unger (Stanford Digital Economy Lab, 2024) / Rock et al.",
+    "citation": "Brynjolfsson, Chandar, & Chen (Stanford Digital Economy Lab, 2025; rev. 2026)",
+    "authors": [
+      "Erik Brynjolfsson",
+      "Bharat Chandar",
+      "Ruyu Chen"
+    ],
+    "paper_title": "Canaries in the Coal Mine: Six Facts About the Recent Employment Effects of Artificial Intelligence",
+    "institution": "Stanford Digital Economy Lab",
+    "publication_year": 2025,
+    "revision_date": "2026-08-12",
+    "primary_source_url": "https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/",
     "dataset": "ADP payroll records covering millions of US private-sector employees",
-    "core_finding": "Early-career workers (ages 22-25) in software development and related occupations with high GenAI exposure experienced a ~20% relative employment contraction from late-2022 peaks compared to peers in low-exposure occupations.",
+    "core_finding": "Employment among early-career workers (ages 22-25) in AI-exposed occupations was 19% below the trajectory it would have followed had it kept pace with less-exposed peers.",
     "critical_caveats": [
-      "The finding is descriptive of relative US private-sector employment shifts, not proof of direct GenAI causal substitution.",
+      "The finding is descriptive of relative US private-sector employment trajectories among young workers in AI-exposed occupations, not causal proof that AI caused a decline specifically in software-developer employment.",
+      "The authors report no evidence of widespread, economy-wide job displacement.",
       "The study evaluates US domestic payrolls and does not represent a direct measurement of entry-level vacancy shares in Pakistan or other offshore tech ecosystems."
     ]
   },

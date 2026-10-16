@@ -96,9 +96,10 @@ We present benchmark progress as discrete milestones with explicit models, scaff
 
 ## 4. Academic Literature & U.S. Labor Economics
 
-* **Stanford Digital Economy Lab / ADP Research (Brynjolfsson, Chandis, & Unger, 2024; Rock et al.):**  
-  *Finding:* Analyzes ADP payroll records for millions of US private-sector employees. Early-career software developers (ages 22–25) in occupations with high GenAI exposure experienced a ~20% relative employment contraction from late-2022 peaks compared to less-exposed occupations.  
-  *Caveats:* Descriptive US payroll study; does not measure Pakistani software export firm vacancy shares, and cannot be interpreted as direct causal proof that AI caused entry-level hiring to decline.
+* **Stanford Digital Economy Lab (Brynjolfsson, Chandar, & Chen, 2025; rev. 2026):**  
+  *Citation:* Brynjolfsson, E., Chandar, B., & Chen, R. (2025; revised August 12, 2026). *Canaries in the Coal Mine: Six Facts About the Recent Employment Effects of Artificial Intelligence*. Stanford Digital Economy Lab. [https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/](https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/)  
+  *Finding:* Analyzes ADP payroll records covering millions of US private-sector employees. Employment among early-career workers (ages 22–25) in AI-exposed occupations was 19% below the trajectory it would have followed had it kept pace with less-exposed peers.  
+  *Caveats:* This finding represents a descriptive relative employment shortfall among young workers in AI-exposed occupations rather than causal proof that AI caused a decline specifically in software-developer employment. Furthermore, the authors report no evidence of widespread, economy-wide job displacement. The study evaluates US domestic enterprise payrolls and does not measure Pakistani software export firm vacancy shares.
 * **Tucker, Lee C. (April 2026):** *You're (not) Hired: Artificial Intelligence and Early Career Hiring in the Quarterly Workforce Indicators*. Working Paper CES-26-27, Center for Economic Studies, U.S. Census Bureau. [https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html](https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html)  
   *Finding:* Documents a statistically significant decline in early-career hiring in AI-exposed technical industries within the United States.
 * **Autor, David (2024):** *Applying AI to Rebuild Middle-Class Jobs*, NBER Working Paper 32140. Analyzes task-biased cognitive automation and task boundaries.
