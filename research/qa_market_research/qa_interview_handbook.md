@@ -1,4 +1,4 @@
-# QA / SDET Technical Interview Handbook: Top Questions & Answers (1-Year Experience Level)
+# QA / SDET Technical Interview Handbook: Top Questions & Answers (Entry-Level & Junior SDET / Automation QA)
 
 **Target Role:** Junior QA Engineer / Associate SQA / SDET (0–12 Months Experience)  
 **Context:** Curated from interview evaluations across tier-1 Pakistani software houses (**Systems Limited, Arbisoft, 10Pearls, Devsinc, Emumba**) and global remote tech employers.
@@ -63,7 +63,7 @@
 
 ---
 
-## Section 3: API Testing & Postman / Newman Automation
+## Section 3: API Testing & Postman / pytest Automation
 
 ### Q8: What makes an HTTP method "Idempotent"? Are methods like PATCH idempotent?
 * **Model Answer:**  
@@ -201,7 +201,7 @@
      - Trigger on `pull_request` to target branches (`main`, `develop`).
      - Spin up isolated service containers (e.g. PostgreSQL).
      - Check out code, install pinned dependencies, start services with readiness checks.
-     - Execute the test harness: `pytest` and/or Newman CLI.
+     - Execute the test harness: `pytest` (primary code-based runner) and/or Postman CLI (optional collection runner; note that Postman has transitioned Native Git / Collection v3 workflows from Newman to Postman CLI).
      - Emit exit code `0` on 100% pass, or non-zero on any failure.
      - Publish test reports and trace artifacts (`actions/upload-artifact`).
   2. **Enforcement (Branch Protection & Quality Gates):**

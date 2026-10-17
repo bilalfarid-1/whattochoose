@@ -4,7 +4,7 @@
 *BS Software Engineering Graduate & Independent Technology Analyst*  
 *Islamabad/Rawalpindi, Pakistan*  
 **Scope:** Pakistani Software Export Ecosystem & Global Remote Technology Markets  
-**Companion Artifacts:** [30-Day QA/SDET Hands-on Roadmap](30_day_qa_sdet_hands_on_roadmap.md) | [QA Technical Interview Handbook](qa_interview_handbook.md)
+**Companion Artifacts:** [30-Day Job-Ready QA Roadmap](30_day_job_ready_qa_roadmap.md) | [Days 31–60 Extension](days_31_60_qa_automation_extension.md) | [QA Technical Interview Handbook](qa_interview_handbook.md)
 
 ---
 
@@ -137,7 +137,7 @@ Rather than claiming false calendar tenure, the candidate's pitch is grounded in
 
 A primary challenge for QA candidates is having a realistic **System Under Test (SUT)**. Most junior portfolios test public sandbox websites (e.g. `the-internet.herokuapp.com` or demo e-commerce sites), which interviewers immediately recognize as superficial tutorial exercises.
 
-Our project provides an unfair strategic advantage: **[JobPulse](file:///C:/Users/bilal/Gemeni_Cli/se_labor_market_research/backend)** serves as a live, enterprise-style SUT:
+Our project provides a practical foundation: **[JobPulse](../../backend)** serves as a production-style SUT:
 1. **Live Asynchronous API:** A multi-tenant FastAPI backend with complex relational models (Applications, Interviews, Notes, Metrics).
 2. **Real Security Boundaries:** JWT authentication and multi-tenant isolation rules ripe for security and penetration testing (BOLA/IDOR, Mass Assignment).
 3. **Database Cascades:** Relational foreign keys and Alembic migrations allowing the QA engineer to demonstrate database-level assertion testing.

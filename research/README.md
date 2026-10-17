@@ -46,10 +46,12 @@ whattochoose/
 │       └── fig4_predictive_2030_forecast.png # Author-defined scenario of developer task allocation
 │
 ├── qa_market_research/                 # SQA & SDET Research, Curriculum & Interview Suite
-│   ├── README.md                       # QA Suite Index & Overview
+│   ├── README.md                       # QA Suite Index & Two-Phase Overview
 │   ├── qa_sdet_market_analysis.md      # Empirical SQA/SDET Market & Hiring Analysis
-│   ├── 30_day_qa_sdet_hands_on_roadmap.md # Granular 30-Day SDET Hands-on Roadmap
-│   └── qa_interview_handbook.md        # Technical QA/SDET Interview Handbook (Q&A)
+│   ├── 30_day_job_ready_qa_roadmap.md  # Core 30-Day Job-Ready QA Roadmap (Phase 1)
+│   ├── days_31_60_qa_automation_extension.md # QA Automation Depth & Specialization (Phase 2)
+│   ├── qa_interview_handbook.md        # Technical QA/SDET Interview Handbook (Q&A)
+│   └── 30_day_qa_sdet_hands_on_roadmap.md # Legacy Roadmap (Archived Redirect Stub)
 │
 └── roadmap/                            # Practical Graduate Deliverables
     ├── 2026_graduate_readiness_matrix.md # Skills triage: low-leverage vs AI-augmented vs high-leverage core
