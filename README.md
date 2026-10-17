@@ -80,6 +80,7 @@ Select your perspective to find what matters most to you:
 | :--- | :--- | :--- |
 | 👔 **Technical Recruiter & Engineering Lead** | Evaluate code quality, architecture, testing, and security practices | Inspect [`backend/app/`](backend/app/), review the [Multi-Tenant Security Tests](backend/tests/test_security_isolation.py), and read the [Production Architecture Deep Dive](#-jobpulse-production-architecture). |
 | 🎓 **Fresh Graduate & Self-Taught Developer** | Transition from tutorial paralysis to a job-ready backend engineer | Follow the [30-Day Active Learning Sprint](ai_learning_research/roadmap/30_day_ai_backend_sprint.md), use the [DSA Coach Prompt](ai_learning_research/prompts/dsa_coach.prompt.md), and build features on JobPulse. |
+| 🛡️ **QA Engineer & SDET Candidate** | Transition to a job-ready Automation QA / SDET with 1-year equivalent competence | Study the [QA/SDET Market Analysis](research/qa_market_research/qa_sdet_market_analysis.md), follow the [30-Day SDET Roadmap](research/qa_market_research/30_day_qa_sdet_hands_on_roadmap.md), and review the [Interview Handbook](research/qa_market_research/qa_interview_handbook.md). |
 | 📈 **Data Analyst & Tech Researcher** | Reproduce labor statistics, benchmark trajectories, and charts | Check [`research/paper/main_manuscript.md`](research/paper/main_manuscript.md), verify the [FRED Aggregation Unit Test](research/tests/test_fred_aggregation.py), and run the [Market Analysis Script](research/src/analyze_market_dynamics.py). |
 
 ---

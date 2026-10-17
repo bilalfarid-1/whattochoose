@@ -45,6 +45,12 @@ whattochoose/
 │       ├── fig3_pakistan_paradox.png   # Pakistan ICT export revenue vs member company demand
 │       └── fig4_predictive_2030_forecast.png # Author-defined scenario of developer task allocation
 │
+├── qa_market_research/                 # SQA & SDET Research, Curriculum & Interview Suite
+│   ├── README.md                       # QA Suite Index & Overview
+│   ├── qa_sdet_market_analysis.md      # Empirical SQA/SDET Market & Hiring Analysis
+│   ├── 30_day_qa_sdet_hands_on_roadmap.md # Granular 30-Day SDET Hands-on Roadmap
+│   └── qa_interview_handbook.md        # Technical QA/SDET Interview Handbook (Q&A)
+│
 └── roadmap/                            # Practical Graduate Deliverables
     ├── 2026_graduate_readiness_matrix.md # Skills triage: low-leverage vs AI-augmented vs high-leverage core
     └── pakistani_fresh_grad_playbook.md  # 90-day step-by-step execution protocol for Pakistani graduates
