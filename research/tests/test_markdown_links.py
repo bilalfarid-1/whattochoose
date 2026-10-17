@@ -11,16 +11,16 @@ from research.tests.verify_markdown_links import (
 def test_github_slugify_standard_and_edge_cases():
     # 1. Standard heading
     assert github_slugify("Four-hour daily routine") == "four-hour-daily-routine"
-    
+
     # 2. Heading with emoji, colon, and ampersand
     assert github_slugify("🚀 JobPulse: Production Architecture & Key Features") == "-jobpulse-production-architecture--key-features"
-    
+
     # 3. Heading with code and bold markdown
     assert github_slugify("Heading with `code` and **bold**") == "heading-with-code-and-bold"
-    
+
     # 4. Heading with link inside
     assert github_slugify("Heading with [link](https://example.com) inside") == "heading-with-link-inside"
-    
+
     # 5. HTML tags inside heading
     assert github_slugify("Heading with <span>HTML</span>") == "heading-with-html"
 
@@ -33,9 +33,9 @@ def test_extract_headings_duplicate_disambiguation(tmp_path):
 """
     test_file = tmp_path / "test_doc.md"
     test_file.write_text(md_content, encoding="utf-8")
-    
+
     slugs = extract_headings(str(test_file))
-    
+
     # First occurrence is base slug
     assert "overview" in slugs
     assert "features" in slugs
@@ -53,7 +53,7 @@ def test_anchor_validation_exact_pass_and_broken_prefix_fail(tmp_path):
     """
     target_md = tmp_path / "target.md"
     target_md.write_text("## 🚀 JobPulse: Production Architecture & Key Features\n\nContent here.\n", encoding="utf-8")
-    
+
     # 1. Exact valid anchor in caller
     caller_valid = tmp_path / "caller_valid.md"
     caller_valid.write_text("[Valid Link](target.md#-jobpulse-production-architecture--key-features)\n", encoding="utf-8")
@@ -77,7 +77,7 @@ def test_anchor_validation_anchor_only_links(tmp_path):
 ## Section Two
 Content.
 """, encoding="utf-8")
-    
+
     res = verify_links(str(tmp_path))
     assert res["anchor_only_links_checked"] == 2
     assert res["file_targets_checked"] == 0
@@ -94,7 +94,7 @@ def test_external_links_inventory_and_counts(tmp_path):
 # Section
 """, encoding="utf-8")
     (tmp_path / "target.md").write_text("# Target\n", encoding="utf-8")
-    
+
     res = verify_links(str(tmp_path))
     assert res["external_urls_count"] == 1
     assert res["total_local_markdown_links"] == 2
