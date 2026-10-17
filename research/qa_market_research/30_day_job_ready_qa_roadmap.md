@@ -72,7 +72,7 @@ Use this structure on full study days:
 | Commit/log | 15 min | Commit work, update the learning log and note the next blocker. |
 | **Total** | **240 min** | **4 hours** |
 
-Days 7, 14, 21 and 28 are dedicated consolidation and catch-up days (1–2 focused hours). Use them to address the single highest-impact gap, rerun test suites, and take the remainder of the day off to rest and consolidate concepts, preventing small delays from breaking the monthly schedule. Aim for about 110–115 focused hours across the 30-calendar-day period, depending on your pace.
+Days 7, 14, 21 and 28 are dedicated consolidation and catch-up days (1–2 focused hours). Use them to address the single highest-impact gap, rerun test suites, and take the remainder of the day off to rest and consolidate concepts, preventing small delays from breaking the monthly schedule. Aim for approximately 108–112 focused hours across the 30-calendar-day period (26 four-hour study days plus four 1–2 hour consolidation days), depending on your pace.
 
 ### Working rules
 
