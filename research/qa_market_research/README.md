@@ -10,7 +10,7 @@ This directory houses the empirical labor market research, hands-on 30-day curri
 | :--- | :--- | :--- |
 | **1. Market Analysis Paper** | Empirical macroeconomic analysis synthesizing P@SHA 2025, SBP exports ($4.6B), AI-era testing transitions, and tier-1 Pakistani hiring requirements (Arbisoft, Systems Ltd, 10Pearls, Emumba, Devsinc). | [qa_sdet_market_analysis.md](qa_sdet_market_analysis.md) |
 | **2. 30-Day Hands-on Roadmap** | Day-by-day 4-hour deliberate practice blueprint building 1-year equivalent hands-on competence (STLC, Postman/Newman, Pytest, Playwright, SQL, CI/CD). | [30_day_qa_sdet_hands_on_roadmap.md](30_day_qa_sdet_hands_on_roadmap.md) |
-| **3. Technical Interview Handbook** | 33 in-depth technical questions with model answers covering test design techniques, API security (OWASP BOLA & Mass Assignment), Pytest fixtures, Playwright POM, SQL queries, flaky tests, and real-world diagnostic reasoning. | [qa_interview_handbook.md](qa_interview_handbook.md) |
+| **3. Technical Interview Handbook** | 35 in-depth technical questions with model answers covering test design techniques, API security (OWASP BOLA & Mass Assignment), Pytest fixtures, Playwright POM, SQL queries, flaky tests, and real-world diagnostic reasoning. | [qa_interview_handbook.md](qa_interview_handbook.md) |
 
 ---
 

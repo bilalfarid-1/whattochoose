@@ -23,16 +23,15 @@ Synthesizing data from the **P@SHA Skills Survey 2025**, national export receipt
 ### 1.1 The P@SHA Skills Survey 2025 Benchmarks & Industry Data Context
 According to the **Pakistan Software Houses Association (P@SHA) Skills Survey 2025** (surveying organized IT export enterprises representing over 47,000 corporate hires):
 * **Seniority Demand Bias:** Approximately **$71.8\%$** of industry hiring demand across surveyed member enterprises is concentrated in experienced personnel, leaving **$28.2\%$** for fresh graduates ($13,350$ hires across surveyed firms against an estimated national institutional supply of $\sim 72,952$ annual CS/IT graduates).
-* **SQA Share of Talent Pool:** Software Quality Assurance constitutes approximately **$9.5\%$ to $12.8\%$** of the technical headcount in surveyed export-oriented software houses (varying by firm delivery model—firms with dedicated Managed QA practices sit at the upper end of this range).
-* **The Structural Shift from Manual to Automation:** While historically up to $60\%$ of junior SQA positions in Pakistan were functional/manual testers, over **$75\%$ of contemporary 2025–2026 job descriptions** from export firms explicitly require test automation scripting (Python, JavaScript/TypeScript, or Java) and API testing capabilities.
-* **Provisional Compensation Bands (Subject to Variance):** Industry salary samples across local job platforms (e.g., Indeed, Rozee.pk, and recruitment disclosures) reflect wide variance based on firm tier and client billing currency:
-  - *Entry / Associate Manual Functional QA:* PKR 35,000–55,000/month (face severe downward pressure and screening bottlenecks).
-  - *Associate Automation QA / Junior SDET:* PKR 65,000–110,000/month (high dispersion depending on whether firm bills USD clients).
-  - *International Remote Contracts:* US$800–$1,800/month (demands verified independent delivery, Git mastery, and asynchronous autonomy).
-  *(Note: These compensation figures represent indicative observational ranges rather than contractual guarantees.)*
+* **SQA Share of Talent Pool:** Software Quality Assurance constitutes an estimated **$9.5\%$ to $12.8\%$** of the technical headcount in surveyed export-oriented software houses (varying based on whether the firm operates dedicated Managed QA service lines). *Note: This figure reflects member export-house survey samples rather than an exhaustive national census.*
+* **Automation Requirements:** A strong majority of contemporary job postings from export-oriented firms explicitly list API testing and scripting capabilities (Python, JavaScript/TypeScript, or Java) alongside manual test execution.
+* **Provisional Compensation Data (Methodological Caveat):** 
+  - An October 2026 Indeed Pakistan benchmark reported an average of **PKR 49,757/month** for Junior Quality Assurance Engineers (based on a modest sample of 12 reported salaries, updated September 2026).
+  - Observational market ranges for entry-level manual QA typically span PKR 35,000–55,000/month, while associate automation QA roles span PKR 60,000–100,000+/month in export firms billing foreign clients.
+  - *Methodological Rule:* These figures are indicative samples subject to wide variance based on company tier, geography, and project revenue currency. Automation skills do not automatically guarantee a higher salary; their primary advantage is qualifying the candidate for a broader range of engineering-oriented testing positions.
 
-### 1.2 Export Remittances & Enterprise Delivery Standards
-Pakistan’s ICT export remittances have sustained a 6-year Compound Annual Growth Rate (CAGR) of **$+21.4\%$** (expanding from $\$1.440\text{B}$ in FY20 to an outturn of $\sim \$4.600\text{B}$ in FY26 per SBP and Associated Press of Pakistan reports). To retain high-margin US and European enterprise clients, software export firms must deliver software under strict Service Level Agreements (SLAs). Manual testing cannot provide the continuous feedback required by modern two-week sprint cycles; automated regression test suites executed in continuous integration (CI) are mandatory contractual requirements.
+### 1.2 Export Remittances as Macroeconomic Context
+Pakistan’s ICT export receipts reached a reported outturn of $\sim \$4.600\text{B}$ in FY26 (per SBP and Associated Press of Pakistan data). While this reflects strong macro sector expansion (+20.6% YoY), macroeconomic export figures provide sector background only; they do not predict individual hiring probabilities or dictate specific framework mandates. 
 
 ---
 
@@ -49,9 +48,9 @@ Pakistan’s ICT export remittances have sustained a 6-year Compound Annual Grow
 | • Manual UI exploration & clicks  | • Postman API test collections    | • Pytest / Playwright suites  |
 | • Basic bug logging in Jira       | • Selenium / Cypress scripts      | • CI/CD pipeline automation   |
 | • High vulnerability to LLM agents| • Basic SQL data verification     | • Database & security audit   |
-| • Local Salary: PKR 35k–55k/mo*   | • Local Salary: PKR 60k–90k/mo*   | • Local Salary: PKR 85k–130k+*|
+| • Indicative: PKR 35k–55k/mo      | • Indicative: PKR 60k–90k/mo      | • Indicative: PKR 85k–130k+   |
 +-----------------------------------+-----------------------------------+-------------------------------+
-*Indicative market ranges; actual offers vary significantly by employer size and project domain.
+*Indicative observational ranges; actual offers vary significantly by employer size and project domain.
 ```
 
 ### 2.1 The Decline of Manual Black-Box QA
@@ -70,44 +69,40 @@ Conversely, **Automated Testing & Systems Verification** has emerged as one of t
 
 ---
 
-## 3. Empirical Analysis of Pakistani Software House Vacancies & Screening Bars
+## 3. Empirical Vacancy Categorization & Screening Bars
 
-An empirical audit of job specifications across Pakistan's technology employers indicates clear tiering between entry-level openings and mid-senior expectations:
+To avoid misrepresenting mid-senior expectations as entry-level requirements, software testing vacancies are systematically separated into three distinct operational groups:
 
 ```
-+----------------------------------------------------------------------------------------------------------------+
-|                         REPRESENTATIVE VACANCY AUDIT & SCREENING PROFILES                                      |
-+--------------------+-------------------------+---------------------------------+-------------------------------+
-| Employer / Listing | Seniority Target        | Stated Skill Requirements       | Role Realities & Context      |
-+--------------------+-------------------------+---------------------------------+-------------------------------+
-| **QA SONIC**       | Associate QA Engineer   | Manual testing, bug reports,    | Explicitly welcomes 0–1 years.|
-| (Stickler Minds)   | (0–1 Years)             | logical reasoning, assisting    | Prioritizes clear bug logging |
-|                    |                         | Python/Playwright automation    | & test design over deep arch. |
-+--------------------+-------------------------+---------------------------------+-------------------------------+
-| **Big Entities**   | Associate QA Engineer   | STLC, functional/regression,    | Benchmarks 6–12 months exp;   |
-|                    | (6–12 Months)           | defect tracking, API & SQL      | API & SQL are baseline needs; |
-|                    |                         | testing, communication          | automation is a differentiator|
-+--------------------+-------------------------+---------------------------------+-------------------------------+
-| **Systems Limited**| Software Test Engineer  | API testing, SQL queries,       | Accessible role is mid-senior;|
-|                    | (Mid-Senior Benchmark)  | automation frameworks, CI/CD,   | illustrates broad skillset    |
-|                    |                         | Agile delivery, communication   | expected as engineers develop.|
-+--------------------+-------------------------+---------------------------------+-------------------------------+
-| **Devsinc**        | QA Automation Engineer  | API regression, automation      | Senior vacancy (3+ years exp);|
-|                    | (Experienced Benchmark) | frameworks, CI/CD, Allure /     | Newman/Postman serves as an   |
-|                    |                         | TestOps integration             | example toolchain standard.   |
-+--------------------+-------------------------+---------------------------------+-------------------------------+
-| **Arbisoft**       | SQA / SDET Track        | Python scripting, Pytest,       | Emphasizes algorithmic logic, |
-|                    | (Product Teams)         | database verification,          | live bug bashes, and clean    |
-|                    |                         | structured test case design     | code architecture.            |
-+--------------------+-------------------------+---------------------------------+-------------------------------+
-| **10Pearls**       | SQA Services Practice   | API testing, OWASP awareness,   | Reflects enterprise service   |
-|                    | (Enterprise Solutions)  | Playwright/Selenium, CI/CD      | offerings across functional,  |
-|                    |                         | integration                     | security, and load testing.   |
-+--------------------+-------------------------+---------------------------------+-------------------------------+
++--------------------------------------------------------------------------------------------------------------------+
+|                                    THREE-TIER VACANCY AUDIT & TARGETING MATRIX                                     |
++----------+--------------------+-------------------------+---------------------------------+------------------------+
+| Group    | Employer / Listing | Seniority Target        | Stated Skill Requirements       | Application Action     |
++----------+--------------------+-------------------------+---------------------------------+------------------------+
+| **A**    | **QA SONIC**       | Associate QA Engineer   | Manual testing, bug reports,    | **Direct Primary**     |
+| (Direct) | (Stickler Minds)   | (0–1 Years)             | logical reasoning, basic Python/| Apply immediately;     |
+|          |                    |                         | Playwright automation assistance| strong match.          |
++----------+--------------------+-------------------------+---------------------------------+------------------------+
+| **A**    | **Big Entities**   | Associate QA Engineer   | STLC, functional/regression,    | **Direct Primary**     |
+| (Direct) |                    | (6–12 Months)           | defect tracking, API & SQL      | Portfolio provides     |
+|          |                    |                         | testing, communication          | competitive edge.      |
++----------+--------------------+-------------------------+---------------------------------+------------------------+
+| **B**    | **Systems Limited**| Software Test Engineer  | API testing, SQL queries,       | **Stretch Target**     |
+| (Stretch)| (Accessible Role)  | (1–2 Years Exp / Mid)   | automation frameworks, CI/CD,   | Apply once Week 3      |
+|          |                    |                         | Agile delivery, communication   | Pytest suite is live.  |
++----------+--------------------+-------------------------+---------------------------------+------------------------+
+| **B**    | **Arbisoft**       | SQA / SDET Track        | Python scripting, Pytest,       | **Stretch Target**     |
+| (Stretch)|                    | (1–2 Years Exp)         | database verification,          | Emphasizes algorithmic |
+|          |                    |                         | structured test case design     | & OOP screening tests. |
++----------+--------------------+-------------------------+---------------------------------+------------------------+
+| **C**    | **Devsinc**        | QA Automation Engineer  | API regression, automation      | **Do Not Target Now**  |
+| (Senior) |                    | (3+ Years Experience)   | frameworks, CI/CD, Allure /     | Requires multi-year    |
+|          |                    |                         | TestOps integration             | production tenure.     |
++----------+--------------------+-------------------------+---------------------------------+------------------------+
 ```
 
-> [!NOTE]
-> Specific tool combinations (e.g. Newman CLI, Pytest, Playwright) vary by project and vacancy. Candidates should treat these tools as robust, representative vehicle implementations of core testing principles rather than inflexible company-wide mandates.
+> [!IMPORTANT]
+> **Candidate Strategic Commitment:** Commit to the QA/SDET specialization for at least **90 days**. Spend the first 30 days executing a focused hands-on portfolio sprint around JobPulse, and begin actively submitting applications to Group A vacancies starting in Week 2 rather than delaying until Day 30.
 
 ---
 
@@ -153,7 +148,24 @@ By constructing a dedicated QA automation repository testing JobPulse, the candi
 
 ---
 
-## 6. References & Scholarly Sources
+## 6. Portfolio Quality Gate & Final Approval Checklist
+
+Before presenting the JobPulse QA automation portfolio to recruiters or hiring leads, the candidate must verify every item on this quality checklist:
+
+- [ ] **Endpoint Verification:** Every tested endpoint and payload attribute is verified against the actual FastAPI code (`backend/app/api/v1/endpoints`).
+- [ ] **Clean Environment Reproduction:** Test suites execute and pass 100% from a fresh clone with virtualenv setup instructions.
+- [ ] **Independent Multi-User Authorization:** Tests prove that User B cannot read, mutate, or delete User A's private records (`404 Not Found`).
+- [ ] **Deterministic Cleanup:** Fixtures use `yield` teardowns and isolated transaction rollbacks; tests never depend on execution order.
+- [ ] **CI Enforcement:** GitHub Actions fails and blocks merging if any test fails, with test artifacts preserved.
+- [ ] **Direct Database Assertions:** Direct SQL queries verify persistence and relational cascades independently of HTTP status codes.
+- [ ] **Documented Defect Investigation:** At least one defect is documented from initial discovery through cURL repro and automated regression test.
+- [ ] **Controlled Performance Experiment:** One documented Locust experiment with baseline RPS, P50/P95 latency, and error rate metrics.
+- [ ] **Honest System Presentation:** The portfolio accurately documents what is tested (API, security, DB, Swagger UI) and what is out of scope.
+- [ ] **Verbal Spoken Defense:** The candidate can explain their framework architecture, fixture lifecycle, and trade-offs without notes or AI tools.
+
+---
+
+## 7. References & Scholarly Sources
 
 1. **Pakistan Software Houses Association (P@SHA).** (2025). *P@SHA Skills Survey 2025: IT Industry Employment, Talent Pipeline, and Experience Benchmarks*. Direct Report: [https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf](https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf)
 2. **State Bank of Pakistan (SBP).** (2026). *Telecommunication, Computer and Information Services Export Receipts (FY20 - FY26)*. External Sector Statistics Division. [https://www.sbp.org.pk/economic-data](https://www.sbp.org.pk/economic-data)

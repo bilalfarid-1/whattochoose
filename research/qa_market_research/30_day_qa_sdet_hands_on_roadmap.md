@@ -285,6 +285,7 @@ Every single day is structured into a disciplined 4-hour block:
 
 ### Day 19: Modern Web UI Automation with Playwright (Python)
 * **Concepts:** Playwright vs Selenium, auto-waiting, browser contexts, selectors (Role, Text, CSS, XPath), headless vs headed execution.
+* **UI Scope Transparency:** JobPulse is a backend API service. Rather than falsely claiming a complete consumer web application exists, browser automation targets the live interactive OpenAPI/Swagger UI (`/docs`) or a dedicated minimal single-page HTML test interface, demonstrating real browser interaction (filling credentials, button clicks, DOM assertions) while keeping portfolio claims completely honest.
 * **Hands-on Task:**
   1. Install Playwright: `pip install pytest-playwright && playwright install`.
   2. Launch JobPulse Swagger UI in Playwright: `page.goto("http://127.0.0.1:8000/docs")`.

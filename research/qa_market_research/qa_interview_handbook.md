@@ -9,8 +9,9 @@
 
 ### Q1: What is the exact difference between Verification and Validation?
 * **Model Answer:**  
-  * **Verification** is static testing performed without executing code to confirm whether work products meet specified requirements: *"Are we building the product right?"* (Examples: code reviews, static code analysis, inspecting requirement documents).
-  * **Validation** is dynamic testing performed by executing software to ensure it satisfies user needs and business operational requirements: *"Are we building the right product?"* (Examples: functional testing, integration testing, user acceptance testing).
+  * **Verification** evaluates work products (specifications, architecture, code) against stated requirements and design constraints: *"Are we building the product right?"* While frequently associated with static analysis (reviews, inspections, linting), verification can also be dynamic (e.g. verifying that an API payload strictly adheres to an OpenAPI schema specification).
+  * **Validation** evaluates whether the delivered software satisfies real-world user operational needs and intended business outcomes: *"Are we building the right product?"* This focuses on fitness for purpose in target environments (e.g., end-to-end user workflows, user acceptance testing, exploratory scenario validation).
+  *(Avoid the oversimplified trap that verification is strictly static and validation is strictly dynamic; both employ static and dynamic verification techniques.)*
 
 ### Q2: What is the difference between Bug Severity and Bug Priority? Give practical examples.
 * **Model Answer:**  
@@ -64,11 +65,14 @@
 
 ## Section 3: API Testing & Postman / Newman Automation
 
-### Q8: What makes an HTTP method "Idempotent"? Which methods are idempotent?
+### Q8: What makes an HTTP method "Idempotent"? Are methods like PATCH idempotent?
 * **Model Answer:**  
-  An HTTP method is **idempotent** if making multiple identical requests has the exact same effect on the server state as making a single request.
-  * **Idempotent Methods:** `GET`, `HEAD`, `PUT` (replacing state), `DELETE` (deleting resource once or multiple times leaves it deleted).
-  * **Non-Idempotent Methods:** `POST` (submitting 5 times creates 5 separate records), `PATCH` (incremental modifications like `counter += 1` alter state on each call).
+  An HTTP method is **idempotent** (RFC 9110) if the intended effect on the server of multiple identical requests is the same as for a single request.
+  * **Inherently Idempotent:** `GET`, `HEAD`, `OPTIONS` (safe methods), `PUT` (complete state replacement), `DELETE` (deleting once or multiple times leaves the resource deleted, even if subsequent status codes change from 200/204 to 404).
+  * **Non-Idempotent by Default:** `POST` (submitting 5 times creates 5 distinct resource records without an idempotency key).
+  * **The PATCH Nuance (RFC 5789):** `PATCH` is **neither inherently non-idempotent nor inherently idempotent**—its idempotency depends entirely on the operation semantics:
+    - *Idempotent PATCH:* `{"status": "OFFERED"}` or `{"name": "Alice"}` produces the exact same server state regardless of repetitions.
+    - *Non-Idempotent PATCH:* `{"action": "increment_counter", "by": 1}` or JSON Patch `add` operations that append items to a list mutate state on every execution.
 
 ### Q9: What is the difference between HTTP Status Codes 401 Unauthorized and 403 Forbidden?
 * **Model Answer:**  
@@ -191,14 +195,19 @@
   * **P95:** 95% of requests completed faster; the slowest 5% experienced higher latency.
   * **P99:** The critical tail latency: 99% of requests completed faster; 1 out of 100 users experienced this delay. Enterprise SLAs are almost always based on P95 or P99 response times.
 
-### Q19: How do you configure an automated regression test suite to run on every GitHub Pull Request?
+### Q19: How do you configure an automated regression test suite to run on every GitHub Pull Request, and how is it enforced?
 * **Model Answer:**  
-  By creating a GitHub Actions workflow file (`.github/workflows/ci.yml`):
-  1. Define the trigger on `pull_request` to the `main` branch.
-  2. Set up service containers (e.g. PostgreSQL, Redis).
-  3. Check out the code, install dependencies (`pip install -r requirements.txt`).
-  4. Run the test command: `pytest --alluredir=allure-results`.
-  5. Publish test artifacts. If any test fails, GitHub automatically blocks merging the PR.
+  1. **CI Workflow Definition (`.github/workflows/ci.yml`):**
+     - Trigger on `pull_request` to target branches (`main`, `develop`).
+     - Spin up isolated service containers (e.g. PostgreSQL).
+     - Check out code, install pinned dependencies, start services with readiness checks.
+     - Execute the test harness: `pytest` and/or Newman CLI.
+     - Emit exit code `0` on 100% pass, or non-zero on any failure.
+     - Publish test reports and trace artifacts (`actions/upload-artifact`).
+  2. **Enforcement (Branch Protection & Quality Gates):**
+     - *Crucial Distinction:* Merely having a workflow run does NOT automatically prevent merges. Quality gate enforcement requires configuring **Branch Protection Rules** or **Repository Rulesets** in GitHub settings.
+     - Mark the test job (e.g. `test-automation`) as a **Required Status Check**.
+     - Require branches to be up to date before merging, ensuring the PR cannot be merged if the CI test suite fails.
 
 ---
 
@@ -310,4 +319,23 @@
     2. It significantly inflates CI pipeline duration and infrastructure costs.
     3. It produces "alert fatigue" and destroys engineering trust in test suites.
   * *Correct Protocol:* Quarantine the flaky test to an isolated non-blocking suite, log a high-priority defect, reproduce with stress loops (`pytest --count=100`), and fix root causes (deterministic fixtures, auto-waiting locators, independent database state).
+
+### Q34: How do you distinguish an application-level duplicate check from database-enforced uniqueness, and why is this critical in concurrency testing?
+* **Model Answer:**  
+  * **Application-Level Check:** The server executes `SELECT * FROM users WHERE email = ?`. If `None`, it executes `INSERT INTO users ...`.
+    - *The Concurrency Flaw:* Under concurrent traffic, two simultaneous requests execute the `SELECT` check at the same millisecond. Both receive `None`, both proceed to `INSERT`, and duplicate records are committed (a classic Time-of-Check to Time-of-Use / TOCTOU race condition).
+  * **Database-Enforced Uniqueness:** An explicit database constraint or unique index (`UNIQUE (email)` or composite `UNIQUE (user_id, company_id)`).
+    - Even if concurrent requests pass the application check, the database engine uses atomic transaction locks to commit the first insert and immediately reject the second.
+  * *QA Testing Strategy:* In concurrency tests, send simultaneous requests with identical keys. Verify that:
+    1. The database strictly prevents duplicates.
+    2. The API catches the database `IntegrityError` and returns a clean `409 Conflict` rather than an unhandled `500 Internal Server Error`.
+
+### Q35: How do you systematically distinguish a genuine application defect from a faulty test?
+* **Model Answer:**  
+  When an automated test fails, never assume the application is broken before validating the test:
+  1. **Verify the Oracles & Requirements:** Check the user story, OpenAPI specification, or business requirements document. Did the requirement change, making the test assertion obsolete?
+  2. **Isolate the Test Execution:** Run the failing test in isolation (`pytest tests/test_app.py::test_specific -v -s`). If it passes alone, the failure is a test defect caused by shared state pollution or fixture ordering.
+  3. **Inspect Request & Database State:** Print the full HTTP request payload, response status, response body, and query the database directly. Is the test sending invalid seed data or missing required foreign keys?
+  4. **Manual / cURL Reproduction:** Reproduce the exact request using `curl` or Postman against the local backend. If `curl` succeeds while the automated test fails, the test has a defect (e.g., incorrect header formatting, timing race condition). If `curl` also fails with unexpected state, it is a genuine application defect.
+
 
