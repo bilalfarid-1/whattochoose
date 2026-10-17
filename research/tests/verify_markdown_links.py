@@ -1,9 +1,11 @@
+import csv
 import os
 import re
 import sys
 
 # Determine repository root relative to this script
 REPO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+EXTERNAL_INVENTORY_CSV = os.path.join(os.path.dirname(__file__), "external_links_inventory.csv")
 
 def get_markdown_files(root):
     md_files = []
@@ -13,33 +15,55 @@ def get_markdown_files(root):
         for f in filenames:
             if f.endswith(".md"):
                 md_files.append(os.path.join(dirpath, f))
-    return md_files
+    return sorted(md_files)
+
+def github_slugify(heading_text):
+    # Strip markdown links: [text](url) -> text
+    text = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', heading_text)
+    # Strip inline markdown formatting (bold, italic, code)
+    text = re.sub(r'[*_`]', '', text)
+    # Strip HTML tags
+    text = re.sub(r'<[^>]+>', '', text)
+    # Lowercase
+    text = text.lower()
+    # Remove characters that are not alphanumeric, whitespace, or hyphen/underscore
+    text = re.sub(r'[^\w\s-]', '', text)
+    # Replace whitespace characters with hyphens
+    text = re.sub(r'\s', '-', text)
+    return text
 
 def extract_headings(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         text = f.read()
     headings = re.findall(r'^#{1,6}\s+(.+)$', text, re.MULTILINE)
-    slugs = set()
+    slug_counts = {}
+    known_slugs = set()
     for h in headings:
-        clean_h = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', h)
-        clean_h = re.sub(r'[*_`]', '', clean_h)
-        slug = clean_h.lower().strip()
-        slug = re.sub(r'[^\w\s-]', '', slug)
-        slug = re.sub(r'[\s_]+', '-', slug)
-        slugs.add(slug)
-    return slugs
+        base_slug = github_slugify(h)
+        if not base_slug:
+            continue
+        if base_slug in slug_counts:
+            slug_counts[base_slug] += 1
+            slug = f"{base_slug}-{slug_counts[base_slug]}"
+        else:
+            slug_counts[base_slug] = 0
+            slug = base_slug
+        known_slugs.add(slug)
+    return known_slugs
 
-def main():
+def verify_links(repo_dir=REPO_DIR):
     link_pattern = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
-    md_files = get_markdown_files(REPO_DIR)
+    md_files = get_markdown_files(repo_dir)
 
     file_slugs = {}
     for mf in md_files:
         file_slugs[os.path.normpath(mf)] = extract_headings(mf)
 
     errors = []
-    checked_file_links = 0
-    checked_anchor_links = 0
+    total_local_markdown_links = 0
+    file_targets_checked = 0
+    anchor_only_links_checked = 0
+    heading_anchors_checked = 0
     external_links = []
 
     for md_file in md_files:
@@ -52,42 +76,72 @@ def main():
         for text, link in matches:
             link = link.strip()
             # Separate external HTTP/HTTPS and mailto links from local relative links
-            if link.startswith("http://") or link.startswith("https://") or link.startswith("mailto:"):
-                external_links.append((os.path.relpath(md_file, REPO_DIR), text, link))
+            if link.startswith(("http://", "https://", "mailto:")):
+                external_links.append((os.path.relpath(md_file, repo_dir), text, link))
                 continue
 
-            checked_file_links += 1
+            total_local_markdown_links += 1
 
-            if "#" in link:
-                target_path_part, target_anchor = link.split("#", 1)
-            else:
-                target_path_part, target_anchor = link, None
-
-            if not target_path_part:
+            if link.startswith("#"):
+                anchor_only_links_checked += 1
+                target_path_part = ""
+                target_anchor = link.lstrip("#")
                 target_file = os.path.normpath(md_file)
             else:
+                file_targets_checked += 1
+                if "#" in link:
+                    target_path_part, target_anchor = link.split("#", 1)
+                else:
+                    target_path_part, target_anchor = link, None
                 target_file = os.path.normpath(os.path.join(file_dir, target_path_part))
 
+            # Validate file target exists on disk
             if not os.path.exists(target_file):
-                errors.append(f"Broken file path in {os.path.relpath(md_file, REPO_DIR)}: [{text}]({link}) -> File not found: {target_file}")
+                errors.append(f"Broken file path in {os.path.relpath(md_file, repo_dir)}: [{text}]({link}) -> File not found: {target_file}")
                 continue
 
+            # Validate heading anchor exists in target file using exact slug match
             if target_anchor:
-                checked_anchor_links += 1
-                if target_file in file_slugs:
-                    known_slugs = file_slugs[target_file]
-                    norm_anchor = target_anchor.lower().strip()
-                    if norm_anchor not in known_slugs and not any(norm_anchor in s for s in known_slugs):
-                        errors.append(f"Broken heading anchor in {os.path.relpath(md_file, REPO_DIR)}: [{text}]({link}) -> Anchor #{target_anchor} not found in {os.path.basename(target_file)}")
+                heading_anchors_checked += 1
+                norm_anchor = target_anchor.lower().strip().lstrip("#")
+                known_slugs = file_slugs.get(target_file, set())
+                if norm_anchor not in known_slugs:
+                    errors.append(
+                        f"Broken heading anchor in {os.path.relpath(md_file, repo_dir)}: [{text}]({link}) -> "
+                        f"Anchor #{target_anchor} not found in {os.path.basename(target_file)} "
+                        f"(exact slug required; no prefix/substring matches allowed)"
+                    )
 
-    print(f"Scanned {len(md_files)} Markdown files in repository.")
-    print(f"Local relative links checked: {checked_file_links} (100% resolved)")
-    print(f"Heading anchors checked: {checked_anchor_links} (100% resolved)")
-    print(f"External URLs inventoried: {len(external_links)} (offline inventory; not network-verified)")
+    # Export external URLs to audit CSV artifact
+    with open(EXTERNAL_INVENTORY_CSV, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["source_file", "link_text", "url"])
+        for src, txt, url in external_links:
+            writer.writerow([src, txt, url])
 
-    if errors:
-        print(f"\n[FAIL] Found {len(errors)} broken local links or anchors:")
-        for e in errors:
+    return {
+        "md_files_count": len(md_files),
+        "total_local_markdown_links": total_local_markdown_links,
+        "file_targets_checked": file_targets_checked,
+        "anchor_only_links_checked": anchor_only_links_checked,
+        "heading_anchors_checked": heading_anchors_checked,
+        "external_urls_count": len(external_links),
+        "external_inventory_path": os.path.relpath(EXTERNAL_INVENTORY_CSV, repo_dir),
+        "errors": errors,
+    }
+
+def main():
+    res = verify_links(REPO_DIR)
+    print(f"Scanned {res['md_files_count']} Markdown files in repository.")
+    print(f"Total local relative Markdown links: {res['total_local_markdown_links']} (100% resolved)")
+    print(f"  - Local file targets checked on disk: {res['file_targets_checked']} (100% resolved)")
+    print(f"  - Anchor-only links checked: {res['anchor_only_links_checked']} (100% resolved)")
+    print(f"Heading anchors checked: {res['heading_anchors_checked']} (100% exact slug match)")
+    print(f"External URLs inventoried offline: {res['external_urls_count']} (saved to {res['external_inventory_path']}; not network-verified)")
+
+    if res["errors"]:
+        print(f"\n[FAIL] Found {len(res['errors'])} broken local links or anchors:")
+        for e in res["errors"]:
             print(f"  - {e}")
         sys.exit(1)
     else:

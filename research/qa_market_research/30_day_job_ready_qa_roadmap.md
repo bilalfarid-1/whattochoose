@@ -3,7 +3,7 @@
 - **Version:** Proposed final learner-facing plan
 - **Target:** QA Intern, QA Trainee, Associate QA Engineer, Junior SQA Engineer, Software Tester, Junior QA Automation
 - **Region:** Rawalpindi–Islamabad first; suitable Pakistan-wide and remote openings
-- **Daily time:** Approximately 4 focused hours
+- **Daily time:** Approximately 4 focused hours (108–112 focused hours total: 26 study days × 4h + 4 consolidation days × 1–2h)
 - **Primary portfolio project:** JobPulse (local/authorized test environment)
 - **UI practice fallback:** SauceDemo if JobPulse has no stable user-facing workflow
 
@@ -72,7 +72,7 @@ Use this structure on full study days:
 | Commit/log | 15 min | Commit work, update the learning log and note the next blocker. |
 | **Total** | **240 min** | **4 hours** |
 
-Days 7, 14, 21 and 28 are dedicated consolidation and catch-up days (1–2 focused hours). Use them to address the single highest-impact gap, rerun test suites, and take the remainder of the day off to rest and consolidate concepts, preventing small delays from breaking the monthly schedule. Aim for approximately 108–112 focused hours across the 30-calendar-day period (26 four-hour study days plus four 1–2 hour consolidation days), depending on your pace.
+Days 7, 14, 21 and 28 are dedicated consolidation and catch-up days (1–2 focused hours). Use them to address the single highest-impact gap, rerun test suites, and take the remainder of the day off to rest and consolidate concepts, preventing small delays from breaking the monthly schedule. Aim for exactly 108–112 focused hours across the 30-calendar-day period (26 four-hour study days [104 hours] + four 1–2 hour consolidation days [4–8 hours] = 108–112 hours total), depending on your pace.
 
 ### Working rules
 

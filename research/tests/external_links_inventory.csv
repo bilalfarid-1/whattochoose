@@ -1,0 +1,115 @@
+source_file,link_text,url
+README.md,![Python,https://img.shields.io/badge/Python-3.12-blue.svg
+README.md,![FastAPI,https://img.shields.io/badge/FastAPI-0.115+-009688.svg
+README.md,![SQLAlchemy,https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg
+README.md,![PostgreSQL,https://img.shields.io/badge/PostgreSQL-16-336791.svg
+README.md,![Backend Tests,https://img.shields.io/badge/Backend%20Tests-25%20Passing-success.svg
+README.md,![Research Checks,https://img.shields.io/badge/Research%20Checks-Passing-success.svg
+README.md,![AI Learning Framework,https://img.shields.io/badge/AI%20Framework-6%20Passing-success.svg
+README.md,![License: MIT,https://img.shields.io/badge/License-MIT-yellow.svg
+README.md,github.com/bilalfarid-1/whattochoose,https://github.com/bilalfarid-1/whattochoose
+README.md,http://127.0.0.1:8000/,http://127.0.0.1:8000/
+README.md,http://127.0.0.1:8000/dashboard,http://127.0.0.1:8000/dashboard
+README.md,http://127.0.0.1:8000/docs,http://127.0.0.1:8000/docs
+README.md,http://127.0.0.1:8000/redoc,http://127.0.0.1:8000/redoc
+ai_learning_research\SOURCES.md,https://doi.org/10.1145/3632620.3671116,https://doi.org/10.1145/3632620.3671116
+ai_learning_research\SOURCES.md,ICER 2024 Papers Listing,https://icer2024.acm.org/details/icer-2024-papers/26/The-Widening-Gap-The-Benefits-and-Harms-of-Generative-AI-for-Novice-Programmers
+ai_learning_research\SOURCES.md,https://arxiv.org/abs/2605.04779,https://arxiv.org/abs/2605.04779
+ai_learning_research\SOURCES.md,https://doi.org/10.1145/3613904.3642773,https://doi.org/10.1145/3613904.3642773
+ai_learning_research\SOURCES.md,https://doi.org/10.1145/3613904.3641936,https://doi.org/10.1145/3613904.3641936
+ai_learning_research\SOURCES.md,https://doi.org/10.1017/S0140525X01003922,https://doi.org/10.1017/S0140525X01003922
+ai_learning_research\SOURCES.md,https://doi.org/10.1111/j.1745-6916.2006.00012.x,https://doi.org/10.1111/j.1745-6916.2006.00012.x
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 217: Contains Duplicate,https://leetcode.com/problems/contains-duplicate/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 1: Two Sum,https://leetcode.com/problems/two-sum/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 242: Valid Anagram,https://leetcode.com/problems/valid-anagram/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 49: Group Anagrams,https://leetcode.com/problems/group-anagrams/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 347: Top K Frequent Elements,https://leetcode.com/problems/top-k-frequent-elements/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 128: Longest Consecutive Sequence,https://leetcode.com/problems/longest-consecutive-sequence/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 125: Valid Palindrome,https://leetcode.com/problems/valid-palindrome/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 167: Two Sum II - Input Array Is Sorted,https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 15: 3Sum,https://leetcode.com/problems/3sum/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 11: Container With Most Water,https://leetcode.com/problems/container-with-most-water/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 42: Trapping Rain Water,https://leetcode.com/problems/trapping-rain-water/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 20: Valid Parentheses,https://leetcode.com/problems/valid-parentheses/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 155: Min Stack,https://leetcode.com/problems/min-stack/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 150: Evaluate Reverse Polish Notation,https://leetcode.com/problems/evaluate-reverse-polish-notation/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 704: Binary Search,https://leetcode.com/problems/binary-search/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 74: Search a 2D Matrix,https://leetcode.com/problems/search-a-2d-matrix/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 33: Search in Rotated Sorted Array,https://leetcode.com/problems/search-in-rotated-sorted-array/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 153: Find Minimum in Rotated Sorted Array,https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 206: Reverse Linked List,https://leetcode.com/problems/reverse-linked-list/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 141: Linked List Cycle,https://leetcode.com/problems/linked-list-cycle/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 104: Maximum Depth of Binary Tree,https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 226: Invert Binary Tree,https://leetcode.com/problems/invert-binary-tree/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 100: Same Tree,https://leetcode.com/problems/same-tree/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 543: Diameter of Binary Tree,https://leetcode.com/problems/diameter-of-binary-tree/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 572: Subtree of Another Tree,https://leetcode.com/problems/subtree-of-another-tree/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 235: Lowest Common Ancestor of a BST,https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 200: Number of Islands,https://leetcode.com/problems/number-of-islands/
+ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 133: Clone Graph,https://leetcode.com/problems/clone-graph/
+ai_learning_research\roadmap\how_to_follow_the_30_day_sprint.md,![Tests,https://img.shields.io/badge/tests-28%20passed-brightgreen.svg
+ai_learning_research\roadmap\how_to_follow_the_30_day_sprint.md,![Python,https://img.shields.io/badge/python-3.12-blue.svg
+ai_learning_research\roadmap\how_to_follow_the_30_day_sprint.md,![FastAPI,https://img.shields.io/badge/FastAPI-0.115+-009688.svg
+paper\main_manuscript.md,direct report PDF,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
+paper\main_manuscript.md,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf
+paper\main_manuscript.md,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/
+paper\main_manuscript.md,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/
+paper\main_manuscript.md,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html
+paper\main_manuscript.md,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
+paper\main_manuscript.md,https://www.sbp.org.pk/economic-data,https://www.sbp.org.pk/economic-data
+paper\main_manuscript.md,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE
+paper\main_manuscript.md,https://survey.stackoverflow.co/2025/ai,https://survey.stackoverflow.co/2025/ai
+paper\main_manuscript.md,https://survey.stackoverflow.co/2024/,https://survey.stackoverflow.co/2024/
+paper\main_manuscript.md,https://survey.stackoverflow.co/2023/,https://survey.stackoverflow.co/2023/
+paper\main_manuscript.md,https://www.swebench.com/,https://www.swebench.com/
+paper\main_manuscript.md,https://aiindex.stanford.edu/report/,https://aiindex.stanford.edu/report/
+paper\main_manuscript.md,https://layoffs.fyi/,https://layoffs.fyi/
+paper\main_manuscript.md,https://arxiv.org/abs/2407.01489,https://arxiv.org/abs/2407.01489
+paper\main_manuscript.md,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf
+research\data\README.md,survey.stackoverflow.co,https://survey.stackoverflow.co/
+research\data\README.md,aiindex.stanford.edu,https://aiindex.stanford.edu/report/
+research\data\README.md,swebench.com,https://www.swebench.com/
+research\data\README.md,sbp.org.pk,https://www.sbp.org.pk/ecodata/index2.asp
+research\data\README.md,pasha.org.pk,https://pasha.org.pk/
+research\data\README.md,hec.gov.pk,https://www.hec.gov.pk/
+research\data\README.md,layoffs.fyi,https://layoffs.fyi/
+research\data\SOURCES.md,https://www.sbp.org.pk/economic-data,https://www.sbp.org.pk/economic-data
+research\data\SOURCES.md,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf
+research\data\SOURCES.md,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/
+research\data\SOURCES.md,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
+research\data\SOURCES.md,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE
+research\data\SOURCES.md,https://survey.stackoverflow.co/2023/#section-ai-ai-tools-in-development,https://survey.stackoverflow.co/2023/#section-ai-ai-tools-in-development
+research\data\SOURCES.md,https://survey.stackoverflow.co/2024/technology#ai-tools-in-development,https://survey.stackoverflow.co/2024/technology#ai-tools-in-development
+research\data\SOURCES.md,https://survey.stackoverflow.co/2025/,https://survey.stackoverflow.co/2025/
+research\data\SOURCES.md,arXiv:2310.06770,https://arxiv.org/abs/2310.06770
+research\data\SOURCES.md,SWE-bench Leaderboard,https://www.swebench.com/
+research\data\SOURCES.md,NeurIPS 2025 Paper,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf
+research\data\SOURCES.md,arXiv:2407.01489,https://arxiv.org/abs/2407.01489
+research\data\SOURCES.md,Anthropic Release,https://www.anthropic.com/news/claude-3-7-sonnet
+research\data\SOURCES.md,Anthropic Release,https://www.anthropic.com/news/claude-3-7-sonnet
+research\data\SOURCES.md,https://www.swebench.com/,https://www.swebench.com/
+research\data\SOURCES.md,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf
+research\data\SOURCES.md,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/
+research\data\SOURCES.md,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html
+research\paper\main_manuscript.md,direct report PDF,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
+research\paper\main_manuscript.md,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf
+research\paper\main_manuscript.md,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/
+research\paper\main_manuscript.md,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/
+research\paper\main_manuscript.md,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html
+research\paper\main_manuscript.md,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
+research\paper\main_manuscript.md,https://www.sbp.org.pk/economic-data,https://www.sbp.org.pk/economic-data
+research\paper\main_manuscript.md,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE
+research\paper\main_manuscript.md,https://survey.stackoverflow.co/2025/ai,https://survey.stackoverflow.co/2025/ai
+research\paper\main_manuscript.md,https://survey.stackoverflow.co/2024/,https://survey.stackoverflow.co/2024/
+research\paper\main_manuscript.md,https://survey.stackoverflow.co/2023/,https://survey.stackoverflow.co/2023/
+research\paper\main_manuscript.md,https://www.swebench.com/,https://www.swebench.com/
+research\paper\main_manuscript.md,https://aiindex.stanford.edu/report/,https://aiindex.stanford.edu/report/
+research\paper\main_manuscript.md,https://layoffs.fyi/,https://layoffs.fyi/
+research\paper\main_manuscript.md,https://arxiv.org/abs/2407.01489,https://arxiv.org/abs/2407.01489
+research\paper\main_manuscript.md,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf
+research\qa_market_research\qa_sdet_market_analysis.md,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
+research\qa_market_research\qa_sdet_market_analysis.md,https://www.sbp.org.pk/economic-data,https://www.sbp.org.pk/economic-data
+research\qa_market_research\qa_sdet_market_analysis.md,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/
+research\qa_market_research\qa_sdet_market_analysis.md,https://owasp.org/API-Security/editions/2023/en/0x11-t10/,https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+research\qa_market_research\qa_sdet_market_analysis.md,https://survey.stackoverflow.co/,https://survey.stackoverflow.co/
+research\walkthrough.md,**github.com/bilalfarid-1/whattochoose**,https://github.com/bilalfarid-1/whattochoose
