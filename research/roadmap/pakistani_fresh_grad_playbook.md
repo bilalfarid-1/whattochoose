@@ -70,7 +70,7 @@ Identify Engineering Managers, Tech Leads, and CTOs at mid-size Pakistani softwa
 > *• **Live API Docs:** [Your Render / Swagger URL]*  
 > *• **GitHub Repository:** [Your Clean Repo URL]*  
 > 
-> *The system features FastAPI REST endpoints, relational PostgreSQL data modeling with SQLAlchemy and Alembic, and an automated CI pipeline with PyTest integration tests.*
+> *The system features FastAPI REST endpoints, relational PostgreSQL data modeling with SQLAlchemy and Alembic, and an automated CI pipeline with [e.g. 15–25] passing PyTest integration tests.*
 > 
 > *I know your engineering team at [Company Name] builds robust software systems. If you have an opening for a junior backend engineer or graduate intern who can write clean, tested code from day one, I would welcome 10 minutes to walk you through the codebase.*
 > 
@@ -133,6 +133,7 @@ Land Junior Backend Role ──> Build Production Depth ──> Daily LeetCode (
 2. **The Direct US University Route (F-1 STEM OPT):**  
    If your priority is seeking employment in the US after your Master's degree, applying directly to US universities offering **Teaching Assistantships (TA)** or **Research Assistantships (RA)** is an alternative. These assistantships typically waive tuition and provide a monthly living stipend, though funding is highly competitive and never guaranteed. On an **F-1 student visa**, graduates with qualifying STEM degrees may apply for up to **3 years of Optional Practical Training (OPT)** with an E-Verify employer. Note that neither work authorization, employer sponsorship, nor a tech offer is automatic—they depend on employer demand and prevailing immigration regulations.
 3. **Work Experience Requirements:**  
-   * For the Fulbright program in Pakistan, 2 years of work experience is only strictly required for **MBA** applicants. However, for MS in Computer Science applicants, having 1 to 2 years of real software engineering experience substantially strengthens your Statement of Purpose (SOP) and interview competitiveness.
+   * **Official USEFP Eligibility:** The United States Educational Foundation in Pakistan (USEFP) guidelines explicitly state that prior work experience is **not required** for the Fulbright Master's program, except for **MBA** and **Public Policy/Administration (MPA/MPP)** applicants, for whom two years of relevant work experience is mandatory.
+   * **Competitive Context:** While not a formal eligibility requirement for an MS in Computer Science, having 1 to 2 years of professional software engineering experience substantially strengthens a candidate's Statement of Purpose (SOP), technical maturity, and interview competitiveness.
 4. **European Alternatives (Erasmus Mundus):**  
    For European fully funded graduate study, the **Erasmus Mundus Joint Master Degrees (EMJMD)** offer full scholarships across top European universities without the US J-1 return constraints.

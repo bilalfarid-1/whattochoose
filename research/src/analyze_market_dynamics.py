@@ -79,7 +79,7 @@ def run_analysis():
     plot_figure_1_macro_trends(ts_df, milestones_df)
     plot_figure_2_skills_framework(skills_df)
     plot_figure_3_pakistan_dynamics(ts_df, pasha_metrics)
-    plot_figure_4_developer_time_allocation()
+    plot_figure_4_task_allocation_scenario()
     
     print("\n[SUCCESS] All figures successfully generated and saved to paper/figures/.")
 
@@ -255,8 +255,8 @@ def plot_figure_3_pakistan_dynamics(df, pasha):
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig3_pakistan_paradox.png'))
     plt.close()
 
-def plot_figure_4_developer_time_allocation():
-    """Figure 4: Author-Defined Conceptual Scenario of Software Engineer Labor Allocation"""
+def plot_figure_4_task_allocation_scenario():
+    """Figure 4: Author-Defined Conceptual Scenario of Software Engineer Labor Task Allocation (2020–2030)"""
     fig, ax = plt.subplots(figsize=(10, 5.5))
     
     categories = ['Pre-2022\n(Traditional Baseline)', '2024\n(Disruption Baseline)', '2026\n(Current Horizon)', '2028-2030\n(Projected Scenario)']
@@ -283,6 +283,9 @@ def plot_figure_4_developer_time_allocation():
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, 'fig4_predictive_2030_forecast.png'))
     plt.close()
+
+# Backwards compatibility alias
+plot_figure_4_developer_time_allocation = plot_figure_4_task_allocation_scenario
 
 if __name__ == '__main__':
     run_analysis()
