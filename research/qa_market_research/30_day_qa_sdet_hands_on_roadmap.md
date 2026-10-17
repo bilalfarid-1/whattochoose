@@ -1,8 +1,35 @@
-# The 30-Day QA / SDET Hands-on Engineering Roadmap (1-Year Experience Equivalent)
+# The 30-Day QA / SDET Hands-on Engineering Roadmap (Verifiable Competency Track)
 
 **Target Audience:** Fresh BS Computer Science / Software Engineering Graduates  
-**Target Role:** Junior QA Engineer, Associate SQA, or Junior SDET (Software Development Engineer in Test) targeting roles asking for **0 to 6–12 months of experience**.  
+**Target Role:** Associate QA Engineer, Junior SQA, or Junior SDET (Software Development Engineer in Test) targeting roles asking for **0 to 6–12 months of experience**.  
 **System Under Test (SUT):** **JobPulse API** (`backend/app`) — A live, multi-tenant recruitment tracking service with JWT authentication, relational PostgreSQL database, and 25 passing test suites.
+
+---
+
+## The 3-Tier Skill Prioritization Framework
+
+To avoid the critical pitfall of learning too many tools superficially, this curriculum prioritizes skills into three clear tiers:
+
+```
++----------------------------------------------------------------------------------------------------+
+|                                     CURRICULUM PRIORITIZATION                                      |
++--------------------+-----------------------------------------------+-------------------------------+
+| Tier               | Skill Focus                                   | Target Competence Level       |
++--------------------+-----------------------------------------------+-------------------------------+
+| **Tier 1: Core**   | • STLC, Test Design (BVA/EP), Bug Reports     | Deep, intuitive fluency;      |
+| *(70% of time)*    | • HTTP/REST, Postman API testing, Auth tokens | able to design and execute    |
+|                    | • Python, Pytest, Function-scoped Fixtures    | without external assistance.  |
+|                    | • SQL joins, Aggregations & DB Data Integrity |                               |
+|                    | • Git & basic GitHub Actions CI/CD            |                               |
++--------------------+-----------------------------------------------+-------------------------------+
+| **Tier 2: Working**| • Playwright Page Object Model (Python)       | Demonstrable proof-of-work;   |
+| *(20% of time)*    | • Newman CLI headless execution               | working test suites integrated|
+|                    | • OWASP API Security (BOLA, Mass Assignment)  | into repository.              |
++--------------------+-----------------------------------------------+-------------------------------+
+| **Tier 3: Exposure**| • Locust load & latency baseline experiment  | Working conceptual knowledge; |
+| *(10% of time)*    | • Single controlled performance experiment    | one well-documented report.   |
++--------------------+-----------------------------------------------+-------------------------------+
+```
 
 ---
 
@@ -13,6 +40,7 @@ Every single day is structured into a disciplined 4-hour block:
 * **Block 2 (45 Mins): Test Design & Algorithmic Problem Solving** (Test matrix design + 1 LeetCode problem).
 * **Block 3 (35 Mins): Defect Auditing & Edge-Case Interrogation** (Negative testing & boundary analysis).
 * **Block 4 (20 Mins): Technical Interview Drill & Spoken Defense** (Verbal defense of QA principles).
+
 
 ---
 
@@ -113,6 +141,10 @@ Every single day is structured into a disciplined 4-hour block:
 
 ### Day 9: Postman Collections, Environments & Variables
 * **Concepts:** Postman Workspaces, Collections, Folders, Global vs. Environment vs. Collection variables, Pre-request scripts.
+* **Architectural Rule (Postman vs. Pytest):**
+  - **Postman:** Use for interactive API exploration, endpoint prototyping, and a concise shareable smoke/regression collection executed via Newman CLI.
+  - **Pytest:** Use for deep, maintainable, code-based automation with modular fixtures, parameterized edge cases, and direct database integrity assertions.
+  - *Do not build two identical giant test suites across both tools; leverage each for its distinct engineering strength.*
 * **Hands-on Task:** Create a Postman Collection: `JobPulse API Test Suite`:
   - Set up an `Localhost` environment variable with `base_url = http://127.0.0.1:8000`.
   - Create a Pre-request script that generates random dynamic user emails using `{{$randomEmail}}` and dynamic company names.
@@ -154,16 +186,17 @@ Every single day is structured into a disciplined 4-hour block:
 
 ---
 
-### Day 12: Negative API Testing & Security Boundaries (OWASP BOLA)
-* **Concepts:** Broken Object-Level Authorization (OWASP API #1), unauthorized access, payload fuzzing, error message information leakage.
+### Day 12: Negative API Testing & OWASP API Security Boundaries
+* **Concepts:** OWASP API Security Top 10 (BOLA/IDOR, Mass Assignment, Unrestricted Resource Consumption, Error Information Leakage).
 * **Hands-on Task:** Author dedicated negative security tests in Postman:
-  1. Attempt to fetch User A's application using User B's JWT token (Assert `404 Not Found`).
-  2. Attempt to create an application with an expired JWT (Assert `401 Unauthorized`).
-  3. Send string values in numeric ID fields (Assert `422 Unprocessable Entity`).
-  4. Verify that server stack traces and raw database errors are never leaked in API response bodies.
+  1. **BOLA / IDOR:** Attempt to fetch User A's application using User B's JWT token (Assert `404 Not Found`).
+  2. **Mass Assignment:** Submit JSON with client-injected protected fields (e.g. `user_id: 999` or `is_admin: true`) to verify the server rejects or ignores them.
+  3. **Resource Consumption:** Send extreme pagination parameters (`GET /applications?limit=1000000`) and verify safe bounds handling.
+  4. **Authentication Boundary:** Attempt actions with expired, malformed, or missing Bearer tokens (Assert `401 Unauthorized`).
+  5. **Data Protection:** Verify that raw database error traces and stack traces are never exposed in response bodies.
 * **DSA / Logic Drill:** [LeetCode 33: Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/).
-* **Interview Drill:** *"What is BOLA / IDOR in API testing, and how does a QA engineer systematically test for it?"*
-  - *Answer:* BOLA (Broken Object-Level Authorization) occurs when an API endpoint accepts an object identifier from a client without validating that the authenticated user owns that object. QA tests this by generating two distinct user tokens (User A, User B), capturing User A's resource ID, and submitting requests to modify or read that ID using User B's token.
+* **Interview Drill:** *"What is Mass Assignment in API security, and how do you test for it?"*
+  - *Answer:* Mass assignment occurs when an API binds client-provided JSON directly to data models without filtering out protected attributes. QA tests this by injecting administrative or ownership fields (`is_admin`, `role`, `user_id`) into payload bodies and asserting that the server does not persist the unauthorized fields.
 * **Deliverable:** 6 security-focused negative tests integrated into your Postman suite.
 
 ---
@@ -184,24 +217,29 @@ Every single day is structured into a disciplined 4-hour block:
 
 ---
 
-### Day 14: Week 2 API Consolidation & Newman Pipeline
-* **Concepts:** Review, headless CI validation, artifact cleanup.
-* **Hands-on Task:** Create a single bash/PowerShell script `run_api_tests.ps1` that spins up the JobPulse API, executes Newman, verifies 100% pass, and shuts down the server.
+### Day 14: Week 2 API Consolidation & Rolling Application Launch 1
+* **Concepts:** Headless pipeline review + **Rolling Job Market Applications**.
+* **Hands-on Task:**
+  1. Create a PowerShell runner `run_api_tests.ps1` that spins up JobPulse, executes Newman, verifies 100% pass, and tears down the service.
+  2. **Active Market Step:** Do not wait until Day 30 to apply. Begin scanning and submitting applications for **Associate QA Engineer, Trainee QA, or Junior Functional QA** roles on LinkedIn and Rozee.pk. These postings (e.g., Stickler Minds / QA SONIC, Big Entities) prioritize candidates who know STLC fundamentals, write clear bug reports, and understand HTTP/Postman APIs.
 * **DSA / Logic Drill:** [LeetCode 206: Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/).
 * **Interview Drill:** Practice explaining your Postman/Newman automation framework out loud in under 3 minutes.
-* **Deliverable:** Week 2 Learning Log complete; Newman automated test suite verified.
+* **Deliverable:** Week 2 Learning Log complete; Newman automated test suite verified; initial 3 applications submitted.
 
 ---
 
 # WEEK 3: Code-Based Automation with Python, Pytest & Playwright
 
-### Day 15: Pytest Fundamentals for QA Engineers
-* **Concepts:** Pytest architecture, test discovery (`test_*.py`), fixtures (`@pytest.fixture`), scope (`function`, `module`, `session`), assertions vs. `assert`.
-* **Hands-on Task:** Inspect `backend/tests/conftest.py`. Trace how fixtures set up clean database sessions, create test users, and tear down data automatically after each test.
+### Day 15: Pytest Fundamentals & Rigorous Fixture Scoping
+* **Concepts:** Pytest architecture, test discovery (`test_*.py`), fixtures (`@pytest.fixture`), fixture scope hierarchy, setup/teardown via `yield`.
+* **The Fixture Scoping Standard:**
+  - **`scope="function"` (Default):** Mandatory for all mutable test data (creating users, jobs, notes). Guarantees complete test isolation; tests must never fail due to execution order.
+  - **`scope="session"`:** Strictly reserved for immutable, expensive resources (e.g., starting an external test server process or loading static configurations). Never use session scope for shared mutable state.
+* **Hands-on Task:** Inspect `backend/tests/conftest.py`. Write a dedicated test fixture that provisions a fresh test user, yields the client, and automatically cleans up the user on teardown.
 * **DSA / Logic Drill:** [LeetCode 104: Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/).
-* **Interview Drill:** *"Why is Pytest preferred over the built-in `unittest` module in modern Python automation?"*
-  - *Answer:* Pytest eliminates boilerplate class inheritance, provides powerful and modular dependency injection via fixtures, supports concise plain `assert` statements with detailed introspection, and features an extensive plugin ecosystem.
-* **Deliverable:** Write a custom Pytest fixture in a scratch file that generates random test payloads.
+* **Interview Drill:** *"Why can `scope='session'` fixtures lead to flaky tests, and when should you strictly use `scope='function'`?"*
+  - *Answer:* Session-scoped fixtures persist state across all tests. If Test A mutates data created in a session fixture, Test B might fail if executed after Test A but pass when run alone. Function scope ensures each test starts with a clean slate.
+* **Deliverable:** A clean test fixture demonstrating `yield` teardown and function-scoped data isolation.
 
 ---
 
@@ -231,16 +269,17 @@ Every single day is structured into a disciplined 4-hour block:
 
 ---
 
-### Day 18: Security & BOLA/IDOR Automation Suite
-* **Concepts:** Automated security verification, testing negative authorization matrixes.
-* **Hands-on Task:** Study `backend/tests/test_security_isolation.py`. Build a comprehensive Pytest test file `test_bola_security.py`:
+### Day 18: Security & Controlled Mutation Testing (OWASP BOLA & Mass Assignment)
+* **Concepts:** Automated security verification, testing negative authorization matrixes, controlled mutation testing.
+* **Hands-on Task:** Study `backend/tests/test_security_isolation.py`. Build a comprehensive Pytest test file `test_security_matrix.py`:
   - Seed `User_A` and `User_B`.
-  - Execute read, update, and delete requests on `User_A` records using `User_B` credentials.
-  - Assert that all 6 cross-tenant operations strictly return `404 Not Found` or `403 Forbidden`.
+  - Execute read, update, and delete requests on `User_A` records using `User_B` credentials (assert `404 Not Found`).
+  - Execute Mass Assignment tests attempting to alter `user_id` or promote accounts via payload tampering.
+  - **Controlled Mutation Exercise:** In a local git branch, temporarily comment out the ownership check in `app/crud/application.py`. Run your test suite to confirm it fails immediately (detecting the vulnerability), then revert the branch.
 * **DSA / Logic Drill:** [LeetCode 543: Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/).
-* **Interview Drill:** *"How do you test for SQL injection and XSS vulnerabilities in an automated API test suite?"*
-  - *Answer:* Use parameterized tests (`@pytest.mark.parametrize`) passing standard attack payloads (e.g. `' OR '1'='1`, `<script>alert(1)</script>`) into query parameters and JSON bodies, asserting that inputs are escaped or rejected with 422 errors and never evaluated by the database or rendered unescaped.
-* **Deliverable:** A passing 6-test BOLA security isolation suite.
+* **Interview Drill:** *"What is Controlled Mutation Testing and how does it validate test suite quality?"*
+  - *Answer:* Mutation testing involves deliberately introducing a bug into application code to verify whether the test suite detects and fails upon the mutation. A test suite that continues passing despite introduced bugs is ineffective.
+* **Deliverable:** A passing 6-test security isolation suite and documentation of the controlled mutation experiment.
 
 ---
 
@@ -269,30 +308,36 @@ Every single day is structured into a disciplined 4-hour block:
 
 ---
 
-### Day 21: Rich Reporting with Allure & Week 3 Review
-* **Concepts:** Test metrics, test execution visualization, Allure Framework (`allure-pytest`).
+### Day 21: Rich Reporting with Allure & Rolling Application Launch 2
+* **Concepts:** Test metrics, test execution visualization, Allure Framework (`allure-pytest`) + **Market Application Checkpoint**.
 * **Hands-on Task:**
   1. Install Allure: `pip install allure-pytest`.
   2. Run your combined API and UI tests: `pytest --alluredir=reports/allure_results`.
   3. Generate and view the interactive dashboard displaying pass/fail percentages, test duration, and step-by-step logs.
+  4. **Active Market Step:** Apply to 5 additional Associate QA / Automation Trainee openings. Candidates presenting both manual test design rigor and clean Python/Pytest suites have a major screening advantage over those with only manual or generic tutorial portfolios.
 * **DSA / Logic Drill:** Review binary search and trees.
 * **Interview Drill:** Spoken review of Pytest fixtures and Playwright POM architecture.
-* **Deliverable:** Week 3 Learning Log complete; Allure dashboard generated.
+* **Deliverable:** Week 3 Learning Log complete; Allure dashboard generated; 5 applications tracked.
 
 ---
 
 # WEEK 4: Performance, CI/CD, Portfolio Packaging & Interview Launch
 
-### Day 22: Performance & Load Testing with Locust
-* **Concepts:** Non-functional testing, Load testing, Stress testing, Requests Per Second (RPS), Latency percentiles (P50, P90, P95, P99), Concurrency.
+### Day 22: Controlled Performance Baseline Experiment with Locust
+* **Concepts:** Non-functional testing, Load testing, Requests Per Second (RPS), Latency percentiles (P50, P90, P95, P99), Error Rate vs Throughput.
+* **Execution Rule (Controlled Experiment vs. Badge):**
+  - *Do not attempt to become a full-scale performance engineer in one day. Focus on conducting one well-controlled, reproducible load experiment.*
+  - Distinguish between simulated users, spawn rate, user wait time, and actual backend throughput.
+  - Understand the performance paradox: If P95 latency drops while error rates surge, the system is failing fast, not performing well.
 * **Hands-on Task:**
   1. Install Locust: `pip install locust`.
-  2. Create a `locustfile.py` simulating 50 concurrent users querying JobPulse endpoints.
-  3. Run Locust: `locust -f locustfile.py`. Open web UI (`http://localhost:8089`), simulate a load spike, and record response times and failure rates.
+  2. Create `performance/locustfile.py` defining a realistic user scenario: login, browse applications with realistic `between(1, 3)` wait times.
+  3. Run a controlled 5-minute test with 50 users (spawn rate 5/sec) against local JobPulse.
+  4. Document: Baseline latency, peak RPS, error percentage, P50, P95, and P99 response times, and local hardware constraints.
 * **DSA / Logic Drill:** [LeetCode 200: Number of Islands](https://leetcode.com/problems/number-of-islands/).
 * **Interview Drill:** *"What is the difference between Load Testing, Stress Testing, and Spike Testing?"*
   - *Answer:* Load testing evaluates system behavior under expected normal user traffic; Stress testing pushes the system beyond its capacity limit to identify breaking points and graceful degradation; Spike testing analyzes how the system recovers from sudden, massive traffic surges.
-* **Deliverable:** A committed `locustfile.py` and a screenshot/summary of the load test performance curve.
+* **Deliverable:** A committed `locustfile.py` and a markdown summary documenting baseline vs. peak percentiles and error rates.
 
 ---
 
@@ -331,7 +376,7 @@ Every single day is structured into a disciplined 4-hour block:
   ├── postman/              # Exported Postman collection & environment JSON
   ├── playwright_ui/        # Page Object Model Playwright tests
   ├── pytest_api/           # Pytest API integration tests & security checks
-  ├── performance/          # Locust load testing scripts
+  ├── performance/          # Locust load testing scripts & experiment report
   ├── reports/              # Sample Allure & Newman HTML reports
   ├── .github/workflows/    # CI/CD pipeline running all tests on push
   └── README.md             # Architecture diagram, test metrics & setup guide
@@ -348,7 +393,7 @@ Every single day is structured into a disciplined 4-hour block:
   - Add screenshots of the interactive Allure Dashboard and Locust performance charts.
   - Provide a 1-line command to run the entire suite: `pytest` or `npm run test:api`.
 * **DSA / Logic Drill:** Re-solve LeetCode 1 and 217 in under 10 minutes total.
-* **Deliverable:** A portfolio README that immediately proves 1-year equivalent hands-on competence to any tech lead.
+* **Deliverable:** A portfolio README that immediately proves verifiable hands-on competence to any tech lead.
 
 ---
 
@@ -372,20 +417,21 @@ Every single day is structured into a disciplined 4-hour block:
 
 ---
 
-### Day 29: Resume & LinkedIn Optimization (The 1-Year Experience Framing)
-* **Hands-on Task:** Rewrite your resume experience section to showcase **verifiable hands-on automation achievements**:
+### Day 29: Resume & Profile Optimization (Verifiable Competence Framing)
+* **Hands-on Task:** Rewrite your resume experience section to showcase **verifiable hands-on automation achievements and proof of work**:
   ```markdown
-  ### Quality Assurance & Automation Engineer (SDET Project) — JobPulse Platform
-  *Python, Pytest, Playwright, Postman, Newman, PostgreSQL, Docker, GitHub Actions*
+  ### Quality Assurance & Test Automation Engineer (Portfolio Project) — JobPulse Platform
+  *Python, Pytest, Playwright, Postman, Newman, PostgreSQL, Docker, GitHub Actions, Locust*
 
-  * Designed and executed a comprehensive automated test framework comprising 35+ API, UI, and security test suites with 100% pass rate in CI/CD pipelines.
-  * Automated end-to-end API regression test collections in Postman and Newman, integrating pre-request tokens and JSON schema assertions.
-  * Built a modular UI test automation suite using Python and Playwright utilizing the Page Object Model (POM) pattern, reducing regression cycle times.
-  * Implemented automated security testing covering OWASP API #1 vulnerabilities (Broken Object-Level Authorization), verifying multi-tenant isolation.
-  * Conducted load and stress testing using Locust, analyzing latency percentiles (P95/P99) and server throughput under 50 concurrent virtual users.
-  * Authored formal STLC documentation including Test Plans, BVA/EP Test Matrices, and Jira-standard defect reports.
+  * Architected an end-to-end test automation framework for JobPulse, a multi-tenant recruitment tracking service with 35+ passing integration, UI, and security tests in CI.
+  * Authored formal STLC artifacts: Test Plans, Boundary Value & Equivalence Partitioning matrices, and Jira-standard defect reports with cURL repros.
+  * Implemented code-based API integration tests in Pytest with isolated fixtures and direct PostgreSQL assertions, verifying database commits and relational cascades.
+  * Engineered automated OWASP API security tests validating multi-tenant boundary isolation (BOLA/IDOR) and mass-assignment protection.
+  * Built a UI automation test suite using Python and Playwright following the Page Object Model (POM) pattern with auto-waiting locators.
+  * Configured GitHub Actions CI/CD workflows executing automated tests on push and publishing interactive Allure & Newman HTML artifacts.
+  * Conducted a controlled performance benchmark using Locust, evaluating throughput and P50/P95/P99 latency percentiles under concurrent user load.
   ```
-* **Deliverable:** Updated resume and LinkedIn profile reflecting an Automation QA / SDET profile.
+* **Deliverable:** Updated resume and LinkedIn profile reflecting an Automation QA / Junior SDET candidate with verifiable code evidence.
 
 ---
 
@@ -395,3 +441,4 @@ Every single day is structured into a disciplined 4-hour block:
   > Here is my GitHub repository with passing CI badges and test reports: [Link].  
   > I’d welcome 3 minutes of your candid feedback on my test architecture and assertion strategy. Are you open to sharing your perspective?"*
 * **Final Deliverable:** 5 targeted messages sent; complete 30-Day QA/SDET Sprint finished!
+

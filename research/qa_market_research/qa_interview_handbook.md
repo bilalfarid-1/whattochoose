@@ -199,3 +199,115 @@
   3. Check out the code, install dependencies (`pip install -r requirements.txt`).
   4. Run the test command: `pytest --alluredir=allure-results`.
   5. Publish test artifacts. If any test fails, GitHub automatically blocks merging the PR.
+
+---
+
+## Section 8: Real-World Edge Cases & Diagnostic Reasoning
+
+### Q20: A requirement says an application status must be valid, but it does not define every allowed transition. How would you test it?
+* **Model Answer:**  
+  1. **Defect Prevention at Requirements Stage:** Flag that missing transition rules represent a requirements defect. Raise an inquiry with the Product Owner / Business Analyst to define a formal finite state transition matrix.
+  2. **Exploratory State Modeling:** Build an $N \times N$ matrix covering all known states (`APPLIED`, `INTERVIEWING`, `OFFERED`, `REJECTED`, `WITHDRAWN`).
+  3. **Forward vs. Backward Transitions:** Test intuitive forward progressions (`APPLIED` $\rightarrow$ `INTERVIEWING`) alongside counter-intuitive or destructive backward transitions (`REJECTED` $\rightarrow$ `OFFERED`, or `OFFERED` $\rightarrow$ `APPLIED`).
+  4. **Idempotency & Self-Transitions:** Test transitions to the existing state (`APPLIED` $\rightarrow$ `APPLIED`) to verify whether timestamps or audit logs update erroneously.
+  5. **Concurrent Transitions:** Fire competing transition requests simultaneously to verify that row-level locking or optimistic concurrency prevents corrupt intermediate states.
+
+### Q21: A defect appears only when a user submits a form twice quickly. How would you investigate it?
+* **Model Answer:**  
+  This is a classic client-server race condition / double-submission defect (missing UI debouncing or missing server-side idempotency/database transaction isolation).
+  * **Reproduction:** Use an asynchronous script (e.g., Python `asyncio` or Locust) firing two identical `POST` requests with the exact same payload within 10 milliseconds.
+  * **Database Verification:** Inspect the database to see whether two duplicate rows were created with identical or microsecond-differing timestamps, or whether an unhandled unique constraint error produced a `500 Internal Server Error`.
+  * **Defensive Engineering Recommendations:**
+    - *Client side:* Immediately disable the submission button upon the first click (debouncing / visual loading state).
+    - *Server side (Defense-in-depth):* Require an `Idempotency-Key` (UUID) header cached temporarily in Redis, or enforce a composite unique constraint in PostgreSQL (`user_id`, `company_id`, `job_title`) to gracefully reject duplicate submissions with `409 Conflict`.
+
+### Q22: A low-severity visual defect blocks the primary checkout action. What severity and priority would you assign?
+* **Model Answer:**  
+  * **Severity:** **Critical / Blocker**  
+  * **Priority:** **P1 - Urgent / Blocker**
+  * *Reasoning:* Even though the root cause is a visual or CSS defect (e.g., an invisible `z-index` overlay or unstyled translucent banner covering a button), a defect's severity is measured by its **functional impact on the user and system**. Because the primary checkout action is impossible to complete, the entire revenue stream is blocked. It must be triaged as a top-priority blocker.
+
+### Q23: A POST request times out after the server may have committed the record. The client retries. What should happen?
+* **Model Answer:**  
+  This represents the fundamental network timeout ambiguity in distributed REST APIs.
+  * **Unprotected Failure:** The server commits the record, the network drops the response, the client retries, and the server commits a duplicate record or crashes with a database unique violation.
+  * **Enterprise Standard:** The API should support client-generated **Idempotency Keys** (`Idempotency-Key: <UUID>`). When the server receives the retry with the existing key, it recognizes that the record was already committed and returns the previously generated `201 Created` or `200 OK` response with the existing resource payload without re-executing business logic.
+  * *Fallback:* If idempotency keys are not supported, the database unique constraint should reject the duplicate with `409 Conflict`, allowing the client to query `GET` to confirm whether the record exists.
+
+### Q24: A valid user requests another tenant's resource. Should the API return 403 Forbidden or 404 Not Found?
+* **Model Answer:**  
+  In multi-tenant architectures, returning **`404 Not Found`** is generally preferred over `403 Forbidden` to prevent **Resource Enumeration and Information Disclosure**.
+  * If User B requests `/api/v1/applications/45` (owned by User A), returning `403 Forbidden` confirms that resource #45 actually exists in the system, confirming an attacker's ID guessing attempt.
+  * Returning `404 Not Found` indicates that the resource simply does not exist within User B's tenant boundary, denying the attacker any confirmation of existing data.
+  * *Exception:* If the application is single-tenant where resource existence is known but role permissions are restricted (e.g. an employee accessing an executive admin payroll URL), `403 Forbidden` is standard.
+
+### Q25: A client submits a JSON body containing user_id or is_admin even though those fields should be server-controlled. What do you test?
+* **Model Answer:**  
+  This tests for **Mass Assignment / Broken Object Property Level Authorization (OWASP API #3)**.
+  * **Test Strategy:**
+    1. Send a request to `POST /api/v1/applications/` containing `{"user_id": 999, "company": "Stripe"}` while authenticated as User 1.
+    2. Check the database directly via SQL: Assert that the created record is associated with User 1 (from the authenticated JWT session), NOT User 999.
+    3. Send `{"is_admin": true}` during registration or user profile update: Verify that the database column remains `is_admin = False`.
+    4. Assert that the server either ignores unauthorized fields or strictly rejects them with `422 Unprocessable Entity` (e.g., Pydantic `extra = "forbid"`).
+
+### Q26: Page 2 of an API response contains duplicate records that were on page 1. Is this necessarily a bug?
+* **Model Answer:**  
+  Not necessarily; this is a known characteristic of **Offset-Based Pagination** (`LIMIT ... OFFSET ...`) operating on a live, mutable dataset (known as **Data Drift**).
+  * If Page 1 returns records 1–10, and while the user is viewing Page 1, a new record is inserted at index 0, all records shift down by one. When the client requests Page 2 (`OFFSET 10`), record #10 appears again at index 11.
+  * **How to evaluate:**
+    - Check if the query has a deterministic `ORDER BY` clause with tie-breakers (`ORDER BY created_at DESC, id DESC`). Missing deterministic ordering IS a bug.
+    - If the API uses **Cursor-Based / Keyset Pagination** (`WHERE id < last_seen_id LIMIT 10`), duplicates across pages ARE a defect, as cursors remain stable against concurrent inserts.
+
+### Q27: A Playwright test passes locally but fails in CI. What is your systematic investigation order?
+* **Model Answer:**  
+  1. **Examine CI Artifacts First:** Inspect the Playwright HTML report, `trace.zip` (trace viewer), video recordings, and failure screenshots to observe what the browser was rendering at the failure point.
+  2. **Viewport & Responsive Layout:** CI runners default to specific headless dimensions (e.g. 800x600). Elements visible on a 1080p local screen may be hidden behind hamburger menus or responsive drawers in CI.
+  3. **Headless & Timing Differences:** CI virtual machines often have lower CPU allocation. Tests relying on implicit timing or short timeouts fail in CI while passing locally. Always use Playwright's auto-waiting locators rather than arbitrary sleeps.
+  4. **Data Isolation:** Check whether the CI database was seeded properly and whether concurrent tests corrupted shared data.
+  5. **Network/Font Dependencies:** Check if external web fonts or CDN assets are timing out or blocked in the CI runner environment.
+
+### Q28: Two tests pass independently but fail when run together or in parallel. What could explain this?
+* **Model Answer:**  
+  This indicates **Test Pollution** and lack of test atomicity.
+  * **Shared Mutable Database State:** Test A creates a user with `test@example.com`. When run concurrently or in sequence, Test B fails due to a duplicate email conflict, or Test A deletes data that Test B expected.
+  * **Fixture Scope Misconfiguration:** Using `scope="session"` for mutable fixtures instead of `scope="function"`.
+  * **Resource/Port Collisions:** Running parallel workers (`pytest -n 4`) against a single server port or shared database file without database isolation.
+  * **Global State Mutation:** Modifying environment variables (`os.environ`) or class-level singletons in one test without tearing them down in a `finally` block.
+
+### Q29: The API returns 201 Created, but the SQL query cannot find the new record immediately. What do you investigate?
+* **Model Answer:**  
+  1. **Uncommitted Database Transaction:** Check if backend code called `db.add()` but omitted `db.commit()`, or if the transaction is pending inside a connection session that hasn't closed.
+  2. **Asynchronous Processing (Eventual Consistency):** Check if the API accepts the payload, enqueues it to a message broker (Celery / RabbitMQ / Redis), and returns 201 before a background worker finishes writing to the database.
+  3. **Read/Write Replica Lag:** Did the test SQL query connect to a read-replica while the API wrote to the primary master? Asynchronous replication delays can cause reads to lag behind writes.
+  4. **Target Schema Discrepancy:** Verify that the test query and the API are connected to the exact same database instance and schema.
+
+### Q30: A delete operation removes a parent record. Should related records always cascade-delete?
+* **Model Answer:**  
+  No; cascade deletion is a specific business domain choice, not an automatic rule.
+  * **CASCADE:** Appropriate when child entities have no independent meaning without the parent (e.g., deleting a `JobApplication` should cascade-delete its `ApplicationNotes` and `InterviewStages`).
+  * **RESTRICT (`ON DELETE RESTRICT`):** Mandatory when child records represent legal, financial, or auditing history (e.g., deleting a `Company` must be restricted if active candidate applications or contracts reference it).
+  * **SET NULL (`ON DELETE SET NULL`):** Appropriate when child records should persist but lose their association (e.g., deleting a recruiter user account should set `assigned_recruiter_id = NULL` on job applications without deleting the applications).
+
+### Q31: P95 latency improves, but the error rate doubles under load. Is the test a success?
+* **Model Answer:**  
+  **No; this is a classic performance testing false-positive.**
+  * When a server is overwhelmed, it often short-circuits and fails fast with immediate errors (`500 Internal Server Error`, `503 Service Unavailable`, or `504 Gateway Timeout`) within 5 milliseconds without executing database queries or business logic.
+  * These fast-failing error responses pull down the response-time percentiles, making P95 latency look lower when the system is actually crashing.
+  * *Golden Rule:* Latency metrics are only meaningful for successful transactions. A performance test fails immediately if error rates exceed acceptable thresholds (typically <0.1% or <1%).
+
+### Q32: How would you distinguish a database bottleneck from an application or load-generator bottleneck?
+* **Model Answer:**  
+  Monitor three independent telemetry layers simultaneously:
+  1. **Load Generator (Locust runner):** Inspect runner CPU/RAM. If client CPU is 100%, the generator is saturated and cannot dispatch requests at the target rate.
+  2. **Application Server (FastAPI / Uvicorn):** If application CPU is pegged at 100% while database CPU is low, the bottleneck is in application logic (CPU-heavy JSON serialization, unoptimized Python algorithms, insufficient worker processes).
+  3. **Database Server (PostgreSQL):** If application CPU is low (waiting on I/O) while PostgreSQL CPU, memory, or disk I/O is saturated and active connections (`pg_stat_activity`) are queued with high wait times, the bottleneck is in the database (missing indexes, missing connection pooling, table locks).
+
+### Q33: Should a flaky test simply be retried until it passes in CI?
+* **Model Answer:**  
+  **No; automatic retries are a dangerous antipattern when used as a substitute for fixing root causes.**
+  * While retry plugins (`pytest-rerunfailures`) can serve as an emergency short-term measure to unblock CI, relying on them has severe consequences:
+    1. It conceals real race conditions, memory leaks, and concurrency defects that will manifest in production.
+    2. It significantly inflates CI pipeline duration and infrastructure costs.
+    3. It produces "alert fatigue" and destroys engineering trust in test suites.
+  * *Correct Protocol:* Quarantine the flaky test to an isolated non-blocking suite, log a high-priority defect, reproduce with stress loops (`pytest --count=100`), and fix root causes (deterministic fixtures, auto-waiting locators, independent database state).
+
