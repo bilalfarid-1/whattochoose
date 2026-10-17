@@ -4,8 +4,11 @@ import pytest
 from research.tests.verify_markdown_links import (
     github_slugify,
     extract_headings,
+    strip_fenced_code_blocks,
     verify_links,
+    export_external_links_inventory,
     REPO_DIR,
+    DEFAULT_INVENTORY_CSV,
 )
 
 def test_github_slugify_standard_and_edge_cases():
@@ -23,6 +26,76 @@ def test_github_slugify_standard_and_edge_cases():
 
     # 5. HTML tags inside heading
     assert github_slugify("Heading with <span>HTML</span>") == "heading-with-html"
+
+def test_strip_fenced_code_blocks_backticks_and_tildes():
+    doc = """# Real Title
+
+```python
+# Fake Heading In 3 Backticks
+[Broken Link In Code](fake_path_1.md)
+```
+
+````markdown
+# Fake Heading In 4 Backticks
+[Broken Link In 4 Backticks](fake_path_2.md)
+````
+
+~~~bash
+## Fake Heading In Tildes
+[Broken Link In Tildes](fake_path_3.md)
+~~~
+
+[Valid Link](target.md)
+"""
+    cleaned = strip_fenced_code_blocks(doc)
+    assert "# Real Title" in cleaned
+    assert "[Valid Link](target.md)" in cleaned
+    assert "fake_path_1.md" not in cleaned
+    assert "fake_path_2.md" not in cleaned
+    assert "fake_path_3.md" not in cleaned
+    assert "Fake Heading" not in cleaned
+
+def test_fenced_code_blocks_ignored_in_heading_and_link_extraction(tmp_path):
+    """
+    Demonstrates that:
+    1. Headings inside backtick-fenced and tilde-fenced code blocks are NOT extracted as valid anchors.
+    2. Demonstration links inside backtick-fenced and tilde-fenced blocks do NOT produce false broken-link errors.
+    3. A link attempting to target a heading that appears only inside code blocks FAILS.
+    """
+    code_examples_md = tmp_path / "examples.md"
+    code_examples_md.write_text("""# Real Section
+
+```markdown
+# Fake Heading In Backticks
+[Demonstration Broken Link](missing_file_in_backticks.md)
+```
+
+~~~text
+## Fake Heading In Tildes
+[Another Broken Demo Link](missing_file_in_tildes.md)
+~~~
+
+[Real Link To Self](#real-section)
+""", encoding="utf-8")
+
+    caller_md = tmp_path / "caller.md"
+    caller_md.write_text("""[Link To Fake Backtick Heading](examples.md#fake-heading-in-backticks)
+[Link To Fake Tilde Heading](examples.md#fake-heading-in-tildes)
+[Link To Real Section](examples.md#real-section)
+""", encoding="utf-8")
+
+    res = verify_links(str(tmp_path))
+
+    # The two demonstration links inside fenced code blocks must NOT be reported as broken file errors
+    broken_file_errors = [e for e in res["errors"] if "missing_file" in e]
+    assert len(broken_file_errors) == 0, f"Expected 0 false errors from code blocks, got: {broken_file_errors}"
+
+    # Links attempting to target headings that only exist inside code blocks must FAIL
+    anchor_errors = [e for e in res["errors"] if "fake-heading" in e]
+    assert len(anchor_errors) == 2, f"Expected 2 anchor errors for fake code headings, got: {anchor_errors}"
+
+    # Verify total heading anchors checked (1 anchor-only in examples.md + 3 cross-file in caller.md)
+    assert res["heading_anchors_checked"] == 4
 
 def test_extract_headings_duplicate_disambiguation(tmp_path):
     md_content = """# Overview
@@ -95,13 +168,48 @@ def test_external_links_inventory_and_counts(tmp_path):
 """, encoding="utf-8")
     (tmp_path / "target.md").write_text("# Target\n", encoding="utf-8")
 
-    res = verify_links(str(tmp_path))
+    custom_csv = tmp_path / "custom_inventory.csv"
+    res = verify_links(str(tmp_path), inventory_csv_path=str(custom_csv))
     assert res["external_urls_count"] == 1
     assert res["total_local_markdown_links"] == 2
     assert res["file_targets_checked"] == 1
     assert res["anchor_only_links_checked"] == 1
     assert res["heading_anchors_checked"] == 1
     assert len(res["errors"]) == 0
+    assert custom_csv.exists()
+    assert "https://google.com" in custom_csv.read_text(encoding="utf-8")
+
+def test_tmp_path_does_not_modify_tracked_csv(tmp_path):
+    """
+    Regression test ensuring that test runs using tmp_path NEVER overwrite
+    or modify the repository's tracked external_links_inventory.csv.
+    """
+    assert os.path.exists(DEFAULT_INVENTORY_CSV), "Tracked external_links_inventory.csv must exist"
+    with open(DEFAULT_INVENTORY_CSV, "r", encoding="utf-8") as f:
+        original_content = f.read()
+    original_mtime = os.path.getmtime(DEFAULT_INVENTORY_CSV)
+
+    # Run verification against a tmp_path with dummy links
+    dummy_doc = tmp_path / "dummy.md"
+    dummy_doc.write_text("[Dummy Link](https://dummy-url-for-test.example.com)\n", encoding="utf-8")
+
+    # 1. verify_links without inventory_csv_path
+    res_no_export = verify_links(str(tmp_path))
+    assert res_no_export["external_urls_count"] == 1
+
+    # 2. verify_links with an isolated tmp_path CSV
+    isolated_csv = tmp_path / "isolated.csv"
+    res_isolated = verify_links(str(tmp_path), inventory_csv_path=str(isolated_csv))
+    assert isolated_csv.exists()
+    assert "https://dummy-url-for-test.example.com" in isolated_csv.read_text(encoding="utf-8")
+
+    # Verify tracked CSV was strictly unmodified
+    with open(DEFAULT_INVENTORY_CSV, "r", encoding="utf-8") as f:
+        current_content = f.read()
+    current_mtime = os.path.getmtime(DEFAULT_INVENTORY_CSV)
+
+    assert current_content == original_content, "Tracked CSV content was mutated by tmp_path test!"
+    assert current_mtime == original_mtime, "Tracked CSV mtime was modified by tmp_path test!"
 
 def test_repository_markdown_links_clean():
     """Verify that the actual repository passes 100% with zero broken links or anchors."""
@@ -111,5 +219,4 @@ def test_repository_markdown_links_clean():
     assert res["file_targets_checked"] == 68
     assert res["anchor_only_links_checked"] == 1
     assert res["heading_anchors_checked"] == 1
-    assert res["external_urls_count"] == 114
-    assert os.path.exists(os.path.join(REPO_DIR, res["external_inventory_path"]))
+    assert res["external_urls_count"] == 111

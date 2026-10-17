@@ -5,7 +5,7 @@ import sys
 
 # Determine repository root relative to this script
 REPO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-EXTERNAL_INVENTORY_CSV = os.path.join(os.path.dirname(__file__), "external_links_inventory.csv")
+DEFAULT_INVENTORY_CSV = os.path.join(os.path.dirname(__file__), "external_links_inventory.csv")
 
 def get_markdown_files(root):
     md_files = []
@@ -16,6 +16,40 @@ def get_markdown_files(root):
             if f.endswith(".md"):
                 md_files.append(os.path.join(dirpath, f))
     return sorted(md_files)
+
+def strip_fenced_code_blocks(text):
+    """
+    Strips fenced code blocks (delimited by 3+ backticks or 3+ tildes) from markdown text.
+    Lines within fenced blocks are excluded so headings and demonstration links inside
+    code blocks are not processed.
+    """
+    lines = text.splitlines(keepends=True)
+    cleaned_lines = []
+    in_code_block = False
+    fence_char = None
+    fence_len = 0
+    fence_pattern = re.compile(r'^[ ]{0,3}(`{3,}|~{3,})')
+
+    for line in lines:
+        if not in_code_block:
+            m = fence_pattern.match(line)
+            if m:
+                fence = m.group(1)
+                in_code_block = True
+                fence_char = fence[0]
+                fence_len = len(fence)
+                continue
+            cleaned_lines.append(line)
+        else:
+            close_pattern = rf'^[ ]{{0,3}}\{fence_char}{{{fence_len},}}[ ]*$'
+            if re.match(close_pattern, line.rstrip('\r\n')):
+                in_code_block = False
+                fence_char = None
+                fence_len = 0
+                continue
+            continue
+
+    return ''.join(cleaned_lines)
 
 def github_slugify(heading_text):
     # Strip markdown links: [text](url) -> text
@@ -35,6 +69,7 @@ def github_slugify(heading_text):
 def extract_headings(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         text = f.read()
+    text = strip_fenced_code_blocks(text)
     headings = re.findall(r'^#{1,6}\s+(.+)$', text, re.MULTILINE)
     slug_counts = {}
     known_slugs = set()
@@ -51,7 +86,17 @@ def extract_headings(file_path):
         known_slugs.add(slug)
     return known_slugs
 
-def verify_links(repo_dir=REPO_DIR):
+def export_external_links_inventory(external_links, output_path=DEFAULT_INVENTORY_CSV):
+    """Exports the external URLs list to a CSV file."""
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["source_file", "link_text", "url"])
+        for src, txt, url in external_links:
+            writer.writerow([src, txt, url])
+    return output_path
+
+def verify_links(repo_dir=REPO_DIR, inventory_csv_path=None):
     link_pattern = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
     md_files = get_markdown_files(repo_dir)
 
@@ -70,8 +115,10 @@ def verify_links(repo_dir=REPO_DIR):
         with open(md_file, "r", encoding="utf-8") as f:
             content = f.read()
 
+        # Exclude fenced code blocks so demonstration links are not scanned
+        clean_content = strip_fenced_code_blocks(content)
         file_dir = os.path.dirname(md_file)
-        matches = link_pattern.findall(content)
+        matches = link_pattern.findall(clean_content)
 
         for text, link in matches:
             link = link.strip()
@@ -112,12 +159,11 @@ def verify_links(repo_dir=REPO_DIR):
                         f"(exact slug required; no prefix/substring matches allowed)"
                     )
 
-    # Export external URLs to audit CSV artifact
-    with open(EXTERNAL_INVENTORY_CSV, "w", encoding="utf-8", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["source_file", "link_text", "url"])
-        for src, txt, url in external_links:
-            writer.writerow([src, txt, url])
+    # Only export inventory if an output path is explicitly provided
+    exported_path = None
+    if inventory_csv_path:
+        export_external_links_inventory(external_links, inventory_csv_path)
+        exported_path = os.path.relpath(inventory_csv_path, repo_dir)
 
     return {
         "md_files_count": len(md_files),
@@ -126,12 +172,14 @@ def verify_links(repo_dir=REPO_DIR):
         "anchor_only_links_checked": anchor_only_links_checked,
         "heading_anchors_checked": heading_anchors_checked,
         "external_urls_count": len(external_links),
-        "external_inventory_path": os.path.relpath(EXTERNAL_INVENTORY_CSV, repo_dir),
+        "external_links": external_links,
+        "external_inventory_path": exported_path,
         "errors": errors,
     }
 
 def main():
-    res = verify_links(REPO_DIR)
+    # By default, running main() executes verification and generates the tracked CSV inventory
+    res = verify_links(REPO_DIR, inventory_csv_path=DEFAULT_INVENTORY_CSV)
     print(f"Scanned {res['md_files_count']} Markdown files in repository.")
     print(f"Total local relative Markdown links: {res['total_local_markdown_links']} (100% resolved)")
     print(f"  - Local file targets checked on disk: {res['file_targets_checked']} (100% resolved)")
