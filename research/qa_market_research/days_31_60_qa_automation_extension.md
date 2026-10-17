@@ -1,10 +1,10 @@
 # Days 31–60: QA Automation Depth and Job-Search Extension
 
-**Prerequisite:** Complete the core Day 1–30 QA roadmap, or use the gap-recovery rule in Section 2 before progressing.  
-**Target roles:** QA/SQA Engineer, Junior QA Automation, Associate QA Engineer and selected Junior SDET roles.  
-**Daily time:** Approximately 4 focused hours, with light review/catch-up days each week.  
-**Main project:** Continue improving the JobPulse QA automation repository.  
-**Important:** This is an extension, not a replacement for the first 30 days. It is designed to deepen reliability and demonstrate broader competence; it does not guarantee a job or substitute for professional experience.
+- **Prerequisite:** Complete the core Day 1–30 QA roadmap, or use the gap-recovery rule in Section 2 before progressing.
+- **Target roles:** QA/SQA Engineer, Junior QA Automation, Associate QA Engineer and selected Junior SDET roles.
+- **Daily time:** Approximately 4 focused hours, with light review/catch-up days each week.
+- **Main project:** Continue improving the JobPulse QA automation repository.
+- **Important:** This is an extension, not a replacement for the first 30 days. It is designed to deepen reliability and demonstrate broader competence; it does not guarantee a job or substitute for professional experience.
 
 ---
 

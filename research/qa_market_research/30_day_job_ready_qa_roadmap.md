@@ -1,11 +1,11 @@
 # 30-Day Job-Ready QA Roadmap
 
-**Version:** Proposed final learner-facing plan  
-**Target:** QA Intern, QA Trainee, Associate QA Engineer, Junior SQA Engineer, Software Tester, Junior QA Automation  
-**Region:** Rawalpindi–Islamabad first; suitable Pakistan-wide and remote openings  
-**Daily time:** Approximately 4 focused hours  
-**Primary portfolio project:** JobPulse (local/authorized test environment)  
-**UI practice fallback:** SauceDemo if JobPulse has no stable user-facing workflow
+- **Version:** Proposed final learner-facing plan
+- **Target:** QA Intern, QA Trainee, Associate QA Engineer, Junior SQA Engineer, Software Tester, Junior QA Automation
+- **Region:** Rawalpindi–Islamabad first; suitable Pakistan-wide and remote openings
+- **Daily time:** Approximately 4 focused hours
+- **Primary portfolio project:** JobPulse (local/authorized test environment)
+- **UI practice fallback:** SauceDemo if JobPulse has no stable user-facing workflow
 
 > **What “job-ready” means here:** At the end of this plan, you should be prepared to apply for entry-level QA roles and demonstrate the fundamentals listed below through a small reproducible portfolio. This is a target, not a hiring guarantee, and 30 days of preparation does not equal 30 days or one year of professional experience. Continue applying and improving after Day 30.
 

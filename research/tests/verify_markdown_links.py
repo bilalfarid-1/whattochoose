@@ -32,7 +32,7 @@ def extract_headings(file_path):
 def main():
     link_pattern = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
     md_files = get_markdown_files(REPO_DIR)
-    
+
     file_slugs = {}
     for mf in md_files:
         file_slugs[os.path.normpath(mf)] = extract_headings(mf)
@@ -45,33 +45,33 @@ def main():
     for md_file in md_files:
         with open(md_file, "r", encoding="utf-8") as f:
             content = f.read()
-        
+
         file_dir = os.path.dirname(md_file)
         matches = link_pattern.findall(content)
-        
+
         for text, link in matches:
             link = link.strip()
             # Separate external HTTP/HTTPS and mailto links from local relative links
             if link.startswith("http://") or link.startswith("https://") or link.startswith("mailto:"):
                 external_links.append((os.path.relpath(md_file, REPO_DIR), text, link))
                 continue
-            
+
             checked_file_links += 1
-            
+
             if "#" in link:
                 target_path_part, target_anchor = link.split("#", 1)
             else:
                 target_path_part, target_anchor = link, None
-            
+
             if not target_path_part:
                 target_file = os.path.normpath(md_file)
             else:
                 target_file = os.path.normpath(os.path.join(file_dir, target_path_part))
-            
+
             if not os.path.exists(target_file):
                 errors.append(f"Broken file path in {os.path.relpath(md_file, REPO_DIR)}: [{text}]({link}) -> File not found: {target_file}")
                 continue
-            
+
             if target_anchor:
                 checked_anchor_links += 1
                 if target_file in file_slugs:
