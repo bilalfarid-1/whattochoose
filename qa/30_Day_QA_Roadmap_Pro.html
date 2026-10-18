@@ -1515,7 +1515,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 1: 'Establish the Baseline & Environment Setup' of the QA Sprint.\n\nPlease act as my Lead SDET: prime me with the core ISTQB distinction between verification and validation, guide me through inspecting the JobPulse backend test run, and explain the key baseline decisions for docs/project-baseline.md.",
       "reviewPrompt": "Act as a Senior SDET. Review my initial project baseline document `docs/project-baseline.md`. Verify that I correctly inventoried the 20 JobPulse endpoints and accurately captured existing test coverage without unverified assumptions.",
       "interviewPrompt": "Act as a Technical Interviewer. Ask me 3 questions on QA fundamentals: 1) Verification vs. validation with real examples, 2) Defect vs. failure vs. error, and 3) Why establishing a test baseline is critical before refactoring or writing new tests. Grade my answers."
-    }
+    },
+    "resources": [
+      {
+        "title": "ISTQB CTFL v4.0 Foundation Syllabus",
+        "url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+        "desc": "Verification vs. validation, defect vs. failure terminology, fundamental test principles."
+      },
+      {
+        "title": "FastAPI Interactive Documentation (Swagger UI)",
+        "url": "http://127.0.0.1:8000/docs",
+        "desc": "Live OpenAPI schema and interactive endpoint tester for JobPulse SUT."
+      },
+      {
+        "title": "JobPulse SUT Operational Contract",
+        "url": "jobpulse_sut_contract.md",
+        "desc": "Authoritative contract detailing all 20 business operations across 13 route templates."
+      }
+    ]
   },
   {
     "day": 2,
@@ -1534,7 +1551,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 2: 'STLC, Test Levels, Types & Risk Prioritization' of the QA Sprint.\n\nPlease act as my QA Architect: explain how to build a practical 2-page test strategy for JobPulse that balances smoke vs. regression testing, and help me define defensible entry/exit criteria.",
       "reviewPrompt": "Act as a QA Architect. Review my `docs/test-strategy.md` for JobPulse. Assess whether my risk prioritization is realistic, whether my scope boundaries are defensible, and suggest 2 improvements for release criteria.",
       "interviewPrompt": "Act as a Hiring Manager. Ask me 3 questions on test process: 1) What is the difference between confirmation and regression testing?, 2) How do you determine what to include in a smoke test suite under tight deadlines?, 3) How do you handle a situation where a developer claims a bug is 'low priority' but it blocks user onboarding?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Guru99 STLC (Software Testing Life Cycle) Complete Guide",
+        "url": "https://www.guru99.com/software-testing-life-cycle.html",
+        "desc": "Detailed breakdown of requirement analysis, test planning, design, and execution phases."
+      },
+      {
+        "title": "Software Testing Levels & Types (Martin Fowler)",
+        "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+        "desc": "Unit vs. integration vs. system testing, test pyramid distribution, and risk mitigation."
+      },
+      {
+        "title": "JobPulse Test Strategy Baseline",
+        "url": "jobpulse_sut_contract.md#1-system-under-test-overview",
+        "desc": "SUT scope definitions, in-scope vs out-of-scope boundaries, and entry/exit criteria."
+      }
+    ]
   },
   {
     "day": 3,
@@ -1553,7 +1587,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 3: 'Equivalence Partitioning & Boundary Value Analysis' of the QA Sprint.\n\nPlease act as an Adversarial QA Lead: explain 2-point vs. 3-point boundary value analysis using JobPulse pagination and string length constraints, and challenge me to define the exact boundary test cases.",
       "reviewPrompt": "Act as an Adversarial QA Lead. Strictly audit my EP/BVA test design matrix in `docs/test-design.md`. Check whether my boundary values identify true edge transitions (e.g., limit-1, limit, limit+1), and tell me which invalid partitions I missed.",
       "interviewPrompt": "Act as a Senior SDET Interviewer. Drill me on test design techniques: 1) Explain the mathematical rationale behind Boundary Value Analysis, 2) When would you choose 3-point BVA over 2-point BVA?, 3) If an input accepts integers 1 to 100, list the exact test values for both 2-point and 3-point BVA."
-    }
+    },
+    "resources": [
+      {
+        "title": "Equivalence Partitioning & BVA Deep-Dive (Software Testing Help)",
+        "url": "https://www.softwaretestinghelp.com/boundary-value-analysis-and-equivalence-partitioning/",
+        "desc": "Mathematical foundations of 2-point vs 3-point boundary value testing with practical examples."
+      },
+      {
+        "title": "ISTQB Test Design Techniques: Black-Box",
+        "url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+        "desc": "Equivalence partitioning mathematical derivation and boundary detection strategies."
+      },
+      {
+        "title": "Pydantic v2 Validation Rules & Field Constraints",
+        "url": "https://docs.pydantic.dev/latest/concepts/fields/",
+        "desc": "How FastAPI schemas enforce string lengths, numerical ranges, and regex patterns."
+      }
+    ]
   },
   {
     "day": 4,
@@ -1572,7 +1623,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 4: 'Decision Tables, State Transitions & Prioritization' of the QA Sprint.\n\nPlease guide me through modeling the JobPulse application lifecycle (Applied -> Screening -> Interview -> Offer/Rejected) as a formal state-transition matrix, and help me structure a decision table for stage transitions.",
       "reviewPrompt": "Act as a Lead SDET. Review my decision tables and state-transition test cases in `docs/test-cases.md`. Ensure I have tested invalid state transitions and verify that my severity and priority ratings reflect genuine business risk.",
       "interviewPrompt": "Conduct a mock interview on test analysis: 1) How do you test business logic governed by combinations of multiple boolean conditions?, 2) What is an invalid state transition, and why are they frequently the source of critical production bugs?, 3) Differentiate high severity/low priority vs. low severity/high priority with concrete examples."
-    }
+    },
+    "resources": [
+      {
+        "title": "Decision Table Testing in Software Testing",
+        "url": "https://www.geeksforgeeks.org/decision-table-testing-in-software-testing/",
+        "desc": "Truth tables, cause-effect graphing, complex multi-condition business logic coverage."
+      },
+      {
+        "title": "State Transition Testing Tutorial",
+        "url": "https://www.softwaretestingclass.com/state-transition-testing/",
+        "desc": "Finite State Machines (FSM), state transition tables, invalid transition detection."
+      },
+      {
+        "title": "JobPulse Application Status Enum Specification",
+        "url": "jobpulse_sut_contract.md#2-complete-endpoint-inventory-20-business-operations",
+        "desc": "The 6 lifecycle states: applied, screening, technical_interview, behavioral_interview, offer_received, rejected."
+      }
+    ]
   },
   {
     "day": 5,
@@ -1591,7 +1659,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 5: 'Bug Reports & Evidence Collection' of the QA Sprint.\n\nPlease teach me how to write world-class defect reports that developers love: show me what evidence (headers, payloads, logs) makes a bug immediately reproducible, and how to structure `docs/bugs/bug-template.md`.",
       "reviewPrompt": "Act as a Senior Backend Developer receiving these bug reports. Read my reports in `docs/bugs/`. Tell me honestly: can you reproduce this without asking me questions? What technical evidence is missing? How is the tone?",
       "interviewPrompt": "Drill me on bug reporting and defect triage: 1) What makes a bug report 'reproducible'?, 2) How do you respond if a developer marks your bug as 'Works on My Machine' or 'Won't Fix'?, 3) Walk me through the complete defect lifecycle from discovery to closure."
-    }
+    },
+    "resources": [
+      {
+        "title": "IEEE 829 Standard for Software Test Documentation",
+        "url": "https://en.wikipedia.org/wiki/IEEE_829",
+        "desc": "Industry-standard defect report structure: reproduction steps, severity vs. priority, environmental triage."
+      },
+      {
+        "title": "How to Write a Professional Bug Report (Ministry of Testing)",
+        "url": "https://www.ministryoftesting.com/articles/how-to-write-a-good-bug-report",
+        "desc": "Clear titles, expected vs actual behavior, isolated repro steps, and attachable logs."
+      },
+      {
+        "title": "JobPulse Defect Report Template & Guidelines",
+        "url": "qa_interview_handbook.md#q10-walk-me-through-a-high-severity-bug-you-found-how-did-you-document-it",
+        "desc": "Real-world STAR format defect presentation with JobPulse BOLA and migration rollbacks."
+      }
+    ]
   },
   {
     "day": 6,
@@ -1610,7 +1695,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 6: 'Exploratory Testing Charters & Introductory SQL' of the QA Sprint.\n\nPlease guide me in defining a focused 45-minute exploratory testing charter for JobPulse job application workflows, and introduce the foundational SQL queries needed to verify database state directly.",
       "reviewPrompt": "Review my exploratory session debrief in `docs/exploratory-session-01.md` and my SQL queries in `sql/queries.sql`. Did I discover genuine heuristics-driven insights, and are my SQL queries safe and accurate?",
       "interviewPrompt": "Interview me on exploratory testing and database basics: 1) What is the difference between ad-hoc testing and charter-driven exploratory testing?, 2) How do you use SQL to verify data integrity after an API operation?, 3) Explain the difference between INNER JOIN and LEFT JOIN in the context of QA data validation."
-    }
+    },
+    "resources": [
+      {
+        "title": "Comprehensive Manual Test Execution & Reporting",
+        "url": "https://www.guru99.com/test-execution.html",
+        "desc": "Test suite run cycles, pass/fail logging, blocker triage, and defect verification workflows."
+      },
+      {
+        "title": "JobPulse Multi-User Sandbox Setup",
+        "url": "../backend/README.md#\u26a1-1-minute-quickstart",
+        "desc": "Setting up disposable User A and User B credentials to test cross-tenant data separation."
+      }
+    ]
   },
   {
     "day": 7,
@@ -1629,7 +1726,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 7 (Week 1 Consolidation Day) of the QA Sprint.\n\nPlease conduct a rapid 1-hour retrospective with me: review my Week 1 progress across test strategy, EP/BVA design, bug reporting, and exploratory testing, and identify any blind spots before we advance to API testing in Week 2.",
       "reviewPrompt": "Audit my `docs/week-1-review.md`. Did I accurately evaluate my testing gaps? Do my Week 1 artifacts represent job-ready manual QA competency?",
       "interviewPrompt": "Conduct a comprehensive Week 1 oral defense: Ask me 4 rapid-fire questions covering 1) STLC phases, 2) 2-point vs 3-point BVA, 3) Bug reporting essentials, and 4) How SQL supports backend verification. Provide immediate feedback and grade."
-    }
+    },
+    "resources": [
+      {
+        "title": "ISTQB CTFL Practice Exam & Knowledge Base",
+        "url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+        "desc": "Review of core testing definitions, psychology of testing, code of ethics, and test process."
+      },
+      {
+        "title": "QA Technical Interview Handbook (Questions 1\u201310)",
+        "url": "qa_interview_handbook.md#1-core-testing-theory--manual-qa-questions-110",
+        "desc": "Review 10 core interview questions with model answers and STAR behavioral stories."
+      }
+    ]
   },
   {
     "day": 8,
@@ -1648,7 +1757,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 8: 'HTTP Protocol & 20-Route JobPulse API Inventory' of the QA Sprint.\n\nPlease guide me through inspecting the JobPulse OpenAPI specification (`/openapi.json` or `/docs`), help me inventory the 20 operations, and clarify the auth route's application/x-www-form-urlencoded requirement.",
       "reviewPrompt": "Review my `docs/api-inventory.md`. Compare it against the authoritative JobPulse SUT contract: did I map all 20 business operations across the 13 path templates accurately? Are request and response schemas correctly defined?",
       "interviewPrompt": "Ask me 3 technical questions on HTTP and REST: 1) What are the constituent parts of an HTTP request and response?, 2) Explain the difference between PUT and PATCH with respect to payload completeness and idempotency, 3) Why does OAuth2 password grant require form-data instead of JSON body?"
-    }
+    },
+    "resources": [
+      {
+        "title": "RFC 9110: HTTP Semantics & Status Codes",
+        "url": "https://httpwg.org/specs/rfc9110.html",
+        "desc": "Official IETF specification: 2xx Success, 3xx Redirection, 4xx Client Error, 5xx Server Error."
+      },
+      {
+        "title": "MDN Web Docs: HTTP Status Codes Overview",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status",
+        "desc": "401 Unauthorized vs 403 Forbidden vs 404 Not Found, Idempotency of GET/PUT/DELETE vs POST."
+      },
+      {
+        "title": "JobPulse 20-Route HTTP Inventory",
+        "url": "jobpulse_sut_contract.md#2-complete-endpoint-inventory-20-business-operations",
+        "desc": "The complete list of HTTP verbs, URL templates, and expected response codes."
+      }
+    ]
   },
   {
     "day": 9,
@@ -1667,7 +1793,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 9: 'Status Codes, Auth Semantics & Idempotency' of the QA Sprint.\n\nPlease explain the precise distinctions between HTTP 401, 403, and 404 in multi-tenant REST APIs, and guide me in testing HTTP idempotency on JobPulse update and delete endpoints.",
       "reviewPrompt": "Review my HTTP status code validation table in `docs/api-inventory.md`. Did I correctly distinguish between unauthenticated (401) and forbidden (403/404) states? Are my idempotency assertions sound?",
       "interviewPrompt": "Conduct a technical interview drill on HTTP semantics: 1) What is the exact RFC difference between 401 Unauthorized and 403 Forbidden?, 2) Why might a secure multi-tenant API return 404 Not Found instead of 403 Forbidden for resources belonging to another user?, 3) Define HTTP idempotency and explain whether POST, PUT, and DELETE are idempotent."
-    }
+    },
+    "resources": [
+      {
+        "title": "Postman Learning Center: Sending Your First Request",
+        "url": "https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/",
+        "desc": "Postman UI walkthrough, collection organization, HTTP method selection, body configuration."
+      },
+      {
+        "title": "FastAPI OAuth2 Form-Data vs JSON Auth Semantics",
+        "url": "jobpulse_sut_contract.md#3-key-qa-engineering-distinction-authentication-semantics",
+        "desc": "Detailed guide on POST /api/v1/auth/login (JSON) vs POST /api/v1/auth/login/oauth (x-www-form-urlencoded)."
+      }
+    ]
   },
   {
     "day": 10,
@@ -1686,7 +1824,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 10: 'Postman Collection, Environments & Variables' of the QA Sprint.\n\nPlease guide me in structuring a clean, modular Postman collection for JobPulse with environment variables, dynamic Bearer token extraction in tests, and robust pm.test assertions.",
       "reviewPrompt": "Review my Postman collection JSON (`postman/jobpulse-collection.json`). Did I use variables correctly? Are my assertions checking specific response fields rather than just HTTP 200? Are credentials properly parameterized?",
       "interviewPrompt": "Test my Postman knowledge: 1) Explain the hierarchy and scoping of variables in Postman (Global, Collection, Environment, Data, Local), 2) How do you dynamically capture a JWT token from a login response and inject it into subsequent requests?, 3) How do you write a Chai assertion that validates both response time and JSON schema in Postman?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Postman Learning Center: Using Variables",
+        "url": "https://learning.postman.com/docs/sending-requests/variables/",
+        "desc": "Collection variables, environment scopes, global variables, dynamic variable substitution ($randomUUID)."
+      },
+      {
+        "title": "Postman Learning Center: Grouping Requests in Collections",
+        "url": "https://learning.postman.com/docs/sending-requests/intro-to-collections/",
+        "desc": "Hierarchical folder design: Auth, Companies, Applications, Interviews, Notes, Analytics."
+      }
+    ]
   },
   {
     "day": 11,
@@ -1705,7 +1855,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 11: 'Positive API Flows & Request Chaining' of the QA Sprint.\n\nPlease guide me in building a complete end-to-end chained workflow in Postman for JobPulse: Login -> Create Job -> Apply -> Advance Stage -> Add Note, ensuring variables are cleanly passed and verified at each step.",
       "reviewPrompt": "Review my chained workflow in `postman/jobpulse-collection.json`. Does it cleanly handle dependent state (e.g. passing `application_id` to notes and stages)? Are the assertions verifying data continuity between steps?",
       "interviewPrompt": "Ask me 3 questions on API workflow automation: 1) What are the main risks of request chaining in automated test suites and how do you mitigate test dependencies?, 2) How do you ensure test data created during a workflow doesn't pollute subsequent test runs?, 3) How do you handle asynchronous background processing in an API test chain?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Postman Learning Center: Scripts & Tests",
+        "url": "https://learning.postman.com/docs/writing-scripts/test-scripts/",
+        "desc": "Writing JavaScript test assertions using pm.test, pm.response.to.have.status, pm.expect."
+      },
+      {
+        "title": "Chai Assertion Library Reference",
+        "url": "https://www.chaijs.com/api/bdd/",
+        "desc": "BDD syntax for deep object comparison, type verification, property existence, and array length."
+      }
+    ]
   },
   {
     "day": 12,
@@ -1724,7 +1886,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 12: 'Negative Testing & Boundary Exploration' of the QA Sprint.\n\nPlease act as an Adversarial QA Specialist: help me design aggressive negative tests against JobPulse endpoints (malformed JSON, SQL injection probes, integer overflow, missing JWT headers) and verify error message compliance.",
       "reviewPrompt": "Strictly review my negative test suite in `postman/jobpulse-negative-tests.json`. Did I cover boundary payloads, invalid enums, and missing headers? Are the assertions testing specific error details or just any 4xx status?",
       "interviewPrompt": "Drill me on negative API testing: 1) Why do many teams fail to allocate sufficient time to negative API testing, and what are the consequences?, 2) In FastAPI/Pydantic, what is the significance of HTTP 422 vs. HTTP 400?, 3) How should an API behave when receiving unexpected extra fields in a JSON body (strict vs. permissive parsing)?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Newman CLI Official Guide",
+        "url": "https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/",
+        "desc": "Running Postman collections headlessly from command line, environment passing, reporter flags."
+      },
+      {
+        "title": "newman-reporter-htmlextra Documentation",
+        "url": "https://github.com/DannyDainton/newman-reporter-htmlextra",
+        "desc": "Generating beautiful, shareable HTML test run reports with charts and failure breakdowns."
+      }
+    ]
   },
   {
     "day": 13,
@@ -1743,7 +1917,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 13: 'SQL Relational Queries for Test Verification' of the QA Sprint.\n\nPlease guide me in writing advanced SQL verification queries (multi-table JOINs, foreign key validation, aggregate counts) to audit JobPulse database state after application submissions and stage updates.",
       "reviewPrompt": "Review my SQL verification queries in `sql/api_verification_queries.sql`. Are the JOINs and WHERE clauses accurate? Do they reliably detect data corruption, orphaned records, or incorrect status flags?",
       "interviewPrompt": "Interview me on SQL for QA: 1) Write a SQL query on the spot to find all users who have submitted more than 5 job applications, 2) How do you verify foreign key referential integrity if an application record is deleted?, 3) What is the difference between verifying an API response payload and verifying the database directly?"
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Tutorial for Testers",
+        "url": "https://www.postgresqltutorial.com/",
+        "desc": "Relational schema verification, SELECT with INNER/LEFT JOIN, COUNT/GROUP BY aggregates."
+      },
+      {
+        "title": "JobPulse Relational Schema Models (SQLAlchemy)",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Users, Companies, Applications, InterviewStages, and ApplicationNotes foreign key schemas."
+      }
+    ]
   },
   {
     "day": 14,
@@ -1762,7 +1948,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 14 (Week 2 Consolidation Day) of the QA Sprint.\n\nPlease guide me through running my JobPulse Postman collection via Newman CLI, generating HTML reports, and conducting a 1-hour retrospective on HTTP semantics, status codes, and SQL verification.",
       "reviewPrompt": "Review my Newman CLI run output and `docs/week-2-review.md`. Did the Newman execution succeed with proper exit codes? Are my API testing artifacts ready to be presented in a professional portfolio?",
       "interviewPrompt": "Conduct a Week 2 technical interview defense: Ask me 4 questions covering 1) Postman environment scoping, 2) Newman CLI integration in CI pipelines, 3) 401 vs 403 vs 404, and 4) Complex SQL JOINs for data verification. Grade my performance."
-    }
+    },
+    "resources": [
+      {
+        "title": "Postman API Automation Best Practices",
+        "url": "https://blog.postman.com/api-testing-best-practices/",
+        "desc": "Idempotent collection execution, environment cleaning, automated regression health checks."
+      },
+      {
+        "title": "QA Technical Interview Handbook (Questions 11\u201318)",
+        "url": "qa_interview_handbook.md#2-api-testing-postman-sql--backend-architecture-questions-1118",
+        "desc": "Review API testing interview questions: Postman chaining, Newman, 401 vs 403, and SQL assertions."
+      }
+    ]
   },
   {
     "day": 15,
@@ -1781,7 +1979,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 15: 'Python Testing Ecosystem & Virtual Environments' of the QA Sprint.\n\nPlease guide me as a Senior Python SDET: help me set up a professional test automation project structure (`tests_api/`, `conftest.py`, `pytest.ini`), pin dependencies in `requirements-test.txt`, and write my first pytest smoke test.",
       "reviewPrompt": "Review my Python automation project setup in `tests_api/` and `requirements-test.txt`. Is the directory structure scalable? Are dependencies properly configured for automated testing?",
       "interviewPrompt": "Ask me 3 Python testing fundamentals questions: 1) What is the purpose of virtual environments in Python and how do you ensure test reproducibility?, 2) How does pytest discover test files, classes, and test functions?, 3) What is the role of `pytest.ini` or `pyproject.toml` in configuring test runs?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Python requests Library Documentation",
+        "url": "https://requests.readthedocs.io/en/latest/",
+        "desc": "Pythonic HTTP: GET/POST requests, JSON payloads, custom headers, status code inspection."
+      },
+      {
+        "title": "pytest Official Documentation: Getting Started",
+        "url": "https://docs.pytest.org/en/stable/getting-started.html",
+        "desc": "Test discovery naming conventions, running tests, standard assert statements in Python."
+      }
+    ]
   },
   {
     "day": 16,
@@ -1800,7 +2010,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 16: 'pytest Basics, Assertions & Test Discovery' of the QA Sprint.\n\nPlease guide me in writing idiomatic pytest tests against JobPulse public endpoints, leveraging pytest assertion introspection, descriptive test names, and command-line execution flags.",
       "reviewPrompt": "Review `tests_api/test_health_and_public.py`. Are my test function names expressive (following `test_<action>_<expected_result>`)? Are my assertions clean and idiomatic without unnecessary try/except blocks?",
       "interviewPrompt": "Test my pytest fundamentals: 1) How does pytest's `assert` statement differ from `unittest.TestCase` assertion methods (e.g. `assertEqual`)?, 2) What is assertion rewriting in pytest and how does it provide detailed failure diffs?, 3) How do you run only tests matching a specific naming pattern or custom marker from the CLI?"
-    }
+    },
+    "resources": [
+      {
+        "title": "pytest Fixtures: Explicit, Modular, Scalable",
+        "url": "https://docs.pytest.org/en/stable/explanation/fixtures.html",
+        "desc": "conftest.py setup, fixture scopes (function, module, session), yield teardown patterns."
+      },
+      {
+        "title": "JobPulse Developer Test Fixtures Architecture",
+        "url": "../backend/tests/conftest.py",
+        "desc": "Inspect how transactional rollbacks and clean test clients are configured in JobPulse."
+      }
+    ]
   },
   {
     "day": 17,
@@ -1819,7 +2041,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 17: 'Requests Library & Custom API Client' of the QA Sprint.\n\nPlease guide me in designing a clean, reusable API client wrapper (`tests_api/client.py`) using `requests.Session` that handles base URLs, Bearer authentication headers, and mandatory request timeouts.",
       "reviewPrompt": "Review my API client wrapper in `tests_api/client.py`. Does it properly wrap HTTP methods? Are timeouts enforced to prevent hanging tests? How does it handle non-2xx status codes?",
       "interviewPrompt": "Interview me on HTTP clients and test architecture: 1) Why should you never use `requests.get()` without an explicit `timeout` parameter in automation suites?, 2) What are the performance and connection-pooling benefits of `requests.Session()`?, 3) How do you design an API client wrapper that remains maintainable as the API grows from 20 to 200 endpoints?"
-    }
+    },
+    "resources": [
+      {
+        "title": "pytest Parametrization Documentation",
+        "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+        "desc": "@pytest.mark.parametrize: testing dozens of input partitions with a single test function."
+      },
+      {
+        "title": "Pydantic Schema Negative Testing Guide",
+        "url": "jobpulse_sut_contract.md#2-complete-endpoint-inventory-20-business-operations",
+        "desc": "Crafting malformed emails, out-of-range strings, invalid UUIDs, and missing required keys."
+      }
+    ]
   },
   {
     "day": 18,
@@ -1838,7 +2072,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 18: 'pytest Fixtures, Scopes & Teardown' of the QA Sprint.\n\nPlease guide me as a Senior Pytest Architect: teach me how to design robust fixtures in `conftest.py` for token auth and test entity setup, using `yield` for bulletproof cleanup and proper scope selection.",
       "reviewPrompt": "Strictly review my `conftest.py`. Check fixture scoping: are session fixtures accidentally leaking state to function-scoped tests? Does my teardown code handle exceptions properly?",
       "interviewPrompt": "Drill me on pytest fixtures: 1) Explain the difference between `scope='function'` and `scope='session'` fixtures, and give an example of when each should be used, 2) How does the `yield` keyword work in pytest fixtures for setup and teardown?, 3) What happens if a fixture fails during setup vs. during teardown?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Python psycopg2 / SQLAlchemy Direct DB Queries",
+        "url": "https://docs.sqlalchemy.org/en/20/core/connections.html",
+        "desc": "Querying PostgreSQL directly from pytest fixtures to verify row existence, FK constraints, and timestamps."
+      },
+      {
+        "title": "Database Verification in Automated Testing (Martin Fowler)",
+        "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+        "desc": "Verifying that API mutations reflect correctly in persistence layers without side effects."
+      }
+    ]
   },
   {
     "day": 19,
@@ -1857,7 +2103,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 19: 'Parametrization & Data-Driven Testing' of the QA Sprint.\n\nPlease guide me in writing clean `@pytest.mark.parametrize` tests for JobPulse endpoints, showing me how to format parameter matrices, assign descriptive `ids`, and cover both boundary values and negative inputs.",
       "reviewPrompt": "Review `tests_api/test_parametrized_inputs.py`. Are parameter IDs clear in the test runner output? Do the test cases cover edge boundaries (min-1, min, max, max+1)?",
       "interviewPrompt": "Interview me on data-driven testing: 1) What is `@pytest.mark.parametrize` and how does it prevent code duplication?, 2) How do you assign custom test IDs to parametrized cases to make CI failure reports readable?, 3) When would you choose external data files (JSON/CSV) over in-code parametrization?"
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API1:2023 Broken Object Level Authorization (BOLA)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "OWASP #1 vulnerability: accessing other users' IDs through insufficient authorization checks."
+      },
+      {
+        "title": "JobPulse Security Isolation Test Suite",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Inspect the 6 reference security tests asserting non-disclosing 404 behavior for User B."
+      }
+    ]
   },
   {
     "day": 20,
@@ -1876,7 +2134,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 20: 'Authorization & Multi-Tenant Boundary Tests' of the QA Sprint.\n\nPlease act as an API Security Specialist: guide me in designing automated BOLA (Broken Object Level Authorization) tests against JobPulse using two independent user fixtures, verifying strict tenant isolation.",
       "reviewPrompt": "Strictly review my authorization test suite in `tests_api/test_authorization.py`. Did I test both mutation (PUT/PATCH/DELETE) and read (GET) paths? Do my assertions confirm that User A's data was not modified?",
       "interviewPrompt": "Conduct a mock interview on API security: 1) What is Broken Object Level Authorization (BOLA) and why is it #1 on the OWASP API Security Top 10?, 2) Walk me through how you wrote automated tests to detect BOLA in JobPulse, 3) Why is returning HTTP 404 safer than returning HTTP 403 when a user accesses a record belonging to another tenant?"
-    }
+    },
+    "resources": [
+      {
+        "title": "pytest Execution Control & Configuration",
+        "url": "https://docs.pytest.org/en/stable/reference/reference.html#ini-options-ref",
+        "desc": "pytest.ini, -v (verbose), -s (stdout), -k (filter), --durations, and xfail/skip markers."
+      },
+      {
+        "title": "pytest-html Documentation",
+        "url": "https://pytest-html.readthedocs.io/en/latest/",
+        "desc": "Generating standalone HTML execution reports with pass/fail metrics and stack traces."
+      }
+    ]
   },
   {
     "day": 21,
@@ -1895,7 +2165,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 21 (Week 3 Consolidation Day) of the QA Sprint.\n\nPlease guide me in auditing my complete `tests_api/` Pytest suite: check fixture design, custom markers (`@pytest.mark.smoke`, `@pytest.mark.regression`), test independence, and lead my Week 3 retrospective.",
       "reviewPrompt": "Perform a senior code review on my entire `tests_api/` folder and `docs/week-3-review.md`. Point out any code smells, flaky risks, or architectural weaknesses.",
       "interviewPrompt": "Conduct a comprehensive Week 3 technical interview defense: Ask me 4 challenging questions covering 1) Pytest fixture lifecycle and scopes, 2) Requests session connection pooling, 3) Automated BOLA detection, and 4) Designing data-driven tests. Grade my explanations."
-    }
+    },
+    "resources": [
+      {
+        "title": "Test Automation Architecture: Python SDET Patterns",
+        "url": "https://testautomationu.applitools.com/",
+        "desc": "Structuring production-grade test repos: API clients, data factories, assertion helpers."
+      },
+      {
+        "title": "QA Technical Interview Handbook (Questions 19\u201326)",
+        "url": "qa_interview_handbook.md#3-automated-testing-pytest-playwright--cicd-questions-1926",
+        "desc": "Review automation interview questions: pytest fixtures, BOLA automation, and database rollback hygiene."
+      }
+    ]
   },
   {
     "day": 22,
@@ -1914,7 +2196,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 22: 'UI Testing Fundamentals & Web Locators' of the QA Sprint.\n\nPlease guide me in understanding modern locator strategies for web testing: explain why accessibility locators (getByRole, getByLabel) are superior to brittle CSS/XPath selectors, and help me build `docs/ui-locator-strategy.md`.",
       "reviewPrompt": "Audit my locator strategy in `docs/ui-locator-strategy.md`. Are any of my selectors vulnerable to breaking on layout or style changes? How can I improve their resilience?",
       "interviewPrompt": "Drill me on web locators and UI testing: 1) Why are absolute XPath selectors considered an anti-pattern in automated UI testing?, 2) Explain the locator priority recommended by modern frameworks like Playwright and Testing Library, 3) How do you handle locating dynamic elements whose IDs or classes change on every page load?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Playwright for Python Official Documentation",
+        "url": "https://playwright.dev/python/docs/intro",
+        "desc": "Installing Playwright, playwright install browser binaries, sync vs async API."
+      },
+      {
+        "title": "Playwright Locators & Best Practices",
+        "url": "https://playwright.dev/python/docs/locators",
+        "desc": "User-facing locators: get_by_role, get_by_text, get_by_label, get_by_placeholder."
+      }
+    ]
   },
   {
     "day": 23,
@@ -1933,7 +2227,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 23: 'Playwright Setup & First Browser Tests' of the QA Sprint.\n\nPlease guide me in installing Playwright Python, configuring browser binaries, and writing my first automated browser login test in `tests_ui/test_auth_ui.py`.",
       "reviewPrompt": "Review `tests_ui/test_auth_ui.py`. Did I use Playwright's `page` fixture correctly? Are my assertions testing user-visible outcomes? How can I make the test more idiomatic?",
       "interviewPrompt": "Interview me on Playwright architecture: 1) How does Playwright's architecture differ from Selenium WebDriver (CDP/WebSocket vs. HTTP JSON Wire)?, 2) What is a Browser Context in Playwright and how does it enable ultra-fast isolated test execution?, 3) How does Playwright handle multi-browser execution across Chromium, Firefox, and WebKit?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Playwright Auto-Waiting & Actionability Guide",
+        "url": "https://playwright.dev/python/docs/actionability",
+        "desc": "Eliminating sleep() statements, understanding auto-waiting (visible, stable, enabled)."
+      },
+      {
+        "title": "JobPulse Frontend SPA Source Code",
+        "url": "../frontend/index.html",
+        "desc": "Inspect the Tailwind Kanban board and analytics DOM to identify stable test locators."
+      }
+    ]
   },
   {
     "day": 24,
@@ -1952,7 +2258,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 24: 'Auto-Waiting, Dynamic Content & Assertions' of the QA Sprint.\n\nPlease guide me in mastering Playwright's auto-waiting mechanism and web-first assertions, showing me how to completely eliminate `time.sleep()` when dealing with dynamic modals and asynchronous network responses.",
       "reviewPrompt": "Inspect `tests_ui/test_dynamic_flows.py`. Search for any artificial sleeps or race conditions. Are my assertions utilizing Playwright's built-in polling and auto-waiting?",
       "interviewPrompt": "Ask me 3 questions on flaky UI tests: 1) What is the fundamental difference between `time.sleep()` and Playwright's web-first assertions?, 2) What actionability checks does Playwright perform before clicking an element?, 3) How do you debug and resolve a test that passes locally on a high-spec machine but fails intermittently in CI?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Playwright Page Object Models (POM) Pattern",
+        "url": "https://playwright.dev/python/docs/pom",
+        "desc": "Separating UI element locators and actions from test assertions for zero maintenance overhead."
+      },
+      {
+        "title": "Design Patterns in Test Automation: Page Object Model",
+        "url": "https://martinfowler.com/bliki/PageObject.html",
+        "desc": "Martin Fowler's canonical essay on maintainable web UI automation."
+      }
+    ]
   },
   {
     "day": 25,
@@ -1971,7 +2289,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 25: 'GitHub Actions CI/CD Pipeline' of the QA Sprint.\n\nPlease guide me in authoring a bulletproof GitHub Actions workflow (`.github/workflows/qa.yml`) that starts the JobPulse backend, runs my Pytest suite, and reports status checks on pull requests.",
       "reviewPrompt": "Review my CI workflow in `.github/workflows/qa.yml`. Is the setup reproducible on a clean Ubuntu runner? Does it properly fail the build if a test fails? Are test results preserved as artifacts?",
       "interviewPrompt": "Interview me on CI/CD for QA: 1) Walk me through the anatomy of a GitHub Actions workflow YAML file, 2) How do you ensure that a background API server is fully initialized and healthy before test commands execute in CI?, 3) How do you manage sensitive credentials and API keys securely in a public GitHub repository CI pipeline?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Playwright API Testing & Network Interception",
+        "url": "https://playwright.dev/python/docs/api-testing",
+        "desc": "Fast authentication via API requests, injecting JWT tokens into browser localStorage."
+      },
+      {
+        "title": "Playwright Storage State Guide",
+        "url": "https://playwright.dev/python/docs/auth",
+        "desc": "Reusing authenticated browser sessions across tests to avoid repeated UI logins."
+      }
+    ]
   },
   {
     "day": 26,
@@ -1990,7 +2320,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 26: 'CI Test Selection, Smoke vs. Regression' of the QA Sprint.\n\nPlease guide me in configuring a multi-tier CI pipeline: a fast smoke test job on pull requests for rapid developer feedback, and a comprehensive regression job on merge, complete with test artifact uploading.",
       "reviewPrompt": "Review my multi-stage CI pipeline configuration. Are the job triggers properly separated? Does the smoke gate protect the main branch without slowing down the development cycle?",
       "interviewPrompt": "Ask me 3 questions on test execution strategy in CI/CD: 1) How do you balance test execution speed vs. coverage in a continuous integration pipeline?, 2) What is a 'flaky test quarantine' and how would you implement one in GitHub Actions?, 3) How do you publish and preserve HTML test execution reports in GitHub Actions?"
-    }
+    },
+    "resources": [
+      {
+        "title": "GitHub Actions: Understanding Workflow Syntax",
+        "url": "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions",
+        "desc": "Triggers (push/pull_request), runs-on (ubuntu-latest), step execution, actions/checkout, actions/setup-python."
+      },
+      {
+        "title": "GitHub Actions: Service Containers (PostgreSQL)",
+        "url": "https://docs.github.com/en/actions/using-containerized-services/about-service-containers",
+        "desc": "Spinning up a real PostgreSQL 16 service container in CI for database-backed tests."
+      }
+    ]
   },
   {
     "day": 27,
@@ -2009,7 +2351,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 27: 'Capstone Portfolio Polish & Documentation' of the QA Sprint.\n\nPlease act as a QA Hiring Manager: review my repository structure and guide me in crafting a standout `README.md` that showcases my test strategy, Postman collections, Pytest suites, and CI workflows with professional polish.",
       "reviewPrompt": "Act as a Senior Director of QA reviewing a candidate's portfolio. Read my master `README.md`. What impressions does it give? Does it demonstrate practical engineering ability or look like a generic tutorial repo?",
       "interviewPrompt": "Conduct a portfolio walkthrough drill: Ask me to give a 2-minute elevator pitch of my JobPulse QA automation repository, explain my architectural choices, and justify which tools I selected and why."
-    }
+    },
+    "resources": [
+      {
+        "title": "Playwright Trace Viewer & Artifact Uploads in CI",
+        "url": "https://playwright.dev/python/docs/trace-viewer-intro",
+        "desc": "Capturing full execution traces, DOM snapshots, and videos on test failures in GitHub Actions."
+      },
+      {
+        "title": "actions/upload-artifact Official Action",
+        "url": "https://github.com/actions/upload-artifact",
+        "desc": "Publishing Newman HTML reports, pytest-html reports, and Playwright traces as downloadable CI artifacts."
+      }
+    ]
   },
   {
     "day": 28,
@@ -2028,7 +2382,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 28: 'Mock Interview Prep & Technical Defense' of the QA Sprint.\n\nPlease act as a Lead SDET Hiring Manager: conduct a comprehensive technical mock interview with me based on the `qa_interview_handbook.md`, asking questions one by one and providing actionable feedback.",
       "reviewPrompt": "Review my scripted STAR responses and technical defense notes in `docs/interview-prep-notes.md`. Are my stories concise and impact-oriented? Do they emphasize my personal contribution and problem-solving skills?",
       "interviewPrompt": "Start the mock interview right now: Ask me Question 1 from the Technical Core (HTTP semantics & status codes), evaluate my answer on technical depth and communication clarity, and then proceed to Question 2."
-    }
+    },
+    "resources": [
+      {
+        "title": "Defending Testing Trade-offs in Technical Interviews",
+        "url": "qa_interview_handbook.md#4-security-bola-concurrency--behavioral-star-questions-2735",
+        "desc": "How to answer: 'Why did you use Playwright over Selenium?', 'How do you handle flaky tests?'"
+      },
+      {
+        "title": "Building a Defensible SDET Portfolio README",
+        "url": "qa/README.md",
+        "desc": "Formatting your GitHub portfolio: architecture diagrams, test pyramid breakdown, and verified pass rates."
+      }
+    ]
   },
   {
     "day": 29,
@@ -2047,7 +2413,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 29: 'Final Regression Run & Bug Audit' of the QA Sprint.\n\nPlease guide me through running a complete clean-room audit of my entire JobPulse QA test suite (API, UI, Postman, CI) to ensure everything executes flawlessly before Day 30 graduation.",
       "reviewPrompt": "Review my final audit log in `docs/final-regression-audit.md`. Are all test results documented with exact counts and execution times? Does the repository pass all clean-clone criteria?",
       "interviewPrompt": "Ask me 3 technical regression questions: 1) What is a clean-room verification test and why is it essential before releasing code or sharing a portfolio?, 2) How do you handle flaky tests when running a complete end-to-end regression pass?, 3) How do you measure and report test suite health to engineering leadership?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Comprehensive Mock Technical Interview Guide",
+        "url": "qa_interview_handbook.md",
+        "desc": "Full 35-question rubric spanning manual testing, API automation, SQL, security, and behavioral STAR stories."
+      },
+      {
+        "title": "STAR Behavioral Storytelling for QA Engineers",
+        "url": "qa_interview_handbook.md#q34-tell-me-about-a-time-a-critical-defect-escaped-to-production-how-did-you-handle-it",
+        "desc": "Structuring Situation, Task, Action, and Result to showcase engineering maturity."
+      }
+    ]
   },
   {
     "day": 30,
@@ -2066,7 +2444,19 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I have reached Day 30 (Graduation & Consolidation Day) of the Core QA Sprint!\n\nPlease act as my Career Mentor and Lead SDET: evaluate my complete 30-day journey, audit my completed deliverables against the Day-30 Gate criteria, and guide my decision between starting job applications and advancing to Days 31\u201360.",
       "reviewPrompt": "Review my Day-30 Retrospective in `docs/day-30-retrospective.md`. Give me an honest, objective evaluation of my portfolio, and tell me which roles (Manual QA, API Tester, Junior SDET) I am now competitive for.",
       "interviewPrompt": "Conduct the Capstone Exit Interview: Ask me to walk through my entire JobPulse test automation architecture, explain the most complex defect I uncovered, and explain how my tests integrate into CI/CD. Grade my overall readiness."
-    }
+    },
+    "resources": [
+      {
+        "title": "Day 30 Job-Ready QA Benchmark Assessment",
+        "url": "30_day_job_ready_qa_roadmap.md#day-30-portfolio-presentation-and-gate-assessment",
+        "desc": "Criteria for declaring Core Phase 1 complete: 80-case matrix, Postman collection, Pytest suite, CI pipeline."
+      },
+      {
+        "title": "Days 31\u201360 Advanced SDET Extension Overview",
+        "url": "days_31_60_qa_automation_extension.md",
+        "desc": "Preview of advanced specialization: BOLA lab, synthetic data seeding, state-space testing, and Allure dashboards."
+      }
+    ]
   },
   {
     "day": 31,
@@ -2085,7 +2475,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 31: 'Audit and Refactor the API Suite' (Week 5 of the QA Sprint Extension).\n\nPlease act as a Senior SDET Architect: guide me through auditing my `tests_api/` suite to eliminate duplication, improve failure diagnostic messages, and enforce Arrange-Act-Assert without over-engineering.",
       "reviewPrompt": "Review my refactored API tests and `docs/api-suite-review.md`. Did I strike the right balance between clean code and test readability? Are there any hidden dependencies between tests?",
       "interviewPrompt": "Ask me 3 questions on test suite refactoring: 1) What is the danger of creating too many abstraction layers in a test automation framework?, 2) How do you improve test readability using the Arrange-Act-Assert pattern?, 3) How do you determine whether a helper function belongs in `conftest.py` vs. a shared utility module?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Data-Driven API Testing with pytest & JSON",
+        "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+        "desc": "Decoupling test datasets from assertions, synthetic test data factories, state-space exploration."
+      },
+      {
+        "title": "Python Faker Library Documentation",
+        "url": "https://faker.readthedocs.io/en/master/",
+        "desc": "Generating realistic job applications, salaries, company names, and dates dynamically."
+      },
+      {
+        "title": "JobPulse SUT Contract: 20 Operations",
+        "url": "jobpulse_sut_contract.md",
+        "desc": "Field validation bounds and constraint matrices across all 13 route templates."
+      }
+    ]
   },
   {
     "day": 32,
@@ -2104,7 +2511,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 32: 'Environment Configuration and Safe Secrets' of the QA Sprint.\n\nPlease guide me in setting up a production-grade configuration module using environment variables (`config/settings.py`), creating an `.env.example` placeholder, and preventing any credential leakage in Git.",
       "reviewPrompt": "Audit my environment configuration in `config/settings.py` and `.env.example`. Is configuration cleanly separated from code? Does it produce clear failure messages when mandatory environment variables are missing?",
       "interviewPrompt": "Interview me on configuration management in test automation: 1) Why must secrets and environment URLs never be committed to source control?, 2) How do you structure configuration to support switching between local, staging, and production-like test environments seamlessly?, 3) How do you verify that Git history contains no accidentally committed credentials?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Data-Driven API Testing with pytest & JSON",
+        "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+        "desc": "Decoupling test datasets from assertions, synthetic test data factories, state-space exploration."
+      },
+      {
+        "title": "Python Faker Library Documentation",
+        "url": "https://faker.readthedocs.io/en/master/",
+        "desc": "Generating realistic job applications, salaries, company names, and dates dynamically."
+      },
+      {
+        "title": "JobPulse SUT Contract: 20 Operations",
+        "url": "jobpulse_sut_contract.md",
+        "desc": "Field validation bounds and constraint matrices across all 13 route templates."
+      }
+    ]
   },
   {
     "day": 33,
@@ -2123,7 +2547,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 33: 'API Contract and Schema Validation' of the QA Sprint.\n\nPlease guide me in implementing automated schema validation in `tests_api/test_schemas.py` (using Pydantic or `jsonschema`), ensuring strict verification of response structures without breaking on dynamic timestamps.",
       "reviewPrompt": "Review `tests_api/test_schemas.py` and `docs/contract-testing.md`. Are the schema assertions strict enough to catch breaking API changes (e.g. missing fields, changed types) while remaining resilient to dynamic data?",
       "interviewPrompt": "Ask me 3 technical questions on API contract testing: 1) What is the difference between functional assertion testing and contract/schema validation?, 2) How do you prevent breaking schema tests when fields like timestamps or generated UUIDs change on every request?, 3) What constitutes a backwards-incompatible breaking change in a REST API schema?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Data-Driven API Testing with pytest & JSON",
+        "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+        "desc": "Decoupling test datasets from assertions, synthetic test data factories, state-space exploration."
+      },
+      {
+        "title": "Python Faker Library Documentation",
+        "url": "https://faker.readthedocs.io/en/master/",
+        "desc": "Generating realistic job applications, salaries, company names, and dates dynamically."
+      },
+      {
+        "title": "JobPulse SUT Contract: 20 Operations",
+        "url": "jobpulse_sut_contract.md",
+        "desc": "Field validation bounds and constraint matrices across all 13 route templates."
+      }
+    ]
   },
   {
     "day": 34,
@@ -2142,7 +2583,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 34: 'Negative Testing, State Transitions & Edge Paths' of the QA Sprint.\n\nPlease act as an Adversarial QA Lead: guide me in designing rigorous negative state-transition tests for JobPulse (e.g., duplicate submissions, invalid status hops, updating deleted resources) and validating proper error responses.",
       "reviewPrompt": "Strictly review my negative state-transition test cases in `tests_api/test_state_transitions_negative.py`. Did I cover edge boundary transitions? Are my status code expectations justified by the API contract?",
       "interviewPrompt": "Interview me on state-transition and negative testing: 1) How do you design tests to verify that an entity cannot transition to an illegal state?, 2) In REST APIs, when should an invalid request return HTTP 400 vs 409 vs 422?, 3) How do you test for duplicate submission prevention (idempotency tokens or unique constraints)?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Data-Driven API Testing with pytest & JSON",
+        "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+        "desc": "Decoupling test datasets from assertions, synthetic test data factories, state-space exploration."
+      },
+      {
+        "title": "Python Faker Library Documentation",
+        "url": "https://faker.readthedocs.io/en/master/",
+        "desc": "Generating realistic job applications, salaries, company names, and dates dynamically."
+      },
+      {
+        "title": "JobPulse SUT Contract: 20 Operations",
+        "url": "jobpulse_sut_contract.md",
+        "desc": "Field validation bounds and constraint matrices across all 13 route templates."
+      }
+    ]
   },
   {
     "day": 35,
@@ -2161,7 +2619,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 35: 'Test-Data Lifecycle & Stability Audit' of the QA Sprint.\n\nPlease guide me in auditing my test data lifecycle: teach me how to generate isolated dynamic test entities, ensure bulletproof teardown even when tests crash, and run tests in randomized order to eliminate hidden test dependencies.",
       "reviewPrompt": "Review `docs/test-data-strategy.md` and my test teardown fixtures. Did I ensure true test isolation? Will my suite leave residual data if a test raises an unexpected exception midway through execution?",
       "interviewPrompt": "Ask me 3 technical questions on test data management: 1) What is an 'order-dependent test' and what causes them?, 2) How do you ensure test teardown executes reliably even if an assertion fails midway through a test?, 3) Why is database transaction rollback in the test runner not always sufficient when testing a standalone API server over HTTP?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Data-Driven API Testing with pytest & JSON",
+        "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+        "desc": "Decoupling test datasets from assertions, synthetic test data factories, state-space exploration."
+      },
+      {
+        "title": "Python Faker Library Documentation",
+        "url": "https://faker.readthedocs.io/en/master/",
+        "desc": "Generating realistic job applications, salaries, company names, and dates dynamically."
+      },
+      {
+        "title": "JobPulse SUT Contract: 20 Operations",
+        "url": "jobpulse_sut_contract.md",
+        "desc": "Field validation bounds and constraint matrices across all 13 route templates."
+      }
+    ]
   },
   {
     "day": 36,
@@ -2180,7 +2655,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 36 (Week 5 Consolidation Day) of the QA Sprint.\n\nPlease conduct a 1-hour retrospective with me: review my refactored API automation framework, evaluate my contract tests and test-data lifecycle strategies, and ensure my repository is ready for advanced UI testing in Week 6.",
       "reviewPrompt": "Audit my `docs/week-5-review.md`. Did the refactored API suite achieve stability and maintainability? Does it meet the standard expected of an Associate SDET?",
       "interviewPrompt": "Conduct a Week 5 technical defense: Ask me 3 questions covering 1) API refactoring trade-offs, 2) Schema contract validation, and 3) Managing test data independence in multi-tenant environments. Grade my responses."
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API Security Top 10 (2023 Official)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "API1: BOLA, API2: Broken Authentication, API3: Broken Object Property Level Authorization, API5: BFLA."
+      },
+      {
+        "title": "PortSwigger Web Security Academy: IDOR / BOLA",
+        "url": "https://portswigger.net/web-security/access-control/idor",
+        "desc": "Practical vulnerability labs on horizontal privilege escalation and resource enumeration attacks."
+      },
+      {
+        "title": "JobPulse Security Tests Reference",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Multi-tenant row-level access control tests verifying non-disclosing 404 security model."
+      }
+    ]
   },
   {
     "day": 37,
@@ -2199,7 +2691,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 37 (Consolidation & Rest Day) of the QA Sprint. Please share a brief summary of how our API architecture improvements this week prepare us for the upcoming UI testing and CI observability challenges in Week 6.",
       "reviewPrompt": "No code to review today! Just provide a quick 3-bullet recap of Week 5's architectural milestones.",
       "interviewPrompt": "Ask me 1 high-level architectural reflection question to ponder while resting: How does a solid API test foundation reduce the number of slow, brittle UI tests a team needs to maintain?"
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API Security Top 10 (2023 Official)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "API1: BOLA, API2: Broken Authentication, API3: Broken Object Property Level Authorization, API5: BFLA."
+      },
+      {
+        "title": "PortSwigger Web Security Academy: IDOR / BOLA",
+        "url": "https://portswigger.net/web-security/access-control/idor",
+        "desc": "Practical vulnerability labs on horizontal privilege escalation and resource enumeration attacks."
+      },
+      {
+        "title": "JobPulse Security Tests Reference",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Multi-tenant row-level access control tests verifying non-disclosing 404 security model."
+      }
+    ]
   },
   {
     "day": 38,
@@ -2218,7 +2727,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 38: 'Review Test Scope & Locator Quality' (Week 6 of the QA Sprint).\n\nPlease guide me in auditing my Playwright UI test scope and refactoring locators: show me how to systematically replace brittle CSS/XPath selectors with resilient accessibility-first locators.",
       "reviewPrompt": "Review my updated locator definitions and `docs/ui-automation-scope.md`. Are my selectors resilient to UI redesigns? Is the test scope appropriately focused on critical user journeys?",
       "interviewPrompt": "Drill me on UI locator best practices: 1) What makes a selector 'brittle' versus 'resilient'?, 2) Why does Playwright recommend accessibility role locators over test IDs when possible?, 3) How do you handle locating elements inside shadow DOMs or iframes?"
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API Security Top 10 (2023 Official)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "API1: BOLA, API2: Broken Authentication, API3: Broken Object Property Level Authorization, API5: BFLA."
+      },
+      {
+        "title": "PortSwigger Web Security Academy: IDOR / BOLA",
+        "url": "https://portswigger.net/web-security/access-control/idor",
+        "desc": "Practical vulnerability labs on horizontal privilege escalation and resource enumeration attacks."
+      },
+      {
+        "title": "JobPulse Security Tests Reference",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Multi-tenant row-level access control tests verifying non-disclosing 404 security model."
+      }
+    ]
   },
   {
     "day": 39,
@@ -2237,7 +2763,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 39: 'Fixtures and UI State Isolation' of the QA Sprint.\n\nPlease guide me as a Playwright Architect: help me build robust browser context fixtures in `tests_ui/conftest.py` that provide fast authenticated states while guaranteeing 100% test isolation.",
       "reviewPrompt": "Strictly review my `tests_ui/conftest.py`. Does it properly isolate browser sessions between tests? Are storage state artifacts kept secure and excluded from git tracking?",
       "interviewPrompt": "Interview me on UI test state management: 1) How does Playwright's `browser.new_context()` provide isolation compared to opening a new tab in the same browser?, 2) How do you reuse authentication state across multiple UI tests without logging in through the UI each time?, 3) What security risks exist when storing browser authentication state in files?"
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API Security Top 10 (2023 Official)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "API1: BOLA, API2: Broken Authentication, API3: Broken Object Property Level Authorization, API5: BFLA."
+      },
+      {
+        "title": "PortSwigger Web Security Academy: IDOR / BOLA",
+        "url": "https://portswigger.net/web-security/access-control/idor",
+        "desc": "Practical vulnerability labs on horizontal privilege escalation and resource enumeration attacks."
+      },
+      {
+        "title": "JobPulse Security Tests Reference",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Multi-tenant row-level access control tests verifying non-disclosing 404 security model."
+      }
+    ]
   },
   {
     "day": 40,
@@ -2256,7 +2799,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 40: 'Expand End-to-End Critical UI Flow' of the QA Sprint.\n\nPlease guide me in building a complete end-to-end user workflow in Playwright (`tests_ui/test_e2e_application_flow.py`), verifying each critical milestone with resilient web-first assertions.",
       "reviewPrompt": "Review `tests_ui/test_e2e_application_flow.py`. Does the test accurately simulate realistic user behavior? Are assertions checking meaningful outcomes rather than superficial DOM elements?",
       "interviewPrompt": "Ask me 3 questions on E2E test design: 1) How do you balance E2E UI test coverage against API test coverage in the test pyramid?, 2) How do you avoid making E2E tests overly long and brittle?, 3) How do you handle external dependencies or third-party widgets in critical UI flows?"
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API Security Top 10 (2023 Official)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "API1: BOLA, API2: Broken Authentication, API3: Broken Object Property Level Authorization, API5: BFLA."
+      },
+      {
+        "title": "PortSwigger Web Security Academy: IDOR / BOLA",
+        "url": "https://portswigger.net/web-security/access-control/idor",
+        "desc": "Practical vulnerability labs on horizontal privilege escalation and resource enumeration attacks."
+      },
+      {
+        "title": "JobPulse Security Tests Reference",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Multi-tenant row-level access control tests verifying non-disclosing 404 security model."
+      }
+    ]
   },
   {
     "day": 41,
@@ -2275,7 +2835,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 41: 'Failure Diagnostics & Flaky-Test Investigation' of the QA Sprint.\n\nPlease guide me in configuring Playwright Trace Viewer and screenshot capture on failure, and show me how to use traces to diagnose the root cause of flaky UI tests instead of relying on blind retries.",
       "reviewPrompt": "Review my trace configuration and `docs/flaky-test-investigation.md`. Did I correctly analyze the failure timeline? Does my report identify the true root cause rather than just describing the symptom?",
       "interviewPrompt": "Drill me on flaky test triage: 1) What is Playwright's Trace Viewer and what advantages does it provide over simple screenshots or console logs?, 2) Why is configuring automatic test retries (e.g. `retries=3`) without investigation dangerous in production CI pipelines?, 3) Walk me through your step-by-step methodology for investigating an intermittent test failure."
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API Security Top 10 (2023 Official)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "API1: BOLA, API2: Broken Authentication, API3: Broken Object Property Level Authorization, API5: BFLA."
+      },
+      {
+        "title": "PortSwigger Web Security Academy: IDOR / BOLA",
+        "url": "https://portswigger.net/web-security/access-control/idor",
+        "desc": "Practical vulnerability labs on horizontal privilege escalation and resource enumeration attacks."
+      },
+      {
+        "title": "JobPulse Security Tests Reference",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Multi-tenant row-level access control tests verifying non-disclosing 404 security model."
+      }
+    ]
   },
   {
     "day": 42,
@@ -2294,7 +2871,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 42: 'Cross-Browser & Responsive Emulation Check' of the QA Sprint.\n\nPlease guide me in setting up multi-browser runs (Chromium, Firefox, WebKit) and configuring mobile viewport emulation in Playwright to verify responsive UI behavior.",
       "reviewPrompt": "Review `docs/cross-browser-report.md` and `tests_ui/test_responsive_mobile.py`. Are the observations grounded in actual test executions? Did I handle browser-specific differences appropriately?",
       "interviewPrompt": "Interview me on cross-browser and mobile web testing: 1) What is the difference between real mobile device testing and Playwright viewport emulation?, 2) What are the most common causes of browser-specific test failures between Chromium and WebKit?, 3) How do you determine which browsers and devices must be included in your regression matrix?"
-    }
+    },
+    "resources": [
+      {
+        "title": "OWASP API Security Top 10 (2023 Official)",
+        "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+        "desc": "API1: BOLA, API2: Broken Authentication, API3: Broken Object Property Level Authorization, API5: BFLA."
+      },
+      {
+        "title": "PortSwigger Web Security Academy: IDOR / BOLA",
+        "url": "https://portswigger.net/web-security/access-control/idor",
+        "desc": "Practical vulnerability labs on horizontal privilege escalation and resource enumeration attacks."
+      },
+      {
+        "title": "JobPulse Security Tests Reference",
+        "url": "../backend/tests/test_security_isolation.py",
+        "desc": "Multi-tenant row-level access control tests verifying non-disclosing 404 security model."
+      }
+    ]
   },
   {
     "day": 43,
@@ -2313,7 +2907,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 43 (Week 6 Consolidation Day) of the QA Sprint.\n\nPlease conduct a 1-hour retrospective with me: audit my complete `tests_ui/` suite, review my locator choices and trace capture setup, and ensure our UI tests are ready for CI integration.",
       "reviewPrompt": "Audit my `docs/week-6-review.md`. Did my UI suite achieve deterministic stability? Are my tests free of brittle dependencies and arbitrary sleeps?",
       "interviewPrompt": "Conduct a Week 6 oral defense: Ask me 3 questions covering 1) Playwright auto-waiting mechanics, 2) Trace Viewer diagnostics, and 3) Managing browser context isolation. Grade my explanations."
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Concurrency Control & Isolation Levels",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "desc": "Read Committed, Repeatable Read, Serializable; phantom reads and non-repeatable reads."
+      },
+      {
+        "title": "Python concurrent.futures ThreadPoolExecutor",
+        "url": "https://docs.python.org/3/library/concurrent.futures.html",
+        "desc": "Fires concurrent HTTP requests simultaneously to probe race conditions in job applications."
+      },
+      {
+        "title": "FastAPI Worker Threadpool Architecture",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Understanding synchronous FastAPI threadpool execution vs event-loop starvation."
+      }
+    ]
   },
   {
     "day": 44,
@@ -2332,7 +2943,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am taking Day 44 as a rest day after completing Week 6 UI automation. Share a quick motivational perspective on why mastering both API and UI automation makes an SDET candidate stand out in the current market.",
       "reviewPrompt": "No code review today! Enjoy your rest day.",
       "interviewPrompt": "Think about this question today: When an application feature changes, what is the relative maintenance cost of updating an API test versus an E2E UI test?"
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Concurrency Control & Isolation Levels",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "desc": "Read Committed, Repeatable Read, Serializable; phantom reads and non-repeatable reads."
+      },
+      {
+        "title": "Python concurrent.futures ThreadPoolExecutor",
+        "url": "https://docs.python.org/3/library/concurrent.futures.html",
+        "desc": "Fires concurrent HTTP requests simultaneously to probe race conditions in job applications."
+      },
+      {
+        "title": "FastAPI Worker Threadpool Architecture",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Understanding synchronous FastAPI threadpool execution vs event-loop starvation."
+      }
+    ]
   },
   {
     "day": 45,
@@ -2351,7 +2979,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 45: 'Expand Object-Level Authorization (BOLA) Cases' (Week 7 of the QA Sprint).\n\nPlease act as an Application Security QA Specialist: guide me in designing exhaustive BOLA tests across all JobPulse routes using two distinct user tokens, verifying that cross-tenant access returns HTTP 404 and prevents data leakage.",
       "reviewPrompt": "Strictly review my expanded BOLA test suite in `tests_api/test_authorization_deep.py`. Did I test both mutation and read paths? Are my assertions confirming that User A's data remains untouched after User B's unauthorized requests?",
       "interviewPrompt": "Drill me on BOLA and API security testing: 1) What is Broken Object Level Authorization (BOLA) and how does it differ from Broken Function Level Authorization (BFLA)?, 2) Why do modern APIs return HTTP 404 instead of 403 when a user queries another user's private resource ID?, 3) How do you automate authorization testing across dozens of endpoints without duplicate code?"
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Concurrency Control & Isolation Levels",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "desc": "Read Committed, Repeatable Read, Serializable; phantom reads and non-repeatable reads."
+      },
+      {
+        "title": "Python concurrent.futures ThreadPoolExecutor",
+        "url": "https://docs.python.org/3/library/concurrent.futures.html",
+        "desc": "Fires concurrent HTTP requests simultaneously to probe race conditions in job applications."
+      },
+      {
+        "title": "FastAPI Worker Threadpool Architecture",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Understanding synchronous FastAPI threadpool execution vs event-loop starvation."
+      }
+    ]
   },
   {
     "day": 46,
@@ -2370,7 +3015,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 46: 'Object-Property Authorization and Mass Assignment' of the QA Sprint.\n\nPlease guide me in designing automated tests to detect Mass Assignment and Broken Object Property Level Authorization in JobPulse, verifying that protected fields cannot be injected via POST/PATCH requests.",
       "reviewPrompt": "Review `tests_api/test_mass_assignment.py` and `docs/property-authorization.md`. Did I accurately test protected field immutability? Are the findings clearly documented?",
       "interviewPrompt": "Interview me on mass assignment and data tampering: 1) What is a Mass Assignment vulnerability and how does it occur in modern frameworks like FastAPI or Django?, 2) How does Pydantic protect against unauthorized fields in request payloads?, 3) What is the difference between object-level access and property-level access in API authorization?"
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Concurrency Control & Isolation Levels",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "desc": "Read Committed, Repeatable Read, Serializable; phantom reads and non-repeatable reads."
+      },
+      {
+        "title": "Python concurrent.futures ThreadPoolExecutor",
+        "url": "https://docs.python.org/3/library/concurrent.futures.html",
+        "desc": "Fires concurrent HTTP requests simultaneously to probe race conditions in job applications."
+      },
+      {
+        "title": "FastAPI Worker Threadpool Architecture",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Understanding synchronous FastAPI threadpool execution vs event-loop starvation."
+      }
+    ]
   },
   {
     "day": 47,
@@ -2389,7 +3051,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 47: 'Token Expiry and Authentication Edge Cases' of the QA Sprint.\n\nPlease guide me in writing automated tests for JWT edge cases in JobPulse: expired tokens, tampered signatures, missing Bearer prefixes, and malformed auth headers, verifying proper HTTP 401 handling.",
       "reviewPrompt": "Review `tests_api/test_auth_edge_cases.py`. Did I cover all critical token failure modes? Does the API consistently return HTTP 401 without crashing or leaking stack traces?",
       "interviewPrompt": "Drill me on JWT authentication and edge cases: 1) What are the three parts of a JSON Web Token and how is signature integrity verified?, 2) What should happen when an expired token is submitted to a protected endpoint?, 3) How do you test token refresh flows without waiting in real time for tokens to expire?"
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Concurrency Control & Isolation Levels",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "desc": "Read Committed, Repeatable Read, Serializable; phantom reads and non-repeatable reads."
+      },
+      {
+        "title": "Python concurrent.futures ThreadPoolExecutor",
+        "url": "https://docs.python.org/3/library/concurrent.futures.html",
+        "desc": "Fires concurrent HTTP requests simultaneously to probe race conditions in job applications."
+      },
+      {
+        "title": "FastAPI Worker Threadpool Architecture",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Understanding synchronous FastAPI threadpool execution vs event-loop starvation."
+      }
+    ]
   },
   {
     "day": 48,
@@ -2408,7 +3087,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 48: 'Data Integrity and Database Constraints Verification' of the QA Sprint.\n\nPlease guide me in writing automated tests verifying database constraints and referential integrity in JobPulse (foreign keys, cascading behavior, unique constraints, transactional rollbacks).",
       "reviewPrompt": "Review `tests_api/test_data_integrity.py` and `docs/data-integrity-tests.md`. Are the tested invariants critical to business reliability? Did the tests verify that constraint violations are handled gracefully by the API?",
       "interviewPrompt": "Ask me 3 technical questions on database integrity testing: 1) What is referential integrity and how do you test foreign key constraints through an API?, 2) What happens if an API doesn't handle database unique constraint violations properly (e.g. returning 500 vs 409)?, 3) How do you test that a multi-step operation is atomic and rolls back on partial failure?"
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Concurrency Control & Isolation Levels",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "desc": "Read Committed, Repeatable Read, Serializable; phantom reads and non-repeatable reads."
+      },
+      {
+        "title": "Python concurrent.futures ThreadPoolExecutor",
+        "url": "https://docs.python.org/3/library/concurrent.futures.html",
+        "desc": "Fires concurrent HTTP requests simultaneously to probe race conditions in job applications."
+      },
+      {
+        "title": "FastAPI Worker Threadpool Architecture",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Understanding synchronous FastAPI threadpool execution vs event-loop starvation."
+      }
+    ]
   },
   {
     "day": 49,
@@ -2427,7 +3123,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 49: 'CI Workflow Reproducibility & Artifact Retention' of the QA Sprint.\n\nPlease guide me in hardening my GitHub Actions CI pipeline: configure JUnit XML/HTML report generation, ensure exit codes fail the build on broken tests, and upload Playwright trace artifacts conditionally on failure.",
       "reviewPrompt": "Review my updated `.github/workflows/qa.yml` and `docs/ci-configuration.md`. Is the workflow reproducible? Are artifacts preserved efficiently without ballooning storage?",
       "interviewPrompt": "Interview me on CI/CD pipeline engineering: 1) How do you conditionally upload test failure artifacts (traces/screenshots) in GitHub Actions only when tests fail?, 2) How do you ensure a broken test in one matrix job fails the overall status check?, 3) How do you optimize GitHub Actions execution time using dependency caching?"
-    }
+    },
+    "resources": [
+      {
+        "title": "PostgreSQL Concurrency Control & Isolation Levels",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "desc": "Read Committed, Repeatable Read, Serializable; phantom reads and non-repeatable reads."
+      },
+      {
+        "title": "Python concurrent.futures ThreadPoolExecutor",
+        "url": "https://docs.python.org/3/library/concurrent.futures.html",
+        "desc": "Fires concurrent HTTP requests simultaneously to probe race conditions in job applications."
+      },
+      {
+        "title": "FastAPI Worker Threadpool Architecture",
+        "url": "../backend/README.md#-jobpulse-production-architecture--key-features",
+        "desc": "Understanding synchronous FastAPI threadpool execution vs event-loop starvation."
+      }
+    ]
   },
   {
     "day": 50,
@@ -2446,7 +3159,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 50 (Week 7 Consolidation Day) of the QA Sprint.\n\nPlease conduct a 1-hour retrospective with me: review my BOLA security tests, mass assignment validation, database integrity checks, and hardened CI pipeline before we enter the Week 8 specialization track.",
       "reviewPrompt": "Audit my `docs/week-7-review.md`. Did the security and integrity tests meet industry standards? Do these deliverables position me for Junior/Associate SDET roles?",
       "interviewPrompt": "Conduct a Week 7 technical interview defense: Ask me 3 questions covering 1) BOLA prevention and testing, 2) Mass assignment risks, and 3) CI artifact retention strategy. Grade my answers."
-    }
+    },
+    "resources": [
+      {
+        "title": "Allure Framework Official Documentation",
+        "url": "https://allurereport.org/docs/",
+        "desc": "Enterprise test reporting: step-by-step attachments, flaky test tracking, severity categories."
+      },
+      {
+        "title": "Flaky Tests at Google: Detection & Mitigation",
+        "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-knowledge-base.html",
+        "desc": "Diagnosing non-deterministic test failures, network jitter, dynamic delays, and retry loops."
+      },
+      {
+        "title": "GitHub Actions Multi-OS & Multi-Python Matrix",
+        "url": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+        "desc": "Testing against Python 3.11, 3.12 across Ubuntu, Windows, and macOS."
+      }
+    ]
   },
   {
     "day": 51,
@@ -2465,7 +3195,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 51 taking a rest day. Give me a brief, exciting overview of the 4 specialization tracks available in Week 8 (AI/LLM Evaluation, Mobile Testing, Performance/Locust, and TypeScript Automation).",
       "reviewPrompt": "No code review today! Enjoy your rest.",
       "interviewPrompt": "Reflection question: Why is security testing transitioning from a specialized penetration testing role into an everyday automated SDET responsibility?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Allure Framework Official Documentation",
+        "url": "https://allurereport.org/docs/",
+        "desc": "Enterprise test reporting: step-by-step attachments, flaky test tracking, severity categories."
+      },
+      {
+        "title": "Flaky Tests at Google: Detection & Mitigation",
+        "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-knowledge-base.html",
+        "desc": "Diagnosing non-deterministic test failures, network jitter, dynamic delays, and retry loops."
+      },
+      {
+        "title": "GitHub Actions Multi-OS & Multi-Python Matrix",
+        "url": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+        "desc": "Testing against Python 3.11, 3.12 across Ubuntu, Windows, and macOS."
+      }
+    ]
   },
   {
     "day": 52,
@@ -2484,7 +3231,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 52: 'Market Review & Specialization Selection' (Week 8 of the QA Sprint).\n\nPlease act as my Tech Career Coach: help me analyze 10\u201315 job listings to choose the highest-ROI specialization track for my career: Branch A (AI/LLM), Branch B (Mobile), Branch C (Performance/Locust), or Branch D (TypeScript).",
       "reviewPrompt": "Review `docs/specialization-decision.md`. Is my specialization rationale backed by empirical job market demand? Does my chosen track make strategic sense for entry-level and junior SDET roles?",
       "interviewPrompt": "Interview me on career positioning: 1) What specific skills did you observe most frequently in current QA job postings?, 2) Why did you choose this specific specialization over others?, 3) How do you present a specialization in a portfolio without overstating your level of experience?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Allure Framework Official Documentation",
+        "url": "https://allurereport.org/docs/",
+        "desc": "Enterprise test reporting: step-by-step attachments, flaky test tracking, severity categories."
+      },
+      {
+        "title": "Flaky Tests at Google: Detection & Mitigation",
+        "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-knowledge-base.html",
+        "desc": "Diagnosing non-deterministic test failures, network jitter, dynamic delays, and retry loops."
+      },
+      {
+        "title": "GitHub Actions Multi-OS & Multi-Python Matrix",
+        "url": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+        "desc": "Testing against Python 3.11, 3.12 across Ubuntu, Windows, and macOS."
+      }
+    ]
   },
   {
     "day": 53,
@@ -2503,7 +3267,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 53 of the QA Sprint, working on Specialization Track [Branch A: AI/LLM | Branch B: Mobile | Branch C: Performance | Branch D: TypeScript].\n\nPlease act as a specialist mentor in this domain and guide me through today's foundational setup and baseline artifacts.",
       "reviewPrompt": "Review my Day 53 specialization artifact. Does it establish a solid foundation for this domain? What common beginner mistakes should I avoid in this discipline?",
       "interviewPrompt": "Drill me on foundational concepts in my chosen specialization domain. Ask me 3 questions and grade my technical understanding."
-    }
+    },
+    "resources": [
+      {
+        "title": "Allure Framework Official Documentation",
+        "url": "https://allurereport.org/docs/",
+        "desc": "Enterprise test reporting: step-by-step attachments, flaky test tracking, severity categories."
+      },
+      {
+        "title": "Flaky Tests at Google: Detection & Mitigation",
+        "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-knowledge-base.html",
+        "desc": "Diagnosing non-deterministic test failures, network jitter, dynamic delays, and retry loops."
+      },
+      {
+        "title": "GitHub Actions Multi-OS & Multi-Python Matrix",
+        "url": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+        "desc": "Testing against Python 3.11, 3.12 across Ubuntu, Windows, and macOS."
+      }
+    ]
   },
   {
     "day": 54,
@@ -2522,7 +3303,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 54 of the QA Sprint, working on core execution for [Branch A/B/C/D]. Guide me through running tests safely against my local environment and capturing verifiable results.",
       "reviewPrompt": "Audit my execution findings from today's specialization run. Are the measurements and logs accurate? Did I isolate environmental variables properly?",
       "interviewPrompt": "Ask me 3 technical execution questions specific to my specialization track (e.g. Locust ramp-up patterns, LLM pass/fail rubrics, mobile interruption testing, or TypeScript type safety in tests)."
-    }
+    },
+    "resources": [
+      {
+        "title": "Allure Framework Official Documentation",
+        "url": "https://allurereport.org/docs/",
+        "desc": "Enterprise test reporting: step-by-step attachments, flaky test tracking, severity categories."
+      },
+      {
+        "title": "Flaky Tests at Google: Detection & Mitigation",
+        "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-knowledge-base.html",
+        "desc": "Diagnosing non-deterministic test failures, network jitter, dynamic delays, and retry loops."
+      },
+      {
+        "title": "GitHub Actions Multi-OS & Multi-Python Matrix",
+        "url": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+        "desc": "Testing against Python 3.11, 3.12 across Ubuntu, Windows, and macOS."
+      }
+    ]
   },
   {
     "day": 55,
@@ -2541,7 +3339,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 55 of the QA Sprint, finishing my specialization deliverable. Help me structure a professional engineering report that clearly communicates my methodology, findings, and technical limitations.",
       "reviewPrompt": "Strictly review my specialization report. Does it read like an authentic engineering investigation? Are the conclusions justified by the data?",
       "interviewPrompt": "Conduct a mock interview defense of my specialization project: Ask me to walk through my methodology, explain unexpected findings, and justify my technical conclusions."
-    }
+    },
+    "resources": [
+      {
+        "title": "Allure Framework Official Documentation",
+        "url": "https://allurereport.org/docs/",
+        "desc": "Enterprise test reporting: step-by-step attachments, flaky test tracking, severity categories."
+      },
+      {
+        "title": "Flaky Tests at Google: Detection & Mitigation",
+        "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-knowledge-base.html",
+        "desc": "Diagnosing non-deterministic test failures, network jitter, dynamic delays, and retry loops."
+      },
+      {
+        "title": "GitHub Actions Multi-OS & Multi-Python Matrix",
+        "url": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+        "desc": "Testing against Python 3.11, 3.12 across Ubuntu, Windows, and macOS."
+      }
+    ]
   },
   {
     "day": 56,
@@ -2560,7 +3375,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 56: 'Controlled Local Performance Baseline or Reporting Hardening' of the QA Sprint.\n\nPlease guide me in measuring a realistic local performance baseline using Locust (or hardening CI test reporting), ensuring I report median and P95 latency accurately while acknowledging local test harness limits.",
       "reviewPrompt": "Review `docs/performance-smoke-report.md`. Did I present the latency percentiles and throughput numbers with proper scientific caveats? Are the findings defensible?",
       "interviewPrompt": "Ask me 3 questions on performance testing: 1) Why is median or P95/P99 response time far more meaningful than average response time?, 2) What are the limitations of running load tests on the same machine where the application server and database reside?, 3) How do you identify a performance bottleneck (CPU, memory, database query, network latency)?"
-    }
+    },
+    "resources": [
+      {
+        "title": "Allure Framework Official Documentation",
+        "url": "https://allurereport.org/docs/",
+        "desc": "Enterprise test reporting: step-by-step attachments, flaky test tracking, severity categories."
+      },
+      {
+        "title": "Flaky Tests at Google: Detection & Mitigation",
+        "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-knowledge-base.html",
+        "desc": "Diagnosing non-deterministic test failures, network jitter, dynamic delays, and retry loops."
+      },
+      {
+        "title": "GitHub Actions Multi-OS & Multi-Python Matrix",
+        "url": "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+        "desc": "Testing against Python 3.11, 3.12 across Ubuntu, Windows, and macOS."
+      }
+    ]
   },
   {
     "day": 57,
@@ -2579,7 +3411,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am on Day 57 (Week 8 Consolidation Day) of the QA Sprint.\n\nPlease conduct a 1-hour retrospective with me: review my specialization project, verify run commands, and ensure all artifacts are polished before our final portfolio freeze in Days 59\u201360.",
       "reviewPrompt": "Audit my `docs/week-8-review.md`. Did my specialization deliverable achieve professional credibility? Is the documentation clear enough for an external reviewer?",
       "interviewPrompt": "Conduct a Week 8 oral review: Ask me 3 questions on my specialization project and how it complements my core QA automation skills. Grade my delivery."
-    }
+    },
+    "resources": [
+      {
+        "title": "QA Technical Interview Handbook (Complete 35 Questions)",
+        "url": "qa_interview_handbook.md",
+        "desc": "Complete interview defense guide: STAR behavioral stories, technical tradeoffs, and rubrics."
+      },
+      {
+        "title": "Beyond Day 60 Specialization & Market Research",
+        "url": "qa_sdet_market_analysis.md",
+        "desc": "Empirical labor market analysis of 2,443 job postings, senior bias navigation, and career playbook."
+      },
+      {
+        "title": "The Master Roadmaps Hub",
+        "url": "../roadmap/README.md",
+        "desc": "Cross-training into Backend Software Engineering (Track 1) or advanced SDET leadership."
+      }
+    ]
   },
   {
     "day": 58,
@@ -2598,7 +3447,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am taking Day 58 as a rest day before the final Days 59\u201360 portfolio freeze. Share some insights on how to approach the final clean-clone audit and technical exit interview.",
       "reviewPrompt": "No code review today! Enjoy your rest.",
       "interviewPrompt": "Reflective question: Looking back from Day 1 to Day 58, which testing technique or concept gave you the greatest breakthrough in your engineering confidence?"
-    }
+    },
+    "resources": [
+      {
+        "title": "QA Technical Interview Handbook (Complete 35 Questions)",
+        "url": "qa_interview_handbook.md",
+        "desc": "Complete interview defense guide: STAR behavioral stories, technical tradeoffs, and rubrics."
+      },
+      {
+        "title": "Beyond Day 60 Specialization & Market Research",
+        "url": "qa_sdet_market_analysis.md",
+        "desc": "Empirical labor market analysis of 2,443 job postings, senior bias navigation, and career playbook."
+      },
+      {
+        "title": "The Master Roadmaps Hub",
+        "url": "../roadmap/README.md",
+        "desc": "Cross-training into Backend Software Engineering (Track 1) or advanced SDET leadership."
+      }
+    ]
   },
   {
     "day": 59,
@@ -2617,7 +3483,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I am starting Day 59: 'Full Clean-Clone Check, CV & Application Tracking' (Final Block of the QA Sprint).\n\nPlease act as a QA Hiring Manager: guide me through running a clean-clone audit of my entire repository, polishing my CV bullet points to showcase my verified JobPulse automation artifacts, and authoring a compelling 60-second elevator pitch.",
       "reviewPrompt": "Critique my CV bullet points, `docs/clean-clone-check.md`, and 60-second pitch script. Do they highlight genuine engineering accomplishments without inflated buzzwords?",
       "interviewPrompt": "Perform a live elevator pitch drill: Give me 60 seconds to pitch my JobPulse test automation portfolio. Evaluate my pitch on clarity, technical substance, and executive confidence."
-    }
+    },
+    "resources": [
+      {
+        "title": "QA Technical Interview Handbook (Complete 35 Questions)",
+        "url": "qa_interview_handbook.md",
+        "desc": "Complete interview defense guide: STAR behavioral stories, technical tradeoffs, and rubrics."
+      },
+      {
+        "title": "Beyond Day 60 Specialization & Market Research",
+        "url": "qa_sdet_market_analysis.md",
+        "desc": "Empirical labor market analysis of 2,443 job postings, senior bias navigation, and career playbook."
+      },
+      {
+        "title": "The Master Roadmaps Hub",
+        "url": "../roadmap/README.md",
+        "desc": "Cross-training into Backend Software Engineering (Track 1) or advanced SDET leadership."
+      }
+    ]
   },
   {
     "day": 60,
@@ -2636,7 +3519,24 @@ const CURRICULUM_DATA = [
       "kickoffPrompt": "I have reached Day 60: The Final Graduation Day of the 60-Day QA/SDET Engineering Sprint!\n\nPlease act as a Senior Director of QA conducting my final 60-minute technical exit interview: probe across test design, API testing, SQL, Pytest fixtures, BOLA security, Playwright, CI/CD, and my specialization project.",
       "reviewPrompt": "Review my master `docs/day-60-review.md`. Did I accurately document my verified competence and ongoing limitations? Grade my readiness for Junior and Associate SDET positions.",
       "interviewPrompt": "Start the 60-Minute Graduation Exit Interview right now: Begin with Question 1 on test strategy and defect isolation, and drill me across the complete stack. Grade my performance objectively."
-    }
+    },
+    "resources": [
+      {
+        "title": "QA Technical Interview Handbook (Complete 35 Questions)",
+        "url": "qa_interview_handbook.md",
+        "desc": "Complete interview defense guide: STAR behavioral stories, technical tradeoffs, and rubrics."
+      },
+      {
+        "title": "Beyond Day 60 Specialization & Market Research",
+        "url": "qa_sdet_market_analysis.md",
+        "desc": "Empirical labor market analysis of 2,443 job postings, senior bias navigation, and career playbook."
+      },
+      {
+        "title": "The Master Roadmaps Hub",
+        "url": "../roadmap/README.md",
+        "desc": "Cross-training into Backend Software Engineering (Track 1) or advanced SDET leadership."
+      }
+    ]
   }
 ];
 const WEEKLY_AI_GUIDES = {
@@ -3051,6 +3951,29 @@ function copyPromptText(prompt, toastMsg) {
   }
 }
 
+
+function copyDayPrompt(dayNum, type) {
+  const day = CURRICULUM_DATA.find(d => d.day === dayNum);
+  if (!day || !day.aiGuide) return;
+  let text = "";
+  let label = "";
+  if (type === 'kickoff') {
+    text = day.aiGuide.kickoffPrompt || "";
+    label = `Day ${dayNum} Kickoff Prompt`;
+  } else if (type === 'review') {
+    text = day.aiGuide.reviewPrompt || "";
+    label = `Day ${dayNum} Deliverable Review Prompt`;
+  } else if (type === 'interview') {
+    text = day.aiGuide.interviewPrompt || "";
+    label = `Day ${dayNum} Mock Interview Prompt`;
+  }
+  if (!text) {
+    showToast("No prompt configured for this day.");
+    return;
+  }
+  copyPromptText(text, `${label} copied to clipboard!`);
+}
+
 function updateWeeklyAiBanner() {
   const banner = document.getElementById("weeklyAiBanner");
   let wKey = activeWeek;
@@ -3191,24 +4114,24 @@ function renderStream() {
         <div class="subtasks-box">
           <div class="subtasks-header">Daily Operating Routine Blocks (Check off as you complete)</div>
           <div class="subtasks-list">
-            <label class="subtask-item">
-              <input type="checkbox" ${s1 ? "checked" : ""} onchange="onSubtaskChange(${d.day}, 1, this.checked)">
+            <label class="subtask-item" onclick="event.stopPropagation()">
+              <input type="checkbox" ${s1 ? "checked" : ""} onclick="event.stopPropagation()" onchange="onSubtaskChange(${d.day}, 1, this.checked)">
               1. Learn (45m)
             </label>
-            <label class="subtask-item">
-              <input type="checkbox" ${s2 ? "checked" : ""} onchange="onSubtaskChange(${d.day}, 2, this.checked)">
+            <label class="subtask-item" onclick="event.stopPropagation()">
+              <input type="checkbox" ${s2 ? "checked" : ""} onclick="event.stopPropagation()" onchange="onSubtaskChange(${d.day}, 2, this.checked)">
               2. Practice (45m)
             </label>
-            <label class="subtask-item">
-              <input type="checkbox" ${s3 ? "checked" : ""} onchange="onSubtaskChange(${d.day}, 3, this.checked)">
+            <label class="subtask-item" onclick="event.stopPropagation()">
+              <input type="checkbox" ${s3 ? "checked" : ""} onclick="event.stopPropagation()" onchange="onSubtaskChange(${d.day}, 3, this.checked)">
               3. Build (105m)
             </label>
-            <label class="subtask-item">
-              <input type="checkbox" ${s4 ? "checked" : ""} onchange="onSubtaskChange(${d.day}, 4, this.checked)">
+            <label class="subtask-item" onclick="event.stopPropagation()">
+              <input type="checkbox" ${s4 ? "checked" : ""} onclick="event.stopPropagation()" onchange="onSubtaskChange(${d.day}, 4, this.checked)">
               4. Explain (30m)
             </label>
-            <label class="subtask-item">
-              <input type="checkbox" ${s5 ? "checked" : ""} onchange="onSubtaskChange(${d.day}, 5, this.checked)">
+            <label class="subtask-item" onclick="event.stopPropagation()">
+              <input type="checkbox" ${s5 ? "checked" : ""} onclick="event.stopPropagation()" onchange="onSubtaskChange(${d.day}, 5, this.checked)">
               5. Commit (15m)
             </label>
           </div>
@@ -3255,6 +4178,26 @@ function renderStream() {
             </div>
             <div class="detail-text">${d.doneWhen}</div>
           </div>
+
+          <!-- Curated Day-Wise Learning Resources & Documentation -->
+          <div class="detail-card span-2" style="background: rgba(15, 23, 42, 0.4); border-left: 3px solid var(--accent); margin-top: 4px;">
+            <div class="detail-tag tag-resources" style="color: var(--accent); display: flex; align-items: center; gap: 6px;">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Curated Day-Wise Learning Resources & Documentation
+            </div>
+            <div class="resources-list" style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+              ${(d.resources && d.resources.length > 0) ? d.resources.map(r => `
+                <div class="resource-item" style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; line-height: 1.45;">
+                  <span style="color: var(--accent); font-weight: bold; margin-top: -1px;">▸</span>
+                  <div>
+                    <a href="${r.url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 600; text-decoration: underline;" onclick="event.stopPropagation()">${r.title}</a>
+                    <span style="color: var(--text-dim); margin-left: 6px;">— ${r.desc}</span>
+                  </div>
+                </div>
+              `).join('') : '<span style="color:var(--text-dim); font-size:0.85rem;">Refer to docs/ and curriculum guidelines for today.</span>'}
+            </div>
+          </div>
+
         </div>
 
         <!-- Dedicated AI Sprint Guide Box -->
@@ -3280,15 +4223,15 @@ function renderStream() {
 
         <!-- Action Buttons (Triple Copiers) -->
         <div class="card-actions-bar">
-          <button class="btn btn-sm btn-primary" onclick="copyPromptText(${JSON.stringify(ai.kickoffPrompt || '')}, 'Day ${d.day} Kickoff Prompt copied!')">
+          <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); copyDayPrompt(${d.day}, 'kickoff')">
             <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             1. Copy Kickoff Prompt
           </button>
-          <button class="btn btn-sm" onclick="copyPromptText(${JSON.stringify(ai.reviewPrompt || '')}, 'Day ${d.day} Review Prompt copied!')">
+          <button class="btn btn-sm" onclick="event.stopPropagation(); copyDayPrompt(${d.day}, 'review')">
             <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             2. Audit Deliverable
           </button>
-          <button class="btn btn-sm" onclick="copyPromptText(${JSON.stringify(ai.interviewPrompt || '')}, 'Day ${d.day} Interview Prompt copied!')">
+          <button class="btn btn-sm" onclick="event.stopPropagation(); copyDayPrompt(${d.day}, 'interview')">
             <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             3. Mock Interview Drill
           </button>
