@@ -1,5 +1,8 @@
 # SQA & SDET Research, Curriculum & Interview Suite (2025–2026)
 
+> [!NOTE]
+> **Canonical Location:** The QA & SDET Engineering Suite is canonically maintained in the top-level [`qa/`](../../qa) directory, complete with the interactive [`30_Day_QA_Roadmap_Pro.html`](../../qa/30_Day_QA_Roadmap_Pro.html) dashboard and AI mentor skill. The files in this directory are preserved to maintain backward compatibility with external research citations.
+
 This directory houses the empirical labor market research, two-phase job-ready automation roadmap, and technical interview handbook for **Software Quality Assurance (SQA) Engineers** and **Software Development Engineers in Test (SDETs)** targeting entry-level, associate, and junior automation roles.
 
 ---

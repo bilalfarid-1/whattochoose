@@ -215,8 +215,9 @@ def test_repository_markdown_links_clean():
     """Verify that the actual repository passes 100% with zero broken links or anchors."""
     res = verify_links(REPO_DIR)
     assert len(res["errors"]) == 0, f"Found broken links in repo: {res['errors']}"
-    assert res["total_local_markdown_links"] == 69
-    assert res["file_targets_checked"] == 68
+    assert res["total_local_markdown_links"] == 161
+    assert res["file_targets_checked"] == 160
     assert res["anchor_only_links_checked"] == 1
     assert res["heading_anchors_checked"] == 1
-    assert res["external_urls_count"] == 111
+    assert res["external_urls_count"] == 125
+

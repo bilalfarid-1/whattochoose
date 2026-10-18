@@ -1,11 +1,11 @@
-# What To Choose — 2026 Software Engineering Labor Market Research & JobPulse Platform
+# What To Choose — 2026 Software Engineering Platform & QA/SDET Suite
 
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
-[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg)](https://www.sqlalchemy.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791.svg)](https://www.postgresql.org/)
 [![Backend Tests](https://img.shields.io/badge/Backend%20Tests-25%20Passing-success.svg)](backend/tests/)
-[![Research Checks](https://img.shields.io/badge/Research%20Checks-Passing-success.svg)](research/tests/)
+[![QA Suite](https://img.shields.io/badge/QA%20Suite-60%20Days%20Complete-green.svg)](qa/)
+[![Research Checks](https://img.shields.io/badge/Research%20Checks-11%20Passing-success.svg)](research/tests/)
 [![AI Learning Framework](https://img.shields.io/badge/AI%20Framework-6%20Passing-success.svg)](ai_learning_research/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -13,6 +13,25 @@
 *BS Software Engineering Graduate & Independent Technology Analyst*  
 *Islamabad/Rawalpindi, Pakistan*  
 *Repository:* [github.com/bilalfarid-1/whattochoose](https://github.com/bilalfarid-1/whattochoose)
+
+---
+
+## 🤖 For LLMs & AI Assistants (ChatGPT, Claude)
+
+If you are an AI assistant (or an engineer using ChatGPT/Claude) analyzing or working with this repository, **the entire ecosystem is 100% self-contained**. You do not need any external files or out-of-band context:
+
+* **Master Roadmaps Hub:** [`roadmap/`](roadmap/) — The central decision hub comparing **Track 1 (Backend Engineering)** vs **Track 2 (QA & SDET Engineering)** side-by-side.
+  * **Track 1 Guide:** [`roadmap/backend_sprint.md`](roadmap/backend_sprint.md) (30-day curriculum: building FastAPI, SQLAlchemy 2.0, Alembic, Docker, and DSA).
+  * **Track 2 Guide:** [`roadmap/qa_sdet_sprint.md`](roadmap/qa_sdet_sprint.md) (60-day curriculum: testing JobPulse SUT with Postman, Pytest, Playwright, BOLA, CI/CD).
+* **Backend Platform & System Under Test (SUT):** [`backend/`](backend/) (FastAPI application in `backend/app/main.py`, SQLAlchemy models, Alembic migrations, and 25 unit/integration tests). Detailed in [`backend/README.md`](backend/README.md).
+* **SUT Operational Contract (20 Operations):** [`qa/jobpulse_sut_contract.md`](qa/jobpulse_sut_contract.md) (All 20 endpoints across 13 route templates, payload schemas, and BOLA policies).
+* **QA & SDET Engineering Suite:** [`qa/`](qa/) (60-day curriculum, roadmaps, interview handbook, and interactive dashboard). Detailed in [`qa/README.md`](qa/README.md).
+* **Interactive Master Dashboard:** [`qa/30_Day_QA_Roadmap_Pro.html`](qa/30_Day_QA_Roadmap_Pro.html) (Complete 60-day interactive tracker, subtask checkboxes, and 1-click prompts).
+* **QA Technical Interview Handbook:** [`qa/qa_interview_handbook.md`](qa/qa_interview_handbook.md) (35 deep technical questions with model answers, STAR behavioral stories, and rubrics).
+* **AI Mentor System Prompt (`/qa-sprint`):** [`qa/skill/SKILL.md`](qa/skill/SKILL.md) (Instructions to configure the AI into Lead SDET, Adversarial QA, or Mock Interviewer personas).
+* **60-Day Progress Tracker:** [`qa/skill/progress_tracker.md`](qa/skill/progress_tracker.md) (Tabular tracking checklist for all 60 days).
+* **Empirical Market Research Brief:** [`research/`](research/) (Labor market data, econometric models, and publication paper).
+* **Active Learning Engineering Framework:** [`ai_learning_research/`](ai_learning_research/) (Cognitive science protocols and DSA Coach prompts).
 
 ---
 
@@ -24,51 +43,47 @@ In 2026, breaking into software engineering as a fresh graduate has fundamentall
 * **The "Seniority Bias" Reality:** While Pakistan's ICT export remittances expanded to **US$ 4.60 Billion** in FY26 (+21.4% CAGR), local industry data (P@SHA Skills Survey 2025) reveals that **71.8% of hiring demand is concentrated in experienced roles**, creating intense qualification friction for fresh graduates.
 * **The Tutorial Trap:** Most candidates respond to market friction by bingeing tutorials or building generic to-do apps with AI, leaving them unprepared when interviewers ask *“Why did you design this schema?”*, *“How do you prevent cross-user data leaks?”*, or *“How do your automated tests verify migration rollbacks?”*
 
-**What To Choose** is a complete, evidence-based engineering ecosystem built to solve this dilemma. It connects **empirical labor market data**, **learning science**, and a **production-style backend application** to take a fresh graduate from uncertain generalist to a defensible, hireable backend engineer.
+**What To Choose** is a complete, dual-track engineering ecosystem built to solve this dilemma:
+1. **Track 1 (Backend Engineering):** A production-style FastAPI backend (**JobPulse**) engineered with synchronous threadpool concurrency, SQLAlchemy 2.0, PostgreSQL 16, Alembic migrations, and strict row-level security. See [Track 1 Guide](roadmap/backend_sprint.md).
+2. **Track 2 (QA & SDET Engineering):** A complete 60-day deliberate-practice quality engineering suite (**JobPulse SUT**) covering test design (EP/BVA), Postman automation, Pytest API test suites, Playwright UI automation, CI/CD pipelines, and interview defense. See [Track 2 Guide](roadmap/qa_sdet_sprint.md).
+
+👉 Compare tracks in the **[Master Roadmaps Hub](roadmap/)** | [Track 1 Guide](roadmap/backend_sprint.md) | [Track 2 Guide](roadmap/qa_sdet_sprint.md)
 
 ---
 
-## 🏛️ The 3-Part Unified Ecosystem
+## 🏛️ The Dual-Track Unified Architecture
 
 ```mermaid
-flowchart LR
-    subgraph Part1 ["1. Empirical Research (/research)"]
+flowchart TD
+    subgraph Track1 ["Track 1: Backend Engineering (/backend)"]
         direction TB
-        R1["2,443 Daily U.S. Software Postings Index Observations"]
-        R2["$4.6B SBP / P@SHA Data"]
-        R3["SWE-bench Milestones"]
-        R1 & R2 & R3 --> ROut["Outcome: Ground Market Expectations.<br>Inform a Focused Specialization Decision."]
+        B1["FastAPI REST Service (Python 3.12)"]
+        B2["SQLAlchemy 2.0 + PostgreSQL 16"]
+        B3["Alembic Migrations + Docker Setup"]
+        B4["25 Automated Pytest Developer Tests"]
+        B1 & B2 & B3 & B4 --> BOut["Outcome: Verifiable Backend Portfolio Proof"]
     end
 
-    subgraph Part2 ["2. Active Learning (/ai_learning_research)"]
+    subgraph Track2 ["Track 2: QA & SDET Engineering (/qa)"]
         direction TB
-        L1["Socratic Decomposition"]
-        L2["Adversarial Review"]
-        L3["DSA Coach Prompt"]
-        L1 & L2 & L3 --> LOut["Outcome: Break Tutorial Addiction.<br>Master DSA & Systems."]
+        Q1["60-Day Job-Ready QA Roadmap"]
+        Q2["Interactive Pro HTML Dashboard"]
+        Q3["SUT Contract (20 Operations)"]
+        Q4["Pytest, Postman & Playwright Suites"]
+        Q1 & Q2 & Q3 & Q4 --> QOut["Outcome: Production-Grade SDET Capabilities"]
     end
 
-    subgraph Part3 ["3. JobPulse Platform (/backend)"]
+    subgraph Track3 ["Track 3: Research & Learning"]
         direction TB
-        A1["FastAPI + SQLAlchemy 2.0"]
-        A2["Multi-Tenant 404 Security"]
-        A3["25 Passing PyTest Tests"]
-        A1 & A2 & A3 --> AOut["Outcome: Verifiable Portfolio Proof<br>Built for Technical Interviews."]
+        R1["Empirical Research (/research)"]
+        R2["AI Learning Framework (/ai_learning_research)"]
+        R1 & R2 --> ROut["Outcome: Grounded Strategy & DSA Mastery"]
     end
 
-    ROut ==> LOut ==> AOut
+    Track2 -- "Evaluates & Tests as SUT" --> Track1
+    Track3 --> Track1
+    Track3 --> Track2
 ```
-
-### 1. Empirical Market Research Brief (`/research`)
-An in-depth empirical whitepaper titled *"The Shifting Landscape of Entry-Level Software Engineering: An Empirical Market Analysis and Strategic Guide for Pakistani Graduates"*. It analyzes macroeconomic normalization (post-ZIRP), SWE-bench Verified coding agent progression, and Pakistan IT industry dynamics ($4.60B reported FY26 ICT exports, 21.4% CAGR vs. 71.8% senior hiring preference).
-
-**Strategic interpretation:** As AI-assisted code generation becomes more accessible, candidates may benefit from demonstrating stronger skills in automated testing, database integrity, debugging, and security. This is a reasoned career recommendation informed by the literature and industry context, not a direct finding from compensation or hiring-outcome data.
-
-### 2. AI-Augmented Engineering Learning Framework (`/ai_learning_research`)
-A research-informed learning framework synthesizing 16 categorized academic papers across Cognitive Science and Computing Education (ACM SIGCSE, ICER, CHI). It replaces passive tutorial consumption with **active cognitive protocols** (Socratic decomposition, adversarial code review, mutation testing, Feynman verification) and provides a structured **30-Day Active-Learning Sprint** that trains **Data Structures & Algorithms (DSA)**, database modeling, and live interview defense.
-
-### 3. JobPulse Platform (`/backend` & `/frontend`)
-A production-style portfolio application built to operationalize the research recommendations. It provides a job application tracker, interview stage manager, debrief journal, funnel conversion analytics, and an interactive market research visualizer built with synchronous **FastAPI**, **SQLAlchemy 2.0**, **PostgreSQL 16**, **Pydantic v2**, **Alembic**, and **PyTest**, with strict multi-tenant access controls.
 
 ---
 
@@ -78,16 +93,17 @@ Select your perspective to find what matters most to you:
 
 | Persona | Primary Goal | Where to Start |
 | :--- | :--- | :--- |
-| 👔 **Technical Recruiter & Engineering Lead** | Evaluate code quality, architecture, testing, and security practices | Inspect [`backend/app/`](backend/app/), review the [Multi-Tenant Security Tests](backend/tests/test_security_isolation.py), and read the [Production Architecture Deep Dive](#-jobpulse-production-architecture--key-features). |
-| 🎓 **Fresh Graduate & Self-Taught Developer** | Transition from tutorial paralysis to a job-ready backend engineer | Follow the [30-Day Active Learning Sprint](ai_learning_research/roadmap/30_day_ai_backend_sprint.md), use the [DSA Coach Prompt](ai_learning_research/prompts/dsa_coach.prompt.md), and build features on JobPulse. |
-| 🛡️ **QA Engineer & SDET Candidate** | Develop demonstrable entry-level QA and automation skills, build a reproducible portfolio, and prepare to apply for junior QA/SQA/QA automation roles. The roadmap does not replace professional experience or guarantee employment. | Study the [QA Market Analysis](research/qa_market_research/qa_sdet_market_analysis.md), follow the [30-Day Job-Ready QA Roadmap](research/qa_market_research/30_day_job_ready_qa_roadmap.md), explore the [Days 31–60 Extension](research/qa_market_research/days_31_60_qa_automation_extension.md), and review the [Interview Handbook](research/qa_market_research/qa_interview_handbook.md). |
-| 📈 **Data Analyst & Tech Researcher** | Reproduce labor statistics, benchmark trajectories, and charts | Check [`research/paper/main_manuscript.md`](research/paper/main_manuscript.md), verify the [FRED Aggregation Unit Test](research/tests/test_fred_aggregation.py), and run the [Market Analysis Script](research/src/analyze_market_dynamics.py). |
+| 🛡️ **QA Engineer & SDET Candidate** | Master full-stack test automation, follow the 60-day sprint, and defend tests in interviews | Open [`qa/30_Day_QA_Roadmap_Pro.html`](qa/30_Day_QA_Roadmap_Pro.html), read the [Track 2 Guide](roadmap/qa_sdet_sprint.md), study the [SUT Contract](qa/jobpulse_sut_contract.md), and follow the [30-Day QA Roadmap](qa/30_day_job_ready_qa_roadmap.md). |
+| 🚀 **Backend Software Engineer** | Build and understand a production-grade FastAPI service with migrations, security, and tests | Read the [Track 1 Guide](roadmap/backend_sprint.md), inspect [Backend Architecture](backend/README.md), and review the [Multi-Tenant Security Tests](backend/tests/test_security_isolation.py). |
+| 👔 **Technical Recruiter & Hiring Manager** | Evaluate code quality, test coverage, architectural trade-offs, and documentation polish | Review the [Backend Architecture](#-jobpulse-production-architecture--key-features), inspect the [QA Interview Handbook](qa/qa_interview_handbook.md), and check test suite pass rates. |
+| 🎓 **Fresh Graduate & Self-Taught Dev** | Break out of tutorial hell with active cognitive protocols and structured schedules | Compare tracks in the [Master Roadmaps Hub](roadmap/), follow [Track 1 (Backend)](roadmap/backend_sprint.md) or [Track 2 (QA/SDET)](roadmap/qa_sdet_sprint.md). |
+| 📈 **Data Analyst & Researcher** | Reproduce labor statistics, econometric models, and publication figures | Inspect [`research/paper/main_manuscript.md`](research/paper/main_manuscript.md), verify the [FRED Aggregation Test](research/tests/test_fred_aggregation.py), and run the [Market Analysis Script](research/src/analyze_market_dynamics.py). |
 
 ---
 
 ## 🚀 JobPulse: Production Architecture & Key Features
 
-JobPulse is not a toy tutorial project. It is engineered to demonstrate the real architectural trade-offs expected of a backend software engineer:
+JobPulse is engineered to demonstrate the real architectural trade-offs expected of a backend software engineer:
 
 ```
 +-----------------------------------------------------------------------------------------------------------------+
@@ -95,7 +111,7 @@ JobPulse is not a toy tutorial project. It is engineered to demonstrate the real
 +-----------------------------------------------------------------------------------------------------------------+
 |                                                                                                                 |
 |  [ Frontend Client ]  <--->  [ FastAPI REST API (Python 3.12) ]  <--->  [ PostgreSQL 16 / SQLAlchemy 2.0 ]       |
-|  • Pure Vanilla JS/SPA       • Worker Threadpool Concurrency            • Shared Company Catalog Directory       |
+|  • Vanilla JS SPA            • Worker Threadpool Concurrency            • Shared Company Catalog Directory       |
 |  • Tailwind CSS UI           • Pydantic v2 Schema Validation            • Multi-Tenant User Applications         |
 |  • Kanban & Analytics        • JWT Bearer Auth + Bcrypt                 • Private Interview Stages & Journal     |
 |                                                                                                                 |
@@ -121,46 +137,9 @@ JobPulse is not a toy tutorial project. It is engineered to demonstrate the real
 
 ---
 
-## 🧠 Comprehensive Interview Preparation: Beyond Just One App
-
-A common pitfall for graduates is focusing solely on one project while failing live technical interviews on fundamentals. This repository trains candidates across **all four evaluation pillars** of technical hiring:
-
-```
-+---------------------------------------------------------------------------------------------------------+
-|                                    FOUR-PILLAR TECHNICAL INTERVIEW PREPARATION                          |
-+--------------------------+--------------------------+----------------------------+----------------------+
-| 1. Live Coding & DSA     | 2. Core CS Fundamentals  | 3. Architecture & Defense  | 4. Verification & CI |
-+--------------------------+--------------------------+----------------------------+----------------------+
-| • dsa_coach.prompt.md    | • Relational Schemas     | • Feynman Explanations     | • 25 PyTest Tests    |
-| • Interview Mode (Hints) | • ACID Transactions      | • Adversarial Reviews      | • Schema Reflection  |
-| • Learning Mode (Drills) | • Concurrency & Threads  | • Security Trade-offs      | • Alembic Migrations |
-| • Big-O Complexity      | • HTTP Status Semantics  | • Edge-case Resilience     | • Docker Deployment  |
-+--------------------------+--------------------------+----------------------------+----------------------+
-```
-
-1. **Data Structures & Algorithms (DSA):** Uses [`ai_learning_research/prompts/dsa_coach.prompt.md`](ai_learning_research/prompts/dsa_coach.prompt.md) featuring **Interview Mode** (masks pattern names, offers progressive hint ladders, and enforces Big-O analysis) and **Learning Mode** (explains patterns, provides worked examples, and requires active reconstruction).
-2. **Core Computer Science Fundamentals:** Anchors abstract database theory (normalization, indexes, ACID transaction isolation) and networking concepts directly into working code.
-3. **Project & Architectural Defense:** Uses the **Adversarial Code Review** protocol and **Feynman Verification Drills** to practice explaining *why* technical decisions were made, preparing candidates for deep questioning by Engineering Managers.
-4. **Systems Verification & Testing:** Teaches candidates how to write isolated unit tests, mock sessions, and regression suites in PyTest, demonstrating rare junior-level maturity.
-
----
-
-## 📊 Core Findings of the Research Brief
-
-1. **Pakistan ICT Export Growth vs. Experience Bias:**  
-   Pakistan's ICT export remittances expanded from $\$1.440\text{B}$ (FY20) to a reported full-year outturn of **US$ 4.60 Billion** in FY26 (**$+21.4\%$ 6-year CAGR** per SBP, Ministry of Finance, and APP reports). However, according to the P@SHA Skills Survey 2025, **$71.8\%$** of industry hiring demand across surveyed member firms is concentrated in experienced roles, creating high qualification friction for fresh graduates.
-
-2. **The Verification Bottleneck:**  
-   As autonomous coding models reduce the marginal cost of producing routine syntax ($C_{\text{gen}} \downarrow$), human engineering effort shifts toward verifying business correctness, handling non-trivial edge cases, and auditing security ($C_{\text{verif}} \uparrow$).
-
-3. **Strategic Specialization Recommendation:**  
-   Given the importance of demonstrable technical competence in a competitive entry-level market, candidates benefit from focusing deeply on a high-leverage backend stack (**Python / FastAPI + PostgreSQL + PyTest**) to build, test, deploy, and defend a substantial portfolio application rather than engaging in superficial multi-stack switching. This is a reasoned career strategy, not a causal finding established by the labor-market dataset.
-
----
-
 ## ⚡ Quickstart Guide
 
-### Option 1: Run JobPulse Locally (Python & FastAPI)
+### 1. Run the Backend Platform (JobPulse API)
 
 ```bash
 # 1. Enter the backend directory
@@ -172,11 +151,11 @@ pip install -r requirements.txt
 # 3. Apply database migrations
 alembic upgrade head
 
-# 4. Run the automated test suite (25 passing backend tests)
+# 4. Run the automated developer test suite (25 passing backend tests)
 python -m pytest -v
 
 # 5. Launch the application (serves both API & Frontend Dashboard)
-uvicorn app.main:app --reload --port 8000
+python -m uvicorn app.main:app --reload --port 8000
 ```
 
 Open your browser to:
@@ -184,21 +163,19 @@ Open your browser to:
 * **Interactive OpenAPI Swagger Docs:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 * **ReDoc Documentation:** [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 
-*(Alternatively, open `frontend/index.html` directly in any modern browser for standalone client mode!)*
+*(Or run via Docker Compose: `cd backend && docker compose up --build -d`)*
 
 ---
 
-### Option 2: Docker Compose (PostgreSQL 16 Multi-Container Setup)
+### 2. Launch the QA Master Dashboard & Curriculum
 
-```bash
-cd backend
-# Boots PostgreSQL 16 and JobPulse API (automatically applies migrations via docker-entrypoint.sh)
-docker compose up --build -d
-```
+1. Double-click **[`qa/30_Day_QA_Roadmap_Pro.html`](qa/30_Day_QA_Roadmap_Pro.html)** in any browser.
+2. Select **Day 1** and click **`1. Copy Kickoff Prompt`**.
+3. Paste the prompt into chat with ChatGPT or Antigravity (using [`qa/skill/SKILL.md`](qa/skill/SKILL.md) as instructions) to begin your guided 4-hour routine.
 
 ---
 
-### Option 3: Run the Empirical Research Pipeline
+### 3. Run the Empirical Research Pipeline
 
 ```bash
 # 1. Run automated data integrity and offline FRED aggregation tests (2,443 valid observations)
@@ -211,7 +188,7 @@ python research/src/analyze_market_dynamics.py
 
 ---
 
-### Option 4: Run the AI Learning Framework Consistency Suite
+### 4. Run the AI Learning Framework Consistency Suite
 
 ```bash
 # Run automated consistency checks verifying citation identifiers, system prompt rules, and roadmap structure
@@ -225,55 +202,59 @@ python -m pytest -v ai_learning_research/tests/test_protocols_and_sources.py
 ```
 whattochoose/
 │
-├── frontend/                           # Interactive Modern Single-Page Application (SPA)
-│   └── index.html                      # Pipeline Kanban, Conversion Analytics & Research Explorer
+├── roadmap/                            # MASTER ROADMAPS HUB: Choose Track 1 or Track 2
+│   ├── README.md                       # Side-by-side comparison & track selection guide
+│   ├── backend_sprint.md               # Track 1 Guide: 30-Day Python Backend Sprint
+│   └── qa_sdet_sprint.md               # Track 2 Guide: 60-Day QA & SDET Sprint
 │
-├── backend/                            # Production-Style FastAPI REST API
+├── backend/                            # TRACK 1: Backend Platform (JobPulse SUT)
+│   ├── README.md                       # Comprehensive Backend Architecture & SUT Guide
 │   ├── app/
 │   │   ├── main.py                     # App entrypoint (serves API & Dashboard UI)
 │   │   ├── core/                       # Config (Pydantic Settings), DB engine, JWT/Bcrypt security
 │   │   ├── models/                     # SQLAlchemy 2.0 ORM models (User, Company, Application, Interview, Note)
 │   │   ├── schemas/                    # Pydantic v2 request/response schemas
 │   │   ├── crud/                       # Database repository operations & funnel analytics
-│   │   ├── api/                        # Versioned API v1 routers & JWT auth dependency
-│   │   └── static/                     # Embedded static build
+│   │   └── api/                        # Versioned API v1 routers & JWT auth dependency
 │   ├── alembic/                        # Versioned database migration scripts
-│   ├── alembic.ini                     # Alembic migration configuration
 │   ├── tests/                          # 25 passing PyTest unit, integration, migration & cross-user security tests
-│   ├── docker-entrypoint.sh            # Container migration runner & process supervisor
 │   ├── Dockerfile                      # Python 3.12 slim container
 │   ├── docker-compose.yml              # Local dev multi-container setup with PostgreSQL 16
 │   └── requirements.txt                # Backend dependencies
 │
-├── ai_learning_research/               # AI-Augmented Learning Science & Execution Protocols
+├── qa/                                 # TRACK 2: QA & SDET Engineering Suite
+│   ├── README.md                       # Master Guide: 60-Day Curriculum & SUT Testing Architecture
+│   ├── 30_Day_QA_Roadmap_Pro.html      # Interactive Master Dashboard (60 Days + Beyond, Offline)
+│   ├── jobpulse_sut_contract.md        # Authoritative SUT Contract (20 Operations, Auth & Schemas)
+│   ├── 30_day_job_ready_qa_roadmap.md  # Authoritative 30-Day Core Roadmap (Days 1–30)
+│   ├── days_31_60_qa_automation_extension.md # Authoritative 30-Day Advanced Extension (Days 31–60)
+│   ├── qa_interview_handbook.md        # 35 Technical Questions, Model Answers & STAR Stories
+│   ├── qa_sdet_market_analysis.md      # Empirical QA Labor Market Research & Role Benchmarks
+│   ├── 30_day_qa_sdet_hands_on_roadmap.md # Redirect-style stub for legacy references
+│   └── skill/
+│       ├── SKILL.md                    # Autonomous /qa-sprint System Prompt & Mentor Personas
+│       └── progress_tracker.md         # 60-Day Tabular Progress Tracker
+│
+├── frontend/                           # Interactive Modern Single-Page Application (SPA)
+│   └── index.html                      # Pipeline Kanban, Conversion Analytics & Research Explorer
+│
+├── ai_learning_research/               # TRACK 4: AI-Augmented Learning Science & Execution Protocols
 │   ├── README.md                       # Navigation guide & overview
-│   ├── SOURCES.md                      # Academic bibliographic audit (ACM SIGCSE, ICER, CHI, Wharton)
 │   ├── framework/                      # Cognitive architecture & the 6 deadly anti-patterns
 │   ├── protocols/                      # Socratic decomposition, adversarial review, mutation drills, Feynman
 │   ├── prompts/                        # Research-informed prompts (including DSA Coach with hint ladders)
 │   ├── roadmap/                        # 30-Day Active-Learning Backend Sprint schedule
-│   └── tests/                          # 6 passing tests checking citation identifiers and document consistency
+│   └── tests/                          # 6 passing tests checking citation identifiers and consistency
 │
-└── research/                           # Empirical Labor Market Research & Datasets
+└── research/                           # TRACK 3: Empirical Labor Market Research & Datasets
+    ├── README.md                       # Empirical research overview
     ├── paper/
     │   ├── main_manuscript.md          # Complete whitepaper & analysis brief
-    │   ├── references.bib              # BibTeX citation library
     │   └── figures/                    # 300 DPI publication figures (Fig 1 - Fig 4)
-    ├── data/
-    │   ├── raw/
-    │   │   ├── longitudinal_se_data.json # Multi-year harmonized empirical dataset
-    │   │   └── IHLIDXUSTPSOFTDEVE.csv    # Official daily FRED Indeed postings series (2,443 valid obs)
-    │   ├── processed/                  # Processed time-series & benchmark milestone CSVs
-    │   └── SOURCES.md                  # Comprehensive source audit & provenance documentation
-    ├── src/
-    │   └── analyze_market_dynamics.py  # Python statistical modeling & dynamic figure generation
-    ├── tests/
-    │   ├── test_data_integrity.py      # Automated data integrity, CAGR math & rubric tests
-    │   └── test_fred_aggregation.py    # Offline unit test for FRED annual aggregation metrics
-    ├── roadmap/
-    │   ├── 2026_graduate_readiness_matrix.md # Skills triage matrix
-    │   └── pakistani_fresh_grad_playbook.md  # 90-day actionable execution guide
-    └── walkthrough.md                  # Methodological audit & verification walkthrough
+    ├── data/                           # Longitudinal empirical datasets (2,443 FRED observations)
+    ├── src/                            # Python statistical modeling & dynamic figure generation
+    ├── tests/                          # 11 passing data integrity, FRED aggregation & link tests
+    └── qa_market_research/             # Retained backward-compatible mirror pointing to /qa
 ```
 
 ---

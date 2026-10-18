@@ -1,10 +1,10 @@
 source_file,link_text,url
 README.md,![Python,https://img.shields.io/badge/Python-3.12-blue.svg
 README.md,![FastAPI,https://img.shields.io/badge/FastAPI-0.115+-009688.svg
-README.md,![SQLAlchemy,https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg
 README.md,![PostgreSQL,https://img.shields.io/badge/PostgreSQL-16-336791.svg
 README.md,![Backend Tests,https://img.shields.io/badge/Backend%20Tests-25%20Passing-success.svg
-README.md,![Research Checks,https://img.shields.io/badge/Research%20Checks-Passing-success.svg
+README.md,![QA Suite,https://img.shields.io/badge/QA%20Suite-60%20Days%20Complete-green.svg
+README.md,![Research Checks,https://img.shields.io/badge/Research%20Checks-11%20Passing-success.svg
 README.md,![AI Learning Framework,https://img.shields.io/badge/AI%20Framework-6%20Passing-success.svg
 README.md,![License: MIT,https://img.shields.io/badge/License-MIT-yellow.svg
 README.md,github.com/bilalfarid-1/whattochoose,https://github.com/bilalfarid-1/whattochoose
@@ -47,22 +47,25 @@ ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 572
 ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 235: Lowest Common Ancestor of a BST,https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 200: Number of Islands,https://leetcode.com/problems/number-of-islands/
 ai_learning_research\roadmap\detailed_day_by_day_backend_roadmap.md,LeetCode 133: Clone Graph,https://leetcode.com/problems/clone-graph/
-paper\main_manuscript.md,direct report PDF,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
-paper\main_manuscript.md,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf,https://finance.gov.pk/survey/chapter_26/15_Information_Technology.pdf
-paper\main_manuscript.md,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/
-paper\main_manuscript.md,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/,https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/
-paper\main_manuscript.md,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html,https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-27.html
-paper\main_manuscript.md,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
-paper\main_manuscript.md,https://www.sbp.org.pk/economic-data,https://www.sbp.org.pk/economic-data
-paper\main_manuscript.md,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE,https://fred.stlouisfed.org/series/IHLIDXUSTPSOFTDEVE
-paper\main_manuscript.md,https://survey.stackoverflow.co/2025/ai,https://survey.stackoverflow.co/2025/ai
-paper\main_manuscript.md,https://survey.stackoverflow.co/2024/,https://survey.stackoverflow.co/2024/
-paper\main_manuscript.md,https://survey.stackoverflow.co/2023/,https://survey.stackoverflow.co/2023/
-paper\main_manuscript.md,https://www.swebench.com/,https://www.swebench.com/
-paper\main_manuscript.md,https://aiindex.stanford.edu/report/,https://aiindex.stanford.edu/report/
-paper\main_manuscript.md,https://layoffs.fyi/,https://layoffs.fyi/
-paper\main_manuscript.md,https://arxiv.org/abs/2407.01489,https://arxiv.org/abs/2407.01489
-paper\main_manuscript.md,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf,https://proceedings.neurips.cc/paper_files/paper/2025/file/7107d4d2e837bde2171c6b71b5bde954-Paper-Conference.pdf
+backend\README.md,![Python,https://img.shields.io/badge/Python-3.12-blue.svg
+backend\README.md,![FastAPI,https://img.shields.io/badge/FastAPI-0.115+-009688.svg
+backend\README.md,![SQLAlchemy,https://img.shields.io/badge/SQLAlchemy-2.0+-red.svg
+backend\README.md,![PostgreSQL,https://img.shields.io/badge/PostgreSQL-16-336791.svg
+backend\README.md,![Backend Tests,https://img.shields.io/badge/Backend%20Tests-25%20Passing-success.svg
+backend\README.md,![QA Suite,https://img.shields.io/badge/QA%20Suite-60%20Days%20Ready-green.svg
+backend\README.md,http://127.0.0.1:8000/docs,http://127.0.0.1:8000/docs
+backend\README.md,http://127.0.0.1:8000/redoc,http://127.0.0.1:8000/redoc
+backend\README.md,http://127.0.0.1:8000/health,http://127.0.0.1:8000/health
+qa\README.md,![Interactive Dashboard,https://img.shields.io/badge/Dashboard-30__Day__QA__Roadmap__Pro.html-blue.svg
+qa\README.md,![Curriculum,https://img.shields.io/badge/Curriculum-60%20Days%20Complete-success.svg
+qa\README.md,![SUT Contract,https://img.shields.io/badge/SUT%20Contract-20%20Operations-orange.svg
+qa\README.md,![Interview Handbook,https://img.shields.io/badge/Interview%20Handbook-35%20Technical%20Q%26As-purple.svg
+qa\README.md,![AI Mentor,https://img.shields.io/badge/AI%20Mentor-%2Fqa--sprint-brightgreen.svg
+qa\qa_sdet_market_analysis.md,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf,https://www.pasha.org.pk/wp-content/uploads/Skills-Survey-2025.pdf
+qa\qa_sdet_market_analysis.md,https://www.sbp.org.pk/economic-data,https://www.sbp.org.pk/economic-data
+qa\qa_sdet_market_analysis.md,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/,https://www.app.com.pk/national/pakistans-ict-export-earnings-hit-record-4-6bn-in-fy2025-26/
+qa\qa_sdet_market_analysis.md,https://owasp.org/API-Security/editions/2023/en/0x11-t10/,https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+qa\qa_sdet_market_analysis.md,https://survey.stackoverflow.co/,https://survey.stackoverflow.co/
 research\data\README.md,survey.stackoverflow.co,https://survey.stackoverflow.co/
 research\data\README.md,aiindex.stanford.edu,https://aiindex.stanford.edu/report/
 research\data\README.md,swebench.com,https://www.swebench.com/
@@ -110,3 +113,14 @@ research\qa_market_research\qa_sdet_market_analysis.md,https://www.app.com.pk/na
 research\qa_market_research\qa_sdet_market_analysis.md,https://owasp.org/API-Security/editions/2023/en/0x11-t10/,https://owasp.org/API-Security/editions/2023/en/0x11-t10/
 research\qa_market_research\qa_sdet_market_analysis.md,https://survey.stackoverflow.co/,https://survey.stackoverflow.co/
 research\walkthrough.md,**github.com/bilalfarid-1/whattochoose**,https://github.com/bilalfarid-1/whattochoose
+roadmap\README.md,![Backend Track,https://img.shields.io/badge/Track%201-30--Day%20Backend%20Sprint-blue.svg
+roadmap\README.md,![QA/SDET Track,https://img.shields.io/badge/Track%202-60--Day%20QA%2FSDET%20Sprint-green.svg
+roadmap\README.md,![Interactive Dashboard,https://img.shields.io/badge/QA%20Dashboard-30__Day__QA__Roadmap__Pro.html-purple.svg
+roadmap\backend_sprint.md,![Full Curriculum,https://img.shields.io/badge/Curriculum-30%20Days-blue.svg
+roadmap\backend_sprint.md,![Daily Schedule,https://img.shields.io/badge/Daily%20Schedule-Detailed%20Guide-green.svg
+roadmap\backend_sprint.md,![DSA Coach,https://img.shields.io/badge/DSA%20Coach-Big--O%20Hint%20Ladders-purple.svg
+roadmap\backend_sprint.md,![Hub,https://img.shields.io/badge/Back%20to-Roadmaps%20Hub-orange.svg
+roadmap\qa_sdet_sprint.md,![Full Curriculum,https://img.shields.io/badge/Curriculum-60%20Days-green.svg
+roadmap\qa_sdet_sprint.md,![Interactive Dashboard,https://img.shields.io/badge/Dashboard-30__Day__QA__Roadmap__Pro.html-purple.svg
+roadmap\qa_sdet_sprint.md,![SUT Contract,https://img.shields.io/badge/SUT%20Contract-20%20Operations-blue.svg
+roadmap\qa_sdet_sprint.md,![Hub,https://img.shields.io/badge/Back%20to-Roadmaps%20Hub-orange.svg
