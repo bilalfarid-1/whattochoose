@@ -2878,7 +2878,20 @@ function onDayCheckChange(dayNum, isChecked) {
   }
 
   saveStorage(store);
-  renderStream();
+
+  // Directly update DOM elements in place without snapping cards shut
+  const card = document.getElementById(`pro-day-${dayNum}`);
+  if (card) {
+    if (isChecked) card.classList.add("completed");
+    else card.classList.remove("completed");
+
+    const dayCb = card.querySelector(".day-checkbox");
+    if (dayCb) dayCb.checked = isChecked;
+
+    const subInputs = card.querySelectorAll(".subtasks-list input[type='checkbox']");
+    subInputs.forEach(inp => inp.checked = isChecked);
+  }
+
   updateProgressUI();
 }
 
@@ -2896,7 +2909,17 @@ function onSubtaskChange(dayNum, subtaskIdx, isChecked) {
   store.days[dayNum] = allDone;
 
   saveStorage(store);
-  renderStream();
+
+  // Directly update DOM elements in place without snapping cards shut
+  const card = document.getElementById(`pro-day-${dayNum}`);
+  if (card) {
+    if (allDone) card.classList.add("completed");
+    else card.classList.remove("completed");
+
+    const dayCb = card.querySelector(".day-checkbox");
+    if (dayCb) dayCb.checked = allDone;
+  }
+
   updateProgressUI();
 }
 
@@ -2994,10 +3017,38 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove("show"), 2400);
 }
 
+function fallbackCopy(text, toastMsg) {
+  try {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-9999px";
+    textArea.style.top = "0";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    const successful = document.execCommand("copy");
+    document.body.removeChild(textArea);
+    if (successful) {
+      showToast(toastMsg || "Prompt copied to clipboard!");
+    } else {
+      showToast("Unable to auto-copy. Please copy manually.");
+    }
+  } catch (err) {
+    showToast("Unable to auto-copy. Please copy manually.");
+  }
+}
+
 function copyPromptText(prompt, toastMsg) {
-  navigator.clipboard.writeText(prompt).then(() => {
-    showToast(toastMsg || "Prompt copied to clipboard!");
-  });
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(prompt).then(() => {
+      showToast(toastMsg || "Prompt copied to clipboard!");
+    }).catch(() => {
+      fallbackCopy(prompt, toastMsg);
+    });
+  } else {
+    fallbackCopy(prompt, toastMsg);
+  }
 }
 
 function updateWeeklyAiBanner() {
@@ -3059,6 +3110,11 @@ function updateWeeklyAiBanner() {
 
 function renderStream() {
   const container = document.getElementById("daysContainer");
+  
+  // Preserve currently open cards across filter/search rerenders
+  const openIds = new Set();
+  document.querySelectorAll(".day-card.open").forEach(c => openIds.add(c.id));
+
   container.innerHTML = "";
   const store = loadStorage();
 
@@ -3100,9 +3156,10 @@ function renderStream() {
     const s5 = !!store.subtasks[`d${d.day}_s5`];
 
     const isExtension = d.day > 30;
+    const shouldBeOpen = allCardsOpen || openIds.has(`pro-day-${d.day}`);
 
     const card = document.createElement("div");
-    card.className = "day-card" + (isDone ? " completed" : "") + (d.isConsolidation ? " consolidation" : "") + (isExtension ? " extension-card" : "");
+    card.className = "day-card" + (isDone ? " completed" : "") + (d.isConsolidation ? " consolidation" : "") + (isExtension ? " extension-card" : "") + (shouldBeOpen ? " open" : "");
     card.id = `pro-day-${d.day}`;
 
     const ai = d.aiGuide || {};
@@ -3212,11 +3269,11 @@ function renderStream() {
           <div class="day-ai-grid">
             <div class="day-ai-col">
               <strong>What to Share with AI in Chat:</strong>
-              <span>${ai.whatToSend || 'Share today's code, test run terminal output, and deliverable file.'}</span>
+              <span>${ai.whatToSend || "Share today's code, test run terminal output, and deliverable file."}</span>
             </div>
             <div class="day-ai-col">
               <strong>What the AI Will Do for You:</strong>
-              <span>${ai.whatAIWillDo || 'Verify acceptance criteria, probe edge cases, and guide the 4-hour timeline.'}</span>
+              <span>${ai.whatAIWillDo || "Verify acceptance criteria, probe edge cases, and guide the 4-hour timeline."}</span>
             </div>
           </div>
         </div>
