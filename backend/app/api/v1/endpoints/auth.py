@@ -40,6 +40,7 @@ def login(login_data: UserLogin, db: Session = Depends(get_db)):
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router.post("/login/oauth", response_model=Token)
+@router.post("/token", response_model=Token, include_in_schema=False)
 def login_oauth(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     """OAuth2 compatible token login for Swagger UI documentation integration."""
     user = authenticate(db, email=form_data.username, password=form_data.password)

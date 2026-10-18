@@ -37,7 +37,7 @@ It serves two primary roles in this repository:
 1. **Threadpool Concurrency Over Event-Loop Starvation:** Synchronous FastAPI route handlers execute across worker threadpools to handle blocking SQLAlchemy ORM database queries safely without starving the asynchronous event loop.
 2. **Strict Multi-Tenant Row-Level Security (Non-Disclosing 404s):** When User B attempts to access, mutate, or delete User A's private application, interview stage, or note, the API returns `HTTP 404 Not Found` rather than `403 Forbidden`. This eliminates resource-enumeration attack vectors where malicious users probe for the existence of valid IDs.
 3. **Automated Migration Lifecycle Testing:** [`tests/test_migrations.py`](tests/test_migrations.py) applies `alembic upgrade head`, reflects database tables and columns dynamically, tests clean `alembic downgrade base`, and reapplies migrations on a clean test database.
-4. **Dual Auth Contracts:** Supports both OAuth2 standard form-encoded login (`/api/v1/auth/token` for Swagger UI) and JSON body login (`/api/v1/auth/login` for API clients), allowing QA engineers to test content-type negotiation and schema enforcement.
+4. **Dual Auth Contracts:** Supports both OAuth2 standard form-encoded login (`/api/v1/auth/login/oauth`, also aliased at `/api/v1/auth/token`) and JSON body login (`/api/v1/auth/login` for API clients), allowing QA engineers to test content-type negotiation and schema enforcement.
 
 ---
 
@@ -85,7 +85,7 @@ The JobPulse API exposes 20 operations across 13 route templates:
 | **System** | `GET` | `/health` | None | Liveness health probe returning `{"status": "ok"}`. |
 | **Auth** | `POST` | `/api/v1/auth/register` | None | Register new user account. |
 | **Auth** | `POST` | `/api/v1/auth/login` | None | JSON-based authentication returning Bearer token. |
-| **Auth** | `POST` | `/api/v1/auth/token` | Form | OAuth2 form-data login returning Bearer token. |
+| **Auth** | `POST` | `/api/v1/auth/login/oauth` | Form | OAuth2 form-data login returning Bearer token (also aliased at `/api/v1/auth/token`). |
 | **Auth** | `GET` | `/api/v1/auth/me` | Bearer | Retrieve current user profile. |
 | **Companies** | `GET` | `/api/v1/companies/` | Bearer | Global shared directory of companies. |
 | **Companies** | `POST` | `/api/v1/companies/` | Bearer | Create company record in directory. |

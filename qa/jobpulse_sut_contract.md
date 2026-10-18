@@ -14,7 +14,7 @@ JobPulse is an open-source, multi-tenant job application tracking system enginee
 
 ### Tenancy & Security Boundary Model
 1. **Multi-Tenant Isolation:** Every job application, interview stage, and interview note is owned by a specific `user_id`.
-2. **Access Control (RBAC/BOLA):** Users may only view, update, or delete their own applications and nested records. A request by User B to access or mutate User A's resource ID must be rejected by the API with `404 Not Found` (or `403 Forbidden`).
+2. **Access Control (RBAC/BOLA):** Users may only view, update, or delete their own applications and nested records. A request by User B to access or mutate User A's resource ID must be rejected by the API with `404 Not Found` (JobPulse strictly enforces a non-disclosing 404 security model to eliminate resource enumeration vectors, though generic REST contracts sometimes permit 403 Forbidden).
 3. **Shared Company Directory:** The company entity directory (`/api/v1/companies/`) is global and shared across all authenticated users, allowing candidates to link applications to standardized company records safely.
 
 ---
